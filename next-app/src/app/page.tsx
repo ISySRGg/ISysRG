@@ -11,15 +11,15 @@ import ProductsSection from "./components/products-section"
 export default function Page() {
   return (
     <main>
-      <header className="rounded-b-xl bg-black bg-[url('/assets/images/code.jpg')] bg-cover sm:rounded-b-[3rem]">
-        <div className="flex flex-col rounded-b-xl bg-gradient-to-br from-neutral-950/95 via-neutral-800/90 via-50% to-orange-950/60 to-95% pb-14 text-background backdrop-blur sm:rounded-b-[3rem] sm:py-20">
+      <header className="h-dvh bg-black bg-[url('/assets/images/code.jpg')] bg-cover sm:h-fit sm:rounded-b-[3rem]">
+        <div className="flex h-full flex-col bg-gradient-to-br from-neutral-950/95 via-neutral-800/90 via-50% to-orange-950/60 to-95% pb-14 text-background backdrop-blur sm:rounded-b-[3rem] sm:py-20">
           <Header />
 
-          <div className="container py-16 sm:py-28">
+          <div className="container mt-[50%] sm:mt-0 sm:py-28">
             <h1 className="h-[1lh] text-4xl font-medium sm:text-9xl">
               <Slogan />
             </h1>
-            <p className="mt-6 max-w-prose text-sm sm:text-xl">
+            <p className="mt-6 max-w-prose text-lg sm:text-xl">
               <span className="text-primary">
                 The Intelligent Systems Research Group
               </span>{" "}
