@@ -8,6 +8,8 @@ import { geistMono, geistSans } from "@/lib/fonts"
 import { cn } from "@/lib/utils"
 import Footer from "@/components/layout/footer"
 
+import Providers from "./providers"
+
 export const metadata: Metadata = {
   title: siteConfig.title,
   description: siteConfig.description,
@@ -27,8 +29,10 @@ export default function RootLayout({
           "flex min-h-dvh flex-col antialiased"
         )}
       >
-        <div className="grow">{children}</div>
-        <Footer />
+        <Providers>
+          <div className="grow">{children}</div>
+          <Footer />
+        </Providers>
       </body>
     </html>
   )

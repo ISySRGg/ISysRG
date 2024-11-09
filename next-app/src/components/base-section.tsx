@@ -24,13 +24,15 @@ export default function BaseSection({
   headerAlign = "start",
 }: Props) {
   return (
-    <section className={cn("py-24", className)}>
+    <section className={cn("py-14 sm:py-24", className)}>
       <div className="container">
         <header className={cn(headerAlignClassNames[headerAlign])}>
           {title && (
-            <h2 className="text-3xl font-extrabold text-primary">{title}</h2>
+            <h2 className="text-lg font-extrabold text-primary sm:text-3xl">
+              {title}
+            </h2>
           )}
-          {subtitle && <p className="text-5xl">{subtitle}</p>}
+          {subtitle && <p className="text-3xl sm:text-5xl">{subtitle}</p>}
         </header>
         <div className="mt-4">{children}</div>
       </div>

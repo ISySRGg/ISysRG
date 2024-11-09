@@ -13,27 +13,29 @@ export default async function PostsSection() {
 
   return (
     <BaseSection title="Posts">
-      <article className="prose">
+      <article className="prose prose-sm sm:prose-base">
         <p>
           Stay updated with the latest news, research insights, and developments
           from the Intelligent Systems Research Group (ISysRG).
         </p>
       </article>
-      <ul className="mt-4 grid grid-cols-3 gap-6">
+      <ul className="mt-4 flex flex-col gap-6">
         {posts.map((post) => (
           <li key={post._id}>
             <Link href={`posts/${post.slug?.current}`} className="group">
-              <h2 className="text-xl font-bold group-hover:underline">
+              <h2 className="text-lg font-bold group-hover:underline sm:text-xl">
                 {post.title}
               </h2>
-              <p>{new Date(post.publishedAt as string).toDateString()}</p>
+              <p className="text-sm sm:text-base">
+                {new Date(post.publishedAt as string).toDateString()}
+              </p>
             </Link>
           </li>
         ))}
       </ul>
 
       <div className="flex justify-end pt-8">
-        <Button variant="outline" size="xl" asChild>
+        <Button variant="outline" size="xl" asChild className="w-full sm:w-fit">
           <Link href="/datasets">Explore more</Link>
         </Button>
       </div>

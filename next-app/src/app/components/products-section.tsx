@@ -24,7 +24,7 @@ export default async function ProductsSection() {
     >
       <Tabs
         defaultValue={products[0]._id}
-        className="mt-10 flex flex-col items-center"
+        className="mt-4 flex flex-col items-center sm:mt-10"
       >
         <TabsList>
           {products.map((product) => (
@@ -39,7 +39,7 @@ export default async function ProductsSection() {
             <TabsContent
               key={product._id}
               value={product._id}
-              className="grid grid-cols-2 items-start gap-14"
+              className="grid items-start gap-14 sm:grid-cols-2"
             >
               <Image
                 src={urlForImage(product.image)?.url() as string}
@@ -49,20 +49,29 @@ export default async function ProductsSection() {
               />
 
               <div>
-                <article className="prose prose-2xl tracking-tight">
+                <article className="prose prose-xl tracking-tight sm:prose-2xl">
                   <p>{product.description}</p>
                 </article>
 
-                <ul className="grid grid-cols-2 gap-4 pt-6">
+                <ul className="grid gap-4 pt-6 sm:grid-cols-2">
                   {product.features?.map((feature) => (
-                    <li key={feature} className="flex items-center gap-1">
-                      <CircleCheck className="text-primary" /> {feature}
+                    <li
+                      key={feature}
+                      className="flex items-center gap-1 text-sm sm:text-base"
+                    >
+                      <CircleCheck className="size-[1.3em] text-primary" />{" "}
+                      {feature}
                     </li>
                   ))}
                 </ul>
 
                 <div className="pt-8">
-                  <Button variant="outline" size="xl" asChild>
+                  <Button
+                    variant="outline"
+                    size="xl"
+                    asChild
+                    className="w-full sm:w-fit"
+                  >
                     <Link href={`/products/${product.slug?.current}`}>
                       More details
                     </Link>

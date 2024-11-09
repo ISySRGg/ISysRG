@@ -12,15 +12,16 @@ export default function AboutSection() {
       subtitle="Research, Medical Interpretation"
       headerAlign="center"
     >
-      <div className="flex items-center justify-center gap-20">
+      <div className="flex flex-col items-center justify-center gap-4 sm:flex-row sm:gap-20">
         <Image
           src="/assets/images/artificial-intelligence.png"
           alt=""
           width={300}
           height={300}
+          className="size-[200px] sm:size-[300px]"
         />
         <div className="flex flex-col items-center">
-          <article className="prose prose-2xl">
+          <article className="prose prose-xl sm:prose-2xl">
             <p>
               The research primarily involves developing software, applications,
               and systems to support medical interpretation, with a focus on

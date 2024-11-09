@@ -11,15 +11,15 @@ import ProductsSection from "./components/products-section"
 export default function Page() {
   return (
     <main>
-      <header className="rounded-b-[3rem] bg-black bg-[url('/assets/images/code.jpg')] bg-cover">
-        <div className="flex flex-col rounded-b-[3rem] bg-gradient-to-br from-neutral-950/95 via-neutral-800/90 via-50% to-orange-950/60 to-95% py-20 text-background backdrop-blur">
+      <header className="rounded-b-xl bg-black bg-[url('/assets/images/code.jpg')] bg-cover sm:rounded-b-[3rem]">
+        <div className="flex flex-col rounded-b-xl bg-gradient-to-br from-neutral-950/95 via-neutral-800/90 via-50% to-orange-950/60 to-95% pb-14 text-background backdrop-blur sm:rounded-b-[3rem] sm:py-20">
           <Header />
 
-          <div className="container py-28">
-            <h1 className="h-[1lh] text-9xl font-medium">
+          <div className="container py-16 sm:py-28">
+            <h1 className="h-[1lh] text-4xl font-medium sm:text-9xl">
               <Slogan />
             </h1>
-            <p className="mt-6 max-w-prose text-xl">
+            <p className="mt-6 max-w-prose text-sm sm:text-xl">
               <span className="text-primary">
                 The Intelligent Systems Research Group
               </span>{" "}
@@ -29,7 +29,7 @@ export default function Page() {
               intelligently.
             </p>
 
-            <div className="mt-10 flex gap-4">
+            <div className="mt-10 flex flex-col gap-4 sm:flex-row">
               <Button size="xl">Our Services</Button>
               <Button size="xl" variant="secondary">
                 View Projects
