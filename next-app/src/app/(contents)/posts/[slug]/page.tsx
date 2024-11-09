@@ -10,9 +10,13 @@ const options = { next: { revalidate: 30 } }
 export default async function PostPage({
   params,
 }: {
-  params: { slug: string }
+  params: Promise<{ slug: string }>
 }) {
-  const post = await client.fetch<SanityDocument>(postQuery, params, options)
+  const post = await client.fetch<SanityDocument>(
+    postQuery,
+    await params,
+    options
+  )
   const postImageUrl = post.image
     ? urlForImage(post.image)?.width(550).height(310).url()
     : null
