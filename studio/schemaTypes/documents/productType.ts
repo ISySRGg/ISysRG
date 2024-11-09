@@ -1,8 +1,10 @@
 import {defineField, defineType} from 'sanity'
+import {CubeIcon} from '@sanity/icons'
 
-export const datasetType = defineType({
-  name: 'dataset',
-  title: 'Dataset',
+export const productType = defineType({
+  name: 'product',
+  title: 'Product',
+  icon: CubeIcon,
   type: 'document',
   fields: [
     defineField({
@@ -23,6 +25,11 @@ export const datasetType = defineType({
     defineField({
       name: 'description',
       type: 'text',
+    }),
+    defineField({
+      name: 'features',
+      type: 'array',
+      of: [{type: 'string'}],
     }),
   ],
 })

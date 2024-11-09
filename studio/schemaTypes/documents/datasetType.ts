@@ -1,19 +1,10 @@
 import {defineField, defineType} from 'sanity'
+import {DatabaseIcon} from '@sanity/icons'
 
-// export type Product = {
-//     name: string
-//     image: {
-//       src: string
-//       alt: string
-//     }
-//     description: string
-//     features: string[]
-//     href: string
-//   }
-
-export const productType = defineType({
-  name: 'product',
-  title: 'Product',
+export const datasetType = defineType({
+  name: 'dataset',
+  title: 'Dataset',
+  icon: DatabaseIcon,
   type: 'document',
   fields: [
     defineField({
@@ -34,11 +25,6 @@ export const productType = defineType({
     defineField({
       name: 'description',
       type: 'text',
-    }),
-    defineField({
-      name: 'features',
-      type: 'array',
-      of: [{type: 'string'}],
     }),
   ],
 })

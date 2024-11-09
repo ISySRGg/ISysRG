@@ -1,8 +1,10 @@
 import {defineField, defineType} from 'sanity'
+import {DocumentTextIcon} from '@sanity/icons'
 
-export const activityType = defineType({
-  name: 'activity',
-  title: 'Activity',
+export const postType = defineType({
+  name: 'post',
+  title: 'Post',
+  icon: DocumentTextIcon,
   type: 'document',
   fields: [
     defineField({
@@ -17,13 +19,19 @@ export const activityType = defineType({
       validation: (rule) => rule.required(),
     }),
     defineField({
-      name: 'image',
-      type: 'image',
+      name: 'publishedAt',
+      type: 'datetime',
+      initialValue: () => new Date().toISOString(),
       validation: (rule) => rule.required(),
     }),
     defineField({
-      name: 'description',
-      type: 'text',
+      name: 'image',
+      type: 'image',
+    }),
+    defineField({
+      name: 'body',
+      type: 'array',
+      of: [{type: 'block'}],
     }),
   ],
 })
