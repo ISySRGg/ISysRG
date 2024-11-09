@@ -15,7 +15,7 @@ export default function Page() {
         <div className="flex h-full flex-col bg-gradient-to-br from-neutral-950/95 via-neutral-800/90 via-50% to-orange-950/60 to-95% pb-14 text-background backdrop-blur sm:rounded-b-[3rem] sm:py-20">
           <Header />
 
-          <div className="container mt-[50%] sm:mt-0 sm:py-28">
+          <div className="container flex h-full flex-col justify-center sm:py-28">
             <h1 className="h-[1lh] text-4xl font-medium sm:text-9xl">
               <Slogan />
             </h1>
