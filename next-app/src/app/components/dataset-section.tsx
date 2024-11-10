@@ -38,14 +38,14 @@ export default async function DatasetSection() {
             <li key={dataset._id}>
               <Link
                 href={`datasets/${dataset.slug?.current}`}
-                className="group flex gap-4 border bg-neutral-50 p-4 transition-all hover:border-primary/40 hover:bg-primary/10"
+                className="group flex gap-4 rounded border bg-neutral-50 p-4 transition-all hover:border-primary/40 hover:bg-primary/10"
               >
                 <Image
                   src={urlForImage(dataset.image)?.url() as string}
                   alt=""
                   height={80}
                   width={80}
-                  className="size-[68px] object-cover sm:size-[80px]"
+                  className="size-[68px] rounded object-cover sm:size-[80px]"
                 />
                 <div>
                   <h2 className="font-bold transition-colors group-hover:text-primary sm:text-xl">

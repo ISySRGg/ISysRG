@@ -53,7 +53,7 @@ export default async function ActivitySection() {
                     alt=""
                     width={600}
                     height={600}
-                    className="aspect-square object-cover"
+                    className="aspect-square rounded object-cover"
                   />
                   <figcaption className="mt-4">
                     <h3 className="text-xl font-medium">{activity.title}</h3>
