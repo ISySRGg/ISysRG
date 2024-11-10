@@ -6,13 +6,20 @@ export const settingsType = defineType({
   title: 'Settings',
   type: 'document',
   icon: CogIcon,
+  groups: [
+    {name: 'metadata', title: 'Metadata'},
+    {name: 'information', title: 'Information'},
+    {name: 'socialMedia', title: 'Social Media'},
+  ],
   fields: [
+    // Metadata
     defineField({
       name: 'title',
       description: 'This field is the title of your blog.',
       title: 'Title',
       type: 'string',
       validation: (rule) => rule.required(),
+      group: 'metadata',
     }),
     defineField({
       name: 'description',
@@ -44,6 +51,7 @@ export const settingsType = defineType({
           },
         }),
       ],
+      group: 'metadata',
     }),
     defineField({
       name: 'ogImage',
@@ -73,6 +81,65 @@ export const settingsType = defineType({
           type: 'url',
         }),
       ],
+      group: 'metadata',
+    }),
+
+    // Information
+    defineField({
+      name: 'address',
+      title: 'Address',
+      type: 'text',
+      validation: (rule) => rule.required(),
+      group: 'information',
+    }),
+    defineField({
+      name: 'contact',
+      title: 'Contact',
+      type: 'string',
+      validation: (rule) => rule.required(),
+      group: 'information',
+    }),
+    defineField({
+      name: 'openingHour',
+      title: 'Opening Hour',
+      type: 'string',
+      validation: (rule) => rule.required(),
+      group: 'information',
+    }),
+
+    // Social Media
+    defineField({
+      name: 'socialMedia',
+      title: 'Social Media',
+      type: 'object',
+      fields: [
+        {
+          name: 'instagram',
+          title: 'Instagram',
+          type: 'url',
+        },
+        {
+          name: 'facebook',
+          title: 'Facebook',
+          type: 'url',
+        },
+        {
+          name: 'linkedIn',
+          title: 'LinkedIn',
+          type: 'url',
+        },
+        {
+          name: 'youTube',
+          title: 'YouTube',
+          type: 'url',
+        },
+        {
+          name: 'linktree',
+          title: 'Linktree',
+          type: 'url',
+        },
+      ],
+      group: 'socialMedia',
     }),
   ],
   preview: {

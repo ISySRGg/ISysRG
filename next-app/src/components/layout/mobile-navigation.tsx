@@ -73,7 +73,7 @@ export default function MobileNavigation() {
           </header>
 
           <div className="container flex flex-col gap-y-8 pt-6 text-xl text-white">
-            {siteConfig.mainNav.map((navigation, key) => (
+            {siteConfig.navigation.map((navigation, key) => (
               <div key={key} className="w-full">
                 {navigation.children ? (
                   <Collapsible>

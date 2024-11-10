@@ -19,7 +19,7 @@ export default function DesktopNavigation() {
   return (
     <NavigationMenu className="hidden sm:block">
       <NavigationMenuList className="divide-x-2 divide-white/10 border-x-2 border-white/10">
-        {siteConfig.mainNav.map((nav, idxA) =>
+        {siteConfig.navigation.map((nav, idxA) =>
           nav.children ? (
             <NavigationMenuItem key={idxA}>
               <NavigationMenuTrigger>{nav.label}</NavigationMenuTrigger>

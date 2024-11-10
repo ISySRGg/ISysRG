@@ -1,10 +1,22 @@
 import Link from "next/link"
+import { client } from "@/sanity/client"
+import * as demo from "@/sanity/demo"
+import { settingsQuery } from "@/sanity/queries"
+import { toPlainText } from "next-sanity"
 
+import { Settings } from "@/types/sanity.types"
 import { siteConfig } from "@/config/site"
 
 import IsysLogo from "../isys-logo"
+import SocialMedia from "./social-media"
 
-export default function Footer() {
+const options = { next: { revalidate: 30 } }
+
+export default async function Footer() {
+  const settings = await client.fetch<Settings>(settingsQuery, {}, options)
+
+  const description = settings?.description || demo.description
+
   return (
     <footer className="ms:mt-10 mt-4">
       <div className="rounded-t-xl border-t-2 border-primary/30 bg-gradient-to-br from-neutral-50 from-40% to-primary/20 pb-10 sm:rounded-t-[3rem]">
@@ -12,7 +24,7 @@ export default function Footer() {
           <div>
             <IsysLogo />
             <p className="mt-1 max-w-prose text-xs text-muted-foreground">
-              {siteConfig.description}
+              {toPlainText(description)}
             </p>
           </div>
 
@@ -20,15 +32,14 @@ export default function Footer() {
             <div>
               <p className="font-medium text-primary sm:text-lg">Address</p>
               <p className="text-xs text-muted-foreground sm:text-sm">
-                Jl. Srijaya Negara, Bukit Besar, Kec. Ilir Bar. I, Kota
-                Palembang, Sumatera Selatan 30128. Universitas Sriwijaya
+                {settings.address}
               </p>
             </div>
 
             <div>
               <p className="font-medium text-primary sm:text-lg">Contact</p>
               <p className="text-xs text-muted-foreground sm:text-sm">
-                (+62) 81224147003
+                {settings.contact}
               </p>
             </div>
 
@@ -37,7 +48,7 @@ export default function Footer() {
                 Opening Hour
               </p>
               <p className="text-xs text-muted-foreground sm:text-sm">
-                9 AM—4 PM every day
+                {settings.openingHour}
               </p>
             </div>
           </div>
@@ -45,32 +56,24 @@ export default function Footer() {
           <div className="flex flex-col gap-4">
             <div>
               <p className="font-medium text-primary sm:text-lg">Links</p>
-              <ul className="flex flex-col gap-2 text-sm text-muted-foreground sm:text-base">
-                <li>
-                  <Link href="#" className="hover:underline">
-                    About Us
-                  </Link>
-                </li>
-                <li>
-                  <Link href="#" className="hover:underline">
-                    Datasets
-                  </Link>
-                </li>
-                <li>
-                  <Link href="#" className="hover:underline">
-                    Products
-                  </Link>
-                </li>
-                <li>
-                  <Link href="#" className="hover:underline">
-                    Publications
-                  </Link>
-                </li>
-                <li>
-                  <Link href="#" className="hover:underline">
-                    Activity
-                  </Link>
-                </li>
+              <ul className="flex flex-col gap-1 text-sm text-muted-foreground sm:text-base">
+                {siteConfig.navigation.map((nav, idx) =>
+                  !nav.href ? (
+                    nav.children?.map((navChild, idxB) => (
+                      <li key={idxB}>
+                        <Link href={navChild.href} className="hover:underline">
+                          {navChild.label}
+                        </Link>
+                      </li>
+                    ))
+                  ) : (
+                    <li key={idx}>
+                      <Link href={nav.href} className="hover:underline">
+                        {nav.label}
+                      </Link>
+                    </li>
+                  )
+                )}
               </ul>
             </div>
           </div>
@@ -80,18 +83,7 @@ export default function Footer() {
             <p className="text-xs text-muted-foreground sm:text-sm">
               ©{new Date().getFullYear()} Isys Research Group
             </p>
-            <ul className="flex gap-2">
-              {siteConfig.socialMedia.map((item, idx) => (
-                <li key={idx}>
-                  <Link
-                    href={item.href}
-                    className="block rounded-full p-1.5 text-sm text-primary hover:bg-primary/30"
-                  >
-                    <item.icon />
-                  </Link>
-                </li>
-              ))}
-            </ul>
+            <SocialMedia socialMedia={settings.socialMedia} />
           </div>
         </div>
       </div>

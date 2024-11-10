@@ -1,12 +1,7 @@
-import { Facebook, Instagram, Linkedin } from "lucide-react"
-
 export type SiteConfig = typeof siteConfig
 
 export const siteConfig = {
-  title: "IsysRG",
-  description:
-    "The Intelligent Systems Research Group (ISysRG) is based at the Faculty of Computer Science, Universitas Sriwijaya. This research group specializes in the theory and application of systems that understand, reason, learn, and act intelligently.",
-  mainNav: [
+  navigation: [
     {
       label: "About Us",
       children: [
@@ -22,6 +17,7 @@ export const siteConfig = {
     },
     {
       label: "Products",
+      href: "/products",
       children: [
         {
           label: "Cardiacare",
@@ -35,6 +31,7 @@ export const siteConfig = {
     },
     {
       label: "Datasets",
+      href: "/datasets",
       children: [
         {
           label: "ECG Signal Database",
@@ -56,6 +53,7 @@ export const siteConfig = {
     },
     {
       label: "Publication",
+      href: "publication",
       children: [
         {
           label: "Books",
@@ -76,22 +74,5 @@ export const siteConfig = {
       ],
     },
     { label: "Activity", href: "/activity" },
-  ],
-  socialMedia: [
-    {
-      name: "Instagram",
-      icon: Instagram,
-      href: "#",
-    },
-    {
-      name: "Facebook",
-      icon: Facebook,
-      href: "#",
-    },
-    {
-      name: "LinkedIn",
-      icon: Linkedin,
-      href: "#",
-    },
   ],
 }
