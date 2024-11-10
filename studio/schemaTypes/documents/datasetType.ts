@@ -27,4 +27,11 @@ export const datasetType = defineType({
       type: 'text',
     }),
   ],
+  preview: {
+    select: {
+      title: 'name',
+      subtitle: 'description',
+      media: 'image',
+    },
+  },
 })

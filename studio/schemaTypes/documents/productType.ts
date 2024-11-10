@@ -32,4 +32,11 @@ export const productType = defineType({
       of: [{type: 'string'}],
     }),
   ],
+  preview: {
+    select: {
+      title: 'name',
+      subtitle: 'description',
+      media: 'image',
+    },
+  },
 })
