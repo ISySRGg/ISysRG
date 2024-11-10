@@ -1,5 +1,21 @@
 import { defineQuery } from "next-sanity"
 
+export const aboutSectionQuery = defineQuery(
+  `*[_type == "home"][0]{aboutSection}`
+)
+
+export const activitiesSectionQuery = defineQuery(
+  `*[_type == "home"][0]{activitiesSection{...,highlightedActivities[]->}}`
+)
+
+export const datasetsSectionQuery = defineQuery(
+  `*[_type == "home"][0]{datasetsSection{...,featuredDatasets[]->}}`
+)
+
+export const productsSectionQuery = defineQuery(
+  `*[_type == "home"][0]{productsSection{...,featuredProducts[]->}}`
+)
+
 export const settingsQuery = defineQuery(`*[_type == "settings"][0]`)
 
 export const allPostsQuery = defineQuery(
