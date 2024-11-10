@@ -10,8 +10,8 @@ export const siteConfig = {
           href: "/team",
         },
         {
-          label: "Infrascructure",
-          href: "/infrascructure",
+          label: "Infrastructure",
+          href: "/infrastructure",
         },
       ],
     },
@@ -73,6 +73,6 @@ export const siteConfig = {
         },
       ],
     },
-    { label: "Activity", href: "/activity" },
+    { label: "Activity", href: "/activities" },
   ],
 }
