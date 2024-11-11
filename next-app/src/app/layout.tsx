@@ -12,6 +12,7 @@ import { Settings } from "@/types/sanity.types"
 import { geistMono, geistSans } from "@/lib/fonts"
 import { cn } from "@/lib/utils"
 import Footer from "@/components/layout/footer"
+import { TailwindIndicator } from "@/components/tailwind-indicator"
 
 import Providers from "./providers"
 
@@ -65,6 +66,8 @@ export default function RootLayout({
           <div className="grow">{children}</div>
           <Footer />
         </Providers>
+
+        <TailwindIndicator />
       </body>
     </html>
   )

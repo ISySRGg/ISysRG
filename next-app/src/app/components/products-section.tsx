@@ -32,7 +32,7 @@ export default async function ProductsSection() {
     >
       {productsSection?.description && (
         <div className="flex justify-center">
-          <article className="prose prose-sm prose-invert max-w-2xl text-center sm:prose-base">
+          <article className="prose prose-sm prose-invert max-w-2xl text-center md:prose-base">
             <PortableText value={productsSection?.description} />
           </article>
         </div>
@@ -40,7 +40,7 @@ export default async function ProductsSection() {
       {productsSection?.featuredProducts && (
         <Tabs
           defaultValue={productsSection?.featuredProducts[0]._id}
-          className="mt-4 flex flex-col items-center sm:mt-10"
+          className="mt-4 flex flex-col items-center lg:mt-10"
         >
           <TabsList>
             {productsSection.featuredProducts.map((product) => (
@@ -55,7 +55,7 @@ export default async function ProductsSection() {
               <TabsContent
                 key={product._id}
                 value={product._id}
-                className="grid items-start gap-14 sm:grid-cols-2"
+                className="grid items-start gap-14 lg:grid-cols-2"
               >
                 <Image
                   src={urlForImage(product.image)?.url() as string}
@@ -65,7 +65,7 @@ export default async function ProductsSection() {
                 />
 
                 <div>
-                  <article className="prose prose-xl tracking-tight sm:prose-2xl">
+                  <article className="prose prose-xl tracking-tight md:prose-2xl">
                     <p>{product.description}</p>
                   </article>
 
@@ -73,7 +73,7 @@ export default async function ProductsSection() {
                     {product.features?.map((feature) => (
                       <li
                         key={feature}
-                        className="flex items-center gap-1 text-sm sm:text-base"
+                        className="flex items-center gap-1 text-sm md:text-base"
                       >
                         <CircleCheck className="size-[1.3em] text-primary" />{" "}
                         {feature}

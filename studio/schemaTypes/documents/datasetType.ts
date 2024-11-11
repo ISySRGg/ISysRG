@@ -23,6 +23,11 @@ export const datasetType = defineType({
       type: 'image',
     }),
     defineField({
+      name: 'shortDescription',
+      type: 'string',
+      validation: (rule) => rule.max(60),
+    }),
+    defineField({
       name: 'description',
       type: 'text',
     }),
@@ -30,8 +35,16 @@ export const datasetType = defineType({
   preview: {
     select: {
       title: 'name',
-      subtitle: 'description',
-      media: 'image',
+      shortDescription: 'shortDescription',
+      description: 'description',
+      image: 'image',
+    },
+    prepare(value) {
+      return {
+        title: value.title,
+        subtitle: value.shortDescription || value.description,
+        media: value.image,
+      }
     },
   },
 })

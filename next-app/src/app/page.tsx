@@ -11,15 +11,15 @@ import ProductsSection from "./components/products-section"
 export default function Page() {
   return (
     <main>
-      <header className="h-dvh bg-black bg-[url('/assets/images/code.jpg')] bg-cover sm:h-fit sm:rounded-b-[3rem]">
-        <div className="flex h-full flex-col bg-gradient-to-br from-neutral-950/95 via-neutral-800/90 via-50% to-orange-950/60 to-95% pb-14 text-background backdrop-blur sm:rounded-b-[3rem] sm:py-20">
+      <header className="h-dvh bg-black bg-[url('/assets/images/code.jpg')] bg-cover sm:h-fit lg:rounded-b-[1rem] xl:rounded-b-[2rem] 2xl:rounded-b-[3rem]">
+        <div className="flex h-full flex-col bg-gradient-to-br from-neutral-950/95 via-neutral-800/90 via-50% to-orange-950/60 to-95% pb-14 text-background backdrop-blur lg:rounded-b-[1rem] lg:py-10 xl:rounded-b-[2rem] 2xl:rounded-b-[3rem] 2xl:py-20">
           <Header />
 
           <div className="container flex h-full flex-col justify-center sm:py-28">
-            <h1 className="h-[1lh] text-4xl font-medium sm:text-9xl">
+            <h1 className="h-[1lh] text-4xl font-medium sm:text-7xl lg:text-8xl 2xl:text-9xl">
               <Slogan />
             </h1>
-            <p className="mt-6 max-w-prose text-lg sm:text-xl">
+            <p className="mt-6 max-w-prose text-lg md:text-xl">
               <span className="text-primary">
                 The Intelligent Systems Research Group
               </span>{" "}

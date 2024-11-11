@@ -1,7 +1,6 @@
 import tailwindcssTypography from "@tailwindcss/typography"
 import type { Config } from "tailwindcss"
 import tailwindcssAnimate from "tailwindcss-animate"
-import defaultTheme from "tailwindcss/defaultTheme"
 
 const config: Config = {
   darkMode: ["class"],
@@ -15,7 +14,7 @@ const config: Config = {
       center: true,
       padding: "1rem",
       screens: {
-        "2xl": defaultTheme.screens["xl"],
+        lg: "1100px",
       },
     },
     extend: {

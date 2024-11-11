@@ -28,11 +28,11 @@ export default async function DatasetSection() {
       className="bg-neutral-100"
     >
       {datasetsSection?.description && (
-        <article className="prose prose-sm sm:prose-base">
+        <article className="prose prose-sm md:prose-base">
           <PortableText value={datasetsSection?.description} />
         </article>
       )}
-      <ul className="mt-4 grid gap-2 sm:grid-cols-3 sm:gap-6">
+      <ul className="mt-4 grid gap-2 lg:grid-cols-3">
         {datasetsSection?.featuredDatasets &&
           datasetsSection?.featuredDatasets.map((dataset) => (
             <li key={dataset._id}>
@@ -45,20 +45,22 @@ export default async function DatasetSection() {
                   alt=""
                   height={80}
                   width={80}
-                  className="size-[68px] rounded object-cover sm:size-[80px]"
+                  className="size-[68px] rounded object-cover lg:size-[80px]"
                 />
                 <div>
                   <h2 className="font-bold transition-colors group-hover:text-primary sm:text-xl">
                     {dataset.name}
                   </h2>
-                  <p className="text-sm sm:text-base">{dataset.description}</p>
+                  <p className="text-sm sm:text-base">
+                    {dataset.shortDescription}
+                  </p>
                 </div>
               </Link>
             </li>
           ))}
       </ul>
 
-      <div className="flex justify-end pt-4 sm:pt-8">
+      <div className="flex justify-end pt-4 lg:pt-8">
         <Button variant="outline" size="xl" asChild className="w-full sm:w-fit">
           <Link href="/datasets">Explore more</Link>
         </Button>

@@ -3,9 +3,9 @@
 import { useEffect, useState } from "react"
 import Link from "next/link"
 import { usePathname } from "next/navigation"
+import { NavigationItem } from "@/types"
 import { ChevronDown } from "lucide-react"
 
-import { siteConfig } from "@/config/site"
 import { cn } from "@/lib/utils"
 
 import ISysLogo from "../isys-logo"
@@ -16,7 +16,11 @@ import {
   CollapsibleTrigger,
 } from "../ui/collapsible"
 
-export default function MobileNavigation() {
+interface Props {
+  navigation: NavigationItem[]
+}
+
+export default function MobileNavigation({ navigation }: Props) {
   const [mobileNavigation, setMobileNavigation] = useState({ opened: false })
 
   const pathname = usePathname()
@@ -49,13 +53,13 @@ export default function MobileNavigation() {
       <MenuButton
         onClick={handleToggleMobileNavigation}
         opened={mobileNavigation.opened}
-        className="md:hidden"
+        className="lg:hidden"
       />
 
       {mobileNavigation.opened && (
         <div
           className={cn(
-            "no-doc-scroll fixed inset-x-0 top-0 z-50 flex h-dvh w-full flex-col bg-neutral-950 md:hidden"
+            "no-doc-scroll fixed inset-x-0 top-0 z-50 flex h-dvh w-full flex-col bg-neutral-950 lg:hidden"
           )}
         >
           <header className="border-y-2 border-white/10">
@@ -67,19 +71,19 @@ export default function MobileNavigation() {
               <MenuButton
                 onClick={handleToggleMobileNavigation}
                 opened={mobileNavigation.opened}
-                className="md:hidden"
+                className="lg:hidden"
               />
             </div>
           </header>
 
           <div className="container flex flex-col gap-y-8 pt-6 text-xl text-white">
-            {siteConfig.navigation.map((navigation, key) => (
-              <div key={key} className="w-full">
-                {navigation.children ? (
+            {navigation.map((navigationItem) => (
+              <div key={navigationItem.label} className="w-full">
+                {"children" in navigationItem ? (
                   <Collapsible>
                     <CollapsibleTrigger asChild>
                       <button className="flex w-full flex-row items-center justify-between text-gray-100 [&[data-state=open]>svg]:-rotate-180">
-                        <span>{navigation.label}</span>
+                        <span>{navigationItem.label}</span>
                         <ChevronDown
                           size="1em"
                           className="transition-transform duration-200"
@@ -88,18 +92,19 @@ export default function MobileNavigation() {
                     </CollapsibleTrigger>
                     <CollapsibleContent>
                       <div className="ml-1 mt-6 flex flex-col gap-y-6 border-l-2 border-primary/40 pl-4">
-                        {navigation.children.map(
-                          (subnavigation, subkey: number) => (
-                            <div key={subkey}>
-                              <Link
-                                onClick={handleCloseMobileNavigation}
-                                href={subnavigation.href}
-                                className="block focus:underline"
-                              >
-                                {subnavigation.label}
-                              </Link>
-                            </div>
-                          )
+                        {navigationItem.children.map(
+                          (navigationChild) =>
+                            "href" in navigationChild && (
+                              <div key={navigationChild.label}>
+                                <Link
+                                  onClick={handleCloseMobileNavigation}
+                                  href={navigationChild.href}
+                                  className="block focus:underline"
+                                >
+                                  {navigationChild.label}
+                                </Link>
+                              </div>
+                            )
                         )}
                       </div>
                     </CollapsibleContent>
@@ -107,10 +112,10 @@ export default function MobileNavigation() {
                 ) : (
                   <Link
                     onClick={handleCloseMobileNavigation}
-                    href={navigation.href}
+                    href={navigationItem.href}
                     className="block focus:underline"
                   >
-                    {navigation.label}
+                    {navigationItem.label}
                   </Link>
                 )}
               </div>

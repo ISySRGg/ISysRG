@@ -265,6 +265,7 @@ export type Product = {
     crop?: SanityImageCrop;
     _type: "image";
   };
+  shortDescription?: string;
   description?: string;
   features?: Array<string>;
 };
@@ -328,6 +329,7 @@ export type Dataset = {
     crop?: SanityImageCrop;
     _type: "image";
   };
+  shortDescription?: string;
   description?: string;
 };
 
@@ -546,6 +548,7 @@ export type DatasetsSectionQueryResult = {
         crop?: SanityImageCrop;
         _type: "image";
       };
+      shortDescription?: string;
       description?: string;
     }> | null;
   } | null;
@@ -593,6 +596,64 @@ export type ProductsSectionQueryResult = {
         crop?: SanityImageCrop;
         _type: "image";
       };
+      shortDescription?: string;
+      description?: string;
+      features?: Array<string>;
+    }> | null;
+  } | null;
+} | null;
+// Variable: featuredDatasetsQuery
+// Query: *[_type == "home"][0]{datasetsSection{featuredDatasets[]->}}
+export type FeaturedDatasetsQueryResult = {
+  datasetsSection: {
+    featuredDatasets: Array<{
+      _id: string;
+      _type: "dataset";
+      _createdAt: string;
+      _updatedAt: string;
+      _rev: string;
+      name?: string;
+      slug?: Slug;
+      image?: {
+        asset?: {
+          _ref: string;
+          _type: "reference";
+          _weak?: boolean;
+          [internalGroqTypeReferenceTo]?: "sanity.imageAsset";
+        };
+        hotspot?: SanityImageHotspot;
+        crop?: SanityImageCrop;
+        _type: "image";
+      };
+      shortDescription?: string;
+      description?: string;
+    }> | null;
+  } | null;
+} | null;
+// Variable: featuredProductsQuery
+// Query: *[_type == "home"][0]{productsSection{featuredProducts[]->}}
+export type FeaturedProductsQueryResult = {
+  productsSection: {
+    featuredProducts: Array<{
+      _id: string;
+      _type: "product";
+      _createdAt: string;
+      _updatedAt: string;
+      _rev: string;
+      name?: string;
+      slug?: Slug;
+      image?: {
+        asset?: {
+          _ref: string;
+          _type: "reference";
+          _weak?: boolean;
+          [internalGroqTypeReferenceTo]?: "sanity.imageAsset";
+        };
+        hotspot?: SanityImageHotspot;
+        crop?: SanityImageCrop;
+        _type: "image";
+      };
+      shortDescription?: string;
       description?: string;
       features?: Array<string>;
     }> | null;
@@ -719,6 +780,7 @@ export type AllProductsQueryResult = Array<{
     crop?: SanityImageCrop;
     _type: "image";
   };
+  shortDescription?: string;
   description?: string;
   features?: Array<string>;
 }>;
@@ -743,6 +805,7 @@ export type AllDatasetsQueryResult = Array<{
     crop?: SanityImageCrop;
     _type: "image";
   };
+  shortDescription?: string;
   description?: string;
 }>;
 // Variable: allActivityQuery
@@ -777,6 +840,8 @@ declare module "@sanity/client" {
     "*[_type == \"home\"][0]{activitiesSection{...,highlightedActivities[]->}}": ActivitiesSectionQueryResult;
     "*[_type == \"home\"][0]{datasetsSection{...,featuredDatasets[]->}}": DatasetsSectionQueryResult;
     "*[_type == \"home\"][0]{productsSection{...,featuredProducts[]->}}": ProductsSectionQueryResult;
+    "*[_type == \"home\"][0]{datasetsSection{featuredDatasets[]->}}": FeaturedDatasetsQueryResult;
+    "*[_type == \"home\"][0]{productsSection{featuredProducts[]->}}": FeaturedProductsQueryResult;
     "*[_type == \"settings\"][0]": SettingsQueryResult;
     "*[_type == \"post\" && defined(slug.current)]|order(publishedAt desc)[0...6]{_id,title,slug,publishedAt}": AllPostsQueryResult;
     "*[_type == \"post\" && slug.current == $slug][0]": PostQueryResult;

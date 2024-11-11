@@ -13,7 +13,7 @@ export default async function PostsSection() {
 
   return (
     <BaseSection title="Posts">
-      <article className="prose prose-sm sm:prose-base">
+      <article className="prose prose-sm md:prose-base">
         <p>
           Stay updated with the latest news, research insights, and developments
           from the Intelligent Systems Research Group (ISysRG).
@@ -23,10 +23,10 @@ export default async function PostsSection() {
         {posts.map((post) => (
           <li key={post._id}>
             <Link href={`posts/${post.slug?.current}`} className="group">
-              <h2 className="text-lg font-bold group-hover:underline sm:text-xl">
+              <h2 className="text-lg font-bold group-hover:underline md:text-xl">
                 {post.title}
               </h2>
-              <p className="text-sm sm:text-base">
+              <p className="text-sm md:text-base">
                 {new Date(post.publishedAt as string).toDateString()}
               </p>
             </Link>

@@ -37,16 +37,19 @@ export default async function ActivitySection() {
     >
       {activitiesSection?.description && (
         <div className="flex justify-center">
-          <article className="prose prose-sm prose-invert max-w-2xl text-center sm:prose-base">
+          <article className="prose prose-sm prose-invert max-w-2xl text-center md:prose-base">
             <PortableText value={activitiesSection?.description} />
           </article>
         </div>
       )}
-      <Carousel className="pt-6 sm:pt-14">
+      <Carousel className="pt-6 lg:pt-14">
         <CarouselContent>
           {activitiesSection?.highlightedActivities &&
             activitiesSection?.highlightedActivities.map((activity) => (
-              <CarouselItem key={activity._id} className="sm:basis-1/4">
+              <CarouselItem
+                key={activity._id}
+                className="sm:basis-2/4 lg:basis-1/4"
+              >
                 <figure>
                   <Image
                     src={urlForImage(activity.image)?.url() as string}
@@ -70,7 +73,7 @@ export default async function ActivitySection() {
         <CarouselPrevious className="sm:hidden" />
         <CarouselNext className="sm:hidden" />
       </Carousel>
-      <div className="flex justify-center pt-6 sm:pt-14">
+      <div className="flex justify-center pt-6 lg:pt-14">
         <Button
           variant="secondary"
           size="xl"

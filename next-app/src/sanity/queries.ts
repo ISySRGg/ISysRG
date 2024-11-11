@@ -16,6 +16,14 @@ export const productsSectionQuery = defineQuery(
   `*[_type == "home"][0]{productsSection{...,featuredProducts[]->}}`
 )
 
+export const featuredDatasetsQuery = defineQuery(
+  `*[_type == "home"][0]{datasetsSection{featuredDatasets[]->}}`
+)
+
+export const featuredProductsQuery = defineQuery(
+  `*[_type == "home"][0]{productsSection{featuredProducts[]->}}`
+)
+
 export const settingsQuery = defineQuery(`*[_type == "settings"][0]`)
 
 export const allPostsQuery = defineQuery(

@@ -1,8 +1,8 @@
 import React from "react"
 import Link from "next/link"
+import { NavigationItem } from "@/types"
 import { ChevronRight } from "lucide-react"
 
-import { siteConfig } from "@/config/site"
 import { cn } from "@/lib/utils"
 
 import {
@@ -15,31 +15,41 @@ import {
   navigationMenuTriggerStyle,
 } from "../ui/navigation-menu"
 
-export default function DesktopNavigation() {
+interface Props {
+  navigation: NavigationItem[]
+}
+
+export default function DesktopNavigation({ navigation }: Props) {
   return (
-    <NavigationMenu className="hidden sm:block">
+    <NavigationMenu className="hidden lg:block">
       <NavigationMenuList className="divide-x-2 divide-white/10 border-x-2 border-white/10">
-        {siteConfig.navigation.map((nav, idxA) =>
-          nav.children ? (
-            <NavigationMenuItem key={idxA}>
-              <NavigationMenuTrigger>{nav.label}</NavigationMenuTrigger>
+        {navigation.map((navigationItem) =>
+          "children" in navigationItem ? (
+            <NavigationMenuItem key={navigationItem.label}>
+              <NavigationMenuTrigger>
+                {navigationItem.label}
+              </NavigationMenuTrigger>
               <NavigationMenuContent>
-                <ul className="grid w-[400px] p-4 md:w-[500px] md:grid-cols-2 lg:w-[680px]">
-                  {nav.children.map((child, keyB) => (
-                    <ListItem
-                      key={keyB}
-                      title={child.label}
-                      href={child.href}
-                    />
-                  ))}
+                <ul className="grid w-[400px] p-4 lg:w-[680px] lg:grid-cols-2">
+                  {navigationItem.children.map(
+                    (navigationChild) =>
+                      "href" in navigationChild && (
+                        <ListItem
+                          key={navigationChild.label}
+                          title={navigationChild.label}
+                          description={navigationChild.description}
+                          href={navigationChild.href}
+                        />
+                      )
+                  )}
                 </ul>
               </NavigationMenuContent>
             </NavigationMenuItem>
           ) : (
-            <NavigationMenuItem key={idxA}>
-              <Link href={nav.href} legacyBehavior passHref>
+            <NavigationMenuItem key={navigationItem.label}>
+              <Link href={navigationItem.href} legacyBehavior passHref>
                 <NavigationMenuLink className={navigationMenuTriggerStyle()}>
-                  {nav.label}
+                  {navigationItem.label}
                 </NavigationMenuLink>
               </Link>
             </NavigationMenuItem>
@@ -50,28 +60,39 @@ export default function DesktopNavigation() {
   )
 }
 
-const ListItem = React.forwardRef<
-  React.ElementRef<"a">,
-  React.ComponentPropsWithoutRef<"a">
->(({ className, title, ...props }, ref) => {
+function ListItem({
+  title,
+  description,
+  href,
+}: {
+  title: string
+  description?: string
+  href: string
+}) {
   return (
     <li>
       <NavigationMenuLink asChild>
-        <a
-          ref={ref}
+        <Link
           className={cn(
-            "group block select-none rounded px-4 py-6 leading-none tracking-wide no-underline outline-none transition-colors hover:bg-primary/30 hover:text-white focus:bg-accent focus:text-accent-foreground",
-            className
+            "group block select-none rounded px-4 py-6 leading-none tracking-wide no-underline outline-none transition-colors hover:bg-primary/10 hover:text-white focus:bg-accent focus:text-accent-foreground"
           )}
-          {...props}
+          href={href}
         >
-          <div className="flex items-center justify-between text-lg leading-none">
-            {title}{" "}
-            <ChevronRight className="size-[0.8em] text-primary group-hover:text-white" />
+          <div className="flex h-full items-center justify-between gap-2 text-lg leading-none">
+            <div>
+              <p>{title}</p>
+              {description && (
+                <p className="mt-1 text-sm text-muted-foreground">
+                  {description}
+                </p>
+              )}
+            </div>
+            <div>
+              <ChevronRight className="size-[0.8em] text-primary group-hover:text-white" />
+            </div>
           </div>
-        </a>
+        </Link>
       </NavigationMenuLink>
     </li>
   )
-})
-ListItem.displayName = "ListItem"
+}

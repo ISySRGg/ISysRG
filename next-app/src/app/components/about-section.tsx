@@ -27,7 +27,7 @@ export default async function AboutSection() {
       subtitle="Research, Medical Interpretation"
       headerAlign="center"
     >
-      <div className="flex flex-col items-center justify-center gap-4 sm:flex-row sm:gap-20">
+      <div className="mt-10 flex flex-col items-center justify-center gap-4 lg:flex-row lg:gap-20">
         <Image
           src={
             urlForImage(aboutSection?.image)
@@ -41,7 +41,7 @@ export default async function AboutSection() {
           className="size-[200px] sm:size-[300px]"
         />
         <div className="flex flex-col gap-4">
-          <article className="prose prose-xl sm:prose-2xl">
+          <article className="prose prose-xl md:prose-2xl">
             {aboutSection?.content && (
               <PortableText value={aboutSection?.content} />
             )}

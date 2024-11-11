@@ -18,10 +18,10 @@ export default async function Footer() {
   const description = settings?.description || demo.description
 
   return (
-    <footer className="ms:mt-10 mt-4">
-      <div className="rounded-t-xl border-t-2 border-primary/30 bg-gradient-to-br from-neutral-50 from-40% to-primary/20 pb-10 sm:rounded-t-[3rem]">
-        <div className="container grid gap-6 py-10 sm:grid-cols-3 sm:gap-10">
-          <div>
+    <footer className="mt-4 lg:mt-10">
+      <div className="rounded-t-xl border-t-2 border-primary/30 bg-gradient-to-br from-neutral-50 from-40% to-primary/20 pb-10 md:rounded-t-[3rem]">
+        <div className="container grid gap-6 py-10 sm:grid-cols-2 sm:gap-10 lg:grid-cols-3">
+          <div className="sm:col-span-2 lg:col-span-1">
             <IsysLogo />
             <p className="mt-1 max-w-prose text-xs text-muted-foreground">
               {toPlainText(description)}
@@ -30,24 +30,24 @@ export default async function Footer() {
 
           <div className="flex flex-col gap-4">
             <div>
-              <p className="font-medium text-primary sm:text-lg">Address</p>
-              <p className="text-xs text-muted-foreground sm:text-sm">
+              <p className="font-medium text-primary md:text-lg">Address</p>
+              <p className="text-xs text-muted-foreground md:text-sm">
                 {settings.address}
               </p>
             </div>
 
             <div>
-              <p className="font-medium text-primary sm:text-lg">Contact</p>
-              <p className="text-xs text-muted-foreground sm:text-sm">
+              <p className="font-medium text-primary md:text-lg">Contact</p>
+              <p className="text-xs text-muted-foreground md:text-sm">
                 {settings.contact}
               </p>
             </div>
 
             <div>
-              <p className="font-medium text-primary sm:text-lg">
+              <p className="font-medium text-primary md:text-lg">
                 Opening Hour
               </p>
-              <p className="text-xs text-muted-foreground sm:text-sm">
+              <p className="text-xs text-muted-foreground md:text-sm">
                 {settings.openingHour}
               </p>
             </div>
@@ -55,8 +55,8 @@ export default async function Footer() {
 
           <div className="flex flex-col gap-4">
             <div>
-              <p className="font-medium text-primary sm:text-lg">Links</p>
-              <ul className="flex flex-col gap-1 text-sm text-muted-foreground sm:text-base">
+              <p className="font-medium text-primary md:text-lg">Links</p>
+              <ul className="flex flex-col gap-1 text-sm text-muted-foreground md:text-base">
                 {siteConfig.navigation.map((nav, idx) =>
                   !nav.href ? (
                     nav.children?.map((navChild, idxB) => (
@@ -80,7 +80,7 @@ export default async function Footer() {
         </div>
         <div className="border-y-2 border-primary/10">
           <div className="container flex flex-col-reverse items-center justify-between gap-2 py-3 text-background sm:flex-row">
-            <p className="text-xs text-muted-foreground sm:text-sm">
+            <p className="text-xs text-muted-foreground md:text-sm">
               ©{new Date().getFullYear()} Isys Research Group
             </p>
             <SocialMedia socialMedia={settings.socialMedia} />

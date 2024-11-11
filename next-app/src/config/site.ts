@@ -56,20 +56,20 @@ export const siteConfig = {
       href: "publication",
       children: [
         {
-          label: "Books",
-          href: "/publication/books",
-        },
-        {
-          label: "Intelectual Property Rights (IPR)",
-          href: "/publication/ipr",
+          label: "International Journals",
+          href: "/publication/journals",
         },
         {
           label: "International Conference (Proceedings)",
           href: "/publication/proceedings",
         },
         {
-          label: "International Journals",
-          href: "/publication/journals",
+          label: "Intelectual Property Rights (IPR)",
+          href: "/publication/ipr",
+        },
+        {
+          label: "Books",
+          href: "/publication/books",
         },
       ],
     },
