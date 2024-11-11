@@ -25,7 +25,6 @@ export default async function DatasetSection() {
     <BaseSection
       title={datasetsSection?.title}
       subtitle={datasetsSection?.subtitle}
-      className="bg-neutral-100"
     >
       {datasetsSection?.description && (
         <article className="prose prose-sm md:prose-base">

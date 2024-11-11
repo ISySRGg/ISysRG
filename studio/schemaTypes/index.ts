@@ -1,5 +1,9 @@
 import {activityType} from './documents/activityType'
+import {bookType} from './documents/bookType'
 import {datasetType} from './documents/datasetType'
+import {intellectualPropertyRightsType} from './documents/intellectualPropertyRights'
+import {internationalConferenceType} from './documents/internationalConferenceTypes'
+import {internationalJournalType} from './documents/internationalJournalTypes'
 import {postType} from './documents/postType'
 import {productType} from './documents/productType'
 import {homeType} from './singletons/homeType'
@@ -11,6 +15,11 @@ export const schemaTypes = [
   datasetType,
   postType,
   productType,
+
+  internationalJournalType,
+  internationalConferenceType,
+  intellectualPropertyRightsType,
+  bookType,
 
   // Singletons
   settingsType,

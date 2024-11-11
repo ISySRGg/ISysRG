@@ -45,3 +45,12 @@ export const allDatasetsQuery = defineQuery(
 export const allActivityQuery = defineQuery(
   `*[_type == "activity" && defined(slug.current)][0..3]`
 )
+
+export const allPublicationCountQuery = defineQuery(
+  `{
+      "internationalJournalCount": count(*[_type == "internationalJournal"]),
+      "internationalConferenceCount": count(*[_type == "internationalConference"]),
+      "intellectualPropertyRightsCount": count(*[_type == "intellectualPropertyRights"]),
+      "bookCount": count(*[_type == "book"])
+   }`
+)

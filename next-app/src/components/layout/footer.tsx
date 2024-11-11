@@ -5,7 +5,6 @@ import { settingsQuery } from "@/sanity/queries"
 import { toPlainText } from "next-sanity"
 
 import { Settings } from "@/types/sanity.types"
-import { siteConfig } from "@/config/site"
 
 import IsysLogo from "../isys-logo"
 import SocialMedia from "./social-media"
@@ -16,6 +15,41 @@ export default async function Footer() {
   const settings = await client.fetch<Settings>(settingsQuery, {}, options)
 
   const description = settings?.description || demo.description
+
+  const links = [
+    {
+      label: "Research Team",
+      href: "/team",
+    },
+    {
+      label: "Infrascructure",
+      href: "/infrascructure",
+    },
+    {
+      label: "Products",
+      href: "/products",
+    },
+    {
+      label: "International Journals",
+      href: "/journals",
+    },
+    {
+      label: "International Conferences (Proceedings)",
+      href: "/proceedings",
+    },
+    {
+      label: "Intellectual Property Rights (IPR)",
+      href: "/ipr",
+    },
+    {
+      label: "Books",
+      href: "/books",
+    },
+    {
+      label: "Activities",
+      href: "/activities",
+    },
+  ]
 
   return (
     <footer className="mt-4 lg:mt-10">
@@ -56,24 +90,14 @@ export default async function Footer() {
           <div className="flex flex-col gap-4">
             <div>
               <p className="font-medium text-primary md:text-lg">Links</p>
-              <ul className="flex flex-col gap-1 text-sm text-muted-foreground md:text-base">
-                {siteConfig.navigation.map((nav, idx) =>
-                  !nav.href ? (
-                    nav.children?.map((navChild, idxB) => (
-                      <li key={idxB}>
-                        <Link href={navChild.href} className="hover:underline">
-                          {navChild.label}
-                        </Link>
-                      </li>
-                    ))
-                  ) : (
-                    <li key={idx}>
-                      <Link href={nav.href} className="hover:underline">
-                        {nav.label}
-                      </Link>
-                    </li>
-                  )
-                )}
+              <ul className="grid grid-cols-1 gap-1 text-xs text-muted-foreground md:text-sm">
+                {links.map((nav, idx) => (
+                  <li key={idx}>
+                    <Link href={nav.href} className="hover:underline">
+                      {nav.label}
+                    </Link>
+                  </li>
+                ))}
               </ul>
             </div>
           </div>

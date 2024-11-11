@@ -246,6 +246,90 @@ export type Settings = {
   };
 };
 
+export type Book = {
+  _id: string;
+  _type: "book";
+  _createdAt: string;
+  _updatedAt: string;
+  _rev: string;
+  title?: string;
+  year?: string;
+  publisher?: string;
+  isbnNumber?: string;
+  image?: {
+    asset?: {
+      _ref: string;
+      _type: "reference";
+      _weak?: boolean;
+      [internalGroqTypeReferenceTo]?: "sanity.imageAsset";
+    };
+    hotspot?: SanityImageHotspot;
+    crop?: SanityImageCrop;
+    _type: "image";
+  };
+};
+
+export type IntellectualPropertyRights = {
+  _id: string;
+  _type: "intellectualPropertyRights";
+  _createdAt: string;
+  _updatedAt: string;
+  _rev: string;
+  title?: string;
+  year?: string;
+  ipr?: string;
+  certificateNumber?: string;
+  link?: string;
+};
+
+export type InternationalConference = {
+  _id: string;
+  _type: "internationalConference";
+  _createdAt: string;
+  _updatedAt: string;
+  _rev: string;
+  title?: string;
+  year?: string;
+  conference?: string;
+  abstract?: string;
+  image?: {
+    asset?: {
+      _ref: string;
+      _type: "reference";
+      _weak?: boolean;
+      [internalGroqTypeReferenceTo]?: "sanity.imageAsset";
+    };
+    hotspot?: SanityImageHotspot;
+    crop?: SanityImageCrop;
+    _type: "image";
+  };
+  link?: string;
+};
+
+export type InternationalJournal = {
+  _id: string;
+  _type: "internationalJournal";
+  _createdAt: string;
+  _updatedAt: string;
+  _rev: string;
+  title?: string;
+  year?: string;
+  journal?: string;
+  abstract?: string;
+  image?: {
+    asset?: {
+      _ref: string;
+      _type: "reference";
+      _weak?: boolean;
+      [internalGroqTypeReferenceTo]?: "sanity.imageAsset";
+    };
+    hotspot?: SanityImageHotspot;
+    crop?: SanityImageCrop;
+    _type: "image";
+  };
+  link?: string;
+};
+
 export type Product = {
   _id: string;
   _type: "product";
@@ -418,7 +502,7 @@ export type Slug = {
   source?: string;
 };
 
-export type AllSanitySchemaTypes = SanityImagePaletteSwatch | SanityImagePalette | SanityImageDimensions | SanityFileAsset | Geopoint | Home | Settings | Product | Post | Dataset | Activity | SanityImageCrop | SanityImageHotspot | SanityImageAsset | SanityAssetSourceData | SanityImageMetadata | Slug;
+export type AllSanitySchemaTypes = SanityImagePaletteSwatch | SanityImagePalette | SanityImageDimensions | SanityFileAsset | Geopoint | Home | Settings | Book | IntellectualPropertyRights | InternationalConference | InternationalJournal | Product | Post | Dataset | Activity | SanityImageCrop | SanityImageHotspot | SanityImageAsset | SanityAssetSourceData | SanityImageMetadata | Slug;
 export declare const internalGroqTypeReferenceTo: unique symbol;
 // Source: ../next-app/src/sanity/queries.ts
 // Variable: aboutSectionQuery
@@ -831,6 +915,14 @@ export type AllActivityQueryResult = Array<{
   };
   description?: string;
 }>;
+// Variable: allPublicationCountQuery
+// Query: {      "internationalJournalCount": count(*[_type == "internationalJournal"]),      "internationalConferenceCount": count(*[_type == "internationalConference"]),      "intellectualPropertyRightsCount": count(*[_type == "intellectualPropertyRights"]),      "bookCount": count(*[_type == "book"])   }
+export type AllPublicationCountQueryResult = {
+  internationalJournalCount: number;
+  internationalConferenceCount: number;
+  intellectualPropertyRightsCount: number;
+  bookCount: number;
+};
 
 // Query TypeMap
 import "@sanity/client";
@@ -848,5 +940,6 @@ declare module "@sanity/client" {
     "*[_type == \"product\" && defined(slug.current)][0..1]": AllProductsQueryResult;
     "*[_type == \"dataset\" && defined(slug.current)][0..2]": AllDatasetsQueryResult;
     "*[_type == \"activity\" && defined(slug.current)][0..3]": AllActivityQueryResult;
+    "{\n      \"internationalJournalCount\": count(*[_type == \"internationalJournal\"]),\n      \"internationalConferenceCount\": count(*[_type == \"internationalConference\"]),\n      \"intellectualPropertyRightsCount\": count(*[_type == \"intellectualPropertyRights\"]),\n      \"bookCount\": count(*[_type == \"book\"])\n   }": AllPublicationCountQueryResult;
   }
 }

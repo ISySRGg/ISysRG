@@ -10,6 +10,7 @@ export const structure = (S: any) =>
         (listItem: any) =>
           !['settings', 'home', 'assist.instruction.context'].includes(listItem.getId()),
       ),
+      S.divider(),
       S.listItem()
         .title('Site Home Page')
         .child(S.document().schemaType('home').documentId('siteHomePage'))

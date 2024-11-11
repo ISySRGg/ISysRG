@@ -5,8 +5,8 @@ import Slogan from "@/components/slogan"
 import AboutSection from "./components/about-section"
 import ActivitySection from "./components/activity-section"
 import DatasetSection from "./components/dataset-section"
-import PostsSection from "./components/posts-section"
 import ProductsSection from "./components/products-section"
+import PublicationsSection from "./components/publications-section"
 
 export default function Page() {
   return (
@@ -41,8 +41,8 @@ export default function Page() {
       <AboutSection />
       <ProductsSection />
       <ActivitySection />
+      <PublicationsSection />
       <DatasetSection />
-      <PostsSection />
     </main>
   )
 }
