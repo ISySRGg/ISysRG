@@ -6,8 +6,8 @@ interface Props {
 
 export default function BasePage({ title, subtitle, children }: Props) {
   return (
-    <main className="container min-h-[calc(100dvh-10rem)] pt-10 md:pt-20">
-      <header>
+    <main className="container min-h-[calc(100dvh-10rem)]">
+      <header className="py-10 md:py-20">
         <h1 className="text-4xl font-medium text-primary md:text-5xl">
           {title}
         </h1>

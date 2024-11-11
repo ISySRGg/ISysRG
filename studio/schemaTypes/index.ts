@@ -6,6 +6,7 @@ import {internationalConferenceType} from './documents/internationalConferenceTy
 import {internationalJournalType} from './documents/internationalJournalTypes'
 import {postType} from './documents/postType'
 import {productType} from './documents/productType'
+import {researcherType} from './documents/researcherType'
 import {homeType} from './singletons/homeType'
 import {settingsType} from './singletons/settingsType'
 
@@ -15,6 +16,7 @@ export const schemaTypes = [
   datasetType,
   postType,
   productType,
+  researcherType,
 
   internationalJournalType,
   internationalConferenceType,

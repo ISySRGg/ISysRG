@@ -330,6 +330,27 @@ export type InternationalJournal = {
   link?: string;
 };
 
+export type Researcher = {
+  _id: string;
+  _type: "researcher";
+  _createdAt: string;
+  _updatedAt: string;
+  _rev: string;
+  name?: string;
+  role?: "head" | "secretary" | "researchAssistant" | "member" | "student";
+  image?: {
+    asset?: {
+      _ref: string;
+      _type: "reference";
+      _weak?: boolean;
+      [internalGroqTypeReferenceTo]?: "sanity.imageAsset";
+    };
+    hotspot?: SanityImageHotspot;
+    crop?: SanityImageCrop;
+    _type: "image";
+  };
+};
+
 export type Product = {
   _id: string;
   _type: "product";
@@ -502,7 +523,7 @@ export type Slug = {
   source?: string;
 };
 
-export type AllSanitySchemaTypes = SanityImagePaletteSwatch | SanityImagePalette | SanityImageDimensions | SanityFileAsset | Geopoint | Home | Settings | Book | IntellectualPropertyRights | InternationalConference | InternationalJournal | Product | Post | Dataset | Activity | SanityImageCrop | SanityImageHotspot | SanityImageAsset | SanityAssetSourceData | SanityImageMetadata | Slug;
+export type AllSanitySchemaTypes = SanityImagePaletteSwatch | SanityImagePalette | SanityImageDimensions | SanityFileAsset | Geopoint | Home | Settings | Book | IntellectualPropertyRights | InternationalConference | InternationalJournal | Researcher | Product | Post | Dataset | Activity | SanityImageCrop | SanityImageHotspot | SanityImageAsset | SanityAssetSourceData | SanityImageMetadata | Slug;
 export declare const internalGroqTypeReferenceTo: unique symbol;
 // Source: ../next-app/src/sanity/queries.ts
 // Variable: aboutSectionQuery
@@ -996,13 +1017,35 @@ export type AllBooksQueryResult = Array<{
   };
 }>;
 // Variable: allPublicationCountQuery
-// Query: {      "internationalJournalCount": count(*[_type == "internationalJournal"]),      "internationalConferenceCount": count(*[_type == "internationalConference"]),      "intellectualPropertyRightsCount": count(*[_type == "intellectualPropertyRights"]),      "bookCount": count(*[_type == "book"])   }
+// Query: {    "internationalJournalCount": count(*[_type == "internationalJournal"]),    "internationalConferenceCount": count(*[_type == "internationalConference"]),    "intellectualPropertyRightsCount": count(*[_type == "intellectualPropertyRights"]),    "bookCount": count(*[_type == "book"])    }
 export type AllPublicationCountQueryResult = {
   internationalJournalCount: number;
   internationalConferenceCount: number;
   intellectualPropertyRightsCount: number;
   bookCount: number;
 };
+// Variable: allResearchersQuery
+// Query: *[_type == "researcher"]
+export type AllResearchersQueryResult = Array<{
+  _id: string;
+  _type: "researcher";
+  _createdAt: string;
+  _updatedAt: string;
+  _rev: string;
+  name?: string;
+  role?: "head" | "member" | "researchAssistant" | "secretary" | "student";
+  image?: {
+    asset?: {
+      _ref: string;
+      _type: "reference";
+      _weak?: boolean;
+      [internalGroqTypeReferenceTo]?: "sanity.imageAsset";
+    };
+    hotspot?: SanityImageHotspot;
+    crop?: SanityImageCrop;
+    _type: "image";
+  };
+}>;
 
 // Query TypeMap
 import "@sanity/client";
@@ -1023,6 +1066,7 @@ declare module "@sanity/client" {
     "*[_type == \"internationalConference\"]": AllInternationalConferencesQueryResult;
     "*[_type == \"intellectualPropertyRights\"]": AllIntellectualPropertyRightsQueryResult;
     "*[_type == \"book\"]": AllBooksQueryResult;
-    "{\n      \"internationalJournalCount\": count(*[_type == \"internationalJournal\"]),\n      \"internationalConferenceCount\": count(*[_type == \"internationalConference\"]),\n      \"intellectualPropertyRightsCount\": count(*[_type == \"intellectualPropertyRights\"]),\n      \"bookCount\": count(*[_type == \"book\"])\n   }": AllPublicationCountQueryResult;
+    "{\n    \"internationalJournalCount\": count(*[_type == \"internationalJournal\"]),\n    \"internationalConferenceCount\": count(*[_type == \"internationalConference\"]),\n    \"intellectualPropertyRightsCount\": count(*[_type == \"intellectualPropertyRights\"]),\n    \"bookCount\": count(*[_type == \"book\"])\n    }": AllPublicationCountQueryResult;
+    "*[_type == \"researcher\"]": AllResearchersQueryResult;
   }
 }

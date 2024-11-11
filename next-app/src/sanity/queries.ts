@@ -58,9 +58,11 @@ export const allBooksQuery = defineQuery(`*[_type == "book"]`)
 
 export const allPublicationCountQuery = defineQuery(
   `{
-      "internationalJournalCount": count(*[_type == "internationalJournal"]),
-      "internationalConferenceCount": count(*[_type == "internationalConference"]),
-      "intellectualPropertyRightsCount": count(*[_type == "intellectualPropertyRights"]),
-      "bookCount": count(*[_type == "book"])
-   }`
+    "internationalJournalCount": count(*[_type == "internationalJournal"]),
+    "internationalConferenceCount": count(*[_type == "internationalConference"]),
+    "intellectualPropertyRightsCount": count(*[_type == "intellectualPropertyRights"]),
+    "bookCount": count(*[_type == "book"])
+    }`
 )
+
+export const allResearchersQuery = defineQuery(`*[_type == "researcher"]`)
