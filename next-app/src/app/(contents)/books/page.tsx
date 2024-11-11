@@ -1,17 +1,30 @@
-export default function Page() {
+import { client } from "@/sanity/client"
+import { allBooksQuery } from "@/sanity/queries"
+
+import { Book } from "@/types/sanity.types"
+import BasePage from "@/components/base-page"
+import PublicationList from "@/components/publication-list"
+import PublicationListItem from "@/components/publication-list-item"
+
+const options = { next: { revalidate: 30 } }
+
+export default async function Page() {
+  const books = await client.fetch<Book[]>(allBooksQuery, {}, options)
+
   return (
-    <>
-      <section className="container mt-20">
-        <article className="prose">
-          <h1 className="text-primary">Team</h1>
-          <p>
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Itaque
-            perferendis fugit, inventore quis ipsam provident odio consequatur
-            dolores voluptatem voluptate quia mollitia possimus reprehenderit
-            reiciendis cum tempore id, veniam praesentium?
-          </p>
-        </article>
+    <BasePage title="Books" subtitle="Publications">
+      <section>
+        <PublicationList>
+          {books.map((book) => (
+            <PublicationListItem
+              key={book._id}
+              title={book.title || ""}
+              href={"#"}
+              description={`Publisher: ${book.publisher} | ISBN: ${book.isbnNumber} | Year: ${new Date(book.year || 1998).getFullYear()}`}
+            />
+          ))}
+        </PublicationList>
       </section>
-    </>
+    </BasePage>
   )
 }

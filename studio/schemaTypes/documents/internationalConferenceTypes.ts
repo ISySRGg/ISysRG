@@ -13,11 +13,8 @@ export const internationalConferenceType = defineType({
       validation: (rule) => rule.required(),
     }),
     defineField({
-      name: 'year',
+      name: 'publicationDate',
       type: 'date',
-      options: {
-        dateFormat: 'YYYY',
-      },
       validation: (rule) => rule.required(),
     }),
     defineField({

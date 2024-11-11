@@ -1820,7 +1820,7 @@
         },
         "optional": true
       },
-      "year": {
+      "publicationDate": {
         "type": "objectAttribute",
         "value": {
           "type": "string"
@@ -1954,7 +1954,7 @@
         },
         "optional": true
       },
-      "year": {
+      "publicationDate": {
         "type": "objectAttribute",
         "value": {
           "type": "string"

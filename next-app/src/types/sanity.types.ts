@@ -289,7 +289,7 @@ export type InternationalConference = {
   _updatedAt: string;
   _rev: string;
   title?: string;
-  year?: string;
+  publicationDate?: string;
   conference?: string;
   abstract?: string;
   image?: {
@@ -313,7 +313,7 @@ export type InternationalJournal = {
   _updatedAt: string;
   _rev: string;
   title?: string;
-  year?: string;
+  publicationDate?: string;
   journal?: string;
   abstract?: string;
   image?: {
@@ -794,14 +794,6 @@ export type SettingsQueryResult = {
     linktree?: string;
   };
 } | null;
-// Variable: allPostsQuery
-// Query: *[_type == "post" && defined(slug.current)]|order(publishedAt desc)[0...6]{_id,title,slug,publishedAt}
-export type AllPostsQueryResult = Array<{
-  _id: string;
-  title: string | null;
-  slug: Slug | null;
-  publishedAt: string | null;
-}>;
 // Variable: postQuery
 // Query: *[_type == "post" && slug.current == $slug][0]
 export type PostQueryResult = {
@@ -844,7 +836,7 @@ export type PostQueryResult = {
   }>;
 } | null;
 // Variable: allProductsQuery
-// Query: *[_type == "product" && defined(slug.current)][0..1]
+// Query: *[_type == "product" && defined(slug.current)]
 export type AllProductsQueryResult = Array<{
   _id: string;
   _type: "product";
@@ -869,7 +861,7 @@ export type AllProductsQueryResult = Array<{
   features?: Array<string>;
 }>;
 // Variable: allDatasetsQuery
-// Query: *[_type == "dataset" && defined(slug.current)][0..2]
+// Query: *[_type == "dataset" && defined(slug.current)]
 export type AllDatasetsQueryResult = Array<{
   _id: string;
   _type: "dataset";
@@ -893,7 +885,7 @@ export type AllDatasetsQueryResult = Array<{
   description?: string;
 }>;
 // Variable: allActivityQuery
-// Query: *[_type == "activity" && defined(slug.current)][0..3]
+// Query: *[_type == "activity" && defined(slug.current)]
 export type AllActivityQueryResult = Array<{
   _id: string;
   _type: "activity";
@@ -915,6 +907,94 @@ export type AllActivityQueryResult = Array<{
   };
   description?: string;
 }>;
+// Variable: allInternationalJournalsQuery
+// Query: *[_type == "internationalJournal"]
+export type AllInternationalJournalsQueryResult = Array<{
+  _id: string;
+  _type: "internationalJournal";
+  _createdAt: string;
+  _updatedAt: string;
+  _rev: string;
+  title?: string;
+  publicationDate?: string;
+  journal?: string;
+  abstract?: string;
+  image?: {
+    asset?: {
+      _ref: string;
+      _type: "reference";
+      _weak?: boolean;
+      [internalGroqTypeReferenceTo]?: "sanity.imageAsset";
+    };
+    hotspot?: SanityImageHotspot;
+    crop?: SanityImageCrop;
+    _type: "image";
+  };
+  link?: string;
+}>;
+// Variable: allInternationalConferencesQuery
+// Query: *[_type == "internationalConference"]
+export type AllInternationalConferencesQueryResult = Array<{
+  _id: string;
+  _type: "internationalConference";
+  _createdAt: string;
+  _updatedAt: string;
+  _rev: string;
+  title?: string;
+  publicationDate?: string;
+  conference?: string;
+  abstract?: string;
+  image?: {
+    asset?: {
+      _ref: string;
+      _type: "reference";
+      _weak?: boolean;
+      [internalGroqTypeReferenceTo]?: "sanity.imageAsset";
+    };
+    hotspot?: SanityImageHotspot;
+    crop?: SanityImageCrop;
+    _type: "image";
+  };
+  link?: string;
+}>;
+// Variable: allIntellectualPropertyRightsQuery
+// Query: *[_type == "intellectualPropertyRights"]
+export type AllIntellectualPropertyRightsQueryResult = Array<{
+  _id: string;
+  _type: "intellectualPropertyRights";
+  _createdAt: string;
+  _updatedAt: string;
+  _rev: string;
+  title?: string;
+  year?: string;
+  ipr?: string;
+  certificateNumber?: string;
+  link?: string;
+}>;
+// Variable: allBooksQuery
+// Query: *[_type == "book"]
+export type AllBooksQueryResult = Array<{
+  _id: string;
+  _type: "book";
+  _createdAt: string;
+  _updatedAt: string;
+  _rev: string;
+  title?: string;
+  year?: string;
+  publisher?: string;
+  isbnNumber?: string;
+  image?: {
+    asset?: {
+      _ref: string;
+      _type: "reference";
+      _weak?: boolean;
+      [internalGroqTypeReferenceTo]?: "sanity.imageAsset";
+    };
+    hotspot?: SanityImageHotspot;
+    crop?: SanityImageCrop;
+    _type: "image";
+  };
+}>;
 // Variable: allPublicationCountQuery
 // Query: {      "internationalJournalCount": count(*[_type == "internationalJournal"]),      "internationalConferenceCount": count(*[_type == "internationalConference"]),      "intellectualPropertyRightsCount": count(*[_type == "intellectualPropertyRights"]),      "bookCount": count(*[_type == "book"])   }
 export type AllPublicationCountQueryResult = {
@@ -935,11 +1015,14 @@ declare module "@sanity/client" {
     "*[_type == \"home\"][0]{datasetsSection{featuredDatasets[]->}}": FeaturedDatasetsQueryResult;
     "*[_type == \"home\"][0]{productsSection{featuredProducts[]->}}": FeaturedProductsQueryResult;
     "*[_type == \"settings\"][0]": SettingsQueryResult;
-    "*[_type == \"post\" && defined(slug.current)]|order(publishedAt desc)[0...6]{_id,title,slug,publishedAt}": AllPostsQueryResult;
     "*[_type == \"post\" && slug.current == $slug][0]": PostQueryResult;
-    "*[_type == \"product\" && defined(slug.current)][0..1]": AllProductsQueryResult;
-    "*[_type == \"dataset\" && defined(slug.current)][0..2]": AllDatasetsQueryResult;
-    "*[_type == \"activity\" && defined(slug.current)][0..3]": AllActivityQueryResult;
+    "*[_type == \"product\" && defined(slug.current)]": AllProductsQueryResult;
+    "*[_type == \"dataset\" && defined(slug.current)]": AllDatasetsQueryResult;
+    "*[_type == \"activity\" && defined(slug.current)]": AllActivityQueryResult;
+    "*[_type == \"internationalJournal\"]": AllInternationalJournalsQueryResult;
+    "*[_type == \"internationalConference\"]": AllInternationalConferencesQueryResult;
+    "*[_type == \"intellectualPropertyRights\"]": AllIntellectualPropertyRightsQueryResult;
+    "*[_type == \"book\"]": AllBooksQueryResult;
     "{\n      \"internationalJournalCount\": count(*[_type == \"internationalJournal\"]),\n      \"internationalConferenceCount\": count(*[_type == \"internationalConference\"]),\n      \"intellectualPropertyRightsCount\": count(*[_type == \"intellectualPropertyRights\"]),\n      \"bookCount\": count(*[_type == \"book\"])\n   }": AllPublicationCountQueryResult;
   }
 }

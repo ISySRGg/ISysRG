@@ -1,17 +1,34 @@
-export default function Page() {
+import { client } from "@/sanity/client"
+import { allInternationalJournalsQuery } from "@/sanity/queries"
+
+import { InternationalJournal } from "@/types/sanity.types"
+import BasePage from "@/components/base-page"
+import PublicationList from "@/components/publication-list"
+import PublicationListItem from "@/components/publication-list-item"
+
+const options = { next: { revalidate: 30 } }
+
+export default async function Page() {
+  const internationalJournals = await client.fetch<InternationalJournal[]>(
+    allInternationalJournalsQuery,
+    {},
+    options
+  )
+
   return (
-    <>
-      <section className="container mt-20">
-        <article className="prose">
-          <h1 className="text-primary">International Journals</h1>
-          <p>
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Itaque
-            perferendis fugit, inventore quis ipsam provident odio consequatur
-            dolores voluptatem voluptate quia mollitia possimus reprehenderit
-            reiciendis cum tempore id, veniam praesentium?
-          </p>
-        </article>
+    <BasePage title="International Journals" subtitle="Publications">
+      <section>
+        <PublicationList>
+          {internationalJournals.map((journal) => (
+            <PublicationListItem
+              key={journal._id}
+              title={journal.title || ""}
+              href={journal.link || "#"}
+              description={`${journal.journal} - ${new Date(journal.publicationDate || 1998).getFullYear()}`}
+            />
+          ))}
+        </PublicationList>
       </section>
-    </>
+    </BasePage>
   )
 }

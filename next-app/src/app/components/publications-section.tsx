@@ -6,7 +6,7 @@ import { ChevronRight } from "lucide-react"
 import { AllPublicationCountQueryResult } from "@/types/sanity.types"
 import BaseSection from "@/components/base-section"
 
-const options = { next: { revalidate: 30 } }
+const options = { next: { revalidate: 3600 } }
 
 export default async function PublicationsSection() {
   const allPublicationCountQueryResult =

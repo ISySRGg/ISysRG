@@ -73,19 +73,19 @@ export default async function Header() {
       children: [
         {
           label: "International Journals",
-          href: "/publication/journals",
+          href: "/journals",
         },
         {
           label: "International Conference (Proceedings)",
-          href: "/publication/proceedings",
+          href: "/proceedings",
         },
         {
           label: "Intelectual Property Rights (IPR)",
-          href: "/publication/ipr",
+          href: "/ipr",
         },
         {
           label: "Books",
-          href: "/publication/books",
+          href: "/books",
         },
       ],
     },

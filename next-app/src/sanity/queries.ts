@@ -26,25 +26,35 @@ export const featuredProductsQuery = defineQuery(
 
 export const settingsQuery = defineQuery(`*[_type == "settings"][0]`)
 
-export const allPostsQuery = defineQuery(
-  `*[_type == "post" && defined(slug.current)]|order(publishedAt desc)[0...6]{_id,title,slug,publishedAt}`
-)
-
 export const postQuery = defineQuery(
   `*[_type == "post" && slug.current == $slug][0]`
 )
 
 export const allProductsQuery = defineQuery(
-  `*[_type == "product" && defined(slug.current)][0..1]`
+  `*[_type == "product" && defined(slug.current)]`
 )
 
 export const allDatasetsQuery = defineQuery(
-  `*[_type == "dataset" && defined(slug.current)][0..2]`
+  `*[_type == "dataset" && defined(slug.current)]`
 )
 
 export const allActivityQuery = defineQuery(
-  `*[_type == "activity" && defined(slug.current)][0..3]`
+  `*[_type == "activity" && defined(slug.current)]`
 )
+
+export const allInternationalJournalsQuery = defineQuery(
+  `*[_type == "internationalJournal"]`
+)
+
+export const allInternationalConferencesQuery = defineQuery(
+  `*[_type == "internationalConference"]`
+)
+
+export const allIntellectualPropertyRightsQuery = defineQuery(
+  `*[_type == "intellectualPropertyRights"]`
+)
+
+export const allBooksQuery = defineQuery(`*[_type == "book"]`)
 
 export const allPublicationCountQuery = defineQuery(
   `{
