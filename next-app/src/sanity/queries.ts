@@ -17,11 +17,11 @@ export const productsSectionQuery = defineQuery(
 )
 
 export const featuredDatasetsQuery = defineQuery(
-  `*[_type == "home"][0]{datasetsSection{featuredDatasets[]->}}`
+  `*[_type == "home"][0]{datasetsSection{featuredDatasets[]->{name,slug,images,shortDescription,description}}}`
 )
 
 export const featuredProductsQuery = defineQuery(
-  `*[_type == "home"][0]{productsSection{featuredProducts[]->}}`
+  `*[_type == "home"][0]{productsSection{featuredProducts[]->{name,slug,image,shortDescription,description,features}}}`
 )
 
 export const settingsQuery = defineQuery(`*[_type == "settings"][0]`)
@@ -31,8 +31,12 @@ export const postQuery = defineQuery(
 )
 
 export const allProductsQuery = defineQuery(
-  `*[_type == "product" && defined(slug.current)]`
+  `*[_type == "product" && defined(slug.current)]{name,slug,image,shortDescription,description,features}`
 )
+
+export const productQuery = defineQuery(`
+  *[_type == "product" && slug.current == $slug][0]
+`)
 
 export const allDatasetsQuery = defineQuery(
   `*[_type == "dataset" && defined(slug.current)]`
@@ -66,3 +70,7 @@ export const allPublicationCountQuery = defineQuery(
 )
 
 export const allResearchersQuery = defineQuery(`*[_type == "researcher"]`)
+
+export const allInfrastructureQuery = defineQuery(
+  `*[_type == "infrastructure"]`
+)

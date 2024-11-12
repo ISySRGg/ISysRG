@@ -3,5 +3,5 @@ export default function PublicationList({
 }: {
   children: React.ReactNode
 }) {
-  return <ul className="divide-y pt-10 md:pt-20">{children}</ul>
+  return <ul className="divide-y">{children}</ul>
 }

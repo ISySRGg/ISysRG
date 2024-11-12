@@ -54,7 +54,7 @@ export default async function AboutSection() {
             </Button>
 
             <Button variant="link" size="xl" className="p-0" asChild>
-              <Link href="/infrascructure">
+              <Link href="/infrastructure">
                 Infrascructure <ArrowRight />
               </Link>
             </Button>

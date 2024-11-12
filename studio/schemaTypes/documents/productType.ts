@@ -36,6 +36,11 @@ export const productType = defineType({
       type: 'array',
       of: [{type: 'string'}],
     }),
+    defineField({
+      name: 'details',
+      type: 'array',
+      of: [{type: 'block'}, {type: 'image'}],
+    }),
   ],
   preview: {
     select: {

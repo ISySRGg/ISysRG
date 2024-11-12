@@ -3,6 +3,7 @@ import { allIntellectualPropertyRightsQuery } from "@/sanity/queries"
 
 import { IntellectualPropertyRights } from "@/types/sanity.types"
 import BasePage from "@/components/base-page"
+import BaseSection from "@/components/base-section"
 import PublicationList from "@/components/publication-list"
 import PublicationListItem from "@/components/publication-list-item"
 
@@ -18,7 +19,7 @@ export default async function Page() {
       title="Intellectual Property Rights (IPR)"
       subtitle="Publications"
     >
-      <section>
+      <BaseSection>
         <PublicationList>
           {intellectualPropertyRights.map((ipr) => (
             <PublicationListItem
@@ -29,7 +30,7 @@ export default async function Page() {
             />
           ))}
         </PublicationList>
-      </section>
+      </BaseSection>
     </BasePage>
   )
 }

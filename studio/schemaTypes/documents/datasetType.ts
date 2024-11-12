@@ -19,8 +19,9 @@ export const datasetType = defineType({
       validation: (rule) => rule.required(),
     }),
     defineField({
-      name: 'image',
-      type: 'image',
+      name: 'images',
+      type: 'array',
+      of: [{type: 'image'}],
     }),
     defineField({
       name: 'shortDescription',
@@ -31,19 +32,23 @@ export const datasetType = defineType({
       name: 'description',
       type: 'text',
     }),
+    defineField({
+      name: 'link',
+      type: 'url',
+    }),
   ],
   preview: {
     select: {
       title: 'name',
       shortDescription: 'shortDescription',
       description: 'description',
-      image: 'image',
+      images: 'images',
     },
     prepare(value) {
       return {
         title: value.title,
         subtitle: value.shortDescription || value.description,
-        media: value.image,
+        media: value.images ? value.images[0] : DatabaseIcon,
       }
     },
   },

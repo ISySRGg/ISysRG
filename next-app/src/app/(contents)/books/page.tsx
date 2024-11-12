@@ -3,6 +3,7 @@ import { allBooksQuery } from "@/sanity/queries"
 
 import { Book } from "@/types/sanity.types"
 import BasePage from "@/components/base-page"
+import BaseSection from "@/components/base-section"
 import PublicationList from "@/components/publication-list"
 import PublicationListItem from "@/components/publication-list-item"
 
@@ -13,7 +14,7 @@ export default async function Page() {
 
   return (
     <BasePage title="Books" subtitle="Publications">
-      <section>
+      <BaseSection>
         <PublicationList>
           {books.map((book) => (
             <PublicationListItem
@@ -24,7 +25,7 @@ export default async function Page() {
             />
           ))}
         </PublicationList>
-      </section>
+      </BaseSection>
     </BasePage>
   )
 }

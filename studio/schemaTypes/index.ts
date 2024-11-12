@@ -1,8 +1,9 @@
 import {activityType} from './documents/activityType'
 import {bookType} from './documents/bookType'
 import {datasetType} from './documents/datasetType'
+import {infrastructureType} from './documents/infrastructureType'
 import {intellectualPropertyRightsType} from './documents/intellectualPropertyRights'
-import {internationalConferenceType} from './documents/internationalConferenceTypes'
+import {internationalConferenceType} from './documents/internationalConferenceType'
 import {internationalJournalType} from './documents/internationalJournalTypes'
 import {postType} from './documents/postType'
 import {productType} from './documents/productType'
@@ -14,6 +15,7 @@ export const schemaTypes = [
   // Documents
   activityType,
   datasetType,
+  infrastructureType,
   postType,
   productType,
   researcherType,

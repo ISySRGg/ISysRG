@@ -5,6 +5,7 @@ import { urlForImage } from "@/sanity/utils"
 import { Researcher } from "@/types/sanity.types"
 import { researcherRoles } from "@/lib/constants"
 import BasePage from "@/components/base-page"
+import BaseSection from "@/components/base-section"
 import ResearcherFigure from "@/components/researcher-figure"
 
 const options = { next: { revalidate: 30 } }
@@ -34,9 +35,20 @@ export default async function Page() {
     (researcher) => researcher.role == "student"
   )
 
+  const groupedStudentsByBatch = students.reduce(
+    (acc, person) => {
+      if (!acc[person.batch || 0]) {
+        acc[person.batch || 0] = []
+      }
+      acc[person.batch || 0].push(person)
+      return acc
+    },
+    {} as Record<number, Researcher[]>
+  )
+
   return (
     <BasePage title="Research Team">
-      <section className="flex w-full flex-col items-center divide-y">
+      <BaseSection className="flex w-full flex-col items-center divide-y">
         <div className="flex w-full flex-row justify-center gap-4 py-4 md:py-8">
           <ResearcherFigure
             name={head.name || ""}
@@ -78,20 +90,29 @@ export default async function Page() {
             />
           ))}
         </div>
-        <div className="flex w-full flex-row flex-wrap justify-center gap-4 py-4 md:py-8">
-          {students.map((student) => (
-            <ResearcherFigure
-              key={student._id}
-              name={student.name || ""}
-              role={researcherRoles.student}
-              image={{
-                src: urlForImage(student.image)?.url() as string,
-                alt: "",
-              }}
-            />
-          ))}
-        </div>
-      </section>
+        {Object.keys(groupedStudentsByBatch).map((batch) => (
+          <div
+            key={batch}
+            className="flex w-full flex-col items-center py-4 md:py-8"
+          >
+            <div className="rounded bg-neutral-100 px-4 py-1">
+              <p className="text-lg font-medium">Batch {batch} Students</p>
+            </div>
+            <div className="mt-4 flex w-full flex-row flex-wrap justify-center gap-4">
+              {groupedStudentsByBatch[Number(batch)].map((student) => (
+                <ResearcherFigure
+                  key={student._id}
+                  name={student.name || ""}
+                  image={{
+                    src: urlForImage(student.image)?.url() as string,
+                    alt: "",
+                  }}
+                />
+              ))}
+            </div>
+          </div>
+        ))}
+      </BaseSection>
     </BasePage>
   )
 }

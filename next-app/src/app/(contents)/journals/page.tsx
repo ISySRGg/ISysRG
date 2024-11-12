@@ -3,6 +3,7 @@ import { allInternationalJournalsQuery } from "@/sanity/queries"
 
 import { InternationalJournal } from "@/types/sanity.types"
 import BasePage from "@/components/base-page"
+import BaseSection from "@/components/base-section"
 import PublicationList from "@/components/publication-list"
 import PublicationListItem from "@/components/publication-list-item"
 
@@ -17,7 +18,7 @@ export default async function Page() {
 
   return (
     <BasePage title="International Journals" subtitle="Publications">
-      <section>
+      <BaseSection>
         <PublicationList>
           {internationalJournals.map((journal) => (
             <PublicationListItem
@@ -28,7 +29,7 @@ export default async function Page() {
             />
           ))}
         </PublicationList>
-      </section>
+      </BaseSection>
     </BasePage>
   )
 }

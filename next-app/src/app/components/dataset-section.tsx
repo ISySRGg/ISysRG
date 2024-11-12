@@ -3,6 +3,7 @@ import Link from "next/link"
 import { client } from "@/sanity/client"
 import { datasetsSectionQuery } from "@/sanity/queries"
 import { urlForImage } from "@/sanity/utils"
+import { Database } from "lucide-react"
 import { PortableText } from "next-sanity"
 
 import { DatasetsSectionQueryResult } from "@/types/sanity.types"
@@ -37,20 +38,26 @@ export default async function DatasetSection() {
             <li key={dataset._id}>
               <Link
                 href={`datasets/${dataset.slug?.current}`}
-                className="group flex gap-4 rounded border bg-neutral-50 p-4 transition-all hover:border-primary/40 hover:bg-primary/10"
+                className="group flex items-center gap-4 rounded border bg-neutral-50 p-4 transition-all hover:border-primary/40 hover:bg-primary/10"
               >
-                <Image
-                  src={urlForImage(dataset.image)?.url() as string}
-                  alt=""
-                  height={80}
-                  width={80}
-                  className="size-[68px] rounded object-cover lg:size-[80px]"
-                />
+                {dataset.images ? (
+                  <Image
+                    src={urlForImage(dataset.images[0])?.url() as string}
+                    alt=""
+                    height={80}
+                    width={80}
+                    className="size-[68px] rounded object-cover lg:size-[80px]"
+                  />
+                ) : (
+                  <div className="flex size-[68px] flex-none items-center justify-center rounded bg-primary/10 text-primary lg:size-[80px]">
+                    <Database className="size-[50%]" />
+                  </div>
+                )}
                 <div>
                   <h2 className="font-bold transition-colors group-hover:text-primary sm:text-xl">
                     {dataset.name}
                   </h2>
-                  <p className="text-sm sm:text-base">
+                  <p className="text-sm text-muted-foreground sm:text-base">
                     {dataset.shortDescription}
                   </p>
                 </div>

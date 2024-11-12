@@ -23,6 +23,8 @@ export default async function ProductsSection() {
 
   const productsSection = productsSectionQueryResult?.productsSection
 
+  console.log(productsSection)
+
   return (
     <BaseSection
       title={productsSection?.title}

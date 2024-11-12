@@ -27,6 +27,19 @@ export const researcherType = defineType({
       validation: (rule) => rule.required(),
     }),
     defineField({
+      name: 'batch',
+      type: 'number',
+      validation: (rule) =>
+        rule.custom((value, context) => {
+          if (value == undefined && context.document?.role == 'student') {
+            return 'Batch is required for role student'
+          }
+
+          return true
+        }),
+      hidden: ({document}) => document?.role != 'student',
+    }),
+    defineField({
       name: 'image',
       type: 'image',
     }),

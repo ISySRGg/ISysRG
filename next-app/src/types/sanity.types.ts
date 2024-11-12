@@ -338,6 +338,7 @@ export type Researcher = {
   _rev: string;
   name?: string;
   role?: "head" | "secretary" | "researchAssistant" | "member" | "student";
+  batch?: number;
   image?: {
     asset?: {
       _ref: string;
@@ -373,6 +374,35 @@ export type Product = {
   shortDescription?: string;
   description?: string;
   features?: Array<string>;
+  details?: Array<{
+    children?: Array<{
+      marks?: Array<string>;
+      text?: string;
+      _type: "span";
+      _key: string;
+    }>;
+    style?: "normal" | "h1" | "h2" | "h3" | "h4" | "h5" | "h6" | "blockquote";
+    listItem?: "bullet" | "number";
+    markDefs?: Array<{
+      href?: string;
+      _type: "link";
+      _key: string;
+    }>;
+    level?: number;
+    _type: "block";
+    _key: string;
+  } | {
+    asset?: {
+      _ref: string;
+      _type: "reference";
+      _weak?: boolean;
+      [internalGroqTypeReferenceTo]?: "sanity.imageAsset";
+    };
+    hotspot?: SanityImageHotspot;
+    crop?: SanityImageCrop;
+    _type: "image";
+    _key: string;
+  }>;
 };
 
 export type Post = {
@@ -415,14 +445,19 @@ export type Post = {
   }>;
 };
 
-export type Dataset = {
+export type Infrastructure = {
   _id: string;
-  _type: "dataset";
+  _type: "infrastructure";
   _createdAt: string;
   _updatedAt: string;
   _rev: string;
   name?: string;
-  slug?: Slug;
+  type?: string;
+  specifications?: Array<{
+    name?: string;
+    values?: Array<string>;
+    _key: string;
+  }>;
   image?: {
     asset?: {
       _ref: string;
@@ -434,8 +469,31 @@ export type Dataset = {
     crop?: SanityImageCrop;
     _type: "image";
   };
+};
+
+export type Dataset = {
+  _id: string;
+  _type: "dataset";
+  _createdAt: string;
+  _updatedAt: string;
+  _rev: string;
+  name?: string;
+  slug?: Slug;
+  images?: Array<{
+    asset?: {
+      _ref: string;
+      _type: "reference";
+      _weak?: boolean;
+      [internalGroqTypeReferenceTo]?: "sanity.imageAsset";
+    };
+    hotspot?: SanityImageHotspot;
+    crop?: SanityImageCrop;
+    _type: "image";
+    _key: string;
+  }>;
   shortDescription?: string;
   description?: string;
+  link?: string;
 };
 
 export type Activity = {
@@ -523,7 +581,7 @@ export type Slug = {
   source?: string;
 };
 
-export type AllSanitySchemaTypes = SanityImagePaletteSwatch | SanityImagePalette | SanityImageDimensions | SanityFileAsset | Geopoint | Home | Settings | Book | IntellectualPropertyRights | InternationalConference | InternationalJournal | Researcher | Product | Post | Dataset | Activity | SanityImageCrop | SanityImageHotspot | SanityImageAsset | SanityAssetSourceData | SanityImageMetadata | Slug;
+export type AllSanitySchemaTypes = SanityImagePaletteSwatch | SanityImagePalette | SanityImageDimensions | SanityFileAsset | Geopoint | Home | Settings | Book | IntellectualPropertyRights | InternationalConference | InternationalJournal | Researcher | Product | Post | Infrastructure | Dataset | Activity | SanityImageCrop | SanityImageHotspot | SanityImageAsset | SanityAssetSourceData | SanityImageMetadata | Slug;
 export declare const internalGroqTypeReferenceTo: unique symbol;
 // Source: ../next-app/src/sanity/queries.ts
 // Variable: aboutSectionQuery
@@ -642,7 +700,7 @@ export type DatasetsSectionQueryResult = {
       _rev: string;
       name?: string;
       slug?: Slug;
-      image?: {
+      images?: Array<{
         asset?: {
           _ref: string;
           _type: "reference";
@@ -652,9 +710,11 @@ export type DatasetsSectionQueryResult = {
         hotspot?: SanityImageHotspot;
         crop?: SanityImageCrop;
         _type: "image";
-      };
+        _key: string;
+      }>;
       shortDescription?: string;
       description?: string;
+      link?: string;
     }> | null;
   } | null;
 } | null;
@@ -704,22 +764,46 @@ export type ProductsSectionQueryResult = {
       shortDescription?: string;
       description?: string;
       features?: Array<string>;
+      details?: Array<{
+        children?: Array<{
+          marks?: Array<string>;
+          text?: string;
+          _type: "span";
+          _key: string;
+        }>;
+        style?: "blockquote" | "h1" | "h2" | "h3" | "h4" | "h5" | "h6" | "normal";
+        listItem?: "bullet" | "number";
+        markDefs?: Array<{
+          href?: string;
+          _type: "link";
+          _key: string;
+        }>;
+        level?: number;
+        _type: "block";
+        _key: string;
+      } | {
+        asset?: {
+          _ref: string;
+          _type: "reference";
+          _weak?: boolean;
+          [internalGroqTypeReferenceTo]?: "sanity.imageAsset";
+        };
+        hotspot?: SanityImageHotspot;
+        crop?: SanityImageCrop;
+        _type: "image";
+        _key: string;
+      }>;
     }> | null;
   } | null;
 } | null;
 // Variable: featuredDatasetsQuery
-// Query: *[_type == "home"][0]{datasetsSection{featuredDatasets[]->}}
+// Query: *[_type == "home"][0]{datasetsSection{featuredDatasets[]->{name,slug,images,shortDescription,description}}}
 export type FeaturedDatasetsQueryResult = {
   datasetsSection: {
     featuredDatasets: Array<{
-      _id: string;
-      _type: "dataset";
-      _createdAt: string;
-      _updatedAt: string;
-      _rev: string;
-      name?: string;
-      slug?: Slug;
-      image?: {
+      name: string | null;
+      slug: Slug | null;
+      images: Array<{
         asset?: {
           _ref: string;
           _type: "reference";
@@ -729,25 +813,21 @@ export type FeaturedDatasetsQueryResult = {
         hotspot?: SanityImageHotspot;
         crop?: SanityImageCrop;
         _type: "image";
-      };
-      shortDescription?: string;
-      description?: string;
+        _key: string;
+      }> | null;
+      shortDescription: string | null;
+      description: string | null;
     }> | null;
   } | null;
 } | null;
 // Variable: featuredProductsQuery
-// Query: *[_type == "home"][0]{productsSection{featuredProducts[]->}}
+// Query: *[_type == "home"][0]{productsSection{featuredProducts[]->{name,slug,image,shortDescription,description,features}}}
 export type FeaturedProductsQueryResult = {
   productsSection: {
     featuredProducts: Array<{
-      _id: string;
-      _type: "product";
-      _createdAt: string;
-      _updatedAt: string;
-      _rev: string;
-      name?: string;
-      slug?: Slug;
-      image?: {
+      name: string | null;
+      slug: Slug | null;
+      image: {
         asset?: {
           _ref: string;
           _type: "reference";
@@ -757,10 +837,10 @@ export type FeaturedProductsQueryResult = {
         hotspot?: SanityImageHotspot;
         crop?: SanityImageCrop;
         _type: "image";
-      };
-      shortDescription?: string;
-      description?: string;
-      features?: Array<string>;
+      } | null;
+      shortDescription: string | null;
+      description: string | null;
+      features: Array<string> | null;
     }> | null;
   } | null;
 } | null;
@@ -857,8 +937,28 @@ export type PostQueryResult = {
   }>;
 } | null;
 // Variable: allProductsQuery
-// Query: *[_type == "product" && defined(slug.current)]
+// Query: *[_type == "product" && defined(slug.current)]{name,slug,image,shortDescription,description,features}
 export type AllProductsQueryResult = Array<{
+  name: string | null;
+  slug: Slug | null;
+  image: {
+    asset?: {
+      _ref: string;
+      _type: "reference";
+      _weak?: boolean;
+      [internalGroqTypeReferenceTo]?: "sanity.imageAsset";
+    };
+    hotspot?: SanityImageHotspot;
+    crop?: SanityImageCrop;
+    _type: "image";
+  } | null;
+  shortDescription: string | null;
+  description: string | null;
+  features: Array<string> | null;
+}>;
+// Variable: productQuery
+// Query: *[_type == "product" && slug.current == $slug][0]
+export type ProductQueryResult = {
   _id: string;
   _type: "product";
   _createdAt: string;
@@ -880,7 +980,36 @@ export type AllProductsQueryResult = Array<{
   shortDescription?: string;
   description?: string;
   features?: Array<string>;
-}>;
+  details?: Array<{
+    children?: Array<{
+      marks?: Array<string>;
+      text?: string;
+      _type: "span";
+      _key: string;
+    }>;
+    style?: "blockquote" | "h1" | "h2" | "h3" | "h4" | "h5" | "h6" | "normal";
+    listItem?: "bullet" | "number";
+    markDefs?: Array<{
+      href?: string;
+      _type: "link";
+      _key: string;
+    }>;
+    level?: number;
+    _type: "block";
+    _key: string;
+  } | {
+    asset?: {
+      _ref: string;
+      _type: "reference";
+      _weak?: boolean;
+      [internalGroqTypeReferenceTo]?: "sanity.imageAsset";
+    };
+    hotspot?: SanityImageHotspot;
+    crop?: SanityImageCrop;
+    _type: "image";
+    _key: string;
+  }>;
+} | null;
 // Variable: allDatasetsQuery
 // Query: *[_type == "dataset" && defined(slug.current)]
 export type AllDatasetsQueryResult = Array<{
@@ -891,7 +1020,7 @@ export type AllDatasetsQueryResult = Array<{
   _rev: string;
   name?: string;
   slug?: Slug;
-  image?: {
+  images?: Array<{
     asset?: {
       _ref: string;
       _type: "reference";
@@ -901,9 +1030,11 @@ export type AllDatasetsQueryResult = Array<{
     hotspot?: SanityImageHotspot;
     crop?: SanityImageCrop;
     _type: "image";
-  };
+    _key: string;
+  }>;
   shortDescription?: string;
   description?: string;
+  link?: string;
 }>;
 // Variable: allActivityQuery
 // Query: *[_type == "activity" && defined(slug.current)]
@@ -1034,6 +1165,34 @@ export type AllResearchersQueryResult = Array<{
   _rev: string;
   name?: string;
   role?: "head" | "member" | "researchAssistant" | "secretary" | "student";
+  batch?: number;
+  image?: {
+    asset?: {
+      _ref: string;
+      _type: "reference";
+      _weak?: boolean;
+      [internalGroqTypeReferenceTo]?: "sanity.imageAsset";
+    };
+    hotspot?: SanityImageHotspot;
+    crop?: SanityImageCrop;
+    _type: "image";
+  };
+}>;
+// Variable: allInfrastructureQuery
+// Query: *[_type == "infrastructure"]
+export type AllInfrastructureQueryResult = Array<{
+  _id: string;
+  _type: "infrastructure";
+  _createdAt: string;
+  _updatedAt: string;
+  _rev: string;
+  name?: string;
+  type?: string;
+  specifications?: Array<{
+    name?: string;
+    values?: Array<string>;
+    _key: string;
+  }>;
   image?: {
     asset?: {
       _ref: string;
@@ -1055,11 +1214,12 @@ declare module "@sanity/client" {
     "*[_type == \"home\"][0]{activitiesSection{...,highlightedActivities[]->}}": ActivitiesSectionQueryResult;
     "*[_type == \"home\"][0]{datasetsSection{...,featuredDatasets[]->}}": DatasetsSectionQueryResult;
     "*[_type == \"home\"][0]{productsSection{...,featuredProducts[]->}}": ProductsSectionQueryResult;
-    "*[_type == \"home\"][0]{datasetsSection{featuredDatasets[]->}}": FeaturedDatasetsQueryResult;
-    "*[_type == \"home\"][0]{productsSection{featuredProducts[]->}}": FeaturedProductsQueryResult;
+    "*[_type == \"home\"][0]{datasetsSection{featuredDatasets[]->{name,slug,images,shortDescription,description}}}": FeaturedDatasetsQueryResult;
+    "*[_type == \"home\"][0]{productsSection{featuredProducts[]->{name,slug,image,shortDescription,description,features}}}": FeaturedProductsQueryResult;
     "*[_type == \"settings\"][0]": SettingsQueryResult;
     "*[_type == \"post\" && slug.current == $slug][0]": PostQueryResult;
-    "*[_type == \"product\" && defined(slug.current)]": AllProductsQueryResult;
+    "*[_type == \"product\" && defined(slug.current)]{name,slug,image,shortDescription,description,features}": AllProductsQueryResult;
+    "\n  *[_type == \"product\" && slug.current == $slug][0]\n": ProductQueryResult;
     "*[_type == \"dataset\" && defined(slug.current)]": AllDatasetsQueryResult;
     "*[_type == \"activity\" && defined(slug.current)]": AllActivityQueryResult;
     "*[_type == \"internationalJournal\"]": AllInternationalJournalsQueryResult;
@@ -1068,5 +1228,6 @@ declare module "@sanity/client" {
     "*[_type == \"book\"]": AllBooksQueryResult;
     "{\n    \"internationalJournalCount\": count(*[_type == \"internationalJournal\"]),\n    \"internationalConferenceCount\": count(*[_type == \"internationalConference\"]),\n    \"intellectualPropertyRightsCount\": count(*[_type == \"intellectualPropertyRights\"]),\n    \"bookCount\": count(*[_type == \"book\"])\n    }": AllPublicationCountQueryResult;
     "*[_type == \"researcher\"]": AllResearchersQueryResult;
+    "*[_type == \"infrastructure\"]": AllInfrastructureQueryResult;
   }
 }
