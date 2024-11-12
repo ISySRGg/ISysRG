@@ -12,13 +12,17 @@ import BaseSection from "@/components/base-section"
 const options = { next: { revalidate: 30 } }
 
 interface Props {
-  params: {
+  params: Promise<{
     slug: string
-  }
+  }>
 }
 
 export default async function Page({ params }: Props) {
-  const product = await client.fetch<Product>(productQuery, params, options)
+  const product = await client.fetch<Product>(
+    productQuery,
+    await params,
+    options
+  )
 
   const portableTextComponents = {
     types: {
