@@ -19,7 +19,7 @@ export default async function Page() {
   return (
     <BasePage title="Activities">
       <BaseSection>
-        <div className="columns-2 gap-8">
+        <div className="column-1 gap-8 md:columns-2">
           {activities.map((activity) => (
             <figure
               key={activity._id}
