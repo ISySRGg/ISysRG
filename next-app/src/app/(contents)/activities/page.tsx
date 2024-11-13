@@ -17,7 +17,7 @@ export default async function Page() {
   )
 
   return (
-    <BasePage title="Activites">
+    <BasePage title="Activities">
       <BaseSection>
         <div className="columns-2 gap-8">
           {activities.map((activity) => (
