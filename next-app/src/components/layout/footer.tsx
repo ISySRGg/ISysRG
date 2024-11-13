@@ -53,7 +53,7 @@ export default async function Footer() {
 
   return (
     <footer className="mt-4 lg:mt-10">
-      <div className="rounded-t-xl border-t-2 border-primary/30 bg-gradient-to-br from-neutral-50 from-40% to-primary/20 pb-10 md:rounded-t-[3rem]">
+      <div className="border-t-2 border-primary/30 bg-gradient-to-br from-neutral-50 from-40% to-primary/20 pb-10">
         <div className="container grid gap-6 py-10 sm:grid-cols-2 sm:gap-10 lg:grid-cols-3">
           <div className="sm:col-span-2 lg:col-span-1">
             <IsysLogo />
