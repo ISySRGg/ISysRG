@@ -22,8 +22,8 @@ export default async function Footer() {
       href: "/team",
     },
     {
-      label: "Infrascructure",
-      href: "/infrascructure",
+      label: "Infrastructure",
+      href: "/infrastructure",
     },
     {
       label: "Products",

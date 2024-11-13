@@ -80,7 +80,7 @@ export default function MobileNavigation({ navigation }: Props) {
             {navigation.map((navigationItem) => (
               <div key={navigationItem.label} className="w-full">
                 {"children" in navigationItem ? (
-                  <Collapsible>
+                  <Collapsible key={navigationItem.label}>
                     <CollapsibleTrigger asChild>
                       <button className="flex w-full flex-row items-center justify-between text-gray-100 [&[data-state=open]>svg]:-rotate-180">
                         <span>{navigationItem.label}</span>
@@ -111,6 +111,7 @@ export default function MobileNavigation({ navigation }: Props) {
                   </Collapsible>
                 ) : (
                   <Link
+                    key={navigationItem.label}
                     onClick={handleCloseMobileNavigation}
                     href={navigationItem.href}
                     className="block focus:underline"

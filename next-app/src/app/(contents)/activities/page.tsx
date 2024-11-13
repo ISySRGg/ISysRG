@@ -30,7 +30,7 @@ export default async function Page() {
                 alt=""
                 width={600}
                 height={600}
-                className="w-full rounded object-cover"
+                className="w-full rounded bg-neutral-200 object-cover"
               />
               <figcaption className="mt-2">
                 <h3 className="text-xl font-medium">{activity.title}</h3>
