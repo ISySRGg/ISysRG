@@ -48,70 +48,72 @@ export default async function Page() {
 
   return (
     <BasePage title="Research Team">
-      <BaseSection className="flex w-full flex-col items-center divide-y">
-        <div className="flex w-full flex-row justify-center gap-4 py-4 md:py-8">
-          <ResearcherFigure
-            name={head.name || ""}
-            role={researcherRoles.head}
-            image={{ src: urlForImage(head.image)?.url() as string, alt: "" }}
-          />
-        </div>
-        <div className="flex w-full flex-row justify-center gap-4 py-4 md:py-8">
-          <ResearcherFigure
-            name={secretary.name || ""}
-            role={researcherRoles.secretary}
-            image={{
-              src: urlForImage(secretary.image)?.url() as string,
-              alt: "",
-            }}
-          />
-        </div>
-        <div className="flex w-full flex-row flex-wrap justify-center gap-4 py-4 md:py-8">
-          {researchAssistants.map((assistant) => (
+      <BaseSection>
+        <div className="flex w-full flex-col items-center divide-y">
+          <div className="flex w-full flex-row justify-center gap-4 py-4 md:py-8">
             <ResearcherFigure
-              key={assistant._id}
-              name={assistant.name || ""}
-              role={researcherRoles.researchAssistant}
-              image={{
-                src: urlForImage(assistant.image)?.url() as string,
-                alt: "",
-              }}
+              name={head.name || ""}
+              role={researcherRoles.head}
+              image={{ src: urlForImage(head.image)?.url() as string, alt: "" }}
             />
-          ))}
-          {members.map((member) => (
-            <ResearcherFigure
-              key={member._id}
-              name={member.name || ""}
-              role={researcherRoles.member}
-              image={{
-                src: urlForImage(member.image)?.url() as string,
-                alt: "",
-              }}
-            />
-          ))}
-        </div>
-        {Object.keys(groupedStudentsByBatch).map((batch) => (
-          <div
-            key={batch}
-            className="flex w-full flex-col items-center py-4 md:py-8"
-          >
-            <div className="rounded bg-neutral-100 px-4 py-1">
-              <p className="text-lg font-medium">Batch {batch} Students</p>
-            </div>
-            <div className="mt-4 flex w-full flex-row flex-wrap justify-center gap-4">
-              {groupedStudentsByBatch[Number(batch)].map((student) => (
-                <ResearcherFigure
-                  key={student._id}
-                  name={student.name || ""}
-                  image={{
-                    src: urlForImage(student.image)?.url() as string,
-                    alt: "",
-                  }}
-                />
-              ))}
-            </div>
           </div>
-        ))}
+          <div className="flex w-full flex-row justify-center gap-4 py-4 md:py-8">
+            <ResearcherFigure
+              name={secretary.name || ""}
+              role={researcherRoles.secretary}
+              image={{
+                src: urlForImage(secretary.image)?.url() as string,
+                alt: "",
+              }}
+            />
+          </div>
+          <div className="flex w-full flex-row flex-wrap justify-center gap-6 py-4 md:py-8">
+            {researchAssistants.map((assistant) => (
+              <ResearcherFigure
+                key={assistant._id}
+                name={assistant.name || ""}
+                role={researcherRoles.researchAssistant}
+                image={{
+                  src: urlForImage(assistant.image)?.url() as string,
+                  alt: "",
+                }}
+              />
+            ))}
+            {members.map((member) => (
+              <ResearcherFigure
+                key={member._id}
+                name={member.name || ""}
+                role={researcherRoles.member}
+                image={{
+                  src: urlForImage(member.image)?.url() as string,
+                  alt: "",
+                }}
+              />
+            ))}
+          </div>
+          {Object.keys(groupedStudentsByBatch).map((batch) => (
+            <div
+              key={batch}
+              className="flex w-full flex-col items-center py-4 md:py-8"
+            >
+              <div className="rounded bg-neutral-100 px-4 py-1">
+                <p className="text-lg font-medium">Batch {batch} Students</p>
+              </div>
+              <div className="mt-4 flex w-full flex-row flex-wrap justify-center gap-4">
+                {groupedStudentsByBatch[Number(batch)].map((student) => (
+                  <ResearcherFigure
+                    key={student._id}
+                    name={student.name || ""}
+                    image={{
+                      src: urlForImage(student.image)?.url() as string,
+                      alt: "",
+                    }}
+                  />
+                ))}
+              </div>
+            </div>
+          ))}
+        </div>
       </BaseSection>
     </BasePage>
   )

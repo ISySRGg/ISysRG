@@ -4,7 +4,7 @@ export const researcherRoles: Record<
   NonNullable<Researcher["role"]>,
   string
 > = {
-  head: "Head of Isys Research Group",
+  head: "Head of ISys Research Group",
   secretary: "Secretary",
   researchAssistant: "Research Assistant",
   member: "Member",

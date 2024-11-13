@@ -6,7 +6,7 @@ import { toPlainText } from "next-sanity"
 
 import { Settings } from "@/types/sanity.types"
 
-import IsysLogo from "../isys-logo"
+import ISysLogo from "../isys-logo"
 import SocialMedia from "./social-media"
 
 const options = { next: { revalidate: 30 } }
@@ -56,7 +56,7 @@ export default async function Footer() {
       <div className="border-t-2 border-primary/30 bg-gradient-to-br from-neutral-50 from-40% to-primary/20 pb-10">
         <div className="container grid gap-6 py-10 sm:grid-cols-2 sm:gap-10 lg:grid-cols-3">
           <div className="sm:col-span-2 lg:col-span-1">
-            <IsysLogo />
+            <ISysLogo />
             <p className="mt-1 max-w-prose text-xs text-muted-foreground">
               {toPlainText(description)}
             </p>
