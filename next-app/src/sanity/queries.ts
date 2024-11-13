@@ -42,6 +42,10 @@ export const allDatasetsQuery = defineQuery(
   `*[_type == "dataset" && defined(slug.current)]`
 )
 
+export const datasetQuery = defineQuery(
+  `*[_type == "dataset" && slug.current == $slug][0]`
+)
+
 export const allActivityQuery = defineQuery(
   `*[_type == "activity" && defined(slug.current)]`
 )

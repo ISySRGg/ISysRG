@@ -1036,6 +1036,32 @@ export type AllDatasetsQueryResult = Array<{
   description?: string;
   link?: string;
 }>;
+// Variable: datasetQuery
+// Query: *[_type == "dataset" && slug.current == $slug][0]
+export type DatasetQueryResult = {
+  _id: string;
+  _type: "dataset";
+  _createdAt: string;
+  _updatedAt: string;
+  _rev: string;
+  name?: string;
+  slug?: Slug;
+  images?: Array<{
+    asset?: {
+      _ref: string;
+      _type: "reference";
+      _weak?: boolean;
+      [internalGroqTypeReferenceTo]?: "sanity.imageAsset";
+    };
+    hotspot?: SanityImageHotspot;
+    crop?: SanityImageCrop;
+    _type: "image";
+    _key: string;
+  }>;
+  shortDescription?: string;
+  description?: string;
+  link?: string;
+} | null;
 // Variable: allActivityQuery
 // Query: *[_type == "activity" && defined(slug.current)]
 export type AllActivityQueryResult = Array<{
@@ -1221,6 +1247,7 @@ declare module "@sanity/client" {
     "*[_type == \"product\" && defined(slug.current)]{name,slug,image,shortDescription,description,features}": AllProductsQueryResult;
     "\n  *[_type == \"product\" && slug.current == $slug][0]\n": ProductQueryResult;
     "*[_type == \"dataset\" && defined(slug.current)]": AllDatasetsQueryResult;
+    "*[_type == \"dataset\" && slug.current == $slug][0]": DatasetQueryResult;
     "*[_type == \"activity\" && defined(slug.current)]": AllActivityQueryResult;
     "*[_type == \"internationalJournal\"]": AllInternationalJournalsQueryResult;
     "*[_type == \"internationalConference\"]": AllInternationalConferencesQueryResult;

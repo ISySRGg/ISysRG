@@ -20,6 +20,9 @@ export default async function Page() {
       subtitle="Publications"
     >
       <BaseSection>
+        <h2 className="pt-10 text-xl font-medium text-primary">
+          List of Intellectual Property Rights
+        </h2>
         <PublicationList>
           {intellectualPropertyRights.map((ipr) => (
             <PublicationListItem

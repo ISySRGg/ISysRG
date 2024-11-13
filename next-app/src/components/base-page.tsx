@@ -9,12 +9,12 @@ export default function BasePage({ title, subtitle, children }: Props) {
     <main className="min-h-[calc(100dvh-10rem)]">
       <header className="mb-1 border-b-2 border-primary/30 pt-8 md:pb-2 md:pt-14">
         <div className="container">
-          <h1 className="text-3xl font-medium text-neutral-700 md:text-6xl">
-            {title}
-          </h1>
           {subtitle && (
             <p className="uppercase text-muted-foreground">{subtitle}</p>
           )}
+          <h1 className="text-3xl font-medium text-neutral-700 md:text-6xl">
+            {title}
+          </h1>
         </div>
       </header>
 

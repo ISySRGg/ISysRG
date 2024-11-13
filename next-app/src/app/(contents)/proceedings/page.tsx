@@ -15,11 +15,11 @@ export default async function Page() {
   >(allInternationalConferencesQuery, {}, options)
 
   return (
-    <BasePage
-      title="International Conferences (Proceedings)"
-      subtitle="Publications"
-    >
+    <BasePage title="International Conferences" subtitle="Publications">
       <BaseSection>
+        <h2 className="pt-10 text-xl font-medium text-primary">
+          List of International Conferences
+        </h2>
         <PublicationList>
           {internationalConferences.map((conference) => (
             <PublicationListItem

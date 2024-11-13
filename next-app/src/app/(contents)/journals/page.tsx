@@ -19,6 +19,9 @@ export default async function Page() {
   return (
     <BasePage title="International Journals" subtitle="Publications">
       <BaseSection>
+        <h2 className="pt-10 text-xl font-medium text-primary">
+          List of International Journals
+        </h2>
         <PublicationList>
           {internationalJournals.map((journal) => (
             <PublicationListItem

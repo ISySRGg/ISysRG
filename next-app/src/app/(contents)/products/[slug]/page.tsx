@@ -58,7 +58,7 @@ export default async function Page({ params }: Props) {
             <h2 className="text-xl font-medium text-primary">
               Product Features
             </h2>
-            <ul className="grid gap-4 pt-6 sm:grid-cols-2">
+            <ul className="grid gap-4 pt-4 sm:grid-cols-2">
               {product.features?.map((feature) => (
                 <li
                   key={feature}
@@ -72,12 +72,16 @@ export default async function Page({ params }: Props) {
           </div>
         </div>
 
-        <article className="prose prose-base pt-10 md:prose-lg">
-          <PortableText
-            value={product.details || []}
-            components={portableTextComponents}
-          />
-        </article>
+        <div>
+          <h2 className="pt-10 text-xl font-medium text-primary">Details</h2>
+
+          <article className="prose prose-base pt-4 md:prose-lg">
+            <PortableText
+              value={product.details || []}
+              components={portableTextComponents}
+            />
+          </article>
+        </div>
       </BaseSection>
     </BasePage>
   )
