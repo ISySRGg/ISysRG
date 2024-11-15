@@ -60,7 +60,7 @@ export default async function ActivitySection() {
                       alt=""
                       width={300}
                       height={300}
-                      className="aspect-square rounded object-cover"
+                      className="aspect-square w-full rounded object-cover"
                     />
                     <figcaption className="mt-4">
                       <h3 className="font-medium group-hover:text-primary">
