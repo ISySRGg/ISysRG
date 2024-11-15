@@ -19,19 +19,25 @@ export const activityType = defineType({
       validation: (rule) => rule.required(),
     }),
     defineField({
+      name: 'publishedAt',
+      type: 'datetime',
+      initialValue: () => new Date().toISOString(),
+      validation: (rule) => rule.required(),
+    }),
+    defineField({
       name: 'image',
       type: 'image',
       validation: (rule) => rule.required(),
     }),
     defineField({
-      name: 'description',
-      type: 'text',
+      name: 'body',
+      type: 'array',
+      of: [{type: 'block'}],
     }),
   ],
   preview: {
     select: {
       title: 'title',
-      subtitle: 'description',
       media: 'image',
     },
   },

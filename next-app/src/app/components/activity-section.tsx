@@ -50,24 +50,23 @@ export default async function ActivitySection() {
                 key={activity._id}
                 className="sm:basis-2/4 lg:basis-1/4"
               >
-                <figure>
-                  <Image
-                    src={urlForImage(activity.image)?.url() as string}
-                    alt=""
-                    width={600}
-                    height={600}
-                    className="aspect-square rounded object-cover"
-                  />
-                  <figcaption className="mt-4">
-                    <h3 className="text-xl font-medium">{activity.title}</h3>
-                    <article className="prose">
-                      <p className="text-muted-foreground">
-                        {activity.description?.substring(0, 60)}
-                        {(activity.description?.length || 0) >= 60 && "..."}
-                      </p>
-                    </article>
-                  </figcaption>
-                </figure>
+                <Link
+                  href={`/activities/${activity.slug?.current}`}
+                  className="group overflow-hidden"
+                >
+                  <figure>
+                    <Image
+                      src={urlForImage(activity.image)?.url() as string}
+                      alt=""
+                      width={300}
+                      height={300}
+                      className="aspect-square rounded object-cover transition-all group-hover:scale-105"
+                    />
+                    <figcaption className="mt-4">
+                      <h3 className="text-lg font-medium">{activity.title}</h3>
+                    </figcaption>
+                  </figure>
+                </Link>
               </CarouselItem>
             ))}
         </CarouselContent>

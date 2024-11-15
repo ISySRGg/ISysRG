@@ -35,9 +35,9 @@ export default async function Page() {
               <figcaption className="mt-2">
                 <h3 className="text-xl font-medium">{activity.title}</h3>
                 <article className="prose">
-                  <p className="text-muted-foreground">
+                  {/* <p className="text-muted-foreground">
                     {activity.description}
-                  </p>
+                  </p> */}
                 </article>
               </figcaption>
             </figure>
