@@ -1,12 +1,11 @@
 import Image from "next/image"
+import Link from "next/link"
 import { client } from "@/sanity/client"
-import { activityQuery } from "@/sanity/queries"
+import { activityQuery, moreActivityQuery } from "@/sanity/queries"
 import { urlForImage } from "@/sanity/utils"
 import { PortableText } from "next-sanity"
 
 import { Activity } from "@/types/sanity.types"
-import BasePage from "@/components/base-page"
-import BaseSection from "@/components/base-section"
 
 const options = { next: { revalidate: 30 } }
 
@@ -22,24 +21,77 @@ export default async function Page({ params }: Props) {
     await params,
     options
   )
+
+  const moreActivities = await client.fetch<Activity[]>(
+    moreActivityQuery,
+    { skip: activity._id, limit: 4 },
+    options
+  )
+
+  const portableTextComponents = {
+    types: {
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      image: ({ value }: { value: any }) => (
+        <Image
+          src={urlForImage(value)?.url() as string}
+          alt=""
+          width={400}
+          height={400}
+          className="w-full object-cover"
+        />
+      ),
+    },
+  }
+
   return (
-    <BasePage title={activity.title || ""} subtitle="Activity">
-      <BaseSection>
-        <div className="max-w-prose">
+    <main>
+      <header className="pt-10 md:pt-20">
+        <div className="container text-center">
+          <p className="font-medium text-primary md:text-lg">
+            Published:{" "}
+            {new Date(activity.publishedAt || 0).toLocaleDateString()}
+          </p>
+          <h1 className="mt-4 text-xl font-bold md:text-2xl lg:text-3xl xl:text-4xl">
+            {activity.title}
+          </h1>
+        </div>
+        <div className="sm:px-4">
           <Image
             src={urlForImage(activity.image)?.url() as string}
             alt=""
-            width={600}
-            height={600}
-            className="aspect-video rounded object-cover"
+            width={2000}
+            height={2000}
+            className="mx-auto mt-10 aspect-video w-full max-w-6xl object-cover sm:aspect-[20/9] sm:rounded"
           />
         </div>
-        {activity.body && (
-          <article className="prose prose-lg pt-10">
-            <PortableText value={activity.body} />
-          </article>
-        )}
-      </BaseSection>
-    </BasePage>
+      </header>
+      <section className="container grid pt-10 lg:grid-cols-3">
+        <div className="col-span-2">
+          {activity.body && (
+            <article className="prose md:prose-lg">
+              <PortableText
+                value={activity.body}
+                components={portableTextComponents}
+              />
+            </article>
+          )}
+        </div>
+        <div>
+          <p className="text-xl font-medium text-primary md:text-2xl">
+            More Activities
+          </p>
+
+          <ul className="flex flex-col divide-y">
+            {moreActivities.map((activity) => (
+              <li key={activity._id} className="py-4 md:py-6">
+                <Link href={`/activities/${activity.slug?.current}`}>
+                  <p className="font-medium md:text-lg">{activity.title}</p>
+                </Link>
+              </li>
+            ))}
+          </ul>
+        </div>
+      </section>
+    </main>
   )
 }

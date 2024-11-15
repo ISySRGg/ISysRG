@@ -32,7 +32,7 @@ export const activityType = defineType({
     defineField({
       name: 'body',
       type: 'array',
-      of: [{type: 'block'}],
+      of: [{type: 'block'}, {type: 'image'}],
     }),
   ],
   preview: {

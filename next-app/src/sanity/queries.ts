@@ -54,6 +54,10 @@ export const activityQuery = defineQuery(
   `*[_type == "activity" && slug.current == $slug][0]`
 )
 
+export const moreActivityQuery = defineQuery(`
+  *[_type == "activity" && _id != $skip && defined(slug.current)] | order(publishedAt desc, _updatedAt desc) [0...$limit]
+`)
+
 export const allInternationalJournalsQuery = defineQuery(
   `*[_type == "internationalJournal"]`
 )

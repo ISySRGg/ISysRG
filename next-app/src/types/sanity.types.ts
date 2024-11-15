@@ -533,6 +533,17 @@ export type Activity = {
     level?: number;
     _type: "block";
     _key: string;
+  } | {
+    asset?: {
+      _ref: string;
+      _type: "reference";
+      _weak?: boolean;
+      [internalGroqTypeReferenceTo]?: "sanity.imageAsset";
+    };
+    hotspot?: SanityImageHotspot;
+    crop?: SanityImageCrop;
+    _type: "image";
+    _key: string;
   }>;
 };
 
@@ -699,6 +710,17 @@ export type ActivitiesSectionQueryResult = {
         }>;
         level?: number;
         _type: "block";
+        _key: string;
+      } | {
+        asset?: {
+          _ref: string;
+          _type: "reference";
+          _weak?: boolean;
+          [internalGroqTypeReferenceTo]?: "sanity.imageAsset";
+        };
+        hotspot?: SanityImageHotspot;
+        crop?: SanityImageCrop;
+        _type: "image";
         _key: string;
       }>;
     }> | null;
@@ -1137,6 +1159,17 @@ export type AllActivityQueryResult = Array<{
     level?: number;
     _type: "block";
     _key: string;
+  } | {
+    asset?: {
+      _ref: string;
+      _type: "reference";
+      _weak?: boolean;
+      [internalGroqTypeReferenceTo]?: "sanity.imageAsset";
+    };
+    hotspot?: SanityImageHotspot;
+    crop?: SanityImageCrop;
+    _type: "image";
+    _key: string;
   }>;
 }>;
 // Variable: activityQuery
@@ -1178,8 +1211,71 @@ export type ActivityQueryResult = {
     level?: number;
     _type: "block";
     _key: string;
+  } | {
+    asset?: {
+      _ref: string;
+      _type: "reference";
+      _weak?: boolean;
+      [internalGroqTypeReferenceTo]?: "sanity.imageAsset";
+    };
+    hotspot?: SanityImageHotspot;
+    crop?: SanityImageCrop;
+    _type: "image";
+    _key: string;
   }>;
 } | null;
+// Variable: moreActivityQuery
+// Query: *[_type == "activity" && _id != $skip && defined(slug.current)] | order(publishedAt desc, _updatedAt desc) [0...$limit]
+export type MoreActivityQueryResult = Array<{
+  _id: string;
+  _type: "activity";
+  _createdAt: string;
+  _updatedAt: string;
+  _rev: string;
+  title?: string;
+  slug?: Slug;
+  publishedAt?: string;
+  image?: {
+    asset?: {
+      _ref: string;
+      _type: "reference";
+      _weak?: boolean;
+      [internalGroqTypeReferenceTo]?: "sanity.imageAsset";
+    };
+    hotspot?: SanityImageHotspot;
+    crop?: SanityImageCrop;
+    _type: "image";
+  };
+  body?: Array<{
+    children?: Array<{
+      marks?: Array<string>;
+      text?: string;
+      _type: "span";
+      _key: string;
+    }>;
+    style?: "blockquote" | "h1" | "h2" | "h3" | "h4" | "h5" | "h6" | "normal";
+    listItem?: "bullet" | "number";
+    markDefs?: Array<{
+      href?: string;
+      _type: "link";
+      _key: string;
+    }>;
+    level?: number;
+    _type: "block";
+    _key: string;
+  } | {
+    asset?: {
+      _ref: string;
+      _type: "reference";
+      _weak?: boolean;
+      [internalGroqTypeReferenceTo]?: "sanity.imageAsset";
+    };
+    hotspot?: SanityImageHotspot;
+    crop?: SanityImageCrop;
+    _type: "image";
+    _key: string;
+  }>;
+}>;
 // Variable: allInternationalJournalsQuery
 // Query: *[_type == "internationalJournal"]
 export type AllInternationalJournalsQueryResult = Array<{
@@ -1345,6 +1441,7 @@ declare module "@sanity/client" {
     "*[_type == \"dataset\" && slug.current == $slug][0]": DatasetQueryResult;
     "*[_type == \"activity\" && defined(slug.current)]": AllActivityQueryResult;
     "*[_type == \"activity\" && slug.current == $slug][0]": ActivityQueryResult;
+    "\n  *[_type == \"activity\" && _id != $skip && defined(slug.current)] | order(publishedAt desc, _updatedAt desc) [0...$limit]\n": MoreActivityQueryResult;
     "*[_type == \"internationalJournal\"]": AllInternationalJournalsQueryResult;
     "*[_type == \"internationalConference\"]": AllInternationalConferencesQueryResult;
     "*[_type == \"intellectualPropertyRights\"]": AllIntellectualPropertyRightsQueryResult;

@@ -1,4 +1,5 @@
 import Image from "next/image"
+import Link from "next/link"
 import { client } from "@/sanity/client"
 import { allActivityQuery } from "@/sanity/queries"
 import { urlForImage } from "@/sanity/utils"
@@ -21,26 +22,31 @@ export default async function Page() {
       <BaseSection>
         <div className="column-1 gap-8 md:columns-2">
           {activities.map((activity) => (
-            <figure
+            <Link
               key={activity._id}
-              className="flex break-inside-avoid flex-col py-4"
+              href={`/activities/${activity.slug?.current}`}
+              className="group"
             >
-              <Image
-                src={urlForImage(activity.image)?.url() as string}
-                alt=""
-                width={600}
-                height={600}
-                className="w-full rounded bg-neutral-200 object-cover"
-              />
-              <figcaption className="mt-2">
-                <h3 className="text-xl font-medium">{activity.title}</h3>
-                <article className="prose">
-                  {/* <p className="text-muted-foreground">
-                    {activity.description}
-                  </p> */}
-                </article>
-              </figcaption>
-            </figure>
+              <figure
+                key={activity._id}
+                className="flex break-inside-avoid flex-col py-4"
+              >
+                <div className="overflow-hidden rounded">
+                  <Image
+                    src={urlForImage(activity.image)?.url() as string}
+                    alt=""
+                    width={600}
+                    height={600}
+                    className="w-full rounded bg-neutral-200 object-cover transition-all group-hover:scale-105"
+                  />
+                </div>
+                <figcaption className="mt-2">
+                  <h3 className="text-lg font-medium transition-all group-hover:text-primary">
+                    {activity.title}
+                  </h3>
+                </figcaption>
+              </figure>
+            </Link>
           ))}
         </div>
       </BaseSection>
