@@ -62,7 +62,8 @@ export default async function ActivitySection() {
                     <h3 className="text-xl font-medium">{activity.title}</h3>
                     <article className="prose">
                       <p className="text-muted-foreground">
-                        {activity.description}
+                        {activity.description?.substring(0, 60)}
+                        {(activity.description?.length || 0) >= 60 && "..."}
                       </p>
                     </article>
                   </figcaption>
@@ -80,7 +81,7 @@ export default async function ActivitySection() {
           asChild
           className="w-full sm:w-fit"
         >
-          <Link href="/datasets">View more activity</Link>
+          <Link href="/activities">View more activity</Link>
         </Button>
       </div>
     </BaseSection>
