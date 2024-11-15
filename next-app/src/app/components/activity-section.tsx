@@ -81,7 +81,7 @@ export default async function ActivitySection() {
           asChild
           className="w-full sm:w-fit"
         >
-          <Link href="/activities">View more activity</Link>
+          <Link href="/activities">View more activities</Link>
         </Button>
       </div>
     </BaseSection>
