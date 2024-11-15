@@ -52,7 +52,7 @@ export default async function ActivitySection() {
               >
                 <Link
                   href={`/activities/${activity.slug?.current}`}
-                  className="group overflow-hidden"
+                  className="group block h-full overflow-hidden rounded border border-neutral-700 p-4 transition-all hover:border-primary/40 hover:bg-primary/10"
                 >
                   <figure>
                     <Image
@@ -60,10 +60,12 @@ export default async function ActivitySection() {
                       alt=""
                       width={300}
                       height={300}
-                      className="aspect-square rounded object-cover transition-all group-hover:scale-105"
+                      className="aspect-square rounded object-cover"
                     />
                     <figcaption className="mt-4">
-                      <h3 className="text-lg font-medium">{activity.title}</h3>
+                      <h3 className="font-medium group-hover:text-primary">
+                        {activity.title}
+                      </h3>
                     </figcaption>
                   </figure>
                 </Link>
