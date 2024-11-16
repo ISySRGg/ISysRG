@@ -1225,56 +1225,12 @@ export type ActivityQueryResult = {
   }>;
 } | null;
 // Variable: moreActivityQuery
-// Query: *[_type == "activity" && _id != $skip && defined(slug.current)] | order(publishedAt desc, _updatedAt desc) [0...$limit]
+// Query: *[_type == "activity" && _id != $skip && defined(slug.current)] | order(publishedAt desc, _updatedAt desc) [0...$limit] {_id, title, slug, publishedAt}
 export type MoreActivityQueryResult = Array<{
   _id: string;
-  _type: "activity";
-  _createdAt: string;
-  _updatedAt: string;
-  _rev: string;
-  title?: string;
-  slug?: Slug;
-  publishedAt?: string;
-  image?: {
-    asset?: {
-      _ref: string;
-      _type: "reference";
-      _weak?: boolean;
-      [internalGroqTypeReferenceTo]?: "sanity.imageAsset";
-    };
-    hotspot?: SanityImageHotspot;
-    crop?: SanityImageCrop;
-    _type: "image";
-  };
-  body?: Array<{
-    children?: Array<{
-      marks?: Array<string>;
-      text?: string;
-      _type: "span";
-      _key: string;
-    }>;
-    style?: "blockquote" | "h1" | "h2" | "h3" | "h4" | "h5" | "h6" | "normal";
-    listItem?: "bullet" | "number";
-    markDefs?: Array<{
-      href?: string;
-      _type: "link";
-      _key: string;
-    }>;
-    level?: number;
-    _type: "block";
-    _key: string;
-  } | {
-    asset?: {
-      _ref: string;
-      _type: "reference";
-      _weak?: boolean;
-      [internalGroqTypeReferenceTo]?: "sanity.imageAsset";
-    };
-    hotspot?: SanityImageHotspot;
-    crop?: SanityImageCrop;
-    _type: "image";
-    _key: string;
-  }>;
+  title: string | null;
+  slug: Slug | null;
+  publishedAt: string | null;
 }>;
 // Variable: allInternationalJournalsQuery
 // Query: *[_type == "internationalJournal"]
@@ -1365,7 +1321,7 @@ export type AllBooksQueryResult = Array<{
   };
 }>;
 // Variable: allPublicationCountQuery
-// Query: {    "internationalJournalCount": count(*[_type == "internationalJournal"]),    "internationalConferenceCount": count(*[_type == "internationalConference"]),    "intellectualPropertyRightsCount": count(*[_type == "intellectualPropertyRights"]),    "bookCount": count(*[_type == "book"])    }
+// Query: {    "internationalJournalCount": count(*[_type == "internationalJournal"]),    "internationalConferenceCount": count(*[_type == "internationalConference"]),    "intellectualPropertyRightsCount": count(*[_type == "intellectualPropertyRights"]),    "bookCount": count(*[_type == "book"])  }
 export type AllPublicationCountQueryResult = {
   internationalJournalCount: number;
   internationalConferenceCount: number;
@@ -1422,6 +1378,19 @@ export type AllInfrastructureQueryResult = Array<{
     _type: "image";
   };
 }>;
+// Variable: allDocumentSlugs
+// Query: {    "activitySlugs": *[_type == "activity"]{slug},    "datasetSlugs": *[_type == "dataset"]{slug},    "productSlugs": *[_type == "product"]{slug},  }
+export type AllDocumentSlugsResult = {
+  activitySlugs: Array<{
+    slug: Slug | null;
+  }>;
+  datasetSlugs: Array<{
+    slug: Slug | null;
+  }>;
+  productSlugs: Array<{
+    slug: Slug | null;
+  }>;
+};
 
 // Query TypeMap
 import "@sanity/client";
@@ -1441,13 +1410,14 @@ declare module "@sanity/client" {
     "*[_type == \"dataset\" && slug.current == $slug][0]": DatasetQueryResult;
     "*[_type == \"activity\" && defined(slug.current)]": AllActivityQueryResult;
     "*[_type == \"activity\" && slug.current == $slug][0]": ActivityQueryResult;
-    "\n  *[_type == \"activity\" && _id != $skip && defined(slug.current)] | order(publishedAt desc, _updatedAt desc) [0...$limit]\n": MoreActivityQueryResult;
+    "\n  *[_type == \"activity\" && _id != $skip && defined(slug.current)] | order(publishedAt desc, _updatedAt desc) [0...$limit] {_id, title, slug, publishedAt}\n": MoreActivityQueryResult;
     "*[_type == \"internationalJournal\"]": AllInternationalJournalsQueryResult;
     "*[_type == \"internationalConference\"]": AllInternationalConferencesQueryResult;
     "*[_type == \"intellectualPropertyRights\"]": AllIntellectualPropertyRightsQueryResult;
     "*[_type == \"book\"]": AllBooksQueryResult;
-    "{\n    \"internationalJournalCount\": count(*[_type == \"internationalJournal\"]),\n    \"internationalConferenceCount\": count(*[_type == \"internationalConference\"]),\n    \"intellectualPropertyRightsCount\": count(*[_type == \"intellectualPropertyRights\"]),\n    \"bookCount\": count(*[_type == \"book\"])\n    }": AllPublicationCountQueryResult;
+    "\n  {\n    \"internationalJournalCount\": count(*[_type == \"internationalJournal\"]),\n    \"internationalConferenceCount\": count(*[_type == \"internationalConference\"]),\n    \"intellectualPropertyRightsCount\": count(*[_type == \"intellectualPropertyRights\"]),\n    \"bookCount\": count(*[_type == \"book\"])\n  }\n": AllPublicationCountQueryResult;
     "*[_type == \"researcher\"]": AllResearchersQueryResult;
     "*[_type == \"infrastructure\"]": AllInfrastructureQueryResult;
+    "\n  {\n    \"activitySlugs\": *[_type == \"activity\"]{slug},\n    \"datasetSlugs\": *[_type == \"dataset\"]{slug},\n    \"productSlugs\": *[_type == \"product\"]{slug},\n  }\n": AllDocumentSlugsResult;
   }
 }

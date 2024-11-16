@@ -1,3 +1,4 @@
+import { Metadata } from "next"
 import { client } from "@/sanity/client"
 import { allInternationalJournalsQuery } from "@/sanity/queries"
 
@@ -8,6 +9,10 @@ import PublicationList from "@/components/publication-list"
 import PublicationListItem from "@/components/publication-list-item"
 
 const options = { next: { revalidate: 30 } }
+
+export const metadata: Metadata = {
+  title: "Journals",
+}
 
 export default async function Page() {
   const internationalJournals = await client.fetch<InternationalJournal[]>(

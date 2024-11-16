@@ -1,7 +1,8 @@
+import { Metadata, ResolvingMetadata } from "next"
 import Image from "next/image"
 import { client } from "@/sanity/client"
 import { productQuery } from "@/sanity/queries"
-import { urlForImage } from "@/sanity/utils"
+import { resolveOpenGraphImage, urlForImage } from "@/sanity/utils"
 import { CircleCheck } from "lucide-react"
 import { PortableText } from "next-sanity"
 
@@ -15,6 +16,28 @@ interface Props {
   params: Promise<{
     slug: string
   }>
+}
+
+export async function generateMetadata(
+  props: Props,
+  parent: ResolvingMetadata
+): Promise<Metadata> {
+  const params = await props.params
+  const product = await client.fetch<Product>(
+    productQuery,
+    await params,
+    options
+  )
+  const previousImages = (await parent).openGraph?.images || []
+  const ogImage = resolveOpenGraphImage(product.image)
+
+  return {
+    title: product.name,
+    description: (product.description || "").substring(0, 120),
+    openGraph: {
+      images: ogImage ? ogImage : previousImages,
+    },
+  } satisfies Metadata
 }
 
 export default async function Page({ params }: Props) {

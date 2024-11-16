@@ -1,3 +1,4 @@
+import { Metadata } from "next"
 import { client } from "@/sanity/client"
 import { allResearchersQuery } from "@/sanity/queries"
 import { urlForImage } from "@/sanity/utils"
@@ -9,6 +10,10 @@ import BaseSection from "@/components/base-section"
 import ResearcherFigure from "@/components/researcher-figure"
 
 const options = { next: { revalidate: 30 } }
+
+export const metadata: Metadata = {
+  title: "Team",
+}
 
 export default async function Page() {
   const researchers = await client.fetch<Researcher[]>(

@@ -1,3 +1,4 @@
+import { Metadata } from "next"
 import Image from "next/image"
 import { client } from "@/sanity/client"
 import { allInfrastructureQuery } from "@/sanity/queries"
@@ -8,6 +9,10 @@ import BasePage from "@/components/base-page"
 import BaseSection from "@/components/base-section"
 
 const options = { next: { revalidate: 30 } }
+
+export const metadata: Metadata = {
+  title: "Infrastructure",
+}
 
 export default async function Page() {
   const infrastructure = await client.fetch<Infrastructure[]>(

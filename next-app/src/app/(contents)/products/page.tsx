@@ -1,3 +1,4 @@
+import { Metadata } from "next"
 import Image from "next/image"
 import Link from "next/link"
 import { client } from "@/sanity/client"
@@ -11,6 +12,10 @@ import BasePage from "@/components/base-page"
 import BaseSection from "@/components/base-section"
 
 const options = { next: { revalidate: 30 } }
+
+export const metadata: Metadata = {
+  title: "Products",
+}
 
 export default async function Page() {
   const products = await client.fetch<Product[]>(allProductsQuery, {}, options)

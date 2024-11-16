@@ -23,3 +23,6 @@ export function formatDate(date: Date): string {
 export function truncateString(str: string, num: number = 60): string {
   return str.length <= num ? str : str.slice(0, num) + "..."
 }
+
+export const baseUrl =
+  process.env.NEXT_PUBLIC_APP_URL || "http://localhost:3000"

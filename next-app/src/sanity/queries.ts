@@ -55,7 +55,7 @@ export const activityQuery = defineQuery(
 )
 
 export const moreActivityQuery = defineQuery(`
-  *[_type == "activity" && _id != $skip && defined(slug.current)] | order(publishedAt desc, _updatedAt desc) [0...$limit]
+  *[_type == "activity" && _id != $skip && defined(slug.current)] | order(publishedAt desc, _updatedAt desc) [0...$limit] {_id, title, slug, publishedAt}
 `)
 
 export const allInternationalJournalsQuery = defineQuery(
@@ -72,17 +72,25 @@ export const allIntellectualPropertyRightsQuery = defineQuery(
 
 export const allBooksQuery = defineQuery(`*[_type == "book"]`)
 
-export const allPublicationCountQuery = defineQuery(
-  `{
+export const allPublicationCountQuery = defineQuery(`
+  {
     "internationalJournalCount": count(*[_type == "internationalJournal"]),
     "internationalConferenceCount": count(*[_type == "internationalConference"]),
     "intellectualPropertyRightsCount": count(*[_type == "intellectualPropertyRights"]),
     "bookCount": count(*[_type == "book"])
-    }`
-)
+  }
+`)
 
 export const allResearchersQuery = defineQuery(`*[_type == "researcher"]`)
 
 export const allInfrastructureQuery = defineQuery(
   `*[_type == "infrastructure"]`
 )
+
+export const allDocumentSlugs = defineQuery(`
+  {
+    "activitySlugs": *[_type == "activity"]{slug},
+    "datasetSlugs": *[_type == "dataset"]{slug},
+    "productSlugs": *[_type == "product"]{slug},
+  }
+`)

@@ -1,8 +1,9 @@
+import { Metadata, ResolvingMetadata } from "next"
 import Image from "next/image"
 import Link from "next/link"
 import { client } from "@/sanity/client"
 import { datasetQuery } from "@/sanity/queries"
-import { urlForImage } from "@/sanity/utils"
+import { resolveOpenGraphImage, urlForImage } from "@/sanity/utils"
 import { SquareArrowOutUpRight } from "lucide-react"
 
 import { Dataset } from "@/types/sanity.types"
@@ -15,6 +16,30 @@ interface Props {
   params: Promise<{
     slug: string
   }>
+}
+
+export async function generateMetadata(
+  props: Props,
+  parent: ResolvingMetadata
+): Promise<Metadata> {
+  const params = await props.params
+  const dataset = await client.fetch<Dataset>(
+    datasetQuery,
+    await params,
+    options
+  )
+  const previousImages = (await parent).openGraph?.images || []
+  const ogImage = resolveOpenGraphImage(
+    dataset.images ? dataset.images[0] : null
+  )
+
+  return {
+    title: dataset.name,
+    description: (dataset.description || "").substring(0, 120),
+    openGraph: {
+      images: ogImage ? ogImage : previousImages,
+    },
+  } satisfies Metadata
 }
 
 export default async function Page({ params }: Props) {
