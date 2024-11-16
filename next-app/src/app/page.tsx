@@ -16,9 +16,10 @@ export default function Page() {
           <Header />
 
           <div className="container flex h-full flex-col justify-center sm:py-28">
-            <h1 className="h-[1lh] text-4xl font-medium sm:text-7xl lg:text-8xl 2xl:text-9xl">
+            <h1 className="hidden">ISys Research Group</h1>
+            <p className="h-[1lh] text-4xl font-medium sm:text-7xl lg:text-8xl 2xl:text-9xl">
               <Slogan />
-            </h1>
+            </p>
             <p className="mt-6 max-w-prose text-lg md:text-xl">
               <span className="text-primary">
                 The Intelligent Systems Research Group
