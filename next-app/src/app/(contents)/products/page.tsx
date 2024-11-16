@@ -32,7 +32,7 @@ export default async function Page() {
               <div className="grid items-start gap-14 pt-6 lg:grid-cols-2">
                 <Image
                   src={urlForImage(product.image)?.url() as string}
-                  alt=""
+                  alt={product.name || ""}
                   height={720}
                   width={1280}
                 />

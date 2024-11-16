@@ -45,7 +45,7 @@ export default async function ProductsSection() {
           <TabsList>
             {productsSection.featuredProducts.map((product) => (
               <TabsTrigger key={product._id} value={product._id}>
-                <h2>{product.name}</h2>
+                <h3>{product.name}</h3>
               </TabsTrigger>
             ))}
           </TabsList>
@@ -59,7 +59,7 @@ export default async function ProductsSection() {
               >
                 <Image
                   src={urlForImage(product.image)?.url() as string}
-                  alt=""
+                  alt={product.name || ""}
                   height={720}
                   width={1280}
                 />

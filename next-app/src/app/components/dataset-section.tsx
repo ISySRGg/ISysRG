@@ -43,7 +43,7 @@ export default async function DatasetSection() {
                 {dataset.images ? (
                   <Image
                     src={urlForImage(dataset.images[0])?.url() as string}
-                    alt=""
+                    alt={dataset.name || ""}
                     height={80}
                     width={80}
                     className="size-[68px] rounded object-cover lg:size-[80px]"
@@ -54,9 +54,9 @@ export default async function DatasetSection() {
                   </div>
                 )}
                 <div>
-                  <h2 className="font-bold transition-colors group-hover:text-primary sm:text-xl">
+                  <h3 className="font-bold transition-colors group-hover:text-primary sm:text-xl">
                     {dataset.name}
-                  </h2>
+                  </h3>
                   <p className="text-sm text-muted-foreground sm:text-base">
                     {dataset.shortDescription}
                   </p>

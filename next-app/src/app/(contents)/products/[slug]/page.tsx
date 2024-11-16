@@ -72,7 +72,7 @@ export default async function Page({ params }: Props) {
       <BaseSection>
         <Image
           src={urlForImage(product.image)?.url() as string}
-          alt=""
+          alt={product.name || ""}
           width={800}
           height={800}
         />

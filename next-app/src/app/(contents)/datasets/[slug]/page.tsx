@@ -62,7 +62,7 @@ export default async function Page({ params }: Props) {
             <Image
               key={image._key}
               src={urlForImage(image)?.url() as string}
-              alt=""
+              alt={dataset.name || ""}
               width={200}
               height={200}
               className="aspect-square rounded object-cover"

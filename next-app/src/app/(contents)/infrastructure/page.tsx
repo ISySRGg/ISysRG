@@ -32,7 +32,7 @@ export default async function Page() {
             >
               <Image
                 src={urlForImage(item.image)?.url() as string}
-                alt=""
+                alt={item.name || ""}
                 width={300}
                 height={300}
                 className="aspect-square w-full rounded-xl object-cover md:size-[300px] md:w-fit"

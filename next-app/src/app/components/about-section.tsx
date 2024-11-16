@@ -35,7 +35,7 @@ export default async function AboutSection() {
               .height(300)
               .url() as string
           }
-          alt=""
+          alt="About us"
           width={300}
           height={300}
           className="size-[200px] sm:size-[300px]"

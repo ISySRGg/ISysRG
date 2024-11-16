@@ -83,7 +83,7 @@ export default async function Page(props: Props) {
         <div className="sm:px-4">
           <Image
             src={urlForImage(activity.image)?.url() as string}
-            alt=""
+            alt={activity.title || ""}
             width={2000}
             height={2000}
             className="mx-auto mt-10 aspect-video w-full max-w-6xl object-cover sm:aspect-[20/9] sm:rounded"

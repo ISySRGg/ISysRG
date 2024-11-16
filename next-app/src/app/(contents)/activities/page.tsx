@@ -40,7 +40,7 @@ export default async function Page() {
                 <div className="overflow-hidden rounded">
                   <Image
                     src={urlForImage(activity.image)?.url() as string}
-                    alt=""
+                    alt={activity.title || ""}
                     width={600}
                     height={600}
                     className="w-full rounded bg-neutral-200 object-cover transition-all group-hover:scale-105"
