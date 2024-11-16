@@ -1,9 +1,10 @@
+import { Metadata, ResolvingMetadata } from "next"
 import Image from "next/image"
 import Link from "next/link"
 import { client } from "@/sanity/client"
 import { activityQuery, moreActivityQuery } from "@/sanity/queries"
-import { urlForImage } from "@/sanity/utils"
-import { PortableText } from "next-sanity"
+import { resolveOpenGraphImage, urlForImage } from "@/sanity/utils"
+import { PortableText, toPlainText } from "next-sanity"
 
 import { Activity } from "@/types/sanity.types"
 
@@ -15,12 +16,31 @@ interface Props {
   }>
 }
 
-export default async function Page({ params }: Props) {
+export async function generateMetadata(
+  props: Props,
+  parent: ResolvingMetadata
+): Promise<Metadata> {
+  const params = await props.params
   const activity = await client.fetch<Activity>(
     activityQuery,
     await params,
     options
   )
+  const previousImages = (await parent).openGraph?.images || []
+  const ogImage = resolveOpenGraphImage(activity.image)
+
+  return {
+    title: activity.title,
+    description: toPlainText(activity.body || []).substring(0, 120),
+    openGraph: {
+      images: ogImage ? [ogImage, ...previousImages] : previousImages,
+    },
+  } satisfies Metadata
+}
+
+export default async function Page(props: Props) {
+  const params = await props.params
+  const activity = await client.fetch<Activity>(activityQuery, params, options)
 
   const moreActivities = await client.fetch<Activity[]>(
     moreActivityQuery,
