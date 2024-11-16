@@ -1,6 +1,7 @@
 import { Metadata, ResolvingMetadata } from "next"
 import Image from "next/image"
 import Link from "next/link"
+import { notFound } from "next/navigation"
 import { client } from "@/sanity/client"
 import { datasetQuery } from "@/sanity/queries"
 import { resolveOpenGraphImage, urlForImage } from "@/sanity/utils"
@@ -48,6 +49,10 @@ export default async function Page({ params }: Props) {
     await params,
     options
   )
+
+  if (!dataset?._id) {
+    return notFound()
+  }
 
   return (
     <BasePage title={dataset.name || ""} subtitle="Dataset">

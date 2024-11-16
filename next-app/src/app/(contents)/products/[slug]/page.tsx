@@ -1,5 +1,6 @@
 import { Metadata, ResolvingMetadata } from "next"
 import Image from "next/image"
+import { notFound } from "next/navigation"
 import { client } from "@/sanity/client"
 import { productQuery } from "@/sanity/queries"
 import { resolveOpenGraphImage, urlForImage } from "@/sanity/utils"
@@ -46,6 +47,10 @@ export default async function Page({ params }: Props) {
     await params,
     options
   )
+
+  if (!product?._id) {
+    return notFound()
+  }
 
   const portableTextComponents = {
     types: {

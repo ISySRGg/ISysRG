@@ -1,6 +1,7 @@
 import { Metadata, ResolvingMetadata } from "next"
 import Image from "next/image"
 import Link from "next/link"
+import { notFound } from "next/navigation"
 import { client } from "@/sanity/client"
 import { activityQuery, moreActivityQuery } from "@/sanity/queries"
 import { resolveOpenGraphImage, urlForImage } from "@/sanity/utils"
@@ -48,6 +49,10 @@ export default async function Page(props: Props) {
     { skip: activity._id, limit: 4 },
     options
   )
+
+  if (!activity?._id) {
+    return notFound()
+  }
 
   const portableTextComponents = {
     types: {
