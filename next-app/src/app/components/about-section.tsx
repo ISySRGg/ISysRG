@@ -55,7 +55,7 @@ export default async function AboutSection() {
 
             <Button variant="link" size="xl" className="p-0" asChild>
               <Link href="/infrastructure">
-                Infrascructure <ArrowRight />
+                Infrastructure <ArrowRight />
               </Link>
             </Button>
           </div>
