@@ -73,7 +73,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
 
     // Activities
     ...(documentSlugs.activitySlugs.map((activitySlug) => ({
-      url: `${baseUrl}/activities/${activitySlug.slug}`,
+      url: `${baseUrl}/activities/${activitySlug.slug?.current}`,
       lastModified: new Date(),
       changeFrequency: "daily",
       priority: 0.6,
@@ -81,7 +81,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
 
     // Datasets
     ...(documentSlugs.datasetSlugs.map((datasetSlug) => ({
-      url: `${baseUrl}/datasets/${datasetSlug.slug}`,
+      url: `${baseUrl}/datasets/${datasetSlug.slug?.current}`,
       lastModified: new Date(),
       changeFrequency: "daily",
       priority: 0.6,
@@ -89,7 +89,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
 
     // Products
     ...(documentSlugs.productSlugs.map((productSlug) => ({
-      url: `${baseUrl}/products/${productSlug.slug}`,
+      url: `${baseUrl}/products/${productSlug.slug?.current}`,
       lastModified: new Date(),
       changeFrequency: "daily",
       priority: 0.6,
