@@ -5,6 +5,7 @@ import { allActivityQuery } from "@/sanity/queries"
 import { urlForImage } from "@/sanity/utils"
 
 import { Activity } from "@/types/sanity.types"
+import { formatDate, truncateString } from "@/lib/utils"
 import BasePage from "@/components/base-page"
 import BaseSection from "@/components/base-section"
 
@@ -41,9 +42,12 @@ export default async function Page() {
                   />
                 </div>
                 <figcaption className="mt-2">
-                  <h3 className="text-lg font-medium transition-all group-hover:text-primary">
-                    {activity.title}
+                  <h3 className="text-lg font-medium group-hover:underline">
+                    {truncateString(activity.title || "", 140)}
                   </h3>
+                  <p className="text-sm text-primary">
+                    {formatDate(new Date(activity.publishedAt || 0))}
+                  </p>
                 </figcaption>
               </figure>
             </Link>

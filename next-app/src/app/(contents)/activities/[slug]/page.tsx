@@ -7,6 +7,7 @@ import { resolveOpenGraphImage, urlForImage } from "@/sanity/utils"
 import { PortableText, toPlainText } from "next-sanity"
 
 import { Activity } from "@/types/sanity.types"
+import { formatDate, truncateString } from "@/lib/utils"
 
 const options = { next: { revalidate: 30 } }
 
@@ -33,7 +34,7 @@ export async function generateMetadata(
     title: activity.title,
     description: toPlainText(activity.body || []).substring(0, 120),
     openGraph: {
-      images: ogImage ? [ogImage, ...previousImages] : previousImages,
+      images: ogImage ? ogImage : previousImages,
     },
   } satisfies Metadata
 }
@@ -68,8 +69,7 @@ export default async function Page(props: Props) {
       <header className="pt-10 md:pt-20">
         <div className="container text-center">
           <p className="font-medium text-primary md:text-lg">
-            Published:{" "}
-            {new Date(activity.publishedAt || 0).toLocaleDateString()}
+            {formatDate(new Date(activity.publishedAt || 0))}
           </p>
           <h1 className="mt-4 text-xl font-bold md:text-2xl lg:text-3xl xl:text-4xl">
             {activity.title}
@@ -103,10 +103,15 @@ export default async function Page(props: Props) {
 
           <ul className="flex flex-col divide-y">
             {moreActivities.map((activity) => (
-              <li key={activity._id} className="py-4 md:py-6">
+              <li key={activity._id} className="py-2 md:py-4">
                 <Link href={`/activities/${activity.slug?.current}`}>
-                  <p className="font-medium md:text-lg">{activity.title}</p>
+                  <p className="font-medium hover:underline md:text-lg">
+                    {truncateString(activity.title || "", 140)}
+                  </p>
                 </Link>
+                <p className="text-sm text-primary">
+                  {formatDate(new Date(activity.publishedAt || 0))}
+                </p>
               </li>
             ))}
           </ul>
