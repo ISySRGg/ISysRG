@@ -31,16 +31,12 @@ export default function Page() {
               intelligently.
             </p>
 
-            <ul className="mt-10 flex flex-col gap-4 sm:flex-row">
-              <li>
-                <Button size="xl">Our Services</Button>
-              </li>
-              <li>
-                <Button size="xl" variant="secondary">
-                  View Projects
-                </Button>
-              </li>
-            </ul>
+            <div className="mt-10 flex flex-col gap-4 sm:flex-row">
+              <Button size="xl">Our Services</Button>
+              <Button size="xl" variant="secondary">
+                View Projects
+              </Button>
+            </div>
           </hgroup>
         </div>
       </header>
