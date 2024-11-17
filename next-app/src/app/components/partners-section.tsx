@@ -26,7 +26,7 @@ export default async function PartnersSection() {
       subtitle={partnersSection?.subtitle}
       headerAlign="center"
     >
-      <div className="flex flex-wrap items-center justify-center gap-10 pt-10">
+      <div className="flex flex-wrap items-center justify-center gap-4 pt-6 md:gap-10 md:pt-10">
         {partners.map((partner) => (
           <Image
             key={partner._id}
@@ -34,7 +34,7 @@ export default async function PartnersSection() {
             alt={partner.name || ""}
             width={300}
             height={300}
-            className="h-20 w-auto"
+            className="h-10 w-auto md:h-20"
           />
         ))}
       </div>
