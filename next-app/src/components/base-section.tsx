@@ -26,7 +26,7 @@ export default function BaseSection({
   return (
     <section className={cn("py-14 lg:py-24", className)}>
       <div className="container">
-        <header className={cn(headerAlignClassNames[headerAlign])}>
+        <hgroup className={cn(headerAlignClassNames[headerAlign])}>
           {title && (
             <h2 className="text-lg font-extrabold text-primary sm:text-2xl lg:text-3xl">
               {title}
@@ -35,7 +35,7 @@ export default function BaseSection({
           {subtitle && (
             <p className="text-3xl sm:text-4xl lg:text-5xl">{subtitle}</p>
           )}
-        </header>
+        </hgroup>
         <div className="mt-4">{children}</div>
       </div>
     </section>

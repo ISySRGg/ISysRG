@@ -5,6 +5,7 @@ import Slogan from "@/components/slogan"
 import AboutSection from "./components/about-section"
 import ActivitySection from "./components/activity-section"
 import DatasetSection from "./components/dataset-section"
+import PartnersSection from "./components/partners-section"
 import ProductsSection from "./components/products-section"
 import PublicationsSection from "./components/publications-section"
 
@@ -15,8 +16,8 @@ export default function Page() {
         <div className="flex h-full flex-col bg-gradient-to-br from-neutral-950/95 via-neutral-800/90 via-50% to-orange-950/60 to-95% pb-14 text-background lg:py-10 2xl:py-20">
           <Header />
 
-          <div className="container flex h-full flex-col justify-center sm:py-28">
-            <h1 className="hidden">ISys Research Group</h1>
+          <hgroup className="container flex h-full flex-col justify-center sm:py-28">
+            <h1 hidden>ISys Research Group</h1>
             <p className="h-[1lh] text-4xl font-medium sm:text-7xl lg:text-8xl 2xl:text-9xl">
               <Slogan />
             </p>
@@ -30,13 +31,17 @@ export default function Page() {
               intelligently.
             </p>
 
-            <div className="mt-10 flex flex-col gap-4 sm:flex-row">
-              <Button size="xl">Our Services</Button>
-              <Button size="xl" variant="secondary">
-                View Projects
-              </Button>
-            </div>
-          </div>
+            <ul className="mt-10 flex flex-col gap-4 sm:flex-row">
+              <li>
+                <Button size="xl">Our Services</Button>
+              </li>
+              <li>
+                <Button size="xl" variant="secondary">
+                  View Projects
+                </Button>
+              </li>
+            </ul>
+          </hgroup>
         </div>
       </header>
       <AboutSection />
@@ -44,6 +49,7 @@ export default function Page() {
       <ActivitySection />
       <PublicationsSection />
       <DatasetSection />
+      <PartnersSection />
     </main>
   )
 }

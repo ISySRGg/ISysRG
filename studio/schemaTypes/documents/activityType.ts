@@ -19,8 +19,8 @@ export const activityType = defineType({
       validation: (rule) => rule.required(),
     }),
     defineField({
-      name: 'publishedAt',
-      type: 'datetime',
+      name: 'date',
+      type: 'date',
       initialValue: () => new Date().toISOString(),
       validation: (rule) => rule.required(),
     }),

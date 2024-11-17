@@ -5,7 +5,7 @@ export const aboutSectionQuery = defineQuery(
 )
 
 export const activitiesSectionQuery = defineQuery(
-  `*[_type == "home"][0]{activitiesSection{...,highlightedActivities[]->}}`
+  `*[_type == "home"][0]{activitiesSection}`
 )
 
 export const datasetsSectionQuery = defineQuery(
@@ -14,6 +14,10 @@ export const datasetsSectionQuery = defineQuery(
 
 export const productsSectionQuery = defineQuery(
   `*[_type == "home"][0]{productsSection{...,featuredProducts[]->}}`
+)
+
+export const partnersSectionQuery = defineQuery(
+  `*[_type == "home"][0]{partnersSection}`
 )
 
 export const featuredDatasetsQuery = defineQuery(
@@ -46,7 +50,7 @@ export const datasetQuery = defineQuery(
   `*[_type == "dataset" && slug.current == $slug][0]`
 )
 
-export const allActivityQuery = defineQuery(
+export const allActivitiesQuery = defineQuery(
   `*[_type == "activity" && defined(slug.current)]`
 )
 
@@ -54,8 +58,12 @@ export const activityQuery = defineQuery(
   `*[_type == "activity" && slug.current == $slug][0]`
 )
 
-export const moreActivityQuery = defineQuery(`
-  *[_type == "activity" && _id != $skip && defined(slug.current)] | order(publishedAt desc, _updatedAt desc) [0...$limit] {_id, title, slug, publishedAt}
+export const latestActivitiesQuery = defineQuery(`
+  *[_type == "activity" && defined(slug.current)] | order(date desc, _updatedAt desc) [0...$limit] {_id, title, slug, date, image}
+`)
+
+export const moreActivitiesQuery = defineQuery(`
+  *[_type == "activity" && _id != $skip && defined(slug.current)] | order(date desc, _updatedAt desc) [0...$limit] {_id, title, slug, date}
 `)
 
 export const allInternationalJournalsQuery = defineQuery(
@@ -89,8 +97,10 @@ export const allInfrastructureQuery = defineQuery(
 
 export const allDocumentSlugs = defineQuery(`
   {
-    "activitySlugs": *[_type == "activity"]{slug},
-    "datasetSlugs": *[_type == "dataset"]{slug},
-    "productSlugs": *[_type == "product"]{slug},
+    "activitySlugs": *[_type == "activity"]{slug, _updatedAt},
+    "datasetSlugs": *[_type == "dataset"]{slug, _updatedAt},
+    "productSlugs": *[_type == "product"]{slug, _updatedAt},
   }
 `)
+
+export const allPartnerQuery = defineQuery(`*[_type == "partner"]`)

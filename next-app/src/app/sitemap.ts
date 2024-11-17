@@ -25,13 +25,13 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     {
       url: `${baseUrl}/team`,
       lastModified: new Date(),
-      changeFrequency: "yearly",
+      changeFrequency: "monthly",
       priority: 0.8,
     },
     {
       url: `${baseUrl}/infrastructure`,
       lastModified: new Date(),
-      changeFrequency: "yearly",
+      changeFrequency: "monthly",
       priority: 0.8,
     },
     {
@@ -70,11 +70,17 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
       changeFrequency: "weekly",
       priority: 0.8,
     },
+    {
+      url: `${baseUrl}/datasets`,
+      lastModified: new Date(),
+      changeFrequency: "weekly",
+      priority: 0.8,
+    },
 
     // Activities
     ...(documentSlugs.activitySlugs.map((activitySlug) => ({
       url: `${baseUrl}/activities/${activitySlug.slug?.current}`,
-      lastModified: new Date(),
+      lastModified: new Date(activitySlug._updatedAt),
       changeFrequency: "daily",
       priority: 0.6,
     })) satisfies MetadataRoute.Sitemap),
@@ -82,7 +88,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     // Datasets
     ...(documentSlugs.datasetSlugs.map((datasetSlug) => ({
       url: `${baseUrl}/datasets/${datasetSlug.slug?.current}`,
-      lastModified: new Date(),
+      lastModified: new Date(datasetSlug._updatedAt),
       changeFrequency: "daily",
       priority: 0.6,
     })) satisfies MetadataRoute.Sitemap),
@@ -90,7 +96,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     // Products
     ...(documentSlugs.productSlugs.map((productSlug) => ({
       url: `${baseUrl}/products/${productSlug.slug?.current}`,
-      lastModified: new Date(),
+      lastModified: new Date(productSlug._updatedAt),
       changeFrequency: "daily",
       priority: 0.6,
     })) satisfies MetadataRoute.Sitemap),

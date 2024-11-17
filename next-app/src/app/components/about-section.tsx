@@ -23,8 +23,8 @@ export default async function AboutSection() {
 
   return (
     <BaseSection
-      title="About Us"
-      subtitle="Research, Medical Interpretation"
+      title={aboutSection?.title}
+      subtitle={aboutSection?.subtitle}
       headerAlign="center"
     >
       <div className="mt-10 flex flex-col items-center justify-center gap-4 lg:flex-row lg:gap-20">
@@ -42,23 +42,28 @@ export default async function AboutSection() {
         />
         <div className="flex flex-col gap-4">
           <article className="prose prose-xl md:prose-2xl">
+            <h3 hidden>About</h3>
             {aboutSection?.content && (
               <PortableText value={aboutSection?.content} />
             )}
           </article>
-          <div className="flex gap-8">
-            <Button variant="link" size="xl" className="p-0" asChild>
-              <Link href="/team">
-                Research team <ArrowRight />
-              </Link>
-            </Button>
+          <ul className="flex gap-8">
+            <li>
+              <Button variant="link" size="xl" className="p-0" asChild>
+                <Link href="/team">
+                  Research team <ArrowRight />
+                </Link>
+              </Button>
+            </li>
 
-            <Button variant="link" size="xl" className="p-0" asChild>
-              <Link href="/infrastructure">
-                Infrastructure <ArrowRight />
-              </Link>
-            </Button>
-          </div>
+            <li>
+              <Button variant="link" size="xl" className="p-0" asChild>
+                <Link href="/infrastructure">
+                  Infrastructure <ArrowRight />
+                </Link>
+              </Button>
+            </li>
+          </ul>
         </div>
       </div>
     </BaseSection>

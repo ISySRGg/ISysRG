@@ -3,11 +3,11 @@ import Image from "next/image"
 import Link from "next/link"
 import { notFound } from "next/navigation"
 import { client } from "@/sanity/client"
-import { activityQuery, moreActivityQuery } from "@/sanity/queries"
+import { activityQuery, moreActivitiesQuery } from "@/sanity/queries"
 import { resolveOpenGraphImage, urlForImage } from "@/sanity/utils"
 import { PortableText, toPlainText } from "next-sanity"
 
-import { Activity } from "@/types/sanity.types"
+import { Activity, MoreActivitiesQueryResult } from "@/types/sanity.types"
 import { formatDate, truncateString } from "@/lib/utils"
 
 const options = { next: { revalidate: 30 } }
@@ -44,8 +44,8 @@ export default async function Page(props: Props) {
   const params = await props.params
   const activity = await client.fetch<Activity>(activityQuery, params, options)
 
-  const moreActivities = await client.fetch<Activity[]>(
-    moreActivityQuery,
+  const moreActivities = await client.fetch<MoreActivitiesQueryResult>(
+    moreActivitiesQuery,
     { skip: activity._id, limit: 4 },
     options
   )
@@ -73,9 +73,12 @@ export default async function Page(props: Props) {
     <main>
       <header className="pt-10 md:pt-20">
         <div className="container text-center">
-          <p className="font-medium text-primary md:text-lg">
-            {formatDate(new Date(activity.publishedAt || 0))}
-          </p>
+          <time
+            dateTime={activity.date || ""}
+            className="font-medium text-primary md:text-lg"
+          >
+            {formatDate(new Date(activity.date || 0))}
+          </time>
           <h1 className="mt-4 text-xl font-bold md:text-2xl lg:text-3xl xl:text-4xl">
             {activity.title}
           </h1>
@@ -101,26 +104,29 @@ export default async function Page(props: Props) {
             </article>
           )}
         </div>
-        <div>
+        <aside>
           <p className="text-xl font-medium text-primary md:text-2xl">
             More Activities
           </p>
 
           <ul className="flex flex-col divide-y">
             {moreActivities.map((activity) => (
-              <li key={activity._id} className="py-2 md:py-4">
+              <li key={activity._id} className="py-4 md:py-5">
                 <Link href={`/activities/${activity.slug?.current}`}>
                   <p className="font-medium hover:underline md:text-lg">
                     {truncateString(activity.title || "", 140)}
                   </p>
                 </Link>
-                <p className="text-sm text-primary">
-                  {formatDate(new Date(activity.publishedAt || 0))}
-                </p>
+                <time
+                  dateTime={activity.date || ""}
+                  className="text-sm text-primary"
+                >
+                  {formatDate(new Date(activity.date || 0))}
+                </time>
               </li>
             ))}
           </ul>
-        </div>
+        </aside>
       </section>
     </main>
   )

@@ -89,13 +89,6 @@ export const homeType = defineType({
           type: 'array',
           of: [{type: 'block', styles: []}],
         },
-        {
-          name: 'highlightedActivities',
-          title: 'Highlighted Activities',
-          type: 'array',
-          of: [{type: 'reference', to: [{type: 'activity'}]}],
-          validation: (rule) => rule.unique().max(4),
-        },
       ],
     }),
     defineField({
@@ -126,6 +119,30 @@ export const homeType = defineType({
           type: 'array',
           of: [{type: 'reference', to: [{type: 'dataset'}]}],
           validation: (rule) => rule.unique().max(3),
+        },
+      ],
+    }),
+    defineField({
+      name: 'partnersSection',
+      title: 'Partners Section',
+      type: 'object',
+      fields: [
+        {
+          name: 'title',
+          title: 'Title',
+          type: 'string',
+          validation: (rule) => rule.required(),
+        },
+        {
+          name: 'subtitle',
+          title: 'Subtitle',
+          type: 'string',
+        },
+        {
+          name: 'description',
+          title: 'Description',
+          type: 'array',
+          of: [{type: 'block', styles: []}],
         },
       ],
     }),

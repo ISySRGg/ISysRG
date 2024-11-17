@@ -2,7 +2,7 @@ import { Metadata } from "next"
 import Image from "next/image"
 import Link from "next/link"
 import { client } from "@/sanity/client"
-import { allActivityQuery } from "@/sanity/queries"
+import { allActivitiesQuery } from "@/sanity/queries"
 import { urlForImage } from "@/sanity/utils"
 
 import { Activity } from "@/types/sanity.types"
@@ -18,7 +18,7 @@ export const metadata: Metadata = {
 
 export default async function Page() {
   const activities = await client.fetch<Activity[]>(
-    allActivityQuery,
+    allActivitiesQuery,
     {},
     options
   )
@@ -50,9 +50,12 @@ export default async function Page() {
                   <h3 className="text-lg font-medium group-hover:underline">
                     {truncateString(activity.title || "", 140)}
                   </h3>
-                  <p className="text-sm text-primary">
-                    {formatDate(new Date(activity.publishedAt || 0))}
-                  </p>
+                  <time
+                    dateTime={activity.date || ""}
+                    className="text-sm text-primary"
+                  >
+                    {formatDate(new Date(activity.date || 0))}
+                  </time>
                 </figcaption>
               </figure>
             </Link>

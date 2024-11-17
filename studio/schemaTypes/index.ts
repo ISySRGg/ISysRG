@@ -5,7 +5,7 @@ import {infrastructureType} from './documents/infrastructureType'
 import {intellectualPropertyRightsType} from './documents/intellectualPropertyRights'
 import {internationalConferenceType} from './documents/internationalConferenceType'
 import {internationalJournalType} from './documents/internationalJournalTypes'
-import {postType} from './documents/postType'
+import {partnerType} from './documents/partnerType'
 import {productType} from './documents/productType'
 import {researcherType} from './documents/researcherType'
 import {homeType} from './singletons/homeType'
@@ -16,7 +16,7 @@ export const schemaTypes = [
   activityType,
   datasetType,
   infrastructureType,
-  postType,
+  partnerType,
   productType,
   researcherType,
 

@@ -157,13 +157,6 @@ export type Home = {
       _type: "block";
       _key: string;
     }>;
-    highlightedActivities?: Array<{
-      _ref: string;
-      _type: "reference";
-      _weak?: boolean;
-      _key: string;
-      [internalGroqTypeReferenceTo]?: "activity";
-    }>;
   };
   datasetsSection?: {
     title?: string;
@@ -192,6 +185,28 @@ export type Home = {
       _weak?: boolean;
       _key: string;
       [internalGroqTypeReferenceTo]?: "dataset";
+    }>;
+  };
+  partnersSection?: {
+    title?: string;
+    subtitle?: string;
+    description?: Array<{
+      children?: Array<{
+        marks?: Array<string>;
+        text?: string;
+        _type: "span";
+        _key: string;
+      }>;
+      style?: "normal";
+      listItem?: "bullet" | "number";
+      markDefs?: Array<{
+        href?: string;
+        _type: "link";
+        _key: string;
+      }>;
+      level?: number;
+      _type: "block";
+      _key: string;
     }>;
   };
 };
@@ -405,15 +420,13 @@ export type Product = {
   }>;
 };
 
-export type Post = {
+export type Partner = {
   _id: string;
-  _type: "post";
+  _type: "partner";
   _createdAt: string;
   _updatedAt: string;
   _rev: string;
-  title?: string;
-  slug?: Slug;
-  publishedAt?: string;
+  name?: string;
   image?: {
     asset?: {
       _ref: string;
@@ -425,24 +438,6 @@ export type Post = {
     crop?: SanityImageCrop;
     _type: "image";
   };
-  body?: Array<{
-    children?: Array<{
-      marks?: Array<string>;
-      text?: string;
-      _type: "span";
-      _key: string;
-    }>;
-    style?: "normal" | "h1" | "h2" | "h3" | "h4" | "h5" | "h6" | "blockquote";
-    listItem?: "bullet" | "number";
-    markDefs?: Array<{
-      href?: string;
-      _type: "link";
-      _key: string;
-    }>;
-    level?: number;
-    _type: "block";
-    _key: string;
-  }>;
 };
 
 export type Infrastructure = {
@@ -504,7 +499,7 @@ export type Activity = {
   _rev: string;
   title?: string;
   slug?: Slug;
-  publishedAt?: string;
+  date?: string;
   image?: {
     asset?: {
       _ref: string;
@@ -610,7 +605,7 @@ export type Slug = {
   source?: string;
 };
 
-export type AllSanitySchemaTypes = SanityImagePaletteSwatch | SanityImagePalette | SanityImageDimensions | SanityFileAsset | Geopoint | Home | Settings | Book | IntellectualPropertyRights | InternationalConference | InternationalJournal | Researcher | Product | Post | Infrastructure | Dataset | Activity | SanityImageCrop | SanityImageHotspot | SanityImageAsset | SanityAssetSourceData | SanityImageMetadata | Slug;
+export type AllSanitySchemaTypes = SanityImagePaletteSwatch | SanityImagePalette | SanityImageDimensions | SanityFileAsset | Geopoint | Home | Settings | Book | IntellectualPropertyRights | InternationalConference | InternationalJournal | Researcher | Product | Partner | Infrastructure | Dataset | Activity | SanityImageCrop | SanityImageHotspot | SanityImageAsset | SanityAssetSourceData | SanityImageMetadata | Slug;
 export declare const internalGroqTypeReferenceTo: unique symbol;
 // Source: ../next-app/src/sanity/queries.ts
 // Variable: aboutSectionQuery
@@ -651,7 +646,7 @@ export type AboutSectionQueryResult = {
   } | null;
 } | null;
 // Variable: activitiesSectionQuery
-// Query: *[_type == "home"][0]{activitiesSection{...,highlightedActivities[]->}}
+// Query: *[_type == "home"][0]{activitiesSection}
 export type ActivitiesSectionQueryResult = {
   activitiesSection: {
     title?: string;
@@ -674,56 +669,6 @@ export type ActivitiesSectionQueryResult = {
       _type: "block";
       _key: string;
     }>;
-    highlightedActivities: Array<{
-      _id: string;
-      _type: "activity";
-      _createdAt: string;
-      _updatedAt: string;
-      _rev: string;
-      title?: string;
-      slug?: Slug;
-      publishedAt?: string;
-      image?: {
-        asset?: {
-          _ref: string;
-          _type: "reference";
-          _weak?: boolean;
-          [internalGroqTypeReferenceTo]?: "sanity.imageAsset";
-        };
-        hotspot?: SanityImageHotspot;
-        crop?: SanityImageCrop;
-        _type: "image";
-      };
-      body?: Array<{
-        children?: Array<{
-          marks?: Array<string>;
-          text?: string;
-          _type: "span";
-          _key: string;
-        }>;
-        style?: "blockquote" | "h1" | "h2" | "h3" | "h4" | "h5" | "h6" | "normal";
-        listItem?: "bullet" | "number";
-        markDefs?: Array<{
-          href?: string;
-          _type: "link";
-          _key: string;
-        }>;
-        level?: number;
-        _type: "block";
-        _key: string;
-      } | {
-        asset?: {
-          _ref: string;
-          _type: "reference";
-          _weak?: boolean;
-          [internalGroqTypeReferenceTo]?: "sanity.imageAsset";
-        };
-        hotspot?: SanityImageHotspot;
-        crop?: SanityImageCrop;
-        _type: "image";
-        _key: string;
-      }>;
-    }> | null;
   } | null;
 } | null;
 // Variable: datasetsSectionQuery
@@ -854,6 +799,32 @@ export type ProductsSectionQueryResult = {
     }> | null;
   } | null;
 } | null;
+// Variable: partnersSectionQuery
+// Query: *[_type == "home"][0]{partnersSection}
+export type PartnersSectionQueryResult = {
+  partnersSection: {
+    title?: string;
+    subtitle?: string;
+    description?: Array<{
+      children?: Array<{
+        marks?: Array<string>;
+        text?: string;
+        _type: "span";
+        _key: string;
+      }>;
+      style?: "normal";
+      listItem?: "bullet" | "number";
+      markDefs?: Array<{
+        href?: string;
+        _type: "link";
+        _key: string;
+      }>;
+      level?: number;
+      _type: "block";
+      _key: string;
+    }>;
+  } | null;
+} | null;
 // Variable: featuredDatasetsQuery
 // Query: *[_type == "home"][0]{datasetsSection{featuredDatasets[]->{name,slug,images,shortDescription,description}}}
 export type FeaturedDatasetsQueryResult = {
@@ -955,45 +926,7 @@ export type SettingsQueryResult = {
 } | null;
 // Variable: postQuery
 // Query: *[_type == "post" && slug.current == $slug][0]
-export type PostQueryResult = {
-  _id: string;
-  _type: "post";
-  _createdAt: string;
-  _updatedAt: string;
-  _rev: string;
-  title?: string;
-  slug?: Slug;
-  publishedAt?: string;
-  image?: {
-    asset?: {
-      _ref: string;
-      _type: "reference";
-      _weak?: boolean;
-      [internalGroqTypeReferenceTo]?: "sanity.imageAsset";
-    };
-    hotspot?: SanityImageHotspot;
-    crop?: SanityImageCrop;
-    _type: "image";
-  };
-  body?: Array<{
-    children?: Array<{
-      marks?: Array<string>;
-      text?: string;
-      _type: "span";
-      _key: string;
-    }>;
-    style?: "blockquote" | "h1" | "h2" | "h3" | "h4" | "h5" | "h6" | "normal";
-    listItem?: "bullet" | "number";
-    markDefs?: Array<{
-      href?: string;
-      _type: "link";
-      _key: string;
-    }>;
-    level?: number;
-    _type: "block";
-    _key: string;
-  }>;
-} | null;
+export type PostQueryResult = null;
 // Variable: allProductsQuery
 // Query: *[_type == "product" && defined(slug.current)]{name,slug,image,shortDescription,description,features}
 export type AllProductsQueryResult = Array<{
@@ -1120,9 +1053,9 @@ export type DatasetQueryResult = {
   description?: string;
   link?: string;
 } | null;
-// Variable: allActivityQuery
+// Variable: allActivitiesQuery
 // Query: *[_type == "activity" && defined(slug.current)]
-export type AllActivityQueryResult = Array<{
+export type AllActivitiesQueryResult = Array<{
   _id: string;
   _type: "activity";
   _createdAt: string;
@@ -1130,7 +1063,7 @@ export type AllActivityQueryResult = Array<{
   _rev: string;
   title?: string;
   slug?: Slug;
-  publishedAt?: string;
+  date?: string;
   image?: {
     asset?: {
       _ref: string;
@@ -1182,7 +1115,7 @@ export type ActivityQueryResult = {
   _rev: string;
   title?: string;
   slug?: Slug;
-  publishedAt?: string;
+  date?: string;
   image?: {
     asset?: {
       _ref: string;
@@ -1224,13 +1157,32 @@ export type ActivityQueryResult = {
     _key: string;
   }>;
 } | null;
-// Variable: moreActivityQuery
-// Query: *[_type == "activity" && _id != $skip && defined(slug.current)] | order(publishedAt desc, _updatedAt desc) [0...$limit] {_id, title, slug, publishedAt}
-export type MoreActivityQueryResult = Array<{
+// Variable: latestActivitiesQuery
+// Query: *[_type == "activity" && defined(slug.current)] | order(date desc, _updatedAt desc) [0...$limit] {_id, title, slug, date, image}
+export type LatestActivitiesQueryResult = Array<{
   _id: string;
   title: string | null;
   slug: Slug | null;
-  publishedAt: string | null;
+  date: string | null;
+  image: {
+    asset?: {
+      _ref: string;
+      _type: "reference";
+      _weak?: boolean;
+      [internalGroqTypeReferenceTo]?: "sanity.imageAsset";
+    };
+    hotspot?: SanityImageHotspot;
+    crop?: SanityImageCrop;
+    _type: "image";
+  } | null;
+}>;
+// Variable: moreActivitiesQuery
+// Query: *[_type == "activity" && _id != $skip && defined(slug.current)] | order(date desc, _updatedAt desc) [0...$limit] {_id, title, slug, date}
+export type MoreActivitiesQueryResult = Array<{
+  _id: string;
+  title: string | null;
+  slug: Slug | null;
+  date: string | null;
 }>;
 // Variable: allInternationalJournalsQuery
 // Query: *[_type == "internationalJournal"]
@@ -1379,27 +1331,52 @@ export type AllInfrastructureQueryResult = Array<{
   };
 }>;
 // Variable: allDocumentSlugs
-// Query: {    "activitySlugs": *[_type == "activity"]{slug},    "datasetSlugs": *[_type == "dataset"]{slug},    "productSlugs": *[_type == "product"]{slug},  }
+// Query: {    "activitySlugs": *[_type == "activity"]{slug, _updatedAt},    "datasetSlugs": *[_type == "dataset"]{slug, _updatedAt},    "productSlugs": *[_type == "product"]{slug, _updatedAt},  }
 export type AllDocumentSlugsResult = {
   activitySlugs: Array<{
     slug: Slug | null;
+    _updatedAt: string;
   }>;
   datasetSlugs: Array<{
     slug: Slug | null;
+    _updatedAt: string;
   }>;
   productSlugs: Array<{
     slug: Slug | null;
+    _updatedAt: string;
   }>;
 };
+// Variable: allPartnerQuery
+// Query: *[_type == "partner"]
+export type AllPartnerQueryResult = Array<{
+  _id: string;
+  _type: "partner";
+  _createdAt: string;
+  _updatedAt: string;
+  _rev: string;
+  name?: string;
+  image?: {
+    asset?: {
+      _ref: string;
+      _type: "reference";
+      _weak?: boolean;
+      [internalGroqTypeReferenceTo]?: "sanity.imageAsset";
+    };
+    hotspot?: SanityImageHotspot;
+    crop?: SanityImageCrop;
+    _type: "image";
+  };
+}>;
 
 // Query TypeMap
 import "@sanity/client";
 declare module "@sanity/client" {
   interface SanityQueries {
     "*[_type == \"home\"][0]{aboutSection}": AboutSectionQueryResult;
-    "*[_type == \"home\"][0]{activitiesSection{...,highlightedActivities[]->}}": ActivitiesSectionQueryResult;
+    "*[_type == \"home\"][0]{activitiesSection}": ActivitiesSectionQueryResult;
     "*[_type == \"home\"][0]{datasetsSection{...,featuredDatasets[]->}}": DatasetsSectionQueryResult;
     "*[_type == \"home\"][0]{productsSection{...,featuredProducts[]->}}": ProductsSectionQueryResult;
+    "*[_type == \"home\"][0]{partnersSection}": PartnersSectionQueryResult;
     "*[_type == \"home\"][0]{datasetsSection{featuredDatasets[]->{name,slug,images,shortDescription,description}}}": FeaturedDatasetsQueryResult;
     "*[_type == \"home\"][0]{productsSection{featuredProducts[]->{name,slug,image,shortDescription,description,features}}}": FeaturedProductsQueryResult;
     "*[_type == \"settings\"][0]": SettingsQueryResult;
@@ -1408,9 +1385,10 @@ declare module "@sanity/client" {
     "\n  *[_type == \"product\" && slug.current == $slug][0]\n": ProductQueryResult;
     "*[_type == \"dataset\" && defined(slug.current)]": AllDatasetsQueryResult;
     "*[_type == \"dataset\" && slug.current == $slug][0]": DatasetQueryResult;
-    "*[_type == \"activity\" && defined(slug.current)]": AllActivityQueryResult;
+    "*[_type == \"activity\" && defined(slug.current)]": AllActivitiesQueryResult;
     "*[_type == \"activity\" && slug.current == $slug][0]": ActivityQueryResult;
-    "\n  *[_type == \"activity\" && _id != $skip && defined(slug.current)] | order(publishedAt desc, _updatedAt desc) [0...$limit] {_id, title, slug, publishedAt}\n": MoreActivityQueryResult;
+    "\n  *[_type == \"activity\" && defined(slug.current)] | order(date desc, _updatedAt desc) [0...$limit] {_id, title, slug, date, image}\n": LatestActivitiesQueryResult;
+    "\n  *[_type == \"activity\" && _id != $skip && defined(slug.current)] | order(date desc, _updatedAt desc) [0...$limit] {_id, title, slug, date}\n": MoreActivitiesQueryResult;
     "*[_type == \"internationalJournal\"]": AllInternationalJournalsQueryResult;
     "*[_type == \"internationalConference\"]": AllInternationalConferencesQueryResult;
     "*[_type == \"intellectualPropertyRights\"]": AllIntellectualPropertyRightsQueryResult;
@@ -1418,6 +1396,7 @@ declare module "@sanity/client" {
     "\n  {\n    \"internationalJournalCount\": count(*[_type == \"internationalJournal\"]),\n    \"internationalConferenceCount\": count(*[_type == \"internationalConference\"]),\n    \"intellectualPropertyRightsCount\": count(*[_type == \"intellectualPropertyRights\"]),\n    \"bookCount\": count(*[_type == \"book\"])\n  }\n": AllPublicationCountQueryResult;
     "*[_type == \"researcher\"]": AllResearchersQueryResult;
     "*[_type == \"infrastructure\"]": AllInfrastructureQueryResult;
-    "\n  {\n    \"activitySlugs\": *[_type == \"activity\"]{slug},\n    \"datasetSlugs\": *[_type == \"dataset\"]{slug},\n    \"productSlugs\": *[_type == \"product\"]{slug},\n  }\n": AllDocumentSlugsResult;
+    "\n  {\n    \"activitySlugs\": *[_type == \"activity\"]{slug, _updatedAt},\n    \"datasetSlugs\": *[_type == \"dataset\"]{slug, _updatedAt},\n    \"productSlugs\": *[_type == \"product\"]{slug, _updatedAt},\n  }\n": AllDocumentSlugsResult;
+    "*[_type == \"partner\"]": AllPartnerQueryResult;
   }
 }
