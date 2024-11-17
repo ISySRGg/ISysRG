@@ -26,16 +26,21 @@ export default async function PartnersSection() {
       subtitle={partnersSection?.subtitle}
       headerAlign="center"
     >
-      <div className="flex flex-wrap items-center justify-center gap-4 pt-6 md:gap-10 md:pt-10">
+      <div className="flex flex-wrap items-center justify-center gap-1 pt-6 md:gap-2 md:pt-10">
         {partners.map((partner) => (
-          <Image
+          <div
             key={partner._id}
-            src={urlForImage(partner?.image)?.url() as string}
-            alt={partner.name || ""}
-            width={300}
-            height={300}
-            className="h-10 w-auto md:h-20"
-          />
+            className="rounded border bg-neutral-50 p-3 transition-all hover:border-primary/40 hover:bg-primary/10 md:p-5"
+            title={partner.name}
+          >
+            <Image
+              src={urlForImage(partner?.image)?.url() as string}
+              alt={partner.name || ""}
+              width={300}
+              height={300}
+              className="h-10 w-auto md:h-20"
+            />
+          </div>
         ))}
       </div>
     </BaseSection>
