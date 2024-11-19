@@ -1,6 +1,14 @@
 "use client"
 
-import { Bar, BarChart, XAxis } from "recharts"
+import {
+  Area,
+  AreaChart,
+  Bar,
+  BarChart,
+  Line,
+  LineChart,
+  XAxis,
+} from "recharts"
 
 import {
   ChartConfig,
@@ -73,7 +81,7 @@ export default function StatisticsSection() {
         </div>
         <div className="md:basis-1/3 md:p-4">
           <ChartContainer config={chartConfig} className="w-full">
-            <BarChart accessibilityLayer data={chartData}>
+            <LineChart accessibilityLayer data={chartData}>
               <XAxis
                 dataKey="month"
                 tickLine={false}
@@ -83,14 +91,24 @@ export default function StatisticsSection() {
               />
               <ChartTooltip content={<ChartTooltipContent />} />
               <ChartLegend content={<ChartLegendContent />} />
-              <Bar dataKey="desktop" fill="var(--color-desktop)" radius={4} />
-              <Bar dataKey="mobile" fill="var(--color-mobile)" radius={4} />
-            </BarChart>
+              <Line
+                dataKey="desktop"
+                stroke="var(--color-desktop)"
+                strokeWidth={2}
+                dot={false}
+              />
+              <Line
+                dataKey="mobile"
+                stroke="var(--color-mobile)"
+                strokeWidth={2}
+                dot={false}
+              />
+            </LineChart>
           </ChartContainer>
         </div>
         <div className="md:basis-1/3 md:p-4">
           <ChartContainer config={chartConfig} className="w-full">
-            <BarChart accessibilityLayer data={chartData}>
+            <AreaChart accessibilityLayer data={chartData}>
               <XAxis
                 dataKey="month"
                 tickLine={false}
@@ -100,9 +118,19 @@ export default function StatisticsSection() {
               />
               <ChartTooltip content={<ChartTooltipContent />} />
               <ChartLegend content={<ChartLegendContent />} />
-              <Bar dataKey="desktop" fill="var(--color-desktop)" radius={4} />
-              <Bar dataKey="mobile" fill="var(--color-mobile)" radius={4} />
-            </BarChart>
+              <Area
+                dataKey="desktop"
+                fill="var(--color-desktop)"
+                fillOpacity={0.4}
+                stroke="var(--color-desktop)"
+              />
+              <Area
+                dataKey="mobile"
+                fill="var(--color-mobile)"
+                fillOpacity={0.4}
+                stroke="var(--color-mobile)"
+              />
+            </AreaChart>
           </ChartContainer>
         </div>
       </div>
