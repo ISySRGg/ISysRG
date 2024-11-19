@@ -8,8 +8,9 @@ import { CircleCheck } from "lucide-react"
 import { PortableText } from "next-sanity"
 
 import { Product } from "@/types/sanity.types"
-import BasePage from "@/components/base-page"
 import BaseSection from "@/components/base-section"
+
+import StatisticsSection from "./components/statistics-section"
 
 const options = { next: { revalidate: 30 } }
 
@@ -68,42 +69,45 @@ export default async function Page({ params }: Props) {
   }
 
   return (
-    <BasePage title={product.name || ""} subtitle="Product">
+    <main>
+      <header className="container flex flex-col items-center pt-32 text-center">
+        <p className="text-sm uppercase text-neutral-600 md:text-base">
+          Poduct
+        </p>
+        <h1 className="text-5xl font-medium md:text-7xl">{product.name}</h1>
+        <p className="max-w-prose pt-4 text-lg md:pt-8 md:text-2xl">
+          {product.description}
+        </p>
+      </header>
       <BaseSection>
         <Image
           src={urlForImage(product.image)?.url() as string}
           alt={product.name || ""}
-          width={800}
-          height={800}
+          width={900}
+          height={900}
+          className="mx-auto"
         />
-
-        <div className="mt-10">
-          <article className="md:prose-3xl prose prose-2xl tracking-tight">
-            <p>{product.description}</p>
-          </article>
-
-          <div className="pt-6">
-            <h2 className="text-xl font-medium text-primary">
-              Product Features
-            </h2>
-            <ul className="grid gap-4 pt-4 sm:grid-cols-2">
-              {product.features?.map((feature) => (
-                <li
-                  key={feature}
-                  className="flex items-center gap-1 text-base md:text-lg"
-                >
-                  <CircleCheck className="size-[1.3em] text-primary" />{" "}
-                  {feature}
-                </li>
-              ))}
-            </ul>
-          </div>
-        </div>
-
-        <div>
-          <h2 className="pt-10 text-xl font-medium text-primary">Details</h2>
-
-          <article className="prose prose-base pt-4 md:prose-lg">
+      </BaseSection>
+      <BaseSection
+        title="Product Features"
+        headerAlign="center"
+        className="bg-gradient-to-b from-neutral-950 to-neutral-900 text-white"
+      >
+        <ul className="grid gap-2 pt-4 sm:grid-cols-2 md:gap-4">
+          {product.features?.map((feature) => (
+            <li
+              key={feature}
+              className="flex items-center gap-1 rounded border border-neutral-700 p-4 text-base md:gap-4 md:p-6 md:text-xl"
+            >
+              <CircleCheck className="size-[1.3em] text-primary" /> {feature}
+            </li>
+          ))}
+        </ul>
+      </BaseSection>
+      <StatisticsSection />
+      <BaseSection title="Details">
+        <div className="gap-8 md:columns-2 md:pt-4">
+          <article className="prose prose-base">
             <PortableText
               value={product.details || []}
               components={portableTextComponents}
@@ -111,6 +115,6 @@ export default async function Page({ params }: Props) {
           </article>
         </div>
       </BaseSection>
-    </BasePage>
+    </main>
   )
 }

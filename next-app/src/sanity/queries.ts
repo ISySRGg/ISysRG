@@ -1,84 +1,119 @@
 import { defineQuery } from "next-sanity"
 
-export const aboutSectionQuery = defineQuery(
-  `*[_type == "home"][0]{aboutSection}`
-)
+export const aboutSectionQuery = defineQuery(`
+  *[_type == "home"][0]{aboutSection}
+`)
 
-export const activitiesSectionQuery = defineQuery(
-  `*[_type == "home"][0]{activitiesSection}`
-)
+export const activitiesSectionQuery = defineQuery(`
+  *[_type == "home"][0]{activitiesSection}
+`)
 
-export const datasetsSectionQuery = defineQuery(
-  `*[_type == "home"][0]{datasetsSection{...,featuredDatasets[]->}}`
-)
+export const datasetsSectionQuery = defineQuery(`
+  *[_type == "home"][0]{datasetsSection{...,featuredDatasets[]->}}
+`)
 
-export const productsSectionQuery = defineQuery(
-  `*[_type == "home"][0]{productsSection{...,featuredProducts[]->}}`
-)
+export const productsSectionQuery = defineQuery(`
+  *[_type == "home"][0]{productsSection{...,featuredProducts[]->}}
+`)
 
-export const partnersSectionQuery = defineQuery(
-  `*[_type == "home"][0]{partnersSection}`
-)
+export const partnersSectionQuery = defineQuery(`
+  *[_type == "home"][0]{partnersSection}
+`)
 
-export const featuredDatasetsQuery = defineQuery(
-  `*[_type == "home"][0]{datasetsSection{featuredDatasets[]->{name,slug,images,shortDescription,description}}}`
-)
+export const featuredDatasetsQuery = defineQuery(`
+  *[_type == "home"][0]{datasetsSection{featuredDatasets[]->{
+    name,
+    slug,
+    images,
+    shortDescription,
+    description
+  }}}
+`)
 
-export const featuredProductsQuery = defineQuery(
-  `*[_type == "home"][0]{productsSection{featuredProducts[]->{name,slug,image,shortDescription,description,features}}}`
-)
+export const featuredProductsQuery = defineQuery(`
+  *[_type == "home"][0]{productsSection{featuredProducts[]->{
+    name,
+    slug,
+    image,
+    shortDescription,
+    description,
+    features
+  }}}
+`)
 
-export const settingsQuery = defineQuery(`*[_type == "settings"][0]`)
+export const settingsQuery = defineQuery(`
+  *[_type == "settings"][0]
+`)
 
-export const postQuery = defineQuery(
-  `*[_type == "post" && slug.current == $slug][0]`
-)
+export const postQuery = defineQuery(`
+  *[_type == "post" && slug.current == $slug][0]
+`)
 
-export const allProductsQuery = defineQuery(
-  `*[_type == "product" && defined(slug.current)]{name,slug,image,shortDescription,description,features}`
-)
+export const allProductsQuery = defineQuery(`
+  *[_type == "product" && defined(slug.current)]{
+    name,
+    slug,
+    image,
+    shortDescription,
+    description,
+    features
+  }
+`)
 
 export const productQuery = defineQuery(`
   *[_type == "product" && slug.current == $slug][0]
 `)
 
-export const allDatasetsQuery = defineQuery(
-  `*[_type == "dataset" && defined(slug.current)]`
-)
+export const allDatasetsQuery = defineQuery(`
+  *[_type == "dataset" && defined(slug.current)]
+`)
 
-export const datasetQuery = defineQuery(
-  `*[_type == "dataset" && slug.current == $slug][0]`
-)
+export const datasetQuery = defineQuery(`
+  *[_type == "dataset" && slug.current == $slug][0]
+`)
 
-export const allActivitiesQuery = defineQuery(
-  `*[_type == "activity" && defined(slug.current)]`
-)
+export const allActivitiesQuery = defineQuery(`
+  *[_type == "activity" && defined(slug.current)] | order(date desc, _updatedAt desc)
+`)
 
-export const activityQuery = defineQuery(
-  `*[_type == "activity" && slug.current == $slug][0]`
-)
+export const activityQuery = defineQuery(`
+  *[_type == "activity" && slug.current == $slug][0]
+`)
 
 export const latestActivitiesQuery = defineQuery(`
-  *[_type == "activity" && defined(slug.current)] | order(date desc, _updatedAt desc) [0...$limit] {_id, title, slug, date, image}
+  *[_type == "activity" && defined(slug.current)] | order(date desc, _updatedAt desc) [0...$limit] {
+    _id,
+    title,
+    slug,
+    date,
+    image
+  }
 `)
 
 export const moreActivitiesQuery = defineQuery(`
-  *[_type == "activity" && _id != $skip && defined(slug.current)] | order(date desc, _updatedAt desc) [0...$limit] {_id, title, slug, date}
+  *[_type == "activity" && _id != $skip && defined(slug.current)] | order(date desc, _updatedAt desc) [0...$limit] {
+    _id,
+    title,
+    slug,
+    date
+  }
 `)
 
-export const allInternationalJournalsQuery = defineQuery(
-  `*[_type == "internationalJournal"]`
-)
+export const allInternationalJournalsQuery = defineQuery(`
+  *[_type == "internationalJournal"]
+`)
 
-export const allInternationalConferencesQuery = defineQuery(
-  `*[_type == "internationalConference"]`
-)
+export const allInternationalConferencesQuery = defineQuery(`
+  *[_type == "internationalConference"]
+`)
 
-export const allIntellectualPropertyRightsQuery = defineQuery(
-  `*[_type == "intellectualPropertyRights"]`
-)
+export const allIntellectualPropertyRightsQuery = defineQuery(`
+  *[_type == "intellectualPropertyRights"]
+`)
 
-export const allBooksQuery = defineQuery(`*[_type == "book"]`)
+export const allBooksQuery = defineQuery(`
+  *[_type == "book"]
+`)
 
 export const allPublicationCountQuery = defineQuery(`
   {
@@ -89,11 +124,13 @@ export const allPublicationCountQuery = defineQuery(`
   }
 `)
 
-export const allResearchersQuery = defineQuery(`*[_type == "researcher"]`)
+export const allResearchersQuery = defineQuery(`
+  *[_type == "researcher"]
+`)
 
-export const allInfrastructureQuery = defineQuery(
-  `*[_type == "infrastructure"]`
-)
+export const allInfrastructureQuery = defineQuery(`
+  *[_type == "infrastructure"]
+`)
 
 export const allDocumentSlugs = defineQuery(`
   {
@@ -103,4 +140,6 @@ export const allDocumentSlugs = defineQuery(`
   }
 `)
 
-export const allPartnerQuery = defineQuery(`*[_type == "partner"]`)
+export const allPartnerQuery = defineQuery(`
+  *[_type == "partner"]
+`)
