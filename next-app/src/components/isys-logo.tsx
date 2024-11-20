@@ -9,10 +9,10 @@ export default function ISysLogo() {
         alt="ISysRG"
         width={32}
         height={32}
-        className="mt-2 size-7 transition-all group-hover:grayscale sm:size-9"
+        className="size-7 transition-all group-hover:grayscale sm:size-9"
       />
       <p className="flex flex-col">
-        <span className="text-lg font-bold sm:text-3xl">ISys</span>
+        <span className="-mt-1 text-lg font-bold sm:text-3xl">ISys</span>
         <span className="-mt-1 text-xs sm:text-sm">Research Group</span>
       </p>
     </Link>
