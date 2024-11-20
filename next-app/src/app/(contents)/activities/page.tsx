@@ -26,7 +26,7 @@ export default async function Page() {
   return (
     <BasePage title="Activities">
       <BaseSection>
-        <div className="column-1 gap-8 md:columns-2">
+        <div className="grid grid-cols-1 gap-8 md:grid-cols-2">
           {activities.map((activity) => (
             <Link
               key={activity._id}
@@ -35,7 +35,7 @@ export default async function Page() {
             >
               <figure
                 key={activity._id}
-                className="flex break-inside-avoid flex-col py-4"
+                className="flex break-inside-avoid flex-col"
               >
                 <div className="overflow-hidden rounded">
                   <Image
@@ -43,7 +43,7 @@ export default async function Page() {
                     alt={activity.title || ""}
                     width={600}
                     height={600}
-                    className="w-full rounded bg-neutral-200 object-cover transition-all group-hover:scale-105"
+                    className="aspect-video w-full rounded bg-neutral-200 object-cover transition-all group-hover:scale-105"
                   />
                 </div>
                 <figcaption className="mt-2">
