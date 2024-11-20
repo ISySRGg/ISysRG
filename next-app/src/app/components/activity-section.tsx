@@ -19,6 +19,7 @@ import {
   CarouselPrevious,
 } from "@/components/ui/carousel"
 import BaseSection from "@/components/base-section"
+import HoverableCard from "@/components/hoverable-card"
 
 const options = { next: { revalidate: 30 } }
 
@@ -60,30 +61,29 @@ export default async function ActivitySection() {
                 key={activity._id}
                 className="sm:basis-2/4 lg:basis-1/4"
               >
-                <Link
-                  href={`/activities/${activity.slug?.current}`}
-                  className="group block h-full overflow-hidden rounded border border-neutral-700 p-4 transition-all hover:border-primary/40 hover:bg-primary/10"
-                >
-                  <figure>
-                    <Image
-                      src={urlForImage(activity.image)?.url() as string}
-                      alt={activity.title || ""}
-                      width={300}
-                      height={300}
-                      className="aspect-square w-full rounded object-cover"
-                    />
-                    <figcaption className="mt-4">
-                      <time
-                        dateTime={activity.date || ""}
-                        className="text-sm text-primary"
-                      >
-                        {formatDate(new Date(activity.date || 0))}
-                      </time>
-                      <h3 className="font-medium group-hover:underline">
-                        {truncateString(activity.title || "")}
-                      </h3>
-                    </figcaption>
-                  </figure>
+                <Link href={`/activities/${activity.slug?.current}`}>
+                  <HoverableCard>
+                    <figure>
+                      <Image
+                        src={urlForImage(activity.image)?.url() as string}
+                        alt={activity.title || ""}
+                        width={300}
+                        height={300}
+                        className="aspect-square w-full rounded object-cover"
+                      />
+                      <figcaption className="mt-4">
+                        <time
+                          dateTime={activity.date || ""}
+                          className="text-sm text-primary"
+                        >
+                          {formatDate(new Date(activity.date || 0))}
+                        </time>
+                        <h3 className="font-medium group-hover:underline">
+                          {truncateString(activity.title || "")}
+                        </h3>
+                      </figcaption>
+                    </figure>
+                  </HoverableCard>
                 </Link>
               </CarouselItem>
             ))}

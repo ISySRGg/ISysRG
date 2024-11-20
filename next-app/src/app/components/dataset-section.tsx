@@ -9,6 +9,7 @@ import { PortableText } from "next-sanity"
 import { DatasetsSectionQueryResult } from "@/types/sanity.types"
 import { Button } from "@/components/ui/button"
 import BaseSection from "@/components/base-section"
+import HoverableCard from "@/components/hoverable-card"
 
 const options = { next: { revalidate: 30 } }
 
@@ -36,31 +37,30 @@ export default async function DatasetSection() {
         {datasetsSection?.featuredDatasets &&
           datasetsSection?.featuredDatasets.map((dataset) => (
             <li key={dataset._id}>
-              <Link
-                href={`datasets/${dataset.slug?.current}`}
-                className="group flex items-center gap-4 rounded border bg-neutral-50 p-4 transition-all hover:border-primary/40 hover:bg-primary/10"
-              >
-                {dataset.images ? (
-                  <Image
-                    src={urlForImage(dataset.images[0])?.url() as string}
-                    alt={dataset.name || ""}
-                    height={80}
-                    width={80}
-                    className="size-[68px] rounded object-cover lg:size-[80px]"
-                  />
-                ) : (
-                  <div className="flex size-[68px] flex-none items-center justify-center rounded bg-primary/10 text-primary lg:size-[80px]">
-                    <Database className="size-[50%]" />
+              <Link href={`datasets/${dataset.slug?.current}`}>
+                <HoverableCard className="flex items-center gap-4">
+                  {dataset.images ? (
+                    <Image
+                      src={urlForImage(dataset.images[0])?.url() as string}
+                      alt={dataset.name || ""}
+                      height={80}
+                      width={80}
+                      className="size-[68px] rounded object-cover lg:size-[80px]"
+                    />
+                  ) : (
+                    <div className="flex size-[68px] flex-none items-center justify-center rounded bg-primary/10 text-primary lg:size-[80px]">
+                      <Database className="size-[50%]" />
+                    </div>
+                  )}
+                  <div>
+                    <h3 className="font-bold transition-colors group-hover:text-primary sm:text-xl">
+                      {dataset.name}
+                    </h3>
+                    <p className="text-sm text-muted-foreground sm:text-base">
+                      {dataset.shortDescription}
+                    </p>
                   </div>
-                )}
-                <div>
-                  <h3 className="font-bold transition-colors group-hover:text-primary sm:text-xl">
-                    {dataset.name}
-                  </h3>
-                  <p className="text-sm text-muted-foreground sm:text-base">
-                    {dataset.shortDescription}
-                  </p>
-                </div>
+                </HoverableCard>
               </Link>
             </li>
           ))}

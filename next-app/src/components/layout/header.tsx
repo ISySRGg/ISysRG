@@ -97,11 +97,11 @@ export default async function Header() {
   return (
     <header className="border-y-2 border-white/10">
       <div className="container flex h-14 items-center justify-between sm:h-fit">
-        <div className="flex items-center divide-x divide-neutral-500">
+        <div className="flex items-center divide-x-2 divide-neutral-500/50">
           <div className="pr-3 sm:pr-4">
             <Link href="https://unsri.ac.id">
               <Image
-                src="/assets/images/unsri.png"
+                src="/unsri.svg"
                 alt="Unsri"
                 width={44}
                 height={44}

@@ -105,7 +105,7 @@ export default async function Footer() {
         <div className="border-y-2 border-primary/10">
           <div className="container flex flex-col-reverse items-center justify-between gap-2 py-3 text-background sm:flex-row">
             <p className="text-xs text-muted-foreground md:text-sm">
-              ©{new Date().getFullYear()} Isys Research Group
+              ©{new Date().getFullYear()} ISys Research Group
             </p>
             <SocialMedia socialMedia={settings.socialMedia} />
           </div>
