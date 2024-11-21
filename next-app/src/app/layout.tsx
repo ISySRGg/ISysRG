@@ -6,6 +6,7 @@ import { client } from "@/sanity/client"
 import * as demo from "@/sanity/demo"
 import { settingsQuery } from "@/sanity/queries"
 import { resolveOpenGraphImage } from "@/sanity/utils"
+import { Analytics } from "@vercel/analytics/react"
 import { toPlainText } from "next-sanity"
 
 import { Settings } from "@/types/sanity.types"
@@ -67,6 +68,7 @@ export default function RootLayout({
           <Footer />
         </Providers>
 
+        <Analytics />
         <TailwindIndicator />
       </body>
     </html>
