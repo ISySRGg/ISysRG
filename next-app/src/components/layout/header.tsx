@@ -9,6 +9,7 @@ import {
   FeaturedDatasetsQueryResult,
   FeaturedProductsQueryResult,
 } from "@/types/sanity.types"
+import { tw } from "@/lib/utils"
 
 import ISysLogo from "../isys-logo"
 import DesktopNavigation from "./desktop-navigation"
@@ -48,6 +49,7 @@ export default async function Header() {
           href: "/infrastructure",
         },
       ],
+      className: tw`lg:w-[500px]`,
     },
     {
       label: "Products",
@@ -58,6 +60,11 @@ export default async function Header() {
           description: product.shortDescription,
         } as NavigationItem
       }),
+      footer: {
+        label: "View all",
+        href: "/products",
+      },
+      className: tw`[&>ul]:lg:grid-cols-2`,
     },
     {
       label: "Datasets",
@@ -68,6 +75,11 @@ export default async function Header() {
           description: dataset.shortDescription,
         } as NavigationItem
       }),
+      footer: {
+        label: "View all",
+        href: "/datasets",
+      },
+      className: tw`[&>ul]:lg:grid-cols-2`,
     },
     {
       label: "Publication",
@@ -90,8 +102,9 @@ export default async function Header() {
           href: "/books",
         },
       ],
+      className: tw`lg:w-[600px]`,
     },
-    { label: "Activity", href: "/activities" },
+    { label: "Activities", href: "/activities" },
   ]
 
   return (

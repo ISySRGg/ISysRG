@@ -4,7 +4,7 @@ import { useEffect, useState } from "react"
 import Link from "next/link"
 import { usePathname } from "next/navigation"
 import { NavigationItem } from "@/types"
-import { ChevronDown } from "lucide-react"
+import { ArrowRight, ChevronDown } from "lucide-react"
 
 import { cn } from "@/lib/utils"
 
@@ -59,7 +59,7 @@ export default function MobileNavigation({ navigation }: Props) {
       {mobileNavigation.opened && (
         <div
           className={cn(
-            "no-doc-scroll fixed inset-x-0 top-0 z-50 flex h-dvh w-full flex-col bg-neutral-950 lg:hidden"
+            "no-doc-scroll fixed inset-x-0 top-0 z-50 flex h-dvh w-full flex-col bg-neutral-950/95 backdrop-blur-lg lg:hidden"
           )}
         >
           <header className="border-y-2 border-white/10">
@@ -101,10 +101,25 @@ export default function MobileNavigation({ navigation }: Props) {
                                   href={navigationChild.href}
                                   className="block focus:underline"
                                 >
-                                  {navigationChild.label}
+                                  <p>{navigationChild.label}</p>
+                                  <p className="text-xs text-muted-foreground">
+                                    {navigationChild.description}
+                                  </p>
                                 </Link>
                               </div>
                             )
+                        )}
+
+                        {navigationItem.footer && (
+                          <div className="flex justify-start">
+                            <Link
+                              href={navigationItem.footer.href}
+                              className="group flex items-center gap-1 text-neutral-200"
+                            >
+                              {navigationItem.footer.label}
+                              <ArrowRight className="size-[1em] text-primary transition-transform group-hover:translate-x-1" />
+                            </Link>
+                          </div>
                         )}
                       </div>
                     </CollapsibleContent>

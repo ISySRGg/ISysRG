@@ -1,7 +1,7 @@
 import React from "react"
 import Link from "next/link"
 import { NavigationItem } from "@/types"
-import { ChevronRight } from "lucide-react"
+import { ArrowRight, ChevronRight } from "lucide-react"
 
 import { cn } from "@/lib/utils"
 
@@ -29,8 +29,13 @@ export default function DesktopNavigation({ navigation }: Props) {
               <NavigationMenuTrigger>
                 {navigationItem.label}
               </NavigationMenuTrigger>
-              <NavigationMenuContent>
-                <ul className="grid w-[400px] p-4 lg:w-[680px] lg:grid-cols-2">
+              <NavigationMenuContent
+                className={cn(
+                  "w-[400px] p-4 lg:w-[680px]",
+                  navigationItem.className
+                )}
+              >
+                <ul className="grid">
                   {navigationItem.children.map(
                     (navigationChild) =>
                       "href" in navigationChild && (
@@ -43,6 +48,17 @@ export default function DesktopNavigation({ navigation }: Props) {
                       )
                   )}
                 </ul>
+                {navigationItem.footer && (
+                  <div className="flex justify-start px-4 py-2">
+                    <Link
+                      href={navigationItem.footer.href}
+                      className="group flex items-center gap-1 text-sm font-medium tracking-wide text-neutral-200"
+                    >
+                      {navigationItem.footer.label}
+                      <ArrowRight className="size-[1em] text-primary transition-transform group-hover:translate-x-1" />
+                    </Link>
+                  </div>
+                )}
               </NavigationMenuContent>
             </NavigationMenuItem>
           ) : (
@@ -74,7 +90,7 @@ function ListItem({
       <NavigationMenuLink asChild>
         <Link
           className={cn(
-            "group block select-none rounded px-4 py-6 leading-none tracking-wide no-underline outline-none transition-colors hover:bg-primary/10 hover:text-white focus:bg-accent focus:text-accent-foreground"
+            "group block select-none rounded px-4 py-6 leading-none tracking-wide no-underline outline-none transition-colors hover:bg-white/5 hover:text-white focus:bg-accent focus:text-accent-foreground"
           )}
           href={href}
         >
