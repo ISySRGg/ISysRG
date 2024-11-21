@@ -12,6 +12,7 @@ const options = { next: { revalidate: 30 } }
 
 export const metadata: Metadata = {
   title: "Books",
+  description: "Explore our latest books on intelligent systems.",
 }
 
 export default async function Page() {

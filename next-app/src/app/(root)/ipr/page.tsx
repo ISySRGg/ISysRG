@@ -12,6 +12,7 @@ const options = { next: { revalidate: 30 } }
 
 export const metadata: Metadata = {
   title: "Intellectual Property Rights",
+  description: "Explore our IPR on intelligent systems.",
 }
 
 export default async function Page() {
