@@ -80,13 +80,24 @@ export default async function Page({ params }: Props) {
         </p>
       </header>
       <BaseSection>
-        <Image
-          src={urlForImage(product.image)?.url() as string}
-          alt={product.name || ""}
-          width={900}
-          height={900}
-          className="mx-auto"
-        />
+        {product.youtube ? (
+          <iframe
+            src={product.youtube}
+            title="YouTube video player"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+            referrerPolicy="strict-origin-when-cross-origin"
+            allowFullScreen
+            className="aspect-video w-full rounded-xl"
+          ></iframe>
+        ) : (
+          <Image
+            src={urlForImage(product.image)?.url() as string}
+            alt={product.name || ""}
+            width={900}
+            height={900}
+            className="mx-auto"
+          />
+        )}
       </BaseSection>
       <BaseSection
         title="Product Features"

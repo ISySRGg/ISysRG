@@ -19,6 +19,11 @@ export const productType = defineType({
       validation: (rule) => rule.required(),
     }),
     defineField({
+      name: 'youtube',
+      title: 'YouTube',
+      type: 'url',
+    }),
+    defineField({
       name: 'image',
       type: 'image',
     }),

@@ -375,6 +375,7 @@ export type Product = {
   _rev: string;
   name?: string;
   slug?: Slug;
+  youtube?: string;
   image?: {
     asset?: {
       _ref: string;
@@ -753,6 +754,7 @@ export type ProductsSectionQueryResult = {
       _rev: string;
       name?: string;
       slug?: Slug;
+      youtube?: string;
       image?: {
         asset?: {
           _ref: string;
@@ -826,7 +828,7 @@ export type PartnersSectionQueryResult = {
   } | null;
 } | null;
 // Variable: featuredDatasetsQuery
-// Query: *[_type == "home"][0]{datasetsSection{featuredDatasets[]->{name,slug,images,shortDescription,description}}}
+// Query: *[_type == "home"][0]{datasetsSection{featuredDatasets[]->{    name,    slug,    images,    shortDescription,    description  }}}
 export type FeaturedDatasetsQueryResult = {
   datasetsSection: {
     featuredDatasets: Array<{
@@ -850,7 +852,7 @@ export type FeaturedDatasetsQueryResult = {
   } | null;
 } | null;
 // Variable: featuredProductsQuery
-// Query: *[_type == "home"][0]{productsSection{featuredProducts[]->{name,slug,image,shortDescription,description,features}}}
+// Query: *[_type == "home"][0]{productsSection{featuredProducts[]->{    name,    slug,    image,    shortDescription,    description,    features  }}}
 export type FeaturedProductsQueryResult = {
   productsSection: {
     featuredProducts: Array<{
@@ -928,7 +930,7 @@ export type SettingsQueryResult = {
 // Query: *[_type == "post" && slug.current == $slug][0]
 export type PostQueryResult = null;
 // Variable: allProductsQuery
-// Query: *[_type == "product" && defined(slug.current)]{name,slug,image,shortDescription,description,features}
+// Query: *[_type == "product" && defined(slug.current)]{    name,    slug,    image,    shortDescription,    description,    features  }
 export type AllProductsQueryResult = Array<{
   name: string | null;
   slug: Slug | null;
@@ -957,6 +959,7 @@ export type ProductQueryResult = {
   _rev: string;
   name?: string;
   slug?: Slug;
+  youtube?: string;
   image?: {
     asset?: {
       _ref: string;
@@ -1054,7 +1057,7 @@ export type DatasetQueryResult = {
   link?: string;
 } | null;
 // Variable: allActivitiesQuery
-// Query: *[_type == "activity" && defined(slug.current)]
+// Query: *[_type == "activity" && defined(slug.current)] | order(date desc, _updatedAt desc)
 export type AllActivitiesQueryResult = Array<{
   _id: string;
   _type: "activity";
@@ -1158,7 +1161,7 @@ export type ActivityQueryResult = {
   }>;
 } | null;
 // Variable: latestActivitiesQuery
-// Query: *[_type == "activity" && defined(slug.current)] | order(date desc, _updatedAt desc) [0...$limit] {_id, title, slug, date, image}
+// Query: *[_type == "activity" && defined(slug.current)] | order(date desc, _updatedAt desc) [0...$limit] {    _id,    title,    slug,    date,    image  }
 export type LatestActivitiesQueryResult = Array<{
   _id: string;
   title: string | null;
@@ -1177,7 +1180,7 @@ export type LatestActivitiesQueryResult = Array<{
   } | null;
 }>;
 // Variable: moreActivitiesQuery
-// Query: *[_type == "activity" && _id != $skip && defined(slug.current)] | order(date desc, _updatedAt desc) [0...$limit] {_id, title, slug, date}
+// Query: *[_type == "activity" && _id != $skip && defined(slug.current)] | order(date desc, _updatedAt desc) [0...$limit] {    _id,    title,    slug,    date  }
 export type MoreActivitiesQueryResult = Array<{
   _id: string;
   title: string | null;
@@ -1372,31 +1375,31 @@ export type AllPartnerQueryResult = Array<{
 import "@sanity/client";
 declare module "@sanity/client" {
   interface SanityQueries {
-    "*[_type == \"home\"][0]{aboutSection}": AboutSectionQueryResult;
-    "*[_type == \"home\"][0]{activitiesSection}": ActivitiesSectionQueryResult;
-    "*[_type == \"home\"][0]{datasetsSection{...,featuredDatasets[]->}}": DatasetsSectionQueryResult;
-    "*[_type == \"home\"][0]{productsSection{...,featuredProducts[]->}}": ProductsSectionQueryResult;
-    "*[_type == \"home\"][0]{partnersSection}": PartnersSectionQueryResult;
-    "*[_type == \"home\"][0]{datasetsSection{featuredDatasets[]->{name,slug,images,shortDescription,description}}}": FeaturedDatasetsQueryResult;
-    "*[_type == \"home\"][0]{productsSection{featuredProducts[]->{name,slug,image,shortDescription,description,features}}}": FeaturedProductsQueryResult;
-    "*[_type == \"settings\"][0]": SettingsQueryResult;
-    "*[_type == \"post\" && slug.current == $slug][0]": PostQueryResult;
-    "*[_type == \"product\" && defined(slug.current)]{name,slug,image,shortDescription,description,features}": AllProductsQueryResult;
+    "\n  *[_type == \"home\"][0]{aboutSection}\n": AboutSectionQueryResult;
+    "\n  *[_type == \"home\"][0]{activitiesSection}\n": ActivitiesSectionQueryResult;
+    "\n  *[_type == \"home\"][0]{datasetsSection{...,featuredDatasets[]->}}\n": DatasetsSectionQueryResult;
+    "\n  *[_type == \"home\"][0]{productsSection{...,featuredProducts[]->}}\n": ProductsSectionQueryResult;
+    "\n  *[_type == \"home\"][0]{partnersSection}\n": PartnersSectionQueryResult;
+    "\n  *[_type == \"home\"][0]{datasetsSection{featuredDatasets[]->{\n    name,\n    slug,\n    images,\n    shortDescription,\n    description\n  }}}\n": FeaturedDatasetsQueryResult;
+    "\n  *[_type == \"home\"][0]{productsSection{featuredProducts[]->{\n    name,\n    slug,\n    image,\n    shortDescription,\n    description,\n    features\n  }}}\n": FeaturedProductsQueryResult;
+    "\n  *[_type == \"settings\"][0]\n": SettingsQueryResult;
+    "\n  *[_type == \"post\" && slug.current == $slug][0]\n": PostQueryResult;
+    "\n  *[_type == \"product\" && defined(slug.current)]{\n    name,\n    slug,\n    image,\n    shortDescription,\n    description,\n    features\n  }\n": AllProductsQueryResult;
     "\n  *[_type == \"product\" && slug.current == $slug][0]\n": ProductQueryResult;
-    "*[_type == \"dataset\" && defined(slug.current)]": AllDatasetsQueryResult;
-    "*[_type == \"dataset\" && slug.current == $slug][0]": DatasetQueryResult;
-    "*[_type == \"activity\" && defined(slug.current)]": AllActivitiesQueryResult;
-    "*[_type == \"activity\" && slug.current == $slug][0]": ActivityQueryResult;
-    "\n  *[_type == \"activity\" && defined(slug.current)] | order(date desc, _updatedAt desc) [0...$limit] {_id, title, slug, date, image}\n": LatestActivitiesQueryResult;
-    "\n  *[_type == \"activity\" && _id != $skip && defined(slug.current)] | order(date desc, _updatedAt desc) [0...$limit] {_id, title, slug, date}\n": MoreActivitiesQueryResult;
-    "*[_type == \"internationalJournal\"]": AllInternationalJournalsQueryResult;
-    "*[_type == \"internationalConference\"]": AllInternationalConferencesQueryResult;
-    "*[_type == \"intellectualPropertyRights\"]": AllIntellectualPropertyRightsQueryResult;
-    "*[_type == \"book\"]": AllBooksQueryResult;
+    "\n  *[_type == \"dataset\" && defined(slug.current)]\n": AllDatasetsQueryResult;
+    "\n  *[_type == \"dataset\" && slug.current == $slug][0]\n": DatasetQueryResult;
+    "\n  *[_type == \"activity\" && defined(slug.current)] | order(date desc, _updatedAt desc)\n": AllActivitiesQueryResult;
+    "\n  *[_type == \"activity\" && slug.current == $slug][0]\n": ActivityQueryResult;
+    "\n  *[_type == \"activity\" && defined(slug.current)] | order(date desc, _updatedAt desc) [0...$limit] {\n    _id,\n    title,\n    slug,\n    date,\n    image\n  }\n": LatestActivitiesQueryResult;
+    "\n  *[_type == \"activity\" && _id != $skip && defined(slug.current)] | order(date desc, _updatedAt desc) [0...$limit] {\n    _id,\n    title,\n    slug,\n    date\n  }\n": MoreActivitiesQueryResult;
+    "\n  *[_type == \"internationalJournal\"]\n": AllInternationalJournalsQueryResult;
+    "\n  *[_type == \"internationalConference\"]\n": AllInternationalConferencesQueryResult;
+    "\n  *[_type == \"intellectualPropertyRights\"]\n": AllIntellectualPropertyRightsQueryResult;
+    "\n  *[_type == \"book\"]\n": AllBooksQueryResult;
     "\n  {\n    \"internationalJournalCount\": count(*[_type == \"internationalJournal\"]),\n    \"internationalConferenceCount\": count(*[_type == \"internationalConference\"]),\n    \"intellectualPropertyRightsCount\": count(*[_type == \"intellectualPropertyRights\"]),\n    \"bookCount\": count(*[_type == \"book\"])\n  }\n": AllPublicationCountQueryResult;
-    "*[_type == \"researcher\"]": AllResearchersQueryResult;
-    "*[_type == \"infrastructure\"]": AllInfrastructureQueryResult;
+    "\n  *[_type == \"researcher\"]\n": AllResearchersQueryResult;
+    "\n  *[_type == \"infrastructure\"]\n": AllInfrastructureQueryResult;
     "\n  {\n    \"activitySlugs\": *[_type == \"activity\"]{slug, _updatedAt},\n    \"datasetSlugs\": *[_type == \"dataset\"]{slug, _updatedAt},\n    \"productSlugs\": *[_type == \"product\"]{slug, _updatedAt},\n  }\n": AllDocumentSlugsResult;
-    "*[_type == \"partner\"]": AllPartnerQueryResult;
+    "\n  *[_type == \"partner\"]\n": AllPartnerQueryResult;
   }
 }
