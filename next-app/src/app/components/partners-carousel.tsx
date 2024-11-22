@@ -19,9 +19,9 @@ interface Props {
 export default function PartnersCarousel({ partners }: Props) {
   return (
     <Carousel plugins={[Autoplay({ delay: 3000 })]} opts={{ loop: true }}>
-      <CarouselContent>
+      <CarouselContent className="-ml-1 md:-ml-2">
         {partners.map((partner) => (
-          <CarouselItem key={partner._id} className="basis-auto">
+          <CarouselItem key={partner._id} className="basis-auto pl-1 md:pl-2">
             <HoverableCard className="flex-col items-center">
               <Image
                 src={urlForImage(partner?.image)?.url() as string}
