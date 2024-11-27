@@ -291,7 +291,7 @@ export type IntellectualPropertyRights = {
   _updatedAt: string;
   _rev: string;
   title?: string;
-  year?: string;
+  issuanceDate?: string;
   ipr?: string;
   certificateNumber?: string;
   link?: string;
@@ -367,6 +367,57 @@ export type Researcher = {
     crop?: SanityImageCrop;
     _type: "image";
   };
+};
+
+export type Research = {
+  _id: string;
+  _type: "research";
+  _createdAt: string;
+  _updatedAt: string;
+  _rev: string;
+  title?: string;
+  slug?: Slug;
+  date?: string;
+  image?: {
+    asset?: {
+      _ref: string;
+      _type: "reference";
+      _weak?: boolean;
+      [internalGroqTypeReferenceTo]?: "sanity.imageAsset";
+    };
+    hotspot?: SanityImageHotspot;
+    crop?: SanityImageCrop;
+    _type: "image";
+  };
+  body?: Array<{
+    children?: Array<{
+      marks?: Array<string>;
+      text?: string;
+      _type: "span";
+      _key: string;
+    }>;
+    style?: "normal" | "h1" | "h2" | "h3" | "h4" | "h5" | "h6" | "blockquote";
+    listItem?: "bullet" | "number";
+    markDefs?: Array<{
+      href?: string;
+      _type: "link";
+      _key: string;
+    }>;
+    level?: number;
+    _type: "block";
+    _key: string;
+  } | {
+    asset?: {
+      _ref: string;
+      _type: "reference";
+      _weak?: boolean;
+      [internalGroqTypeReferenceTo]?: "sanity.imageAsset";
+    };
+    hotspot?: SanityImageHotspot;
+    crop?: SanityImageCrop;
+    _type: "image";
+    _key: string;
+  }>;
 };
 
 export type Product = {
@@ -608,7 +659,7 @@ export type Slug = {
   source?: string;
 };
 
-export type AllSanitySchemaTypes = SanityImagePaletteSwatch | SanityImagePalette | SanityImageDimensions | SanityFileAsset | Geopoint | Home | Settings | Book | IntellectualPropertyRights | InternationalConference | InternationalJournal | Researcher | Product | Partner | Infrastructure | Dataset | Activity | SanityImageCrop | SanityImageHotspot | SanityImageAsset | SanityAssetSourceData | SanityImageMetadata | Slug;
+export type AllSanitySchemaTypes = SanityImagePaletteSwatch | SanityImagePalette | SanityImageDimensions | SanityFileAsset | Geopoint | Home | Settings | Book | IntellectualPropertyRights | InternationalConference | InternationalJournal | Researcher | Research | Product | Partner | Infrastructure | Dataset | Activity | SanityImageCrop | SanityImageHotspot | SanityImageAsset | SanityAssetSourceData | SanityImageMetadata | Slug;
 export declare const internalGroqTypeReferenceTo: unique symbol;
 // Source: ../next-app/src/sanity/queries.ts
 // Variable: aboutSectionQuery
@@ -928,9 +979,6 @@ export type SettingsQueryResult = {
     linktree?: string;
   };
 } | null;
-// Variable: postQuery
-// Query: *[_type == "post" && slug.current == $slug][0]
-export type PostQueryResult = null;
 // Variable: allProductsQuery
 // Query: *[_type == "product" && defined(slug.current)]{    name,    slug,    image,    shortDescription,    description,    features  }
 export type AllProductsQueryResult = Array<{
@@ -1190,7 +1238,7 @@ export type MoreActivitiesQueryResult = Array<{
   date: string | null;
 }>;
 // Variable: allInternationalJournalsQuery
-// Query: *[_type == "internationalJournal"]
+// Query: *[_type == "internationalJournal"] | order(publicationDate desc, _updatedAt desc)
 export type AllInternationalJournalsQueryResult = Array<{
   _id: string;
   _type: "internationalJournal";
@@ -1215,7 +1263,7 @@ export type AllInternationalJournalsQueryResult = Array<{
   link?: string;
 }>;
 // Variable: allInternationalConferencesQuery
-// Query: *[_type == "internationalConference"]
+// Query: *[_type == "internationalConference"] | order(publicationDate desc, _updatedAt desc)
 export type AllInternationalConferencesQueryResult = Array<{
   _id: string;
   _type: "internationalConference";
@@ -1240,7 +1288,7 @@ export type AllInternationalConferencesQueryResult = Array<{
   link?: string;
 }>;
 // Variable: allIntellectualPropertyRightsQuery
-// Query: *[_type == "intellectualPropertyRights"]
+// Query: *[_type == "intellectualPropertyRights"] | order(issuanceDate desc, _updatedAt desc)
 export type AllIntellectualPropertyRightsQueryResult = Array<{
   _id: string;
   _type: "intellectualPropertyRights";
@@ -1248,13 +1296,13 @@ export type AllIntellectualPropertyRightsQueryResult = Array<{
   _updatedAt: string;
   _rev: string;
   title?: string;
-  year?: string;
+  issuanceDate?: string;
   ipr?: string;
   certificateNumber?: string;
   link?: string;
 }>;
 // Variable: allBooksQuery
-// Query: *[_type == "book"]
+// Query: *[_type == "book"] | order(year desc, _updatedAt desc)
 export type AllBooksQueryResult = Array<{
   _id: string;
   _type: "book";
@@ -1387,7 +1435,6 @@ declare module "@sanity/client" {
     "\n  *[_type == \"home\"][0]{datasetsSection{featuredDatasets[]->{\n    name,\n    slug,\n    images,\n    shortDescription,\n    description\n  }}}\n": FeaturedDatasetsQueryResult;
     "\n  *[_type == \"home\"][0]{productsSection{featuredProducts[]->{\n    name,\n    slug,\n    image,\n    shortDescription,\n    description,\n    features\n  }}}\n": FeaturedProductsQueryResult;
     "\n  *[_type == \"settings\"][0]\n": SettingsQueryResult;
-    "\n  *[_type == \"post\" && slug.current == $slug][0]\n": PostQueryResult;
     "\n  *[_type == \"product\" && defined(slug.current)]{\n    name,\n    slug,\n    image,\n    shortDescription,\n    description,\n    features\n  }\n": AllProductsQueryResult;
     "\n  *[_type == \"product\" && slug.current == $slug][0]\n": ProductQueryResult;
     "\n  *[_type == \"dataset\" && defined(slug.current)]\n": AllDatasetsQueryResult;
@@ -1396,10 +1443,10 @@ declare module "@sanity/client" {
     "\n  *[_type == \"activity\" && slug.current == $slug][0]\n": ActivityQueryResult;
     "\n  *[_type == \"activity\" && defined(slug.current)] | order(date desc, _updatedAt desc) [0...$limit] {\n    _id,\n    title,\n    slug,\n    date,\n    image\n  }\n": LatestActivitiesQueryResult;
     "\n  *[_type == \"activity\" && _id != $skip && defined(slug.current)] | order(date desc, _updatedAt desc) [0...$limit] {\n    _id,\n    title,\n    slug,\n    date\n  }\n": MoreActivitiesQueryResult;
-    "\n  *[_type == \"internationalJournal\"]\n": AllInternationalJournalsQueryResult;
-    "\n  *[_type == \"internationalConference\"]\n": AllInternationalConferencesQueryResult;
-    "\n  *[_type == \"intellectualPropertyRights\"]\n": AllIntellectualPropertyRightsQueryResult;
-    "\n  *[_type == \"book\"]\n": AllBooksQueryResult;
+    "\n  *[_type == \"internationalJournal\"] | order(publicationDate desc, _updatedAt desc)\n": AllInternationalJournalsQueryResult;
+    "\n  *[_type == \"internationalConference\"] | order(publicationDate desc, _updatedAt desc)\n": AllInternationalConferencesQueryResult;
+    "\n  *[_type == \"intellectualPropertyRights\"] | order(issuanceDate desc, _updatedAt desc)\n": AllIntellectualPropertyRightsQueryResult;
+    "\n  *[_type == \"book\"] | order(year desc, _updatedAt desc)\n": AllBooksQueryResult;
     "\n  {\n    \"internationalJournalCount\": count(*[_type == \"internationalJournal\"]),\n    \"internationalConferenceCount\": count(*[_type == \"internationalConference\"]),\n    \"intellectualPropertyRightsCount\": count(*[_type == \"intellectualPropertyRights\"]),\n    \"bookCount\": count(*[_type == \"book\"])\n  }\n": AllPublicationCountQueryResult;
     "\n  *[_type == \"researcher\"]\n": AllResearchersQueryResult;
     "\n  *[_type == \"infrastructure\"]\n": AllInfrastructureQueryResult;

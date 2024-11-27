@@ -96,19 +96,19 @@ export const moreActivitiesQuery = defineQuery(`
 `)
 
 export const allInternationalJournalsQuery = defineQuery(`
-  *[_type == "internationalJournal"] | order(date desc, _updatedAt)
+  *[_type == "internationalJournal"] | order(publicationDate desc, _updatedAt desc)
 `)
 
 export const allInternationalConferencesQuery = defineQuery(`
-  *[_type == "internationalConference"] | order(date desc, _updatedAt)
+  *[_type == "internationalConference"] | order(publicationDate desc, _updatedAt desc)
 `)
 
 export const allIntellectualPropertyRightsQuery = defineQuery(`
-  *[_type == "intellectualPropertyRights"] | order(date desc, _updatedAt)
+  *[_type == "intellectualPropertyRights"] | order(issuanceDate desc, _updatedAt desc)
 `)
 
 export const allBooksQuery = defineQuery(`
-  *[_type == "book"] | order(date desc, _updatedAt)
+  *[_type == "book"] | order(year desc, _updatedAt desc)
 `)
 
 export const allPublicationCountQuery = defineQuery(`
