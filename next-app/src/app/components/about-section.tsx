@@ -31,14 +31,14 @@ export default async function AboutSection() {
         <Image
           src={
             urlForImage(aboutSection?.image)
-              ?.width(300)
-              .height(300)
+              ?.width(800)
+              .height(800)
               .url() as string
           }
           alt="About us"
-          width={300}
-          height={300}
-          className="size-[200px] sm:size-[300px]"
+          width={800}
+          height={800}
+          className="size-[200px] rounded-lg sm:size-[300px]"
         />
         <div className="flex flex-col gap-4">
           <article className="prose prose-xl md:prose-2xl">

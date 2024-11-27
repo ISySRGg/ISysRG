@@ -67,8 +67,8 @@ export default async function ActivitySection() {
                       <Image
                         src={urlForImage(activity.image)?.url() as string}
                         alt={activity.title || ""}
-                        width={300}
-                        height={300}
+                        width={800}
+                        height={800}
                         className="aspect-square w-full rounded object-cover"
                       />
                       <figcaption className="mt-4">
