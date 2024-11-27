@@ -8,6 +8,7 @@ import {internationalJournalType} from './documents/internationalJournalTypes'
 import {partnerType} from './documents/partnerType'
 import {productType} from './documents/productType'
 import {researcherType} from './documents/researcherType'
+import {researchType} from './documents/researchType'
 import {homeType} from './singletons/homeType'
 import {settingsType} from './singletons/settingsType'
 
@@ -18,6 +19,7 @@ export const schemaTypes = [
   infrastructureType,
   partnerType,
   productType,
+  researchType,
   researcherType,
 
   internationalJournalType,

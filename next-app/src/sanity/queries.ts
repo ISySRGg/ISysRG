@@ -45,10 +45,6 @@ export const settingsQuery = defineQuery(`
   *[_type == "settings"][0]
 `)
 
-export const postQuery = defineQuery(`
-  *[_type == "post" && slug.current == $slug][0]
-`)
-
 export const allProductsQuery = defineQuery(`
   *[_type == "product" && defined(slug.current)]{
     name,
@@ -100,19 +96,19 @@ export const moreActivitiesQuery = defineQuery(`
 `)
 
 export const allInternationalJournalsQuery = defineQuery(`
-  *[_type == "internationalJournal"]
+  *[_type == "internationalJournal"] | order(date desc, _updatedAt)
 `)
 
 export const allInternationalConferencesQuery = defineQuery(`
-  *[_type == "internationalConference"]
+  *[_type == "internationalConference"] | order(date desc, _updatedAt)
 `)
 
 export const allIntellectualPropertyRightsQuery = defineQuery(`
-  *[_type == "intellectualPropertyRights"]
+  *[_type == "intellectualPropertyRights"] | order(date desc, _updatedAt)
 `)
 
 export const allBooksQuery = defineQuery(`
-  *[_type == "book"]
+  *[_type == "book"] | order(date desc, _updatedAt)
 `)
 
 export const allPublicationCountQuery = defineQuery(`
