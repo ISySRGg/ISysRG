@@ -18,7 +18,7 @@ export default function StudentResearcherFigure({
   image,
 }: Props) {
   return (
-    <figure className="flex grow flex-col items-center overflow-hidden rounded border bg-neutral-50 px-4 py-2 md:flex-row md:gap-6">
+    <figure className="flex h-full grow items-center gap-3 overflow-hidden rounded border bg-neutral-50 px-4 py-2 md:gap-6">
       {image ? (
         <Image
           src={image.src}
@@ -33,7 +33,7 @@ export default function StudentResearcherFigure({
         </div>
       )}
 
-      <figcaption className="flex flex-col text-center md:text-left">
+      <figcaption className="flex flex-col self-start text-left">
         <h2 className="font-bold text-primary">{name}</h2>
         <p className="-mt-1 text-xs font-medium md:text-sm">{division}</p>
         <p className="mt-1 text-xs italic text-muted-foreground md:text-sm">
