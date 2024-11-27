@@ -2225,23 +2225,23 @@
           "of": [
             {
               "type": "string",
-              "value": "head"
+              "value": "Head"
             },
             {
               "type": "string",
-              "value": "secretary"
+              "value": "Secretary"
             },
             {
               "type": "string",
-              "value": "researchAssistant"
+              "value": "Research Assistant"
             },
             {
               "type": "string",
-              "value": "member"
+              "value": "Member"
             },
             {
               "type": "string",
-              "value": "student"
+              "value": "Student"
             }
           ]
         },
@@ -2251,6 +2251,34 @@
         "type": "objectAttribute",
         "value": {
           "type": "number"
+        },
+        "optional": true
+      },
+      "division": {
+        "type": "objectAttribute",
+        "value": {
+          "type": "union",
+          "of": [
+            {
+              "type": "string",
+              "value": "Imaging"
+            },
+            {
+              "type": "string",
+              "value": "Signal"
+            },
+            {
+              "type": "string",
+              "value": "Tabular"
+            }
+          ]
+        },
+        "optional": true
+      },
+      "thesisTitle": {
+        "type": "objectAttribute",
+        "value": {
+          "type": "string"
         },
         "optional": true
       },

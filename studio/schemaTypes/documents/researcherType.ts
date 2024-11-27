@@ -17,11 +17,11 @@ export const researcherType = defineType({
       type: 'string',
       options: {
         list: [
-          {title: 'Head', value: 'head'},
-          {title: 'Secretary', value: 'secretary'},
-          {title: 'Research Assistant', value: 'researchAssistant'},
-          {title: 'Member', value: 'member'},
-          {title: 'Student', value: 'student'},
+          {title: 'Head', value: 'Head'},
+          {title: 'Secretary', value: 'Secretary'},
+          {title: 'Research Assistant', value: 'Research Assistant'},
+          {title: 'Member', value: 'Member'},
+          {title: 'Student', value: 'Student'},
         ],
       },
       validation: (rule) => rule.required(),
@@ -31,13 +31,46 @@ export const researcherType = defineType({
       type: 'number',
       validation: (rule) =>
         rule.custom((value, context) => {
-          if (value == undefined && context.document?.role == 'student') {
+          if (value == undefined && context.document?.role == 'Student') {
             return 'Batch is required for role student'
           }
 
           return true
         }),
-      hidden: ({document}) => document?.role != 'student',
+      hidden: ({document}) => document?.role != 'Student',
+    }),
+    defineField({
+      name: 'division',
+      type: 'string',
+      options: {
+        list: [
+          {title: 'Imaging', value: 'Imaging'},
+          {title: 'Signal', value: 'Signal'},
+          {title: 'Tabular', value: 'Tabular'},
+        ],
+      },
+      validation: (rule) =>
+        rule.custom((value, context) => {
+          if (value == undefined && context.document?.role == 'Student') {
+            return 'Division is required for role student'
+          }
+
+          return true
+        }),
+      hidden: ({document}) => document?.role != 'Student',
+    }),
+    defineField({
+      name: 'thesisTitle',
+      type: 'string',
+      validation: (rule) =>
+        rule.custom((value, context) => {
+          if (value == undefined && context.document?.role == 'Student') {
+            return 'Thesis Title is required for role student'
+          }
+
+          return true
+        }),
+      hidden: ({document}) => document?.role != 'Student',
     }),
     defineField({
       name: 'image',

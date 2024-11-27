@@ -352,8 +352,10 @@ export type Researcher = {
   _updatedAt: string;
   _rev: string;
   name?: string;
-  role?: "head" | "secretary" | "researchAssistant" | "member" | "student";
+  role?: "Head" | "Secretary" | "Research Assistant" | "Member" | "Student";
   batch?: number;
+  division?: "Imaging" | "Signal" | "Tabular";
+  thesisTitle?: string;
   image?: {
     asset?: {
       _ref: string;
@@ -1292,8 +1294,10 @@ export type AllResearchersQueryResult = Array<{
   _updatedAt: string;
   _rev: string;
   name?: string;
-  role?: "head" | "member" | "researchAssistant" | "secretary" | "student";
+  role?: "Head" | "Member" | "Research Assistant" | "Secretary" | "Student";
   batch?: number;
+  division?: "Imaging" | "Signal" | "Tabular";
+  thesisTitle?: string;
   image?: {
     asset?: {
       _ref: string;

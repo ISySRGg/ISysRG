@@ -5,9 +5,10 @@ import { urlForImage } from "@/sanity/utils"
 
 import { Researcher } from "@/types/sanity.types"
 import { researcherRoles } from "@/lib/constants"
-import BasePage from "@/components/base-page"
 import BaseSection from "@/components/base-section"
-import ResearcherFigure from "@/components/researcher-figure"
+import LecturerResearcherFigure from "@/components/lecturer-researcher-figure"
+
+import StudentsSection from "./components/students-section"
 
 const options = { next: { revalidate: 30 } }
 
@@ -23,104 +24,117 @@ export default async function Page() {
     options
   )
 
-  const head = researchers.filter((researcher) => researcher.role == "head")[0]
+  const head = researchers.filter((researcher) => researcher.role == "Head")[0]
 
   const secretary = researchers.filter(
-    (researcher) => researcher.role == "secretary"
+    (researcher) => researcher.role == "Secretary"
   )[0]
 
   const researchAssistants = researchers.filter(
-    (researcher) => researcher.role == "researchAssistant"
+    (researcher) => researcher.role == "Research Assistant"
   )
 
   const members = researchers.filter(
-    (researcher) => researcher.role == "member"
+    (researcher) => researcher.role == "Member"
   )
 
   const students = researchers.filter(
-    (researcher) => researcher.role == "student"
+    (researcher) => researcher.role == "Student"
   )
 
   const groupedStudentsByBatch = students.reduce(
-    (acc, person) => {
-      if (!acc[person.batch || 0]) {
-        acc[person.batch || 0] = []
+    (acc, student) => {
+      if (!acc[student.batch || 0]) {
+        acc[student.batch || 0] = []
       }
-      acc[person.batch || 0].push(person)
+      acc[student.batch || 0].push(student)
       return acc
     },
     {} as Record<number, Researcher[]>
   )
 
   return (
-    <BasePage title="Research Team">
+    <main>
+      <header className="container flex flex-col items-center pt-16 text-center md:pt-32">
+        <p className="text-sm uppercase text-neutral-600 md:text-base">
+          ISys Research Group
+        </p>
+        <h1 className="text-5xl font-medium md:text-7xl">Research Team</h1>
+        <p className="max-w-prose pt-4 text-lg md:pt-8 md:text-2xl">
+          Meet the dedicated members of our research team, organized to foster
+          collaboration and innovation.
+        </p>
+      </header>
       <BaseSection>
         <div className="flex w-full flex-col items-center divide-y">
           <div className="flex w-full flex-row justify-center gap-4 py-4 md:py-8">
-            <ResearcherFigure
+            <LecturerResearcherFigure
               name={head.name || ""}
-              role={researcherRoles.head}
-              image={{ src: urlForImage(head.image)?.url() as string, alt: "" }}
+              image={{
+                src: urlForImage(head.image)?.url() as string,
+                alt: "",
+              }}
+              role={researcherRoles["Head"]}
             />
           </div>
           <div className="flex w-full flex-row justify-center gap-4 py-4 md:py-8">
-            <ResearcherFigure
+            <LecturerResearcherFigure
               name={secretary.name || ""}
-              role={researcherRoles.secretary}
               image={{
                 src: urlForImage(secretary.image)?.url() as string,
                 alt: "",
               }}
+              role={researcherRoles["Secretary"]}
             />
           </div>
-          <div className="flex w-full flex-row flex-wrap justify-center gap-6 py-4 md:py-8">
-            {researchAssistants.map((assistant) => (
-              <ResearcherFigure
-                key={assistant._id}
-                name={assistant.name || ""}
-                role={researcherRoles.researchAssistant}
-                image={{
-                  src: urlForImage(assistant.image)?.url() as string,
-                  alt: "",
-                }}
-              />
-            ))}
-            {members.map((member) => (
-              <ResearcherFigure
-                key={member._id}
-                name={member.name || ""}
-                role={researcherRoles.member}
-                image={{
-                  src: urlForImage(member.image)?.url() as string,
-                  alt: "",
-                }}
-              />
-            ))}
+
+          <div className="flex w-full flex-col items-center py-4 md:py-8">
+            <div>
+              <h2 className="text-2xl font-medium">Members</h2>
+            </div>
+            <div className="flex w-full flex-row flex-wrap justify-center gap-4 py-4 md:py-8">
+              {members.map((member) => (
+                <LecturerResearcherFigure
+                  key={member._id}
+                  name={member.name || ""}
+                  role={researcherRoles["Member"]}
+                  image={{
+                    src: urlForImage(member.image)?.url() as string,
+                    alt: "",
+                  }}
+                  size="sm"
+                />
+              ))}
+            </div>
+          </div>
+          <div className="flex w-full flex-col items-center py-4 md:py-8">
+            <div>
+              <h2 className="text-2xl font-medium">Research Assistants</h2>
+            </div>
+            <div className="flex w-full flex-row flex-wrap justify-center gap-4 py-4 md:py-8">
+              {researchAssistants.map((assistant) => (
+                <LecturerResearcherFigure
+                  key={assistant._id}
+                  name={assistant.name || ""}
+                  role={researcherRoles["Research Assistant"]}
+                  image={{
+                    src: urlForImage(assistant.image)?.url() as string,
+                    alt: "",
+                  }}
+                  size="sm"
+                />
+              ))}
+            </div>
           </div>
           {Object.keys(groupedStudentsByBatch).map((batch) => (
-            <div
+            <StudentsSection
               key={batch}
-              className="flex w-full flex-col items-center py-4 md:py-8"
-            >
-              <div className="rounded bg-neutral-100 px-4 py-1">
-                <p className="text-lg font-medium">Batch {batch} Students</p>
-              </div>
-              <div className="mt-4 flex w-full flex-row flex-wrap justify-center gap-4">
-                {groupedStudentsByBatch[Number(batch)].map((student) => (
-                  <ResearcherFigure
-                    key={student._id}
-                    name={student.name || ""}
-                    image={{
-                      src: urlForImage(student.image)?.url() as string,
-                      alt: "",
-                    }}
-                  />
-                ))}
-              </div>
-            </div>
+              batch={Number(batch)}
+              students={groupedStudentsByBatch[Number(batch)]}
+            />
           ))}
         </div>
       </BaseSection>
-    </BasePage>
+    </main>
   )
 }

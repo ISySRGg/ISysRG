@@ -26,7 +26,7 @@ export default async function Page() {
       subtitle="Publications"
     >
       <BaseSection>
-        <h2 className="pt-10 text-xl font-medium text-primary">
+        <h2 className="text-xl font-medium text-primary">
           List of Intellectual Property Rights
         </h2>
         <PublicationList>
@@ -34,7 +34,7 @@ export default async function Page() {
             <PublicationListItem
               key={ipr._id}
               title={ipr.title || ""}
-              href={"#"}
+              href={ipr.link || "#"}
               description={`${ipr.ipr} - ${ipr.certificateNumber}`}
             />
           ))}

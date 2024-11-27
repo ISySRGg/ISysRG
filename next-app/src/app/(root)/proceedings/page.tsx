@@ -23,7 +23,7 @@ export default async function Page() {
   return (
     <BasePage title="International Conferences" subtitle="Publications">
       <BaseSection>
-        <h2 className="pt-10 text-xl font-medium text-primary">
+        <h2 className="text-xl font-medium text-primary">
           List of International Conferences
         </h2>
         <PublicationList>

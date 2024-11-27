@@ -21,9 +21,7 @@ export default async function Page() {
   return (
     <BasePage title="Books" subtitle="Publications">
       <BaseSection>
-        <h2 className="pt-10 text-xl font-medium text-primary">
-          List of Books
-        </h2>
+        <h2 className="text-xl font-medium text-primary">List of Books</h2>
         <PublicationList>
           {books.map((book) => (
             <PublicationListItem

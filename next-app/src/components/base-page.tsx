@@ -13,7 +13,7 @@ export default function BasePage({ title, subtitle, children }: Props) {
             <p className="uppercase text-muted-foreground">{subtitle}</p>
           )}
           <div className="max-w-prose">
-            <h1 className="text-3xl font-medium text-neutral-700 md:text-6xl">
+            <h1 className="text-3xl font-medium text-neutral-700 md:text-4xl">
               {title}
             </h1>
           </div>

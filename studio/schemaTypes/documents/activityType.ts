@@ -38,6 +38,7 @@ export const activityType = defineType({
   preview: {
     select: {
       title: 'title',
+      subtitle: 'date',
       media: 'image',
     },
   },
