@@ -19,7 +19,7 @@ export default async function Page() {
   const books = await client.fetch<Book[]>(allBooksQuery, {}, options)
 
   return (
-    <BasePage title="Books" subtitle="Publications">
+    <BasePage title="Books" subtitle="Publication">
       <BaseSection>
         <h2 className="text-xl font-medium text-primary">List of Books</h2>
         <PublicationList>

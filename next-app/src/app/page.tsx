@@ -23,9 +23,9 @@ export default function Page() {
             </p>
             <p className="mt-6 max-w-prose text-lg md:text-xl">
               <span className="text-primary">
-                The Intelligent Systems Research Group
+                The Intelligent Systems Research Group (ISysRG)
               </span>{" "}
-              (ISysRG) is based at the Faculty of Computer Science, Universitas
+              is based at the Faculty of Computer Science, Universitas
               Sriwijaya. This research group specializes in the theory and
               application of systems that understand, reason, learn, and act
               intelligently.

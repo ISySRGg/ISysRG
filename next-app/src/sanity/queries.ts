@@ -47,6 +47,7 @@ export const settingsQuery = defineQuery(`
 
 export const allProductsQuery = defineQuery(`
   *[_type == "product" && defined(slug.current)]{
+    _id,
     name,
     slug,
     image,

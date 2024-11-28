@@ -12,7 +12,7 @@ export default function PublicationListItem({
   href,
 }: Props) {
   return (
-    <li className="py-4 md:py-6">
+    <li className="py-4">
       <Link href={href} className="hover:underline" target="_blank">
         <h2 className="max-w-prose text-lg font-semibold md:text-xl">
           {title}

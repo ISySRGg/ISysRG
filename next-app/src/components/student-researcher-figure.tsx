@@ -35,7 +35,9 @@ export default function StudentResearcherFigure({
 
       <figcaption className="flex flex-col self-start text-left">
         <h2 className="font-bold text-primary">{name}</h2>
-        <p className="-mt-1 text-xs font-medium md:text-sm">{division}</p>
+        <p className="-mt-1 text-xs font-medium text-neutral-700 md:text-sm">
+          {division}
+        </p>
         <p className="mt-1 text-xs italic text-muted-foreground md:text-sm">
           {thesisTitle}
         </p>

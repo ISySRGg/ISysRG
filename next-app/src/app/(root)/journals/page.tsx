@@ -23,7 +23,7 @@ export default async function Page() {
   )
 
   return (
-    <BasePage title="International Journals" subtitle="Publications">
+    <BasePage title="International Journals" subtitle="Publication">
       <BaseSection>
         <h2 className="text-xl font-medium text-primary">
           List of International Journals

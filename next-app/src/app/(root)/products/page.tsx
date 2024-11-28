@@ -23,7 +23,7 @@ export default async function Page() {
   return (
     <BasePage title="Products">
       <BaseSection>
-        <div className="mt-10 divide-y">
+        <div className="divide-y">
           {products.map((product) => (
             <div key={product._id} className="py-10">
               <h2 className="text-2xl font-bold text-primary md:text-3xl">

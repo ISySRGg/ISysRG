@@ -21,7 +21,7 @@ export default async function Page() {
   >(allInternationalConferencesQuery, {}, options)
 
   return (
-    <BasePage title="International Conferences" subtitle="Publications">
+    <BasePage title="International Conferences" subtitle="Publication">
       <BaseSection>
         <h2 className="text-xl font-medium text-primary">
           List of International Conferences

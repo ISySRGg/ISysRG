@@ -25,9 +25,7 @@ export default async function Page() {
   return (
     <BasePage title="Datasets">
       <BaseSection>
-        <h2 className="pt-10 text-xl font-medium text-primary">
-          List of Datsets
-        </h2>
+        <h2 className="text-xl font-medium text-primary">List of Datsets</h2>
         <ul className="mt-4 flex flex-col gap-2">
           {datasets.map((dataset) => (
             <li key={dataset._id}>

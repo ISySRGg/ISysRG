@@ -21,10 +21,7 @@ export default async function Page() {
   >(allIntellectualPropertyRightsQuery, {}, options)
 
   return (
-    <BasePage
-      title="Intellectual Property Rights (IPR)"
-      subtitle="Publications"
-    >
+    <BasePage title="Intellectual Property Rights (IPR)" subtitle="Publication">
       <BaseSection>
         <h2 className="text-xl font-medium text-primary">
           List of Intellectual Property Rights

@@ -24,7 +24,7 @@ export default function LecturerResearcherFigure({
       className={cn(
         size === "lg"
           ? "max-w-xl flex-col items-center gap-4 p-2 md:flex-row"
-          : "max-w-xs flex-col items-center gap-2 px-4 py-2 md:items-start",
+          : "flex-col items-center gap-2 px-4 py-2 sm:max-w-xs md:items-start",
         "flex w-full grow overflow-hidden rounded border bg-neutral-50"
       )}
     >
@@ -59,7 +59,7 @@ export default function LecturerResearcherFigure({
         <p
           className={cn(
             size === "lg" ? "text-xs md:text-base" : "text-xs md:text-sm",
-            "-mt-1 font-medium"
+            "-mt-1 font-medium text-neutral-700"
           )}
         >
           {role}

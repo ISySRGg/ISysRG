@@ -72,7 +72,7 @@ export default async function Page({ params }: Props) {
     <main>
       <header className="container flex flex-col items-center pt-16 text-center md:pt-32">
         <p className="text-sm uppercase text-neutral-600 md:text-base">
-          Poduct
+          Product
         </p>
         <h1 className="text-5xl font-medium md:text-7xl">{product.name}</h1>
         <p className="max-w-prose pt-4 text-lg md:pt-8 md:text-2xl">
