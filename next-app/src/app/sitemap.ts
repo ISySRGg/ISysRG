@@ -5,14 +5,10 @@ import { allDocumentSlugs } from "@/sanity/queries"
 import { AllDocumentSlugsResult } from "@/types/sanity.types"
 import { baseUrl } from "@/lib/utils"
 
-// One day
-const options = { next: { revalidate: 86400 } }
-
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const documentSlugs = await client.fetch<AllDocumentSlugsResult>(
     allDocumentSlugs,
-    {},
-    options
+    {}
   )
 
   return [
