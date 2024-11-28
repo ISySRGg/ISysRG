@@ -19,7 +19,7 @@ export default function NotFound() {
         <h1 className="font-medium text-primary sm:text-lg">404 error</h1>
         <p className="text-3xl sm:text-5xl">Page not found＞﹏＜</p>
         <article className="prose prose-sm sm:prose-base">
-          <p>Sorry, the page you are looking for doesn&apos;t exist.</p>
+          <p>Sorry, the page you are looking doesn&apos;t exist.</p>
         </article>
         <div className="mt-10 flex flex-col gap-4 sm:flex-row">
           <Button variant="secondary" onClick={() => router.back()}>
