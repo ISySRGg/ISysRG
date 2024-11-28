@@ -19,8 +19,11 @@ export const researchType = defineType({
       validation: (rule) => rule.required(),
     }),
     defineField({
-      name: 'date',
+      name: 'year',
       type: 'date',
+      options: {
+        dateFormat: 'YYYY',
+      },
       initialValue: () => new Date().toISOString(),
       validation: (rule) => rule.required(),
     }),
@@ -29,16 +32,11 @@ export const researchType = defineType({
       type: 'image',
       validation: (rule) => rule.required(),
     }),
-    defineField({
-      name: 'body',
-      type: 'array',
-      of: [{type: 'block'}, {type: 'image'}],
-    }),
   ],
   preview: {
     select: {
       title: 'title',
-      subtitle: 'date',
+      subtitle: 'year',
       media: 'image',
     },
   },
