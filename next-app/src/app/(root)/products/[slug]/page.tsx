@@ -60,6 +60,20 @@ export default async function Page({ params }: Props) {
     name: product.name,
     description: product.description,
     image: urlForImage(product.image)?.url() as string,
+    brand: {
+      "@type": "Organization",
+      "@id": "https://isysrg.com",
+      name: "ISys Research Group",
+      logo: {
+        "@type": "ImageObject",
+        "@id": "https://isysrg.com/isysrg.png",
+        url: "https://isysrg.com/isysrg.png",
+        width: "188",
+        height: "206",
+      },
+      url: "https://isysrg.com",
+    },
+    mainEntityOfPage: `https://isysrg.com/products/${product.slug?.current}`,
   }
 
   const portableTextComponents = {
