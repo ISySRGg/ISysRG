@@ -50,7 +50,7 @@ export default async function Page(props: Props) {
     "@type": "BlogPosting",
     headline: activity.title,
     name: activity.title,
-    description: toPlainText(activity.body || []).substring(0, 120),
+    description: toPlainText(activity.body || []).substring(0, 240),
     datePublished: activity._createdAt,
     dateModified: activity._updatedAt,
     author: {
