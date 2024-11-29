@@ -7,7 +7,6 @@ import * as demo from "@/sanity/demo"
 import { settingsQuery } from "@/sanity/queries"
 import { resolveOpenGraphImage } from "@/sanity/utils"
 import { Analytics } from "@vercel/analytics/react"
-import { toPlainText } from "next-sanity"
 
 import { Settings } from "@/types/sanity.types"
 import { geistMono, geistSans } from "@/lib/fonts"
@@ -23,7 +22,8 @@ export async function generateMetadata(): Promise<Metadata> {
   const settings = await client.fetch<Settings>(settingsQuery, {}, options)
 
   const title = settings?.title || demo.title
-  const description = settings?.description || demo.description
+  const description =
+    "Welcome to the Intelligent Systems Research Group (ISysRG). We are dedicated to advancing the theory and application of intelligent systems. Explore our research, activities, and contributions to the global scientific community."
 
   const ogImage = resolveOpenGraphImage(settings?.ogImage)
 
@@ -39,10 +39,10 @@ export async function generateMetadata(): Promise<Metadata> {
   return {
     metadataBase,
     title: {
-      template: `%s - ${title}`,
+      template: `%s | ${title}`,
       default: title,
     },
-    description: toPlainText(description),
+    description: description,
     openGraph: {
       images: ogImage ? [ogImage] : [],
     },
