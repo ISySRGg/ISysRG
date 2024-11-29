@@ -69,4 +69,20 @@
   :root:has(.no-doc-scroll) {
     overflow: hidden;
   }
+
+  ::-webkit-scrollbar {
+    @apply w-2.5;
+  }
+
+  ::-webkit-scrollbar-track {
+    @apply rounded-lg bg-white;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    @apply rounded bg-neutral-300;
+  }
+
+  ::-webkit-scrollbar-thumb:hover {
+    @apply bg-neutral-300/90;
+  }
 }

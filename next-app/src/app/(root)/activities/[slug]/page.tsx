@@ -11,6 +11,8 @@ import { Activity, MoreActivitiesQueryResult } from "@/types/sanity.types"
 import { getActivityJsonLd } from "@/lib/json-ld"
 import { formatDate, truncateString } from "@/lib/utils"
 
+import Menu from "./components/menu"
+
 const options = { next: { revalidate: 30 } }
 
 interface Props {
@@ -92,12 +94,15 @@ export default async function Page(props: Props) {
           <h1 className="mt-6 text-xl font-bold md:mt-10 md:text-2xl lg:text-3xl xl:text-4xl">
             {activity.title}
           </h1>
-          <time
-            dateTime={activity._createdAt || ""}
-            className="pt-2 text-sm font-medium text-primary md:pt-4 md:text-lg"
-          >
-            Posted {formatDate(new Date(activity._createdAt || 0))}
-          </time>
+          <div className="flex items-center justify-between pt-2 md:pt-4">
+            <time
+              dateTime={activity._createdAt || ""}
+              className="text-sm font-medium text-primary md:text-lg"
+            >
+              Posted {formatDate(new Date(activity._createdAt || 0))}
+            </time>
+            <Menu />
+          </div>
         </div>
       </header>
       <section className="container grid pt-6 md:pt-10 lg:grid-cols-3">

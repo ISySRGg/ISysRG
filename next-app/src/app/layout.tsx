@@ -11,6 +11,7 @@ import { Analytics } from "@vercel/analytics/react"
 import { Settings } from "@/types/sanity.types"
 import { geistMono, geistSans } from "@/lib/fonts"
 import { cn } from "@/lib/utils"
+import { Toaster } from "@/components/ui/sonner"
 import Footer from "@/components/layout/footer"
 import { TailwindIndicator } from "@/components/tailwind-indicator"
 
@@ -68,6 +69,7 @@ export default function RootLayout({
           <Footer />
         </Providers>
 
+        <Toaster position="bottom-center" />
         <Analytics />
         <TailwindIndicator />
       </body>
