@@ -11,7 +11,6 @@ export const tw = (strings: TemplateStringsArray, ...values: any[]) =>
 
 export function formatDate(date: Date): string {
   const options: Intl.DateTimeFormatOptions = {
-    weekday: "long",
     year: "numeric",
     month: "long",
     day: "numeric",
