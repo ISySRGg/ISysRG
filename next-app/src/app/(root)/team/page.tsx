@@ -13,8 +13,9 @@ import StudentsSection from "./components/students-section"
 const options = { next: { revalidate: 30 } }
 
 export const metadata: Metadata = {
-  title: "Team",
-  description: "Meet our team on intelligent systems.",
+  title: "Research Team",
+  description:
+    "Meet the dedicated members of our research team, led by Prof. Ir. Siti Nurmaini, M.T., Ph.D. as Head of the team, and organized to foster collaboration and innovation.",
 }
 
 export default async function Page() {

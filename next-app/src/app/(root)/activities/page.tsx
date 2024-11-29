@@ -15,7 +15,8 @@ const options = { next: { revalidate: 30 } }
 
 export const metadata: Metadata = {
   title: "Activities",
-  description: "Explore our latest activities on intelligent systems.",
+  description:
+    "Stay updated with our latest events, workshops, and collaborations. Discover how we engage with the academic and professional community to advance research and applications in intelligent systems.",
 }
 
 export default async function Page() {

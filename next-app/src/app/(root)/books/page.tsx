@@ -12,7 +12,8 @@ const options = { next: { revalidate: 30 } }
 
 export const metadata: Metadata = {
   title: "Books",
-  description: "Explore our latest books on intelligent systems.",
+  description:
+    "Delve into our authored and co-authored books, covering diverse topics in intelligent systems, machine learning, and computational sciences, aimed at advancing academic and industry knowledge.",
 }
 
 export default async function Page() {

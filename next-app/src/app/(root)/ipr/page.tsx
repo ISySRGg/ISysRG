@@ -12,7 +12,8 @@ const options = { next: { revalidate: 30 } }
 
 export const metadata: Metadata = {
   title: "Intellectual Property Rights",
-  description: "Explore our IPR on intelligent systems.",
+  description:
+    "Browse our portfolio of registered intellectual properties, including patents, copyrights, and software innovations, demonstrating our commitment to impactful and applicable research outcomes.",
 }
 
 export default async function Page() {

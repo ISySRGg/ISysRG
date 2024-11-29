@@ -12,7 +12,8 @@ const options = { next: { revalidate: 30 } }
 
 export const metadata: Metadata = {
   title: "Journals",
-  description: "Explore our latest journal articles on intelligent systems.",
+  description:
+    "Explore our contributions to reputable international journals, showcasing groundbreaking research in intelligent systems, medical image processing, pattern recognition, and computational techniques.",
 }
 
 export default async function Page() {

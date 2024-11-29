@@ -15,6 +15,8 @@ const options = { next: { revalidate: 30 } }
 
 export const metadata: Metadata = {
   title: "Products",
+  description:
+    "Explore our AI powered products for medical diagnostic confidence.",
 }
 
 export default async function Page() {

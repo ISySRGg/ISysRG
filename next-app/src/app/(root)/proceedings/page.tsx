@@ -12,7 +12,8 @@ const options = { next: { revalidate: 30 } }
 
 export const metadata: Metadata = {
   title: "Proceedings",
-  description: "Explore our latest proceedings on intelligent systems.",
+  description:
+    "Discover our participation in global conferences, featuring published proceedings that highlight innovative research findings and collaborative advancements in intelligent system applications.",
 }
 
 export default async function Page() {
