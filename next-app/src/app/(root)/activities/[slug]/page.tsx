@@ -64,7 +64,7 @@ export default async function Page(props: Props) {
           alt=""
           width={400}
           height={400}
-          className="w-full object-cover"
+          className="w-full rounded object-cover"
         />
       ),
     },
@@ -78,29 +78,29 @@ export default async function Page(props: Props) {
           __html: JSON.stringify(getActivityJsonLd(activity)),
         }}
       />
-      <header className="pt-10 md:pt-20">
-        <div className="container text-center">
-          <time
-            dateTime={activity._createdAt || ""}
-            className="font-medium text-primary md:text-lg"
-          >
-            Posted {formatDate(new Date(activity._createdAt || 0))}
-          </time>
-          <h1 className="mt-4 text-xl font-bold md:text-2xl lg:text-3xl xl:text-4xl">
-            {activity.title}
-          </h1>
-        </div>
+      <header className="sm:pt-10 md:pt-20">
         <div className="sm:px-4">
           <Image
             src={urlForImage(activity.image)?.url() as string}
             alt={activity.title || ""}
             width={1600}
             height={900}
-            className="mx-auto mt-10 aspect-video w-full max-w-6xl object-cover sm:aspect-[20/9] sm:rounded"
+            className="mx-auto aspect-video w-full max-w-6xl object-cover sm:aspect-[20/9] sm:rounded"
           />
         </div>
+        <div className="container flex flex-col border-b pb-4">
+          <h1 className="mt-6 text-xl font-bold md:mt-10 md:text-2xl lg:text-3xl xl:text-4xl">
+            {activity.title}
+          </h1>
+          <time
+            dateTime={activity._createdAt || ""}
+            className="pt-2 text-sm font-medium text-primary md:pt-4 md:text-lg"
+          >
+            Posted {formatDate(new Date(activity._createdAt || 0))}
+          </time>
+        </div>
       </header>
-      <section className="container grid pt-10 lg:grid-cols-3">
+      <section className="container grid pt-6 md:pt-10 lg:grid-cols-3">
         <div className="col-span-2">
           {activity.body && (
             <article className="prose md:prose-lg">
@@ -118,7 +118,7 @@ export default async function Page(props: Props) {
 
           <ul className="flex flex-col divide-y">
             {moreActivities.map((activity) => (
-              <li key={activity._id} className="py-4 md:py-5">
+              <li key={activity._id} className="py-3 md:py-4">
                 <Link href={`/activities/${activity.slug?.current}`}>
                   <p className="font-medium hover:underline md:text-lg">
                     {truncateString(activity.title || "", 140)}
