@@ -6,9 +6,9 @@ import { client } from "@/sanity/client"
 import { activityQuery, moreActivitiesQuery } from "@/sanity/queries"
 import { resolveOpenGraphImage, urlForImage } from "@/sanity/utils"
 import { PortableText, toPlainText } from "next-sanity"
-import { NewsArticle as NewsArticleSchema, WithContext } from "schema-dts"
 
 import { Activity, MoreActivitiesQueryResult } from "@/types/sanity.types"
+import { getActivityJsonLd } from "@/lib/json-ld"
 import { formatDate, truncateString } from "@/lib/utils"
 
 const options = { next: { revalidate: 30 } }
@@ -45,53 +45,6 @@ export default async function Page(props: Props) {
   const params = await props.params
   const activity = await client.fetch<Activity>(activityQuery, params, options)
 
-  const jsonLd: WithContext<NewsArticleSchema> = {
-    "@context": "https://schema.org",
-    "@type": "NewsArticle",
-    headline: activity.title,
-    name: activity.title,
-    description: truncateString(toPlainText(activity.body || []), 240),
-    dateCreated: activity._createdAt,
-    dateModified: activity._updatedAt,
-    datePublished: activity._createdAt,
-    author: {
-      "@type": "Organization",
-      "@id": "https://isysrg.com",
-      name: "ISys Research Group",
-      logo: {
-        "@type": "ImageObject",
-        "@id": "https://isysrg.com/isysrg.png",
-        url: "https://isysrg.com/isysrg.png",
-        width: "188",
-        height: "206",
-      },
-      url: "https://isysrg.com",
-    },
-    publisher: {
-      "@type": "Organization",
-      "@id": "https://isysrg.com",
-      name: "ISys Research Group",
-      logo: {
-        "@type": "ImageObject",
-        "@id": "https://isysrg.com/isysrg.png",
-        url: "https://isysrg.com/isysrg.png",
-        width: "188",
-        height: "206",
-      },
-      url: "https://isysrg.com",
-    },
-    image: {
-      "@type": "ImageObject",
-      "@id": urlForImage(activity.image)?.url() as string,
-      url: urlForImage(activity.image)?.url() as string,
-      width: "800",
-      height: "450",
-    },
-    url: `https://isysrg.com/activities/${activity.slug?.current}`,
-    mainEntityOfPage: `https://isysrg.com/activities/${activity.slug?.current}`,
-    wordCount: toPlainText(activity.body || []).length,
-  }
-
   const moreActivities = await client.fetch<MoreActivitiesQueryResult>(
     moreActivitiesQuery,
     { skip: activity._id, limit: 4 },
@@ -121,15 +74,17 @@ export default async function Page(props: Props) {
     <main>
       <script
         type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify(getActivityJsonLd(activity)),
+        }}
       />
       <header className="pt-10 md:pt-20">
         <div className="container text-center">
           <time
-            dateTime={activity.date || ""}
+            dateTime={activity._createdAt || ""}
             className="font-medium text-primary md:text-lg"
           >
-            Posted {formatDate(new Date(activity.date || 0))}
+            Posted {formatDate(new Date(activity._createdAt || 0))}
           </time>
           <h1 className="mt-4 text-xl font-bold md:text-2xl lg:text-3xl xl:text-4xl">
             {activity.title}
