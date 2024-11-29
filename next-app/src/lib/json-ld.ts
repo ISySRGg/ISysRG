@@ -20,7 +20,7 @@ export const organizationJsonLd: WithContext<Organization> = {
   "@context": "https://schema.org",
   "@type": "Organization",
   url: BASE_URL,
-  logo: `${URL}/isysrg.png`,
+  logo: `${BASE_URL}/isysrg.png`,
   name: "Intelligent Systems Research Group",
   description:
     "The Intelligent Systems Research Group (ISysRG) is based at the Faculty of Computer Science, Universitas Sriwijaya. This research group specializes in the theory and application of systems that understand, reason, learn, and act intelligently.",
