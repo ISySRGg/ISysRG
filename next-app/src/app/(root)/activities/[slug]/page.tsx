@@ -6,7 +6,7 @@ import { client } from "@/sanity/client"
 import { activityQuery, moreActivitiesQuery } from "@/sanity/queries"
 import { resolveOpenGraphImage, urlForImage } from "@/sanity/utils"
 import { PortableText, toPlainText } from "next-sanity"
-import { BlogPosting, WithContext } from "schema-dts"
+import { NewsArticle as NewsArticleSchema, WithContext } from "schema-dts"
 
 import { Activity, MoreActivitiesQueryResult } from "@/types/sanity.types"
 import { formatDate, truncateString } from "@/lib/utils"
@@ -45,14 +45,15 @@ export default async function Page(props: Props) {
   const params = await props.params
   const activity = await client.fetch<Activity>(activityQuery, params, options)
 
-  const jsonLd: WithContext<BlogPosting> = {
+  const jsonLd: WithContext<NewsArticleSchema> = {
     "@context": "https://schema.org",
-    "@type": "BlogPosting",
+    "@type": "NewsArticle",
     headline: activity.title,
     name: activity.title,
-    description: toPlainText(activity.body || []).substring(0, 240),
-    datePublished: activity._createdAt,
+    description: truncateString(toPlainText(activity.body || []), 240),
+    dateCreated: activity._createdAt,
     dateModified: activity._updatedAt,
+    datePublished: activity._createdAt,
     author: {
       "@type": "Organization",
       "@id": "https://isysrg.com",
@@ -64,6 +65,7 @@ export default async function Page(props: Props) {
         width: "188",
         height: "206",
       },
+      url: "https://isysrg.com",
     },
     publisher: {
       "@type": "Organization",
@@ -76,6 +78,7 @@ export default async function Page(props: Props) {
         width: "188",
         height: "206",
       },
+      url: "https://isysrg.com",
     },
     image: {
       "@type": "ImageObject",
@@ -85,6 +88,7 @@ export default async function Page(props: Props) {
       height: "450",
     },
     url: `https://isysrg.com/activities/${activity.slug?.current}`,
+    mainEntityOfPage: `https://isysrg.com/activities/${activity.slug?.current}`,
     wordCount: toPlainText(activity.body || []).length,
   }
 
