@@ -53,6 +53,18 @@ export default async function Page(props: Props) {
     description: toPlainText(activity.body || []).substring(0, 120),
     datePublished: activity._createdAt,
     dateModified: activity._updatedAt,
+    author: {
+      "@type": "Organization",
+      "@id": "https://isysrg.com",
+      name: "ISys Research Group",
+      logo: {
+        "@type": "ImageObject",
+        "@id": "https://isysrg.com/isysrg.png",
+        url: "https://isysrg.com/isysrg.png",
+        width: "188",
+        height: "206",
+      },
+    },
     publisher: {
       "@type": "Organization",
       "@id": "https://isysrg.com",
