@@ -6,6 +6,7 @@ import { productQuery } from "@/sanity/queries"
 import { resolveOpenGraphImage, urlForImage } from "@/sanity/utils"
 import { CircleCheck } from "lucide-react"
 import { PortableText } from "next-sanity"
+import { Product as ProductSchema, WithContext } from "schema-dts"
 
 import { Product } from "@/types/sanity.types"
 import BaseSection from "@/components/base-section"
@@ -53,6 +54,14 @@ export default async function Page({ params }: Props) {
     return notFound()
   }
 
+  const jsonLd: WithContext<ProductSchema> = {
+    "@context": "https://schema.org",
+    "@type": "Product",
+    name: product.name,
+    description: product.description,
+    image: urlForImage(product.image)?.url() as string,
+  }
+
   const portableTextComponents = {
     types: {
       // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -70,6 +79,10 @@ export default async function Page({ params }: Props) {
 
   return (
     <main>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+      />
       <header className="container flex flex-col items-center pt-16 text-center md:pt-32">
         <p className="text-sm uppercase text-neutral-600 md:text-base">
           Product
