@@ -10,7 +10,7 @@ import { PortableText } from "next-sanity"
 import { Product } from "@/types/sanity.types"
 import BaseSection from "@/components/base-section"
 
-import StatisticsSection from "./components/statistics-section"
+// import StatisticsSection from "./components/statistics-section"
 
 const options = { next: { revalidate: 30 } }
 
@@ -115,7 +115,7 @@ export default async function Page({ params }: Props) {
           ))}
         </ul>
       </BaseSection>
-      <StatisticsSection />
+      {/* <StatisticsSection /> */}
       <BaseSection title="Details">
         <div className="gap-8 md:columns-2 md:pt-4">
           <article className="prose prose-base">
