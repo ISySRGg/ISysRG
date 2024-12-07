@@ -1,4 +1,6 @@
+import { poppins } from "@/lib/fonts"
 import { organizationJsonLd, webSiteJsonLd } from "@/lib/json-ld"
+import { cn } from "@/lib/utils"
 import { Button } from "@/components/ui/button"
 import Header from "@/components/layout/header"
 import Slogan from "@/components/slogan"
@@ -27,7 +29,12 @@ export default function Page() {
 
           <hgroup className="container flex h-full flex-col justify-center sm:py-28">
             <h1 hidden>ISys Research Group</h1>
-            <p className="h-[1lh] text-4xl font-medium sm:text-7xl lg:text-8xl 2xl:text-9xl">
+            <p
+              className={cn(
+                poppins.className,
+                "h-[1lh] text-4xl font-medium sm:text-7xl lg:text-8xl"
+              )}
+            >
               <Slogan />
             </p>
             <p className="mt-6 max-w-prose text-lg md:text-xl">

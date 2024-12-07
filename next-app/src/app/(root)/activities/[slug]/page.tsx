@@ -8,8 +8,9 @@ import { resolveOpenGraphImage, urlForImage } from "@/sanity/utils"
 import { PortableText, toPlainText } from "next-sanity"
 
 import { Activity, MoreActivitiesQueryResult } from "@/types/sanity.types"
+import { poppins } from "@/lib/fonts"
 import { getActivityJsonLd } from "@/lib/json-ld"
-import { formatDate, truncateString } from "@/lib/utils"
+import { cn, formatDate, truncateString } from "@/lib/utils"
 
 import Menu from "./components/menu"
 
@@ -91,7 +92,12 @@ export default async function Page(props: Props) {
           />
         </div>
         <div className="container flex flex-col border-b pb-4">
-          <h1 className="mt-6 text-xl font-bold md:mt-10 md:text-2xl lg:text-3xl xl:text-4xl">
+          <h1
+            className={cn(
+              poppins.className,
+              "mt-6 text-xl font-semibold md:mt-10 md:text-2xl lg:text-3xl xl:text-4xl"
+            )}
+          >
             {activity.title}
           </h1>
           <div className="flex items-center justify-between pt-2 md:pt-4">
@@ -117,7 +123,12 @@ export default async function Page(props: Props) {
           )}
         </div>
         <aside>
-          <p className="text-xl font-medium text-primary md:text-2xl">
+          <p
+            className={cn(
+              poppins.className,
+              "text-xl font-medium text-primary md:text-2xl"
+            )}
+          >
             More Activities
           </p>
 

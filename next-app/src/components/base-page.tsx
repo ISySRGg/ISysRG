@@ -1,3 +1,6 @@
+import { poppins } from "@/lib/fonts"
+import { cn } from "@/lib/utils"
+
 interface Props {
   title: string
   subtitle?: string
@@ -7,7 +10,12 @@ interface Props {
 export default function BasePage({ title, subtitle, children }: Props) {
   return (
     <main className="min-h-[calc(100dvh-10rem)]">
-      <header className="mb-1 border-b-2 border-primary/30 pt-8 md:pb-2 md:pt-14">
+      <header
+        className={cn(
+          poppins.className,
+          "mb-1 border-b-2 border-primary/30 pt-8 md:pb-2 md:pt-14"
+        )}
+      >
         <div className="container">
           {subtitle && (
             <p className="uppercase text-muted-foreground">{subtitle}</p>
