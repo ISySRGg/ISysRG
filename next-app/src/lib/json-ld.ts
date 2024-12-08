@@ -12,7 +12,7 @@ export const webSiteJsonLd: WithContext<WebSite> = {
   "@context": "https://schema.org",
   "@type": "WebSite",
   name: "ISys Research Group",
-  alternateName: ["ISySRG", "Intelligent Systems Research Group"],
+  alternateName: ["ISysRG", "Intelligent Systems Research Group"],
   url: BASE_URL,
 }
 
