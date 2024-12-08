@@ -10,6 +10,7 @@ const headerAlignClassNames = {
 }
 
 interface Props {
+  id?: string
   title?: string
   subtitle?: string
   children?: React.ReactNode
@@ -18,6 +19,7 @@ interface Props {
 }
 
 export default function BaseSection({
+  id,
   title,
   subtitle,
   children,
@@ -25,7 +27,7 @@ export default function BaseSection({
   headerAlign = "start",
 }: Props) {
   return (
-    <section className={cn("py-14 lg:py-24", className)}>
+    <section id={id} className={cn("py-14 lg:py-24", className)}>
       <div className="container">
         <hgroup
           className={cn(poppins.className, headerAlignClassNames[headerAlign])}

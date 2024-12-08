@@ -1,3 +1,5 @@
+import Link from "next/link"
+
 import { poppins } from "@/lib/fonts"
 import { organizationJsonLd, webSiteJsonLd } from "@/lib/json-ld"
 import { cn } from "@/lib/utils"
@@ -48,9 +50,11 @@ export default function Page() {
             </p>
 
             <div className="mt-10 flex flex-col gap-4 sm:flex-row">
-              <Button size="xl">Our Services</Button>
-              <Button size="xl" variant="secondary">
-                View Projects
+              <Button size="xl" asChild>
+                <Link href="#about">About Us</Link>
+              </Button>
+              <Button size="xl" variant="secondary" asChild>
+                <Link href="#products">View Products</Link>
               </Button>
             </div>
           </hgroup>

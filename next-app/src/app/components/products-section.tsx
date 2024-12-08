@@ -25,6 +25,7 @@ export default async function ProductsSection() {
 
   return (
     <BaseSection
+      id="products"
       title={productsSection?.title}
       subtitle={productsSection?.subtitle}
       headerAlign="center"

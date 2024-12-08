@@ -23,6 +23,7 @@ export default async function AboutSection() {
 
   return (
     <BaseSection
+      id="about"
       title={aboutSection?.title}
       subtitle={aboutSection?.subtitle}
       headerAlign="center"
