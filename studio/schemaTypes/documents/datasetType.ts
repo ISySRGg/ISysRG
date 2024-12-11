@@ -33,6 +33,33 @@ export const datasetType = defineType({
       type: 'text',
     }),
     defineField({
+      name: 'type',
+      type: 'string',
+      options: {
+        list: [
+          {title: 'Tabular', value: 'Tabular'},
+          {title: 'Graph', value: 'Graph'},
+          {title: 'Text', value: 'Text'},
+          {title: 'Image', value: 'Image'},
+          {title: 'Sound', value: 'Sound'},
+          {title: 'Video', value: 'Video'},
+        ],
+      },
+      validation: (rule) => rule.required(),
+    }),
+    defineField({
+      name: 'origin',
+      type: 'string',
+    }),
+    defineField({
+      name: 'license',
+      type: 'string',
+    }),
+    defineField({
+      name: 'numberOfRecords',
+      type: 'number',
+    }),
+    defineField({
       name: 'link',
       type: 'url',
     }),
