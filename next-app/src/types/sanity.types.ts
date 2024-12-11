@@ -377,7 +377,7 @@ export type Research = {
   _rev: string;
   title?: string;
   slug?: Slug;
-  date?: string;
+  year?: string;
   image?: {
     asset?: {
       _ref: string;
@@ -389,35 +389,6 @@ export type Research = {
     crop?: SanityImageCrop;
     _type: "image";
   };
-  body?: Array<{
-    children?: Array<{
-      marks?: Array<string>;
-      text?: string;
-      _type: "span";
-      _key: string;
-    }>;
-    style?: "normal" | "h1" | "h2" | "h3" | "h4" | "h5" | "h6" | "blockquote";
-    listItem?: "bullet" | "number";
-    markDefs?: Array<{
-      href?: string;
-      _type: "link";
-      _key: string;
-    }>;
-    level?: number;
-    _type: "block";
-    _key: string;
-  } | {
-    asset?: {
-      _ref: string;
-      _type: "reference";
-      _weak?: boolean;
-      [internalGroqTypeReferenceTo]?: "sanity.imageAsset";
-    };
-    hotspot?: SanityImageHotspot;
-    crop?: SanityImageCrop;
-    _type: "image";
-    _key: string;
-  }>;
 };
 
 export type Product = {
@@ -542,6 +513,10 @@ export type Dataset = {
   }>;
   shortDescription?: string;
   description?: string;
+  type?: "Tabular" | "Graph" | "Text" | "Image" | "Sound" | "Video";
+  origin?: string;
+  license?: string;
+  numberOfRecords?: number;
   link?: string;
 };
 
@@ -771,6 +746,10 @@ export type DatasetsSectionQueryResult = {
       }>;
       shortDescription?: string;
       description?: string;
+      type?: "Graph" | "Image" | "Sound" | "Tabular" | "Text" | "Video";
+      origin?: string;
+      license?: string;
+      numberOfRecords?: number;
       link?: string;
     }> | null;
   } | null;
@@ -980,8 +959,9 @@ export type SettingsQueryResult = {
   };
 } | null;
 // Variable: allProductsQuery
-// Query: *[_type == "product" && defined(slug.current)]{    name,    slug,    image,    shortDescription,    description,    features  }
+// Query: *[_type == "product" && defined(slug.current)]{    _id,    name,    slug,    image,    shortDescription,    description,    features  }
 export type AllProductsQueryResult = Array<{
+  _id: string;
   name: string | null;
   slug: Slug | null;
   image: {
@@ -1078,6 +1058,10 @@ export type AllDatasetsQueryResult = Array<{
   }>;
   shortDescription?: string;
   description?: string;
+  type?: "Graph" | "Image" | "Sound" | "Tabular" | "Text" | "Video";
+  origin?: string;
+  license?: string;
+  numberOfRecords?: number;
   link?: string;
 }>;
 // Variable: datasetQuery
@@ -1104,6 +1088,10 @@ export type DatasetQueryResult = {
   }>;
   shortDescription?: string;
   description?: string;
+  type?: "Graph" | "Image" | "Sound" | "Tabular" | "Text" | "Video";
+  origin?: string;
+  license?: string;
+  numberOfRecords?: number;
   link?: string;
 } | null;
 // Variable: allActivitiesQuery
@@ -1435,7 +1423,7 @@ declare module "@sanity/client" {
     "\n  *[_type == \"home\"][0]{datasetsSection{featuredDatasets[]->{\n    name,\n    slug,\n    images,\n    shortDescription,\n    description\n  }}}\n": FeaturedDatasetsQueryResult;
     "\n  *[_type == \"home\"][0]{productsSection{featuredProducts[]->{\n    name,\n    slug,\n    image,\n    shortDescription,\n    description,\n    features\n  }}}\n": FeaturedProductsQueryResult;
     "\n  *[_type == \"settings\"][0]\n": SettingsQueryResult;
-    "\n  *[_type == \"product\" && defined(slug.current)]{\n    name,\n    slug,\n    image,\n    shortDescription,\n    description,\n    features\n  }\n": AllProductsQueryResult;
+    "\n  *[_type == \"product\" && defined(slug.current)]{\n    _id,\n    name,\n    slug,\n    image,\n    shortDescription,\n    description,\n    features\n  }\n": AllProductsQueryResult;
     "\n  *[_type == \"product\" && slug.current == $slug][0]\n": ProductQueryResult;
     "\n  *[_type == \"dataset\" && defined(slug.current)]\n": AllDatasetsQueryResult;
     "\n  *[_type == \"dataset\" && slug.current == $slug][0]\n": DatasetQueryResult;

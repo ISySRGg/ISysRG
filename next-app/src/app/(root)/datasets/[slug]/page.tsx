@@ -57,7 +57,7 @@ export default async function Page({ params }: Props) {
   return (
     <BasePage title={dataset.name || ""} subtitle="Dataset">
       <BaseSection>
-        <div className="flex flex-row flex-wrap gap-4">
+        <div className="flex flex-row flex-wrap gap-4 border-b pb-10">
           {dataset.images?.map((image) => (
             <Image
               key={image._key}
@@ -69,14 +69,40 @@ export default async function Page({ params }: Props) {
             />
           ))}
         </div>
-        <div>
-          <h2 className="pt-10 text-xl font-medium text-primary">
-            Description
-          </h2>
-          <article className="prose">
-            <p>{dataset.description || dataset.shortDescription}</p>
-          </article>
-        </div>
+        <ul className="grid gap-4 border-b py-10 md:grid-cols-2">
+          <li>
+            <h2 className="text-xl font-medium text-primary">Description</h2>
+            <article className="prose">
+              <p>{dataset.description || dataset.shortDescription}</p>
+            </article>
+          </li>
+          <li>
+            <h2 className="text-xl font-medium text-primary">Type</h2>
+            <article className="prose">
+              <p>{dataset.type || "-"}</p>
+            </article>
+          </li>
+          <li>
+            <h2 className="text-xl font-medium text-primary">Origin</h2>
+            <article className="prose">
+              <p>{dataset.origin || "-"}</p>
+            </article>
+          </li>
+          <li>
+            <h2 className="text-xl font-medium text-primary">
+              Number of records
+            </h2>
+            <article className="prose">
+              <p>{dataset.numberOfRecords || "-"}</p>
+            </article>
+          </li>
+          <li>
+            <h2 className="text-xl font-medium text-primary">License</h2>
+            <article className="prose">
+              <p>{dataset.license || "-"}</p>
+            </article>
+          </li>
+        </ul>
 
         <div className="mt-4">
           <Link
