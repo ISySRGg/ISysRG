@@ -1,15 +1,16 @@
 import { Metadata, ResolvingMetadata } from "next"
-import Image from "next/image"
 import Link from "next/link"
 import { notFound } from "next/navigation"
 import { client } from "@/sanity/client"
 import { datasetQuery } from "@/sanity/queries"
-import { resolveOpenGraphImage, urlForImage } from "@/sanity/utils"
+import { resolveOpenGraphImage } from "@/sanity/utils"
 import { SquareArrowOutUpRight } from "lucide-react"
 
 import { Dataset } from "@/types/sanity.types"
 import BasePage from "@/components/base-page"
 import BaseSection from "@/components/base-section"
+
+import VideoTemp from "./VideoTemp"
 
 const options = { next: { revalidate: 30 } }
 
@@ -58,16 +59,7 @@ export default async function Page({ params }: Props) {
     <BasePage title={dataset.name || ""} subtitle="Dataset">
       <BaseSection>
         <div className="flex flex-row flex-wrap gap-4 border-b pb-10">
-          {dataset.images?.map((image) => (
-            <Image
-              key={image._key}
-              src={urlForImage(image)?.url() as string}
-              alt={dataset.name || ""}
-              width={200}
-              height={200}
-              className="aspect-square rounded object-cover"
-            />
-          ))}
+          <VideoTemp dataset={dataset} />
         </div>
         <ul className="grid gap-4 border-b py-10 md:grid-cols-2">
           <li>
