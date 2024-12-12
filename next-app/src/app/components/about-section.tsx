@@ -42,7 +42,7 @@ export default async function AboutSection() {
           className="size-[200px] rounded-lg sm:size-[300px]"
         />
         <div className="flex flex-col gap-4">
-          <article className="prose prose-xl md:prose-2xl">
+          <article className="prose md:prose-xl">
             <h3 hidden>About</h3>
             {aboutSection?.content && (
               <PortableText value={aboutSection?.content} />

@@ -8,7 +8,6 @@ import { CircleCheck } from "lucide-react"
 import { PortableText } from "next-sanity"
 
 import { Product } from "@/types/sanity.types"
-import { poppins } from "@/lib/fonts"
 import BaseSection from "@/components/base-section"
 
 // import StatisticsSection from "./components/statistics-section"
@@ -72,7 +71,7 @@ export default async function Page({ params }: Props) {
   return (
     <main>
       <header className="container flex flex-col items-center pt-16 text-center md:pt-32">
-        <div className={poppins.className}>
+        <div className="font-heading">
           <p className="text-sm uppercase text-neutral-600 md:text-base">
             Product
           </p>

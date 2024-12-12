@@ -9,7 +9,7 @@ import { resolveOpenGraphImage } from "@/sanity/utils"
 import { Analytics } from "@vercel/analytics/react"
 
 import { Settings } from "@/types/sanity.types"
-import { geistMono, geistSans } from "@/lib/fonts"
+import { inter, poppins } from "@/lib/fonts"
 import { cn } from "@/lib/utils"
 import { Toaster } from "@/components/ui/sonner"
 import Footer from "@/components/layout/footer"
@@ -59,9 +59,9 @@ export default function RootLayout({
     <html lang="en" className="scroll-smooth">
       <body
         className={cn(
-          geistSans.variable,
-          geistMono.variable,
-          "flex min-h-dvh flex-col antialiased"
+          poppins.variable,
+          inter.variable,
+          "font-text flex min-h-dvh flex-col antialiased"
         )}
       >
         <Providers>

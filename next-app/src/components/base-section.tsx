@@ -1,6 +1,5 @@
 import React from "react"
 
-import { poppins } from "@/lib/fonts"
 import { cn, tw } from "@/lib/utils"
 
 const headerAlignClassNames = {
@@ -30,7 +29,7 @@ export default function BaseSection({
     <section id={id} className={cn("py-14 lg:py-24", className)}>
       <div className="container">
         <hgroup
-          className={cn(poppins.className, headerAlignClassNames[headerAlign])}
+          className={cn("font-heading", headerAlignClassNames[headerAlign])}
         >
           {title && (
             <h2 className="text-lg font-extrabold text-primary sm:text-2xl lg:text-3xl">

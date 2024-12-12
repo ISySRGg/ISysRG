@@ -8,9 +8,8 @@ import { resolveOpenGraphImage, urlForImage } from "@/sanity/utils"
 import { PortableText, toPlainText } from "next-sanity"
 
 import { Activity, MoreActivitiesQueryResult } from "@/types/sanity.types"
-import { poppins } from "@/lib/fonts"
 import { getActivityJsonLd } from "@/lib/json-ld"
-import { cn, formatDate, truncateString } from "@/lib/utils"
+import { formatDate, truncateString } from "@/lib/utils"
 
 import Menu from "./components/menu"
 
@@ -92,12 +91,7 @@ export default async function Page(props: Props) {
           />
         </div>
         <div className="container flex flex-col border-b pb-4">
-          <h1
-            className={cn(
-              poppins.className,
-              "mt-6 text-xl font-semibold md:mt-10 md:text-2xl lg:text-3xl xl:text-4xl"
-            )}
-          >
+          <h1 className="font-heading mt-6 text-xl font-semibold md:mt-10 md:text-2xl lg:text-3xl xl:text-4xl">
             {activity.title}
           </h1>
           <div className="flex items-center justify-between pt-2 md:pt-4">
@@ -111,7 +105,7 @@ export default async function Page(props: Props) {
           </div>
         </div>
       </header>
-      <section className="container grid pt-6 md:pt-10 lg:grid-cols-3">
+      <section className="container grid pt-6 md:gap-10 md:pt-10 lg:grid-cols-3">
         <div className="col-span-2">
           {activity.body && (
             <article className="prose md:prose-lg">
@@ -123,12 +117,7 @@ export default async function Page(props: Props) {
           )}
         </div>
         <aside>
-          <p
-            className={cn(
-              poppins.className,
-              "text-xl font-medium text-primary md:text-2xl"
-            )}
-          >
+          <p className="font-heading text-xl font-medium text-primary md:text-2xl">
             More Activities
           </p>
 
@@ -137,7 +126,7 @@ export default async function Page(props: Props) {
               <li key={activity._id} className="py-3 md:py-4">
                 <Link href={`/activities/${activity.slug?.current}`}>
                   <p className="font-medium hover:underline md:text-lg">
-                    {truncateString(activity.title || "", 140)}
+                    {truncateString(activity.title || "", 120)}
                   </p>
                 </Link>
                 <time

@@ -66,7 +66,7 @@ export default async function ProductsSection() {
                 />
 
                 <div>
-                  <article className="prose prose-xl tracking-tight md:prose-2xl">
+                  <article className="prose prose-xl tracking-tight">
                     <p>{product.description}</p>
                   </article>
 
@@ -74,9 +74,9 @@ export default async function ProductsSection() {
                     {product.features?.map((feature) => (
                       <li
                         key={feature}
-                        className="flex items-center gap-1 text-sm md:text-base"
+                        className="flex items-center gap-2 text-sm md:text-base"
                       >
-                        <CircleCheck className="size-[1.3em] text-primary" />{" "}
+                        <CircleCheck className="size-[1.3em] flex-none text-primary" />{" "}
                         {feature}
                       </li>
                     ))}

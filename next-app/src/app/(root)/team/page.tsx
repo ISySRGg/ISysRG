@@ -5,7 +5,6 @@ import { urlForImage } from "@/sanity/utils"
 
 import { Researcher } from "@/types/sanity.types"
 import { researcherRoles } from "@/lib/constants"
-import { poppins } from "@/lib/fonts"
 import BaseSection from "@/components/base-section"
 import LecturerResearcherFigure from "@/components/lecturer-researcher-figure"
 
@@ -58,7 +57,7 @@ export default async function Page() {
   return (
     <main>
       <header className="container flex flex-col items-center pt-16 text-center md:pt-32">
-        <div className={poppins.className}>
+        <div className="font-heading">
           <p className="text-sm uppercase text-neutral-600 md:text-base">
             ISys Research Group
           </p>

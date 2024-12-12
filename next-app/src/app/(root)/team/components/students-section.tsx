@@ -1,16 +1,12 @@
-"use client"
-
 import { urlForImage } from "@/sanity/utils"
-import { ArrowLeft, ArrowRight } from "lucide-react"
 
 import { Researcher } from "@/types/sanity.types"
-import { Button } from "@/components/ui/button"
 import {
   Carousel,
   CarouselContent,
   CarouselItem,
-  useCarousel,
 } from "@/components/ui/carousel"
+import CarouselControl from "@/components/carousel-control"
 import StudentResearcherFigure from "@/components/student-researcher-figure"
 
 interface Props {
@@ -44,31 +40,6 @@ export default function StudentsSection({ batch, students }: Props) {
           <CarouselControl />
         </Carousel>
       </div>
-    </div>
-  )
-}
-
-function CarouselControl() {
-  const { scrollPrev, canScrollPrev, scrollNext, canScrollNext } = useCarousel()
-
-  return (
-    <div className="mt-4 flex justify-between">
-      <Button
-        size="sm"
-        variant="ghost"
-        disabled={!canScrollPrev}
-        onClick={scrollPrev}
-      >
-        <ArrowLeft /> Prev
-      </Button>
-      <Button
-        size="sm"
-        variant="ghost"
-        disabled={!canScrollNext}
-        onClick={scrollNext}
-      >
-        Next <ArrowRight />
-      </Button>
     </div>
   )
 }

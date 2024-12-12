@@ -15,10 +15,9 @@ import {
   Carousel,
   CarouselContent,
   CarouselItem,
-  CarouselNext,
-  CarouselPrevious,
 } from "@/components/ui/carousel"
 import BaseSection from "@/components/base-section"
+import CarouselControl from "@/components/carousel-control"
 import HoverableCard from "@/components/hoverable-card"
 
 const options = { next: { revalidate: 30 } }
@@ -88,8 +87,9 @@ export default async function ActivitySection() {
               </CarouselItem>
             ))}
         </CarouselContent>
-        <CarouselPrevious className="sm:hidden" />
-        <CarouselNext className="sm:hidden" />
+        <div className="lg:hidden">
+          <CarouselControl />
+        </div>
       </Carousel>
       <div className="flex justify-center pt-6 lg:pt-14">
         <Button
