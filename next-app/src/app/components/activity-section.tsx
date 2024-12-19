@@ -77,7 +77,7 @@ export default async function ActivitySection() {
                         >
                           {formatDate(new Date(activity.date || 0))}
                         </time>
-                        <h3 className="font-medium group-hover:underline">
+                        <h3 className="font-medium">
                           {truncateString(activity.title || "")}
                         </h3>
                       </figcaption>

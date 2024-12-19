@@ -53,7 +53,7 @@ export default async function Page() {
                     >
                       {formatDate(new Date(activity.date || 0))}
                     </time>
-                    <h3 className="text-lg font-medium group-hover:underline">
+                    <h3 className="text-lg font-medium">
                       {truncateString(activity.title || "", 140)}
                     </h3>
                   </figcaption>
