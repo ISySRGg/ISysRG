@@ -72,7 +72,7 @@ export default function RootLayout({
 
         <Toaster position="bottom-center" />
         <Analytics />
-        <GoogleAnalytics gaId="G-9M95W0QYZZ" />
+        <GoogleAnalytics gaId="G-YTFEEL0LRW" />
         <TailwindIndicator />
       </body>
     </html>
