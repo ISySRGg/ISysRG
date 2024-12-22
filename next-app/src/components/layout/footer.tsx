@@ -63,7 +63,7 @@ export default async function Footer() {
             </p>
             <div className="statcounter pt-2">
               <Link
-                title="Web Analytics Made Easy - Statcounter"
+                title="View Statcounter"
                 href="https://statcounter.com/p13071556/?guest=1"
                 target="_blank"
                 rel="noopener noreferrer"
