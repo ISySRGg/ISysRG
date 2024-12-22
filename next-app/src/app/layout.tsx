@@ -42,7 +42,7 @@ export async function generateMetadata(): Promise<Metadata> {
     metadataBase,
     title: {
       template: `%s | ${title}`,
-      default: title,
+      default: "ISys Research Group - We learn, We Collaborate, We Discover",
     },
     description: description,
     openGraph: {
