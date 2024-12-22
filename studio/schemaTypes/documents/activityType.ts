@@ -33,7 +33,17 @@ export const activityType = defineType({
     defineField({
       name: 'body',
       type: 'array',
-      of: [{type: 'block'}, {type: 'image'}],
+      of: [
+        {type: 'block'},
+        {type: 'image'},
+        {
+          name: 'video',
+          type: 'file',
+          options: {
+            accept: 'video/mp4',
+          },
+        },
+      ],
     }),
   ],
   preview: {

@@ -1,5 +1,7 @@
 import { defineQuery } from "next-sanity"
 
+const isProd = process.env.NODE_ENV === "production"
+
 export const aboutSectionQuery = defineQuery(`
   *[_type == "home"][0]{aboutSection}
 `)
@@ -70,15 +72,15 @@ export const datasetQuery = defineQuery(`
 `)
 
 export const allActivitiesQuery = defineQuery(`
-  *[_type == "activity" && defined(slug.current)] | order(date desc, _updatedAt desc)
+  *[_type == "activity" && defined(slug.current) ${isProd && '&& !(title match "[dev]*")'}] | order(date desc, _updatedAt desc)
 `)
 
 export const activityQuery = defineQuery(`
-  *[_type == "activity" && slug.current == $slug][0]
+  *[_type == "activity" && slug.current == $slug ${isProd && '&& !(title match "[dev]*")'}]][0]
 `)
 
 export const latestActivitiesQuery = defineQuery(`
-  *[_type == "activity" && defined(slug.current)] | order(date desc, _updatedAt desc) [0...$limit] {
+  *[_type == "activity" && defined(slug.current) ${isProd && '&& !(title match "[dev]*")'}]] | order(date desc, _updatedAt desc) [0...$limit] {
     _id,
     title,
     slug,
@@ -88,7 +90,7 @@ export const latestActivitiesQuery = defineQuery(`
 `)
 
 export const moreActivitiesQuery = defineQuery(`
-  *[_type == "activity" && _id != $skip && defined(slug.current)] | order(date desc, _updatedAt desc) [0...$limit] {
+  *[_type == "activity" && _id != $skip && defined(slug.current) ${isProd && '&& !(title match "[dev]*")'}]] | order(date desc, _updatedAt desc) [0...$limit] {
     _id,
     title,
     slug,
