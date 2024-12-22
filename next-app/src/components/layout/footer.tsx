@@ -61,10 +61,10 @@ export default async function Footer() {
             <p className="mt-1 max-w-prose text-xs text-muted-foreground">
               {toPlainText(description)}
             </p>
-            <div className="statcounter">
-              <a
+            <div className="statcounter pt-2">
+              <Link
                 title="Web Analytics Made Easy - Statcounter"
-                href="https://statcounter.com/"
+                href="https://statcounter.com/p13071556/?guest=1"
                 target="_blank"
                 rel="noopener noreferrer"
               >
@@ -72,11 +72,11 @@ export default async function Footer() {
                   className="statcounter"
                   src="https://c.statcounter.com/13071556/0/5359c3b5/0/"
                   alt="Web Analytics Made Easy - Statcounter"
-                  width={100}
-                  height={100}
+                  width={80}
+                  height={15}
                   referrerPolicy="no-referrer-when-downgrade"
                 />
-              </a>
+              </Link>
             </div>
           </div>
 
