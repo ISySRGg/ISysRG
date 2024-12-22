@@ -17,7 +17,7 @@ import Footer from "@/components/layout/footer"
 import { TailwindIndicator } from "@/components/tailwind-indicator"
 
 import Providers from "./providers"
-import StatCounter from "./stat-counter"
+import Statcounter from "./statcounter"
 
 const options = { next: { revalidate: 30 } }
 
@@ -74,7 +74,7 @@ export default function RootLayout({
         <Toaster position="bottom-center" />
         <Analytics />
         <GoogleAnalytics gaId="G-YTFEEL0LRW" />
-        <StatCounter />
+        <Statcounter />
         <TailwindIndicator />
       </body>
     </html>
