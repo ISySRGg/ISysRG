@@ -6,6 +6,7 @@ import { client } from "@/sanity/client"
 import * as demo from "@/sanity/demo"
 import { settingsQuery } from "@/sanity/queries"
 import { resolveOpenGraphImage } from "@/sanity/utils"
+import { GoogleAnalytics } from "@next/third-parties/google"
 import { Analytics } from "@vercel/analytics/react"
 
 import { Settings } from "@/types/sanity.types"
@@ -61,7 +62,7 @@ export default function RootLayout({
         className={cn(
           poppins.variable,
           inter.variable,
-          "font-text flex min-h-dvh flex-col antialiased"
+          "flex min-h-dvh flex-col font-text antialiased"
         )}
       >
         <Providers>
@@ -71,6 +72,7 @@ export default function RootLayout({
 
         <Toaster position="bottom-center" />
         <Analytics />
+        <GoogleAnalytics gaId="G-9M95W0QYZZ" />
         <TailwindIndicator />
       </body>
     </html>
