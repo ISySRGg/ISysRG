@@ -1,6 +1,6 @@
 import { defineQuery } from "next-sanity"
 
-const isProd = process.env.NODE_ENV === "production"
+export * from "./queries/activity-queries"
 
 export const aboutSectionQuery = defineQuery(`
   *[_type == "home"][0]{aboutSection}
@@ -69,33 +69,6 @@ export const allDatasetsQuery = defineQuery(`
 
 export const datasetQuery = defineQuery(`
   *[_type == "dataset" && slug.current == $slug][0]
-`)
-
-export const allActivitiesQuery = defineQuery(`
-  *[_type == "activity" && defined(slug.current) ${isProd && '&& !(title match "[dev]*")'}] | order(date desc, _updatedAt desc)
-`)
-
-export const activityQuery = defineQuery(`
-  *[_type == "activity" && slug.current == $slug ${isProd && '&& !(title match "[dev]*")'}]][0]
-`)
-
-export const latestActivitiesQuery = defineQuery(`
-  *[_type == "activity" && defined(slug.current) ${isProd && '&& !(title match "[dev]*")'}]] | order(date desc, _updatedAt desc) [0...$limit] {
-    _id,
-    title,
-    slug,
-    date,
-    image
-  }
-`)
-
-export const moreActivitiesQuery = defineQuery(`
-  *[_type == "activity" && _id != $skip && defined(slug.current) ${isProd && '&& !(title match "[dev]*")'}]] | order(date desc, _updatedAt desc) [0...$limit] {
-    _id,
-    title,
-    slug,
-    date
-  }
 `)
 
 export const allInternationalJournalsQuery = defineQuery(`
