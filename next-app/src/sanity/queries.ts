@@ -1,7 +1,5 @@
 import { defineQuery } from "next-sanity"
 
-export * from "./queries/activity-queries"
-
 export const aboutSectionQuery = defineQuery(`
   *[_type == "home"][0]{aboutSection}
 `)
@@ -69,6 +67,39 @@ export const allDatasetsQuery = defineQuery(`
 
 export const datasetQuery = defineQuery(`
   *[_type == "dataset" && slug.current == $slug][0]
+`)
+
+export const allActivitiesQuery = defineQuery(`
+  *[_type == "activity" && defined(slug.current)] | order(date desc, _updatedAt desc)
+`)
+
+export const activityQuery = defineQuery(`
+  *[_type == "activity" && slug.current == $slug][0] {
+    ...,
+    body[]{
+        ...,
+        "url": asset->url
+      }
+  }
+`)
+
+export const latestActivitiesQuery = defineQuery(`
+  *[_type == "activity" && defined(slug.current)] | order(date desc, _updatedAt desc) [0...$limit] {
+    _id,
+    title,
+    slug,
+    date,
+    image
+  }
+`)
+
+export const moreActivitiesQuery = defineQuery(`
+  *[_type == "activity" && _id != $skip && defined(slug.current)] | order(date desc, _updatedAt desc) [0...$limit] {
+    _id,
+    title,
+    slug,
+    date
+  }
 `)
 
 export const allInternationalJournalsQuery = defineQuery(`

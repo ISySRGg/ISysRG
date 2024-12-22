@@ -69,6 +69,13 @@ export default async function Page(props: Props) {
           className="w-full rounded object-cover"
         />
       ),
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      video: ({ value }: { value: any }) => (
+        <video controls className="w-full">
+          <source src={value.url} type="video/mp4" />
+          Your browser does not support the video tag.
+        </video>
+      ),
     },
   }
 
