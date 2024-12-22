@@ -1,3 +1,4 @@
+import Image from "next/image"
 import Link from "next/link"
 import { client } from "@/sanity/client"
 import * as demo from "@/sanity/demo"
@@ -60,6 +61,23 @@ export default async function Footer() {
             <p className="mt-1 max-w-prose text-xs text-muted-foreground">
               {toPlainText(description)}
             </p>
+            <div className="statcounter">
+              <a
+                title="Web Analytics Made Easy - Statcounter"
+                href="https://statcounter.com/"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <Image
+                  className="statcounter"
+                  src="https://c.statcounter.com/13071556/0/5359c3b5/0/"
+                  alt="Web Analytics Made Easy - Statcounter"
+                  width={100}
+                  height={100}
+                  referrerPolicy="no-referrer-when-downgrade"
+                />
+              </a>
+            </div>
           </div>
 
           <div className="flex flex-col gap-4">
