@@ -83,9 +83,8 @@ export default async function Page({ params }: Props) {
           <div className="mr-2 flex items-center bg-primary/20 px-4">
             <File className="text-primary" />
           </div>
-          <div className="flex items-center justify-between py-2 pl-2 pr-4">
+          <div className="flex w-full items-center justify-between py-2 pl-2 pr-4">
             <span className="text-sm">{value.name}</span>
-
             <Download className="ml-4 flex-none text-primary" />
           </div>
         </Link>
