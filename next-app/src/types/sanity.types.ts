@@ -1037,7 +1037,7 @@ export type AllProductsQueryResult = Array<{
   features: Array<string> | null;
 }>;
 // Variable: productQuery
-// Query: *[_type == "product" && slug.current == $slug][0] {    ...,    body[]{        ...,        "url": asset->url      }  }
+// Query: *[_type == "product" && slug.current == $slug][0] {    ...,    details[]{        ...,        "url": asset->url      }  }
 export type ProductQueryResult = {
   _id: string;
   _type: "product";
@@ -1061,7 +1061,7 @@ export type ProductQueryResult = {
   shortDescription?: string;
   description?: string;
   features?: Array<string>;
-  details?: Array<{
+  details: Array<{
     children?: Array<{
       marks?: Array<string>;
       text?: string;
@@ -1078,6 +1078,7 @@ export type ProductQueryResult = {
     level?: number;
     _type: "block";
     _key: string;
+    url: null;
   } | {
     asset?: {
       _ref: string;
@@ -1088,6 +1089,7 @@ export type ProductQueryResult = {
     name?: string;
     _type: "file";
     _key: string;
+    url: string | null;
   } | {
     asset?: {
       _ref: string;
@@ -1099,6 +1101,7 @@ export type ProductQueryResult = {
     crop?: SanityImageCrop;
     _type: "image";
     _key: string;
+    url: string | null;
   } | {
     asset?: {
       _ref: string;
@@ -1108,8 +1111,8 @@ export type ProductQueryResult = {
     };
     _type: "video";
     _key: string;
-  }>;
-  body: null;
+    url: string | null;
+  }> | null;
 } | null;
 // Variable: allDatasetsQuery
 // Query: *[_type == "dataset" && defined(slug.current)]
@@ -1543,7 +1546,7 @@ declare module "@sanity/client" {
     "\n  *[_type == \"home\"][0]{productsSection{featuredProducts[]->{\n    name,\n    slug,\n    image,\n    shortDescription,\n    description,\n    features\n  }}}\n": FeaturedProductsQueryResult;
     "\n  *[_type == \"settings\"][0]\n": SettingsQueryResult;
     "\n  *[_type == \"product\" && defined(slug.current)]{\n    _id,\n    name,\n    slug,\n    image,\n    shortDescription,\n    description,\n    features\n  }\n": AllProductsQueryResult;
-    "\n  *[_type == \"product\" && slug.current == $slug][0] {\n    ...,\n    body[]{\n        ...,\n        \"url\": asset->url\n      }\n  }\n": ProductQueryResult;
+    "\n  *[_type == \"product\" && slug.current == $slug][0] {\n    ...,\n    details[]{\n        ...,\n        \"url\": asset->url\n      }\n  }\n": ProductQueryResult;
     "\n  *[_type == \"dataset\" && defined(slug.current)]\n": AllDatasetsQueryResult;
     "\n  *[_type == \"dataset\" && slug.current == $slug][0]\n": DatasetQueryResult;
     "\n  *[_type == \"activity\" && defined(slug.current)] | order(date desc, _updatedAt desc)\n": AllActivitiesQueryResult;
