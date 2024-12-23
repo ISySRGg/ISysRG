@@ -78,6 +78,7 @@ export default async function Page({ params }: Props) {
         <Link
           href={value.url}
           className="flex overflow-hidden rounded bg-primary/10 no-underline"
+          target="_blank"
         >
           <div className="mr-2 flex items-center bg-primary/20 px-4">
             <File className="text-primary" />
