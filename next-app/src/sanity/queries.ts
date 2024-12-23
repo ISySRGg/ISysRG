@@ -58,7 +58,13 @@ export const allProductsQuery = defineQuery(`
 `)
 
 export const productQuery = defineQuery(`
-  *[_type == "product" && slug.current == $slug][0]
+  *[_type == "product" && slug.current == $slug][0] {
+    ...,
+    details[]{
+        ...,
+        "url": asset->url
+      }
+  }
 `)
 
 export const allDatasetsQuery = defineQuery(`

@@ -76,6 +76,12 @@ export default async function Page(props: Props) {
           Your browser does not support the video tag.
         </video>
       ),
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      file: ({ value }: { value: any }) => (
+        <Link href={value.url}>
+          <span>{value.name}</span>
+        </Link>
+      ),
     },
   }
 

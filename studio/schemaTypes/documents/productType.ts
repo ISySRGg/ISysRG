@@ -44,7 +44,27 @@ export const productType = defineType({
     defineField({
       name: 'details',
       type: 'array',
-      of: [{type: 'block'}, {type: 'image'}],
+      of: [
+        {type: 'block'},
+        {type: 'image'},
+        {
+          name: 'video',
+          type: 'file',
+          options: {
+            accept: 'video/mp4',
+          },
+        },
+        {
+          name: 'file',
+          type: 'file',
+          fields: [
+            {
+              name: 'name',
+              type: 'string',
+            },
+          ],
+        },
+      ],
     }),
   ],
   preview: {

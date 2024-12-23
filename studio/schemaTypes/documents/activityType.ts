@@ -43,6 +43,16 @@ export const activityType = defineType({
             accept: 'video/mp4',
           },
         },
+        {
+          name: 'file',
+          type: 'file',
+          fields: [
+            {
+              name: 'name',
+              type: 'string',
+            },
+          ],
+        },
       ],
     }),
   ],

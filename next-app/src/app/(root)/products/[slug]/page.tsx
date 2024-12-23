@@ -1,5 +1,6 @@
 import { Metadata, ResolvingMetadata } from "next"
 import Image from "next/image"
+import Link from "next/link"
 import { notFound } from "next/navigation"
 import { client } from "@/sanity/client"
 import { productQuery } from "@/sanity/queries"
@@ -64,6 +65,19 @@ export default async function Page({ params }: Props) {
           height={600}
           className="w-full"
         />
+      ),
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      video: ({ value }: { value: any }) => (
+        <video controls className="w-full rounded">
+          <source src={value.url} type="video/mp4" />
+          Your browser does not support the video tag.
+        </video>
+      ),
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      file: ({ value }: { value: any }) => (
+        <Link href={value.url}>
+          <span>{value.name}</span>
+        </Link>
       ),
     },
   }

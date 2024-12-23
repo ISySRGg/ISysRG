@@ -420,6 +420,25 @@ export type Product = {
     crop?: SanityImageCrop;
     _type: "image";
     _key: string;
+  } | {
+    asset?: {
+      _ref: string;
+      _type: "reference";
+      _weak?: boolean;
+      [internalGroqTypeReferenceTo]?: "sanity.fileAsset";
+    };
+    _type: "video";
+    _key: string;
+  } | {
+    asset?: {
+      _ref: string;
+      _type: "reference";
+      _weak?: boolean;
+      [internalGroqTypeReferenceTo]?: "sanity.fileAsset";
+    };
+    name?: string;
+    _type: "file";
+    _key: string;
   }>;
 };
 
@@ -555,6 +574,16 @@ export type Activity = {
     };
     _type: "video";
     _key: string;
+  } | {
+    asset?: {
+      _ref: string;
+      _type: "reference";
+      _weak?: boolean;
+      [internalGroqTypeReferenceTo]?: "sanity.fileAsset";
+    };
+    name?: string;
+    _type: "file";
+    _key: string;
   }>;
 };
 
@@ -643,86 +672,7 @@ export type Slug = {
   source?: string;
 };
 
-export type MuxVideo = {
-  _type: "mux.video";
-  asset?: {
-    _ref: string;
-    _type: "reference";
-    _weak?: boolean;
-    [internalGroqTypeReferenceTo]?: "mux.videoAsset";
-  };
-};
-
-export type MuxVideoAsset = {
-  _type: "mux.videoAsset";
-  status?: string;
-  assetId?: string;
-  playbackId?: string;
-  filename?: string;
-  thumbTime?: number;
-  data?: MuxAssetData;
-};
-
-export type MuxAssetData = {
-  _type: "mux.assetData";
-  resolution_tier?: string;
-  upload_id?: string;
-  created_at?: string;
-  id?: string;
-  status?: string;
-  max_stored_resolution?: string;
-  passthrough?: string;
-  encoding_tier?: string;
-  master_access?: string;
-  aspect_ratio?: string;
-  duration?: number;
-  max_stored_frame_rate?: number;
-  mp4_support?: string;
-  max_resolution_tier?: string;
-  tracks?: Array<{
-    _key: string;
-  } & MuxTrack>;
-  playback_ids?: Array<{
-    _key: string;
-  } & MuxPlaybackId>;
-  static_renditions?: MuxStaticRenditions;
-};
-
-export type MuxStaticRenditions = {
-  _type: "mux.staticRenditions";
-  status?: string;
-  files?: Array<{
-    _key: string;
-  } & MuxStaticRenditionFile>;
-};
-
-export type MuxStaticRenditionFile = {
-  _type: "mux.staticRenditionFile";
-  ext?: string;
-  name?: string;
-  width?: number;
-  bitrate?: number;
-  filesize?: number;
-  height?: number;
-};
-
-export type MuxPlaybackId = {
-  _type: "mux.playbackId";
-  id?: string;
-  policy?: string;
-};
-
-export type MuxTrack = {
-  _type: "mux.track";
-  id?: string;
-  type?: string;
-  max_width?: number;
-  max_frame_rate?: number;
-  duration?: number;
-  max_height?: number;
-};
-
-export type AllSanitySchemaTypes = SanityImagePaletteSwatch | SanityImagePalette | SanityImageDimensions | Geopoint | Home | Settings | Book | IntellectualPropertyRights | InternationalConference | InternationalJournal | Researcher | Research | Product | Partner | Infrastructure | Dataset | Activity | SanityFileAsset | SanityImageCrop | SanityImageHotspot | SanityImageAsset | SanityAssetSourceData | SanityImageMetadata | Slug | MuxVideo | MuxVideoAsset | MuxAssetData | MuxStaticRenditions | MuxStaticRenditionFile | MuxPlaybackId | MuxTrack;
+export type AllSanitySchemaTypes = SanityImagePaletteSwatch | SanityImagePalette | SanityImageDimensions | Geopoint | Home | Settings | Book | IntellectualPropertyRights | InternationalConference | InternationalJournal | Researcher | Research | Product | Partner | Infrastructure | Dataset | Activity | SanityFileAsset | SanityImageCrop | SanityImageHotspot | SanityImageAsset | SanityAssetSourceData | SanityImageMetadata | Slug;
 export declare const internalGroqTypeReferenceTo: unique symbol;
 // Source: ../next-app/src/sanity/queries.ts
 // Variable: aboutSectionQuery
@@ -911,11 +861,30 @@ export type ProductsSectionQueryResult = {
           _ref: string;
           _type: "reference";
           _weak?: boolean;
+          [internalGroqTypeReferenceTo]?: "sanity.fileAsset";
+        };
+        name?: string;
+        _type: "file";
+        _key: string;
+      } | {
+        asset?: {
+          _ref: string;
+          _type: "reference";
+          _weak?: boolean;
           [internalGroqTypeReferenceTo]?: "sanity.imageAsset";
         };
         hotspot?: SanityImageHotspot;
         crop?: SanityImageCrop;
         _type: "image";
+        _key: string;
+      } | {
+        asset?: {
+          _ref: string;
+          _type: "reference";
+          _weak?: boolean;
+          [internalGroqTypeReferenceTo]?: "sanity.fileAsset";
+        };
+        _type: "video";
         _key: string;
       }>;
     }> | null;
@@ -1068,7 +1037,7 @@ export type AllProductsQueryResult = Array<{
   features: Array<string> | null;
 }>;
 // Variable: productQuery
-// Query: *[_type == "product" && slug.current == $slug][0]
+// Query: *[_type == "product" && slug.current == $slug][0] {    ...,    body[]{        ...,        "url": asset->url      }  }
 export type ProductQueryResult = {
   _id: string;
   _type: "product";
@@ -1114,13 +1083,33 @@ export type ProductQueryResult = {
       _ref: string;
       _type: "reference";
       _weak?: boolean;
+      [internalGroqTypeReferenceTo]?: "sanity.fileAsset";
+    };
+    name?: string;
+    _type: "file";
+    _key: string;
+  } | {
+    asset?: {
+      _ref: string;
+      _type: "reference";
+      _weak?: boolean;
       [internalGroqTypeReferenceTo]?: "sanity.imageAsset";
     };
     hotspot?: SanityImageHotspot;
     crop?: SanityImageCrop;
     _type: "image";
     _key: string;
+  } | {
+    asset?: {
+      _ref: string;
+      _type: "reference";
+      _weak?: boolean;
+      [internalGroqTypeReferenceTo]?: "sanity.fileAsset";
+    };
+    _type: "video";
+    _key: string;
   }>;
+  body: null;
 } | null;
 // Variable: allDatasetsQuery
 // Query: *[_type == "dataset" && defined(slug.current)]
@@ -1226,6 +1215,16 @@ export type AllActivitiesQueryResult = Array<{
       _ref: string;
       _type: "reference";
       _weak?: boolean;
+      [internalGroqTypeReferenceTo]?: "sanity.fileAsset";
+    };
+    name?: string;
+    _type: "file";
+    _key: string;
+  } | {
+    asset?: {
+      _ref: string;
+      _type: "reference";
+      _weak?: boolean;
       [internalGroqTypeReferenceTo]?: "sanity.imageAsset";
     };
     hotspot?: SanityImageHotspot;
@@ -1283,6 +1282,17 @@ export type ActivityQueryResult = {
     _type: "block";
     _key: string;
     url: null;
+  } | {
+    asset?: {
+      _ref: string;
+      _type: "reference";
+      _weak?: boolean;
+      [internalGroqTypeReferenceTo]?: "sanity.fileAsset";
+    };
+    name?: string;
+    _type: "file";
+    _key: string;
+    url: string | null;
   } | {
     asset?: {
       _ref: string;
@@ -1533,7 +1543,7 @@ declare module "@sanity/client" {
     "\n  *[_type == \"home\"][0]{productsSection{featuredProducts[]->{\n    name,\n    slug,\n    image,\n    shortDescription,\n    description,\n    features\n  }}}\n": FeaturedProductsQueryResult;
     "\n  *[_type == \"settings\"][0]\n": SettingsQueryResult;
     "\n  *[_type == \"product\" && defined(slug.current)]{\n    _id,\n    name,\n    slug,\n    image,\n    shortDescription,\n    description,\n    features\n  }\n": AllProductsQueryResult;
-    "\n  *[_type == \"product\" && slug.current == $slug][0]\n": ProductQueryResult;
+    "\n  *[_type == \"product\" && slug.current == $slug][0] {\n    ...,\n    body[]{\n        ...,\n        \"url\": asset->url\n      }\n  }\n": ProductQueryResult;
     "\n  *[_type == \"dataset\" && defined(slug.current)]\n": AllDatasetsQueryResult;
     "\n  *[_type == \"dataset\" && slug.current == $slug][0]\n": DatasetQueryResult;
     "\n  *[_type == \"activity\" && defined(slug.current)] | order(date desc, _updatedAt desc)\n": AllActivitiesQueryResult;
