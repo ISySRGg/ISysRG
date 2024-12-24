@@ -10,8 +10,8 @@ export const activityType = defineType({
     defineField({
       name: 'title',
       type: 'string',
-      description: 'Max 110 characters',
-      validation: (rule) => rule.required().max(110),
+      description: 'Max 200 characters',
+      validation: (rule) => rule.required().max(200),
     }),
     defineField({
       name: 'slug',

@@ -120,13 +120,23 @@ export default async function Page(props: Props) {
             {activity.title}
           </h1>
           <div className="flex items-center justify-between pt-2 md:pt-4">
-            <time
-              dateTime={activity._createdAt || ""}
-              className="text-sm font-medium text-primary md:text-lg"
-            >
-              Posted {formatDate(new Date(activity._createdAt || 0))}
-            </time>
-            <Menu />
+            <div>
+              <time
+                dateTime={activity.date || ""}
+                className="text-sm font-medium text-primary md:text-lg"
+              >
+                {formatDate(new Date(activity.date || 0))}
+              </time>
+              <p className="text-xs italic text-muted-foreground sm:hidden">
+                Posted {formatDate(new Date(activity._createdAt || 0))}
+              </p>
+            </div>
+            <div className="flex flex-row items-center gap-2">
+              <p className="hidden text-xs italic text-muted-foreground sm:block md:text-sm">
+                Posted {formatDate(new Date(activity._createdAt || 0))}
+              </p>
+              <Menu />
+            </div>
           </div>
         </div>
       </header>
