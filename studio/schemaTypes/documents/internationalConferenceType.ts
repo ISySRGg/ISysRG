@@ -13,6 +13,11 @@ export const internationalConferenceType = defineType({
       validation: (rule) => rule.required(),
     }),
     defineField({
+      name: 'isIncludedInTeleotiva',
+      title: 'This conference is included in the TeleOTIVA website',
+      type: 'boolean',
+    }),
+    defineField({
       name: 'publicationDate',
       type: 'date',
       validation: (rule) => rule.required(),

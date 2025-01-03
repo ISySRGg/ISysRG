@@ -20,6 +20,11 @@ export const activityType = defineType({
       validation: (rule) => rule.required(),
     }),
     defineField({
+      name: 'isIncludedInTeleotiva',
+      title: 'This activity is included in the TeleOTIVA website',
+      type: 'boolean',
+    }),
+    defineField({
       name: 'date',
       type: 'date',
       initialValue: () => new Date().toISOString(),

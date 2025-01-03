@@ -13,6 +13,11 @@ export const intellectualPropertyRightsType = defineType({
       validation: (rule) => rule.required(),
     }),
     defineField({
+      name: 'isIncludedInTeleotiva',
+      title: 'This IPR is included in the TeleOTIVA website',
+      type: 'boolean',
+    }),
+    defineField({
       name: 'issuanceDate',
       type: 'date',
       validation: (rule) => rule.required(),

@@ -12,7 +12,11 @@ export const bookType = defineType({
       type: 'string',
       validation: (rule) => rule.required(),
     }),
-
+    defineField({
+      name: 'isIncludedInTeleotiva',
+      title: 'This book is included in the TeleOTIVA website',
+      type: 'boolean',
+    }),
     defineField({
       name: 'year',
       type: 'date',
