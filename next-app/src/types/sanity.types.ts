@@ -246,6 +246,7 @@ export type Book = {
   _updatedAt: string;
   _rev: string;
   title?: string;
+  isIncludedInTeleotiva?: boolean;
   year?: string;
   publisher?: string;
   isbnNumber?: string;
@@ -269,6 +270,7 @@ export type IntellectualPropertyRights = {
   _updatedAt: string;
   _rev: string;
   title?: string;
+  isIncludedInTeleotiva?: boolean;
   issuanceDate?: string;
   ipr?: string;
   certificateNumber?: string;
@@ -282,6 +284,7 @@ export type InternationalConference = {
   _updatedAt: string;
   _rev: string;
   title?: string;
+  isIncludedInTeleotiva?: boolean;
   publicationDate?: string;
   conference?: string;
   abstract?: string;
@@ -306,6 +309,7 @@ export type InternationalJournal = {
   _updatedAt: string;
   _rev: string;
   title?: string;
+  isIncludedInTeleotiva?: boolean;
   publicationDate?: string;
   journal?: string;
   abstract?: string;
@@ -525,6 +529,7 @@ export type Activity = {
   _rev: string;
   title?: string;
   slug?: Slug;
+  isIncludedInTeleotiva?: boolean;
   date?: string;
   image?: {
     asset?: {
@@ -1184,6 +1189,7 @@ export type AllActivitiesQueryResult = Array<{
   _rev: string;
   title?: string;
   slug?: Slug;
+  isIncludedInTeleotiva?: boolean;
   date?: string;
   image?: {
     asset?: {
@@ -1255,6 +1261,7 @@ export type ActivityQueryResult = {
   _rev: string;
   title?: string;
   slug?: Slug;
+  isIncludedInTeleotiva?: boolean;
   date?: string;
   image?: {
     asset?: {
@@ -1356,6 +1363,7 @@ export type AllInternationalJournalsQueryResult = Array<{
   _updatedAt: string;
   _rev: string;
   title?: string;
+  isIncludedInTeleotiva?: boolean;
   publicationDate?: string;
   journal?: string;
   abstract?: string;
@@ -1381,6 +1389,7 @@ export type AllInternationalConferencesQueryResult = Array<{
   _updatedAt: string;
   _rev: string;
   title?: string;
+  isIncludedInTeleotiva?: boolean;
   publicationDate?: string;
   conference?: string;
   abstract?: string;
@@ -1406,6 +1415,7 @@ export type AllIntellectualPropertyRightsQueryResult = Array<{
   _updatedAt: string;
   _rev: string;
   title?: string;
+  isIncludedInTeleotiva?: boolean;
   issuanceDate?: string;
   ipr?: string;
   certificateNumber?: string;
@@ -1420,6 +1430,7 @@ export type AllBooksQueryResult = Array<{
   _updatedAt: string;
   _rev: string;
   title?: string;
+  isIncludedInTeleotiva?: boolean;
   year?: string;
   publisher?: string;
   isbnNumber?: string;
