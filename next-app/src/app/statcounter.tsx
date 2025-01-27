@@ -18,6 +18,20 @@ export default function Statcounter() {
         `,
         }}
       />
+      <div className="statcounter mt-2">
+        <a
+          title="Web Analytics"
+          href="https://statcounter.com/p13071556/?guest=1"
+          target="_blank"
+        >
+          <img
+            className="statcounter"
+            src="https://c.statcounter.com/13071556/0/5359c3b5/0/"
+            alt="Web Analytics"
+            referrerPolicy="no-referrer-when-downgrade"
+          />
+        </a>
+      </div>
     </>
   )
 }

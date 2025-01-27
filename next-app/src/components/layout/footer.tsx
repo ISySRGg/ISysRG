@@ -1,4 +1,3 @@
-import Image from "next/image"
 import Link from "next/link"
 import { client } from "@/sanity/client"
 import * as demo from "@/sanity/demo"
@@ -6,6 +5,7 @@ import { settingsQuery } from "@/sanity/queries"
 import { toPlainText } from "next-sanity"
 
 import { Settings } from "@/types/sanity.types"
+import Statcounter from "@/app/statcounter"
 
 import ISysLogo from "../isys-logo"
 import SocialMedia from "./social-media"
@@ -61,23 +61,7 @@ export default async function Footer() {
             <p className="mt-1 max-w-prose text-xs text-muted-foreground">
               {toPlainText(description)}
             </p>
-            <div className="statcounter pt-2">
-              <Link
-                title="View Statcounter"
-                href="https://statcounter.com/p13071556/?guest=1"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                <Image
-                  className="statcounter"
-                  src="https://c.statcounter.com/13071556/0/5359c3b5/0/"
-                  alt="Web Analytics Made Easy - Statcounter"
-                  width={80}
-                  height={15}
-                  referrerPolicy="no-referrer-when-downgrade"
-                />
-              </Link>
-            </div>
+            <Statcounter />
           </div>
 
           <div className="flex flex-col gap-4">
