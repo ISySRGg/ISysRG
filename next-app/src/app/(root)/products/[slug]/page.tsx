@@ -5,6 +5,7 @@ import { notFound } from "next/navigation"
 import { client } from "@/sanity/client"
 import { productQuery } from "@/sanity/queries"
 import { resolveOpenGraphImage, urlForImage } from "@/sanity/utils"
+import { YouTubeEmbed } from "@next/third-parties/google"
 import { CircleCheck, Download, File } from "lucide-react"
 import { PortableText } from "next-sanity"
 
@@ -61,9 +62,9 @@ export default async function Page({ params }: Props) {
         <Image
           src={urlForImage(value)?.url() as string}
           alt=""
-          width={600}
-          height={600}
-          className="w-full"
+          width={400}
+          height={400}
+          className="w-full rounded object-cover"
         />
       ),
       // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -83,11 +84,18 @@ export default async function Page({ params }: Props) {
           <div className="mr-2 flex items-center bg-primary/20 px-4">
             <File className="text-primary" />
           </div>
-          <div className="flex w-full items-center justify-between py-2 pl-2 pr-4">
+          <div className="flex items-center justify-between py-2 pl-2 pr-4">
             <span className="text-sm">{value.name}</span>
+
             <Download className="ml-4 flex-none text-primary" />
           </div>
         </Link>
+      ),
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      youtube: ({ value }: { value: any }) => (
+        <div className="w-full overflow-hidden rounded">
+          <YouTubeEmbed videoid={value.videoId} />
+        </div>
       ),
     },
   }
@@ -143,8 +151,8 @@ export default async function Page({ params }: Props) {
       </BaseSection>
       {/* <StatisticsSection /> */}
       <BaseSection title="Details">
-        <div className="gap-8 md:columns-2 md:pt-4">
-          <article className="prose prose-base">
+        <div className="gap-8 md:pt-4">
+          <article className="prose prose-base max-w-full">
             <PortableText
               value={product.details || []}
               components={portableTextComponents}
