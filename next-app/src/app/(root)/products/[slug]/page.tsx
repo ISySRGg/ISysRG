@@ -62,8 +62,8 @@ export default async function Page({ params }: Props) {
         <Image
           src={urlForImage(value)?.url() as string}
           alt=""
-          width={400}
-          height={400}
+          width={1200}
+          height={1200}
           className="w-full rounded object-cover"
         />
       ),
@@ -78,7 +78,7 @@ export default async function Page({ params }: Props) {
       file: ({ value }: { value: any }) => (
         <Link
           href={value.url}
-          className="flex overflow-hidden rounded bg-primary/10 no-underline"
+          className="flex w-fit overflow-hidden rounded bg-primary/10 no-underline"
           target="_blank"
         >
           <div className="mr-2 flex items-center bg-primary/20 px-4">
@@ -93,7 +93,7 @@ export default async function Page({ params }: Props) {
       ),
       // eslint-disable-next-line @typescript-eslint/no-explicit-any
       youtube: ({ value }: { value: any }) => (
-        <div className="w-full overflow-hidden rounded">
+        <div className="my-4 w-full overflow-hidden rounded">
           <YouTubeEmbed videoid={value.videoId} />
         </div>
       ),
