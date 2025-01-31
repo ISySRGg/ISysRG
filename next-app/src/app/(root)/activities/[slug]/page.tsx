@@ -5,6 +5,7 @@ import { notFound } from "next/navigation"
 import { client } from "@/sanity/client"
 import { activityQuery, moreActivitiesQuery } from "@/sanity/queries"
 import { resolveOpenGraphImage, urlForImage } from "@/sanity/utils"
+import { YouTubeEmbed } from "@next/third-parties/google"
 import { Download, File } from "lucide-react"
 import { PortableText, toPlainText } from "next-sanity"
 
@@ -93,6 +94,12 @@ export default async function Page(props: Props) {
             <Download className="ml-4 flex-none text-primary" />
           </div>
         </Link>
+      ),
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      youtube: ({ value }: { value: any }) => (
+        <div className="w-full overflow-hidden rounded">
+          <YouTubeEmbed videoid={value.videoId} />
+        </div>
       ),
     },
   }

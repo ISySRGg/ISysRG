@@ -29,7 +29,7 @@ export default function Page() {
 
           <hgroup className="container flex h-full flex-col justify-center sm:py-28">
             <h1 hidden>ISys Research Group</h1>
-            <p className="font-heading h-[1lh] text-4xl font-medium sm:text-7xl lg:text-8xl">
+            <p className="h-[1lh] font-heading text-4xl font-medium sm:text-7xl lg:text-8xl">
               <Slogan />
             </p>
             <p className="mt-6 max-w-2xl font-light md:text-xl">
