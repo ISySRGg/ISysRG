@@ -1,5 +1,5 @@
 import {defineField, defineType} from 'sanity'
-import {ActivityIcon} from '@sanity/icons'
+import {ActivityIcon, DocumentIcon, DocumentVideoIcon, ImageIcon} from '@sanity/icons'
 
 export const activityType = defineType({
   name: 'activity',
@@ -40,10 +40,11 @@ export const activityType = defineType({
       type: 'array',
       of: [
         {type: 'block'},
-        {type: 'image'},
+        {type: 'image', icon: ImageIcon},
         {
           name: 'video',
           type: 'file',
+          icon: DocumentVideoIcon,
           options: {
             accept: 'video/mp4',
           },
@@ -51,9 +52,24 @@ export const activityType = defineType({
         {
           name: 'file',
           type: 'file',
+          icon: DocumentIcon,
           fields: [
             {
               name: 'name',
+              type: 'string',
+            },
+          ],
+        },
+        {
+          name: 'youtube',
+          title: 'YouTube',
+          icon: DocumentVideoIcon,
+          type: 'object',
+          fields: [
+            {
+              name: 'videoId',
+              description:
+                'Salin video id dari link YouTube (misal: https://www.youtube.com/live/JssRjU1qYxE, maka video id nya adalah JssRjU1qYxE',
               type: 'string',
             },
           ],

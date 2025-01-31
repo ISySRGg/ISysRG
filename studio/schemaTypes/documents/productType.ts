@@ -1,5 +1,5 @@
 import {defineField, defineType} from 'sanity'
-import {CubeIcon} from '@sanity/icons'
+import {CubeIcon, DocumentIcon, DocumentVideoIcon, ImageIcon} from '@sanity/icons'
 
 export const productType = defineType({
   name: 'product',
@@ -46,10 +46,11 @@ export const productType = defineType({
       type: 'array',
       of: [
         {type: 'block'},
-        {type: 'image'},
+        {type: 'image', icon: ImageIcon},
         {
           name: 'video',
           type: 'file',
+          icon: DocumentVideoIcon,
           options: {
             accept: 'video/mp4',
           },
@@ -57,9 +58,24 @@ export const productType = defineType({
         {
           name: 'file',
           type: 'file',
+          icon: DocumentIcon,
           fields: [
             {
               name: 'name',
+              type: 'string',
+            },
+          ],
+        },
+        {
+          name: 'youtube',
+          title: 'YouTube',
+          icon: DocumentVideoIcon,
+          type: 'object',
+          fields: [
+            {
+              name: 'videoId',
+              description:
+                'Salin video id dari link YouTube (misal: https://www.youtube.com/live/JssRjU1qYxE, maka video id nya adalah JssRjU1qYxE',
               type: 'string',
             },
           ],
