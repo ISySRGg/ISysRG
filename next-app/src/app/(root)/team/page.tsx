@@ -8,6 +8,7 @@ import { researcherRoles } from "@/lib/constants"
 import BaseSection from "@/components/base-section"
 import LecturerResearcherFigure from "@/components/lecturer-researcher-figure"
 
+import LecturerSection from "./components/lecturer-section"
 import StudentsSection from "./components/students-section"
 
 const options = { next: { revalidate: 30 } }
@@ -92,7 +93,7 @@ export default async function Page() {
             />
           </div>
 
-          <div className="flex w-full flex-col items-center py-4 md:py-8">
+          {/* <div className="flex w-full flex-col items-center py-4 md:py-8">
             <div>
               <h2 className="text-2xl font-medium">Members</h2>
             </div>
@@ -129,14 +130,19 @@ export default async function Page() {
                 />
               ))}
             </div>
-          </div>
+          </div> */}
+          <LecturerSection title="Members" students={members} />
+          <LecturerSection title="Research " students={researchAssistants} />
           <StudentsSection
-            title="Undergraduate Students"
+            title="Research Assistants"
             students={bachelorsStudents}
           />
-          <StudentsSection title="Master Students" students={mastersStudents} />
           <StudentsSection
-            title="Doctoral Students"
+            title="Graduate Students"
+            students={mastersStudents}
+          />
+          <StudentsSection
+            title="Postgraduate Students"
             students={doctoralStudents}
           />
         </div>
