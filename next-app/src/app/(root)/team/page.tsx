@@ -134,7 +134,7 @@ export default async function Page() {
           <LecturerSection title="Members" students={members} />
           <LecturerSection title="Research " students={researchAssistants} />
           <StudentsSection
-            title="Research Assistants"
+            title="Undergraduate Students"
             students={bachelorsStudents}
           />
           <StudentsSection
