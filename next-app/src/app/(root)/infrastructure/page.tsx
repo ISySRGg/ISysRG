@@ -47,8 +47,8 @@ export default async function Page() {
           <h1 className="text-5xl font-medium md:text-7xl">Infrastructure</h1>
         </div>
         <p className="max-w-prose pt-4 text-lg md:pt-8 md:text-2xl">
-          ISysRG has the infrastructure to support and provid the platform of
-          research. The infrastructure is as follows
+          ISysRG has the infrastructure to support and provide the platform of
+          research. The infrastructure is as follows:
         </p>
       </header>
       <BaseSection>
