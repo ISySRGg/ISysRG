@@ -30,6 +30,13 @@ export default async function Page() {
     (infrastructure) => infrastructure.type == "Means"
   )
 
+  means.sort((a, b) => (a.name ?? "").localeCompare(b.name ?? ""))
+
+  const pcs = means.filter((mean) => mean.name?.startsWith("PC"))
+  const others = means.filter((mean) => !mean.name?.startsWith("PC"))
+
+  const final = pcs.concat(others)
+
   return (
     <main>
       <header className="container flex flex-col items-center pt-16 text-center md:pt-32">
@@ -70,7 +77,7 @@ export default async function Page() {
           ))}
         </div>
         <div className="grid gap-10 pt-10 md:grid-cols-3 md:pt-40">
-          {means.map((item) => (
+          {final.map((item) => (
             <div
               key={item._id}
               className="flex flex-col gap-2 rounded-xl bg-gray-100 p-4"
