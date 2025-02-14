@@ -131,7 +131,7 @@ export default async function Page() {
             </div>
           </div>
           <StudentsSection
-            title="Bachelor Students"
+            title="Undergraduate Students"
             students={bachelorsStudents}
           />
           <StudentsSection title="Master Students" students={mastersStudents} />

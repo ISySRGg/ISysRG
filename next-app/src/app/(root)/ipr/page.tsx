@@ -36,12 +36,12 @@ export default async function Page() {
           <div>
             <h2 className="text-xl font-medium text-primary">Copyrights</h2>
             <PublicationList>
-              {copyrights.map((ipr) => (
+              {copyrights.map((copyright) => (
                 <PublicationListItem
-                  key={ipr._id}
-                  title={ipr.title || ""}
-                  href={ipr.link || "#"}
-                  description={`${ipr.ipr} - ${ipr.certificateNumber}`}
+                  key={copyright._id}
+                  title={copyright.title || ""}
+                  href={copyright.link || "#"}
+                  description={`${copyright.type} - ${copyright.certificateNumber}`}
                 />
               ))}
             </PublicationList>
@@ -49,12 +49,12 @@ export default async function Page() {
           <div>
             <h2 className="text-xl font-medium text-primary">Patents</h2>
             <PublicationList>
-              {patents.map((ipr) => (
+              {patents.map((patent) => (
                 <PublicationListItem
-                  key={ipr._id}
-                  title={ipr.title || ""}
-                  href={ipr.link || "#"}
-                  description={`${ipr.ipr} - ${ipr.certificateNumber}`}
+                  key={patent._id}
+                  title={patent.title || ""}
+                  href={patent.link || "#"}
+                  description={`${patent.type} - ${patent.certificateNumber}`}
                 />
               ))}
             </PublicationList>
