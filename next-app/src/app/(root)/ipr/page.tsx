@@ -21,22 +21,45 @@ export default async function Page() {
     IntellectualPropertyRights[]
   >(allIntellectualPropertyRightsQuery, {}, options)
 
+  const copyrights = intellectualPropertyRights.filter(
+    (researcher) => researcher.type == "Copyright"
+  )
+
+  const patents = intellectualPropertyRights.filter(
+    (researcher) => researcher.type == "Patent"
+  )
+
   return (
     <BasePage title="Intellectual Property Rights (IPR)" subtitle="Publication">
       <BaseSection>
-        <h2 className="text-xl font-medium text-primary">
-          List of Intellectual Property Rights
-        </h2>
-        <PublicationList>
-          {intellectualPropertyRights.map((ipr) => (
-            <PublicationListItem
-              key={ipr._id}
-              title={ipr.title || ""}
-              href={ipr.link || "#"}
-              description={`${ipr.ipr} - ${ipr.certificateNumber}`}
-            />
-          ))}
-        </PublicationList>
+        <div className="flex flex-col gap-10">
+          <div>
+            <h2 className="text-xl font-medium text-primary">Copyrights</h2>
+            <PublicationList>
+              {copyrights.map((ipr) => (
+                <PublicationListItem
+                  key={ipr._id}
+                  title={ipr.title || ""}
+                  href={ipr.link || "#"}
+                  description={`${ipr.ipr} - ${ipr.certificateNumber}`}
+                />
+              ))}
+            </PublicationList>
+          </div>
+          <div>
+            <h2 className="text-xl font-medium text-primary">Patents</h2>
+            <PublicationList>
+              {patents.map((ipr) => (
+                <PublicationListItem
+                  key={ipr._id}
+                  title={ipr.title || ""}
+                  href={ipr.link || "#"}
+                  description={`${ipr.ipr} - ${ipr.certificateNumber}`}
+                />
+              ))}
+            </PublicationList>
+          </div>
+        </div>
       </BaseSection>
     </BasePage>
   )
