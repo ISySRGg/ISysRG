@@ -57,6 +57,8 @@ export const infrastructureType = defineType({
     defineField({
       name: 'image',
       title: 'Image',
+      description:
+        'Disarankan gambar dengan rasio 1:1 untuk sarana dan rasio 16:9 untuk prasarana.',
       type: 'image',
     }),
   ],
