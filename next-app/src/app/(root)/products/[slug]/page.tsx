@@ -146,7 +146,7 @@ export default async function Page({ params }: Props) {
       <BaseSection
         title="Product Features"
         headerAlign="center"
-        className="bg-gradient-to-b from-neutral-950 to-neutral-900 text-white"
+        className="bg-linear-to-b from-neutral-950 to-neutral-900 text-white"
       >
         <ul className="grid gap-2 pt-4 sm:grid-cols-2 md:gap-4">
           {product.features?.map((feature) => (

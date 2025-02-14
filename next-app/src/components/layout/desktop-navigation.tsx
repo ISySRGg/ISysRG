@@ -90,7 +90,7 @@ function ListItem({
       <NavigationMenuLink asChild>
         <Link
           className={cn(
-            "group block select-none rounded px-4 py-6 leading-none tracking-wide no-underline outline-none transition-colors hover:bg-white/5 hover:text-white focus:bg-accent focus:text-accent-foreground"
+            "group block select-none rounded px-4 py-6 leading-none tracking-wide no-underline outline-hidden transition-colors hover:bg-white/5 hover:text-white focus:bg-accent focus:text-accent-foreground"
           )}
           href={href}
         >

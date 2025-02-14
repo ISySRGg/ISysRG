@@ -56,7 +56,7 @@ export default async function Page() {
           {infrastructures.map((item) => (
             <div
               key={item._id}
-              className="flex flex-col-reverse items-center gap-8 rounded-xl bg-gray-100 px-4 py-4 odd:md:flex-row-reverse odd:md:justify-end odd:md:pr-10 even:md:flex-row even:md:justify-end even:md:pl-10"
+              className="flex flex-col-reverse items-center gap-8 rounded-xl bg-gray-100 px-4 py-4 md:odd:flex-row-reverse md:odd:justify-end md:odd:pr-10 md:even:flex-row md:even:justify-end md:even:pl-10"
             >
               <div>
                 <h2 className="font-heading text-xl font-semibold md:text-2xl">

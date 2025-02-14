@@ -25,7 +25,7 @@ export default async function PartnersSection() {
       title={partnersSection?.title}
       subtitle={partnersSection?.subtitle}
       headerAlign="center"
-      className="[&>div]:px-0 [&>div]:md:px-[1rem]"
+      className="[&>div]:px-0 md:[&>div]:px-[1rem]"
     >
       <PartnersCarousel partners={partners} />
     </BaseSection>

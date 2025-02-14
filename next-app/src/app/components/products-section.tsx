@@ -29,7 +29,7 @@ export default async function ProductsSection() {
       title={productsSection?.title}
       subtitle={productsSection?.subtitle}
       headerAlign="center"
-      className="bg-gradient-to-b from-neutral-900/5 to-transparent to-20%"
+      className="bg-linear-to-b from-neutral-900/5 to-transparent to-20%"
     >
       {productsSection?.description && (
         <div className="flex justify-center">

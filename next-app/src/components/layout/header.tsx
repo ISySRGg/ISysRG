@@ -64,7 +64,7 @@ export default async function Header() {
         label: "View all",
         href: "/products",
       },
-      className: tw`[&>ul]:lg:grid-cols-2`,
+      className: tw`lg:[&>ul]:grid-cols-2`,
     },
     {
       label: "Datasets",
@@ -79,7 +79,7 @@ export default async function Header() {
         label: "View all",
         href: "/datasets",
       },
-      className: tw`[&>ul]:lg:grid-cols-2`,
+      className: tw`lg:[&>ul]:grid-cols-2`,
     },
     {
       label: "Publication",
