@@ -132,7 +132,10 @@ export default async function Page() {
             </div>
           </div> */}
           <LecturerSection title="Members" students={members} />
-          <LecturerSection title="Research " students={researchAssistants} />
+          <LecturerSection
+            title="Research Assistants"
+            students={researchAssistants}
+          />
           <StudentsSection
             title="Undergraduate Students"
             students={bachelorsStudents}
