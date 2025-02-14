@@ -19,6 +19,10 @@ export const productType = defineType({
       validation: (rule) => rule.required(),
     }),
     defineField({
+      name: 'homePageUrl',
+      type: 'url',
+    }),
+    defineField({
       name: 'youtube',
       title: 'YouTube',
       type: 'url',
@@ -34,6 +38,15 @@ export const productType = defineType({
     }),
     defineField({
       name: 'description',
+      type: 'text',
+      hidden: true,
+    }),
+    defineField({
+      name: 'description1',
+      type: 'text',
+    }),
+    defineField({
+      name: 'description2',
       type: 'text',
     }),
     defineField({

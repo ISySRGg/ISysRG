@@ -26,6 +26,18 @@ export const intellectualPropertyRightsType = defineType({
       name: 'ipr',
       title: 'IPR',
       type: 'string',
+      description: 'Deprecated: field ini akan segera dihapus, gunakan field type yaa',
+      validation: (rule) => rule.required(),
+    }),
+    defineField({
+      name: 'type',
+      type: 'string',
+      options: {
+        list: [
+          {title: 'Copyright', value: 'Copyright'},
+          {title: 'Patent', value: 'Patent'},
+        ],
+      },
       validation: (rule) => rule.required(),
     }),
     defineField({

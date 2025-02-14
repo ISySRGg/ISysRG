@@ -40,6 +40,7 @@ export const datasetType = defineType({
           {title: 'Tabular', value: 'Tabular'},
           {title: 'Graph', value: 'Graph'},
           {title: 'Text', value: 'Text'},
+          {title: 'Signal', value: 'Signal'},
           {title: 'Image', value: 'Image'},
           {title: 'Sound', value: 'Sound'},
           {title: 'Video', value: 'Video'},

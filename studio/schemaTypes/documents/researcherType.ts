@@ -27,17 +27,37 @@ export const researcherType = defineType({
       validation: (rule) => rule.required(),
     }),
     defineField({
-      name: 'batch',
-      type: 'number',
+      name: 'degree',
+      type: 'string',
+      options: {
+        list: [
+          {title: 'Bachelor', value: 'Bachelor'},
+          {title: 'Master', value: 'Master'},
+          {title: 'Doctoral', value: 'Doctoral'},
+        ],
+      },
       validation: (rule) =>
         rule.custom((value, context) => {
           if (value == undefined && context.document?.role == 'Student') {
-            return 'Batch is required for role student'
+            return 'Degree is required for role student'
           }
 
           return true
         }),
       hidden: ({document}) => document?.role != 'Student',
+    }),
+    defineField({
+      name: 'batch',
+      type: 'number',
+      validation: (rule) =>
+        rule.custom((value, context) => {
+          if (value == undefined && context.document?.degree == 'Bachelor') {
+            return 'Batch is required for role Bachelor'
+          }
+
+          return true
+        }),
+      hidden: ({document}) => document?.degree != 'Bachelor',
     }),
     defineField({
       name: 'division',

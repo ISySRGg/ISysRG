@@ -15,9 +15,22 @@ export const infrastructureType = defineType({
     }),
     defineField({
       name: 'type',
-      title: 'Type',
       type: 'string',
+      description:
+        '[1] Means (sarana): benda bergerak seperti PC; [2] Infrastructure (prasarana): benda tidak bergerak seperti ruangan.',
+      options: {
+        list: [
+          {title: 'Means', value: 'Means'},
+          {title: 'Infrastructure', value: 'Infrastructure'},
+        ],
+      },
       validation: (rule) => rule.required(),
+    }),
+    defineField({
+      name: 'description',
+      title: 'Description',
+      type: 'array',
+      of: [{type: 'block'}],
     }),
     defineField({
       name: 'specifications',
