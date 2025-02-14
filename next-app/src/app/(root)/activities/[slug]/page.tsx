@@ -73,7 +73,7 @@ export default async function Page(props: Props) {
             alt={activity.title || ""}
             width={1600}
             height={900}
-            className="mx-auto aspect-video w-full max-w-6xl object-cover sm:aspect-[20/9] sm:rounded"
+            className="mx-auto aspect-video w-full max-w-6xl object-cover sm:aspect-20/9 sm:rounded"
           />
         </div>
         <div className="container flex flex-col border-b pb-4">

@@ -24,7 +24,7 @@ export default function Page() {
         dangerouslySetInnerHTML={{ __html: JSON.stringify(organizationJsonLd) }}
       />
       <header className="h-dvh bg-black bg-[url('/assets/images/code.jpg')] bg-cover sm:h-fit">
-        <div className="flex h-full flex-col bg-gradient-to-br from-neutral-950/95 via-neutral-800/90 via-50% to-orange-950/60 to-95% pb-14 text-background lg:py-10 2xl:py-20">
+        <div className="flex h-full flex-col bg-linear-to-br from-neutral-950/95 via-neutral-800/90 via-50% to-orange-950/60 to-95% pb-14 text-background lg:py-10 2xl:py-20">
           <Header />
 
           <hgroup className="container flex h-full flex-col justify-center sm:py-28">

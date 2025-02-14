@@ -5,14 +5,14 @@ import { cva, type VariantProps } from "class-variance-authority"
 import { cn, tw } from "@/lib/utils"
 
 const buttonVariants = cva(
-  tw`inline-flex items-center justify-center gap-2 whitespace-nowrap rounded text-sm font-medium transition-colors focus-visible:outline-none disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0`,
+  tw`inline-flex items-center justify-center gap-2 whitespace-nowrap rounded text-sm font-medium transition-colors focus-visible:outline-hidden disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0`,
   {
     variants: {
       variant: {
-        default: tw`bg-primary text-primary-foreground shadow hover:bg-primary/90`,
-        destructive: tw`bg-destructive text-destructive-foreground shadow-sm hover:bg-destructive/90`,
-        outline: tw`border border-input shadow-sm hover:bg-accent hover:text-accent-foreground`,
-        secondary: tw`bg-secondary text-secondary-foreground shadow-sm hover:bg-secondary/80`,
+        default: tw`bg-primary text-primary-foreground shadow-sm hover:bg-primary/90`,
+        destructive: tw`bg-destructive text-destructive-foreground shadow-xs hover:bg-destructive/90`,
+        outline: tw`border border-input shadow-xs hover:bg-accent hover:text-accent-foreground`,
+        secondary: tw`bg-secondary text-secondary-foreground shadow-xs hover:bg-secondary/80`,
         ghost: tw`hover:bg-accent hover:text-accent-foreground`,
         link: tw`text-primary no-underline underline-offset-4 hover:underline`,
       },

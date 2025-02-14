@@ -43,7 +43,7 @@ export default async function ActivitySection() {
       title={activitiesSection?.title}
       subtitle={activitiesSection?.subtitle}
       headerAlign="center"
-      className="bg-gradient-to-b from-neutral-950 to-neutral-900 text-white"
+      className="bg-linear-to-b from-neutral-950 to-neutral-900 text-white"
     >
       {activitiesSection?.description && (
         <div className="flex justify-center">
