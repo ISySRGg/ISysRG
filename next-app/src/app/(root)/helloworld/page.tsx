@@ -3,7 +3,7 @@ export default function Page() {
     <>
       <section className="container mt-20">
         <article className="prose">
-          <h1>Hello World</h1>
+          <h1>Hello World for dev</h1>
           <p>
             Lorem ipsum dolor sit amet consectetur adipisicing elit. Itaque
             perferendis fugit, inventore quis ipsam provident odio consequatur
