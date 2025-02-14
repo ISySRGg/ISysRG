@@ -110,16 +110,16 @@ export default async function Page({ params }: Props) {
           </p>
           <h1 className="text-5xl font-medium md:text-7xl">{product.name}</h1>
         </div>
-        <p className="max-w-prose pt-4 text-xl font-semibold md:pt-8 md:text-3xl">
+        <p className="max-w-4xl pt-4 text-xl md:pt-8 md:text-3xl">
           {product.description1}
         </p>
-        <p className="max-w-prose pt-2 text-lg text-muted-foreground md:pt-4 md:text-xl">
+        <p className="max-w-4xl pt-2 text-lg text-muted-foreground md:pt-4 md:text-xl">
           {product.description2}
         </p>
 
         {product.homePageUrl && (
-          <Button asChild>
-            <Link href={product.homePageUrl}>Home Page</Link>
+          <Button size="lg" asChild className="mt-10">
+            <Link href={product.homePageUrl}>Product Home Page</Link>
           </Button>
         )}
       </header>
