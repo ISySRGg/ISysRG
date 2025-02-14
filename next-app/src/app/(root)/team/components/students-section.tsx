@@ -10,15 +10,21 @@ import CarouselControl from "@/components/carousel-control"
 import StudentResearcherFigure from "@/components/student-researcher-figure"
 
 interface Props {
-  batch: number
+  // batch: number
+  title: string
   students: Researcher[]
 }
 
-export default function StudentsSection({ batch, students }: Props) {
+export default function StudentsSection({ title, students }: Props) {
+  if (students.length == 0) {
+    return null
+  }
+
   return (
     <div className="flex w-full flex-col items-center py-4 md:py-8">
       <div>
-        <h2 className="text-2xl font-medium">Batch {batch} Students</h2>
+        {/* <h2 className="text-2xl font-medium">Batch {batch} Students</h2> */}
+        <h2 className="text-2xl font-medium">{title}</h2>
       </div>
       <div className="mt-10 w-full">
         <Carousel>

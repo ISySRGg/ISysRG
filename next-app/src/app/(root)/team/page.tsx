@@ -43,15 +43,16 @@ export default async function Page() {
     (researcher) => researcher.role == "Student"
   )
 
-  const groupedStudentsByBatch = students.reduce(
-    (acc, student) => {
-      if (!acc[student.batch || 0]) {
-        acc[student.batch || 0] = []
-      }
-      acc[student.batch || 0].push(student)
-      return acc
-    },
-    {} as Record<number, Researcher[]>
+  const bachelorsStudents = students.filter(
+    (researcher) => researcher.degree == "Bachelor"
+  )
+
+  const mastersStudents = students.filter(
+    (researcher) => researcher.degree == "Master"
+  )
+
+  const doctoralStudents = students.filter(
+    (researcher) => researcher.degree == "Doctoral"
   )
 
   return (
@@ -129,13 +130,15 @@ export default async function Page() {
               ))}
             </div>
           </div>
-          {Object.keys(groupedStudentsByBatch).map((batch) => (
-            <StudentsSection
-              key={batch}
-              batch={Number(batch)}
-              students={groupedStudentsByBatch[Number(batch)]}
-            />
-          ))}
+          <StudentsSection
+            title="Bachelor Students"
+            students={bachelorsStudents}
+          />
+          <StudentsSection title="Master Students" students={mastersStudents} />
+          <StudentsSection
+            title="Doctoral Students"
+            students={doctoralStudents}
+          />
         </div>
       </BaseSection>
     </main>

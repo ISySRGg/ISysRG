@@ -273,6 +273,7 @@ export type IntellectualPropertyRights = {
   isIncludedInTeleotiva?: boolean;
   issuanceDate?: string;
   ipr?: string;
+  type?: "Copyright" | "Patent";
   certificateNumber?: string;
   link?: string;
 };
@@ -335,6 +336,7 @@ export type Researcher = {
   _rev: string;
   name?: string;
   role?: "Head" | "Secretary" | "Research Assistant" | "Member" | "Student";
+  degree?: "Bachelor" | "Master" | "Doctoral";
   batch?: number;
   division?: "Imaging" | "Signal" | "Tabular";
   thesisTitle?: string;
@@ -381,6 +383,7 @@ export type Product = {
   _rev: string;
   name?: string;
   slug?: Slug;
+  homePageUrl?: string;
   youtube?: string;
   image?: {
     asset?: {
@@ -395,6 +398,8 @@ export type Product = {
   };
   shortDescription?: string;
   description?: string;
+  description1?: string;
+  description2?: string;
   features?: Array<string>;
   details?: Array<{
     children?: Array<{
@@ -443,6 +448,10 @@ export type Product = {
     name?: string;
     _type: "file";
     _key: string;
+  } | {
+    videoId?: string;
+    _type: "youtube";
+    _key: string;
   }>;
 };
 
@@ -473,7 +482,25 @@ export type Infrastructure = {
   _updatedAt: string;
   _rev: string;
   name?: string;
-  type?: string;
+  type?: "Means" | "Infrastructure";
+  description?: Array<{
+    children?: Array<{
+      marks?: Array<string>;
+      text?: string;
+      _type: "span";
+      _key: string;
+    }>;
+    style?: "normal" | "h1" | "h2" | "h3" | "h4" | "h5" | "h6" | "blockquote";
+    listItem?: "bullet" | "number";
+    markDefs?: Array<{
+      href?: string;
+      _type: "link";
+      _key: string;
+    }>;
+    level?: number;
+    _type: "block";
+    _key: string;
+  }>;
   specifications?: Array<{
     name?: string;
     values?: Array<string>;
@@ -514,7 +541,7 @@ export type Dataset = {
   }>;
   shortDescription?: string;
   description?: string;
-  type?: "Tabular" | "Graph" | "Text" | "Image" | "Sound" | "Video";
+  type?: "Tabular" | "Graph" | "Text" | "Signal" | "Image" | "Sound" | "Video";
   origin?: string;
   license?: string;
   numberOfRecords?: number;
@@ -588,6 +615,10 @@ export type Activity = {
     };
     name?: string;
     _type: "file";
+    _key: string;
+  } | {
+    videoId?: string;
+    _type: "youtube";
     _key: string;
   }>;
 };
@@ -789,7 +820,7 @@ export type DatasetsSectionQueryResult = {
       }>;
       shortDescription?: string;
       description?: string;
-      type?: "Graph" | "Image" | "Sound" | "Tabular" | "Text" | "Video";
+      type?: "Graph" | "Image" | "Signal" | "Sound" | "Tabular" | "Text" | "Video";
       origin?: string;
       license?: string;
       numberOfRecords?: number;
@@ -829,6 +860,7 @@ export type ProductsSectionQueryResult = {
       _rev: string;
       name?: string;
       slug?: Slug;
+      homePageUrl?: string;
       youtube?: string;
       image?: {
         asset?: {
@@ -843,6 +875,8 @@ export type ProductsSectionQueryResult = {
       };
       shortDescription?: string;
       description?: string;
+      description1?: string;
+      description2?: string;
       features?: Array<string>;
       details?: Array<{
         children?: Array<{
@@ -890,6 +924,10 @@ export type ProductsSectionQueryResult = {
           [internalGroqTypeReferenceTo]?: "sanity.fileAsset";
         };
         _type: "video";
+        _key: string;
+      } | {
+        videoId?: string;
+        _type: "youtube";
         _key: string;
       }>;
     }> | null;
@@ -1051,6 +1089,7 @@ export type ProductQueryResult = {
   _rev: string;
   name?: string;
   slug?: Slug;
+  homePageUrl?: string;
   youtube?: string;
   image?: {
     asset?: {
@@ -1065,6 +1104,8 @@ export type ProductQueryResult = {
   };
   shortDescription?: string;
   description?: string;
+  description1?: string;
+  description2?: string;
   features?: Array<string>;
   details: Array<{
     children?: Array<{
@@ -1117,6 +1158,11 @@ export type ProductQueryResult = {
     _type: "video";
     _key: string;
     url: string | null;
+  } | {
+    videoId?: string;
+    _type: "youtube";
+    _key: string;
+    url: null;
   }> | null;
 } | null;
 // Variable: allDatasetsQuery
@@ -1143,7 +1189,7 @@ export type AllDatasetsQueryResult = Array<{
   }>;
   shortDescription?: string;
   description?: string;
-  type?: "Graph" | "Image" | "Sound" | "Tabular" | "Text" | "Video";
+  type?: "Graph" | "Image" | "Signal" | "Sound" | "Tabular" | "Text" | "Video";
   origin?: string;
   license?: string;
   numberOfRecords?: number;
@@ -1173,7 +1219,7 @@ export type DatasetQueryResult = {
   }>;
   shortDescription?: string;
   description?: string;
-  type?: "Graph" | "Image" | "Sound" | "Tabular" | "Text" | "Video";
+  type?: "Graph" | "Image" | "Signal" | "Sound" | "Tabular" | "Text" | "Video";
   origin?: string;
   license?: string;
   numberOfRecords?: number;
@@ -1248,6 +1294,10 @@ export type AllActivitiesQueryResult = Array<{
       [internalGroqTypeReferenceTo]?: "sanity.fileAsset";
     };
     _type: "video";
+    _key: string;
+  } | {
+    videoId?: string;
+    _type: "youtube";
     _key: string;
   }>;
 }>;
@@ -1325,6 +1375,11 @@ export type ActivityQueryResult = {
     _type: "video";
     _key: string;
     url: string | null;
+  } | {
+    videoId?: string;
+    _type: "youtube";
+    _key: string;
+    url: null;
   }> | null;
 } | null;
 // Variable: latestActivitiesQuery
@@ -1418,6 +1473,7 @@ export type AllIntellectualPropertyRightsQueryResult = Array<{
   isIncludedInTeleotiva?: boolean;
   issuanceDate?: string;
   ipr?: string;
+  type?: "Copyright" | "Patent";
   certificateNumber?: string;
   link?: string;
 }>;
@@ -1464,6 +1520,7 @@ export type AllResearchersQueryResult = Array<{
   _rev: string;
   name?: string;
   role?: "Head" | "Member" | "Research Assistant" | "Secretary" | "Student";
+  degree?: "Bachelor" | "Doctoral" | "Master";
   batch?: number;
   division?: "Imaging" | "Signal" | "Tabular";
   thesisTitle?: string;
@@ -1488,7 +1545,25 @@ export type AllInfrastructureQueryResult = Array<{
   _updatedAt: string;
   _rev: string;
   name?: string;
-  type?: string;
+  type?: "Infrastructure" | "Means";
+  description?: Array<{
+    children?: Array<{
+      marks?: Array<string>;
+      text?: string;
+      _type: "span";
+      _key: string;
+    }>;
+    style?: "blockquote" | "h1" | "h2" | "h3" | "h4" | "h5" | "h6" | "normal";
+    listItem?: "bullet" | "number";
+    markDefs?: Array<{
+      href?: string;
+      _type: "link";
+      _key: string;
+    }>;
+    level?: number;
+    _type: "block";
+    _key: string;
+  }>;
   specifications?: Array<{
     name?: string;
     values?: Array<string>;

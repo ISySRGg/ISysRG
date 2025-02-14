@@ -2,7 +2,7 @@
 
 // FIXME: Failed to execute 'write' on 'Document': It isn't possible to write into a document from an asynchronously-loaded external script unless it is explicitly opened.
 export default function Statcounter() {
-  // if (process.env.NODE_ENV === "development") return null
+  if (process.env.NODE_ENV === "development") return null
 
   return (
     <>

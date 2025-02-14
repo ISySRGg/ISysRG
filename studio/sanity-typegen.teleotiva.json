@@ -1,0 +1,5 @@
+{
+  "path": "../../../TeleOTIVA/Web/teleotiva/next-app/src/**/*.{ts,tsx,js,jsx}",
+  "schema": "./schema.json",
+  "generates": "../../../TeleOTIVA/Web/teleotiva/next-app/src/types/sanity.types.ts"
+}

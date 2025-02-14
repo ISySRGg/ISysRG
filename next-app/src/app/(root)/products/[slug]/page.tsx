@@ -10,6 +10,7 @@ import { CircleCheck, Download, File } from "lucide-react"
 import { PortableText } from "next-sanity"
 
 import { Product } from "@/types/sanity.types"
+import { Button } from "@/components/ui/button"
 import BaseSection from "@/components/base-section"
 
 // import StatisticsSection from "./components/statistics-section"
@@ -109,9 +110,18 @@ export default async function Page({ params }: Props) {
           </p>
           <h1 className="text-5xl font-medium md:text-7xl">{product.name}</h1>
         </div>
-        <p className="max-w-prose pt-4 text-lg md:pt-8 md:text-2xl">
-          {product.description}
+        <p className="max-w-prose pt-4 text-xl font-semibold md:pt-8 md:text-3xl">
+          {product.description1}
         </p>
+        <p className="max-w-prose pt-2 text-lg text-muted-foreground md:pt-4 md:text-xl">
+          {product.description2}
+        </p>
+
+        {product.homePageUrl && (
+          <Button asChild>
+            <Link href={product.homePageUrl}>Home Page</Link>
+          </Button>
+        )}
       </header>
       <BaseSection>
         {product.youtube ? (
