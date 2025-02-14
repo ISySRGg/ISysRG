@@ -1,8 +1,8 @@
 "use client"
 
 import Image from "next/image"
-import { usePathname } from "next/navigation"
 import { urlForImage } from "@/sanity/utils"
+import Autoplay from "embla-carousel-autoplay"
 import { ArrowLeft, ArrowRight } from "lucide-react"
 
 import { Dataset } from "@/types/sanity.types"
@@ -18,11 +18,13 @@ interface Props {
   dataset: Dataset
 }
 
-export default function VideoTemp({ dataset }: Props) {
-  const pathname = usePathname()
-
+export default function DatasetPreview({ dataset }: Props) {
   return (
-    <Carousel opts={{ loop: true }}>
+    <Carousel
+      plugins={[Autoplay({ delay: 3000 })]}
+      opts={{ loop: true }}
+      className="w-full"
+    >
       <CarouselContent>
         {dataset.images?.map((image) => (
           <CarouselItem key={image._key} className="md:basis-1/4">
@@ -35,15 +37,6 @@ export default function VideoTemp({ dataset }: Props) {
             />
           </CarouselItem>
         ))}
-
-        {pathname == "/datasets/infant-fetal-dataset" && (
-          <CarouselItem className="md:basis-1/4">
-            <video controls className="mx-auto h-[200px]">
-              <source src="/videojantung.mp4" type="video/mp4" />
-              Your browser does not support the video tag.
-            </video>
-          </CarouselItem>
-        )}
       </CarouselContent>
       <CarouselControl />
     </Carousel>

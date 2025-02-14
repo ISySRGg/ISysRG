@@ -10,7 +10,7 @@ import { Dataset } from "@/types/sanity.types"
 import BasePage from "@/components/base-page"
 import BaseSection from "@/components/base-section"
 
-import VideoTemp from "./VideoTemp"
+import DatasetPreview from "./DatasetPreview"
 
 const options = { next: { revalidate: 30 } }
 
@@ -59,7 +59,7 @@ export default async function Page({ params }: Props) {
     <BasePage title={dataset.name || ""} subtitle="Dataset">
       <BaseSection>
         <div className="flex flex-row flex-wrap gap-4 border-b pb-10">
-          <VideoTemp dataset={dataset} />
+          <DatasetPreview dataset={dataset} />
         </div>
         <ul className="grid gap-4 border-b py-10 md:grid-cols-2">
           <li>
