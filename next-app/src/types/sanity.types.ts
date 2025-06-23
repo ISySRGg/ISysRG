@@ -335,7 +335,7 @@ export type Researcher = {
   _updatedAt: string;
   _rev: string;
   name?: string;
-  role?: "Head" | "Secretary" | "Research Assistant" | "Member" | "Student";
+  role?: "Head" | "Secretary" | "Research Assistant" | "Member" | "External Collaborator" | "Student";
   degree?: "Bachelor" | "Master" | "Doctoral";
   batch?: number;
   division?: "Imaging" | "Signal" | "Tabular";
@@ -1519,7 +1519,7 @@ export type AllResearchersQueryResult = Array<{
   _updatedAt: string;
   _rev: string;
   name?: string;
-  role?: "Head" | "Member" | "Research Assistant" | "Secretary" | "Student";
+  role?: "External Collaborator" | "Head" | "Member" | "Research Assistant" | "Secretary" | "Student";
   degree?: "Bachelor" | "Doctoral" | "Master";
   batch?: number;
   division?: "Imaging" | "Signal" | "Tabular";

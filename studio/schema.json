@@ -2150,6 +2150,10 @@
             },
             {
               "type": "string",
+              "value": "External Collaborator"
+            },
+            {
+              "type": "string",
               "value": "Student"
             }
           ]

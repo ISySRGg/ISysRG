@@ -21,6 +21,7 @@ export const researcherType = defineType({
           {title: 'Secretary', value: 'Secretary'},
           {title: 'Research Assistant', value: 'Research Assistant'},
           {title: 'Member', value: 'Member'},
+          {title: 'External Collaborator', value: 'External Collaborator'},
           {title: 'Student', value: 'Student'},
         ],
       },

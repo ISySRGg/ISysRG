@@ -40,6 +40,10 @@ export default async function Page() {
     (researcher) => researcher.role == "Member"
   )
 
+  const externalCollaborators = researchers.filter(
+    (researcher) => researcher.role == "External Collaborator"
+  )
+
   const students = researchers.filter(
     (researcher) => researcher.role == "Student"
   )
@@ -60,7 +64,7 @@ export default async function Page() {
     <main>
       <header className="container flex flex-col items-center pt-16 text-center md:pt-32">
         <div className="font-heading">
-          <p className="text-sm uppercase text-neutral-600 md:text-base">
+          <p className="text-sm text-neutral-600 uppercase md:text-base">
             ISys Research Group
           </p>
           <h1 className="text-5xl font-medium md:text-7xl">Research Team</h1>
@@ -132,6 +136,10 @@ export default async function Page() {
             </div>
           </div> */}
           <LecturerSection title="Members" students={members} />
+          <LecturerSection
+            title="External Collaborators"
+            students={externalCollaborators}
+          />
           <LecturerSection
             title="Research Assistants"
             students={researchAssistants}
