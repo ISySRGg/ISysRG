@@ -99,6 +99,11 @@ export const researcherType = defineType({
       hidden: ({document}) => document?.role != 'External Collaborator',
     }),
     defineField({
+      name: 'link',
+      type: 'url',
+      hidden: ({document}) => document?.role != 'External Collaborator',
+    }),
+    defineField({
       name: 'image',
       type: 'image',
     }),

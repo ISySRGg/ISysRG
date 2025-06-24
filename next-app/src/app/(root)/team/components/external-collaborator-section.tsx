@@ -7,7 +7,7 @@ import {
   CarouselItem,
 } from "@/components/ui/carousel"
 import CarouselControl from "@/components/carousel-control"
-import StudentResearcherFigure from "@/components/student-researcher-figure"
+import ExternalCollaboratorResearcherFigure from "@/components/external-collaborator-researcher-figure"
 
 interface Props {
   // batch: number
@@ -37,8 +37,9 @@ export default function ExternalCollaboratorsSection({
                 key={externalCollaborator._id}
                 className="md:basis-1/2"
               >
-                <StudentResearcherFigure
+                <ExternalCollaboratorResearcherFigure
                   name={externalCollaborator.name || ""}
+                  href={externalCollaborator.link}
                   division="External Collaborator"
                   thesisTitle={externalCollaborator.title || ""}
                   image={{

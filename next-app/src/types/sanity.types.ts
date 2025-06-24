@@ -313,6 +313,7 @@ export type Researcher = {
   division?: "Imaging" | "Signal" | "Tabular";
   thesisTitle?: string;
   title?: string;
+  link?: string;
   image?: {
     asset?: {
       _ref: string;
@@ -1572,6 +1573,7 @@ export type AllResearchersQueryResult = Array<{
   division?: "Imaging" | "Signal" | "Tabular";
   thesisTitle?: string;
   title?: string;
+  link?: string;
   image?: {
     asset?: {
       _ref: string;
