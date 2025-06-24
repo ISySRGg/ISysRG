@@ -8,5 +8,6 @@ export const researcherRoles: Record<
   Secretary: "Secretary",
   "Research Assistant": "Research Assistant",
   Member: "Member",
+  "External Collaborator": "External Collaborator",
   Student: "Student",
 }

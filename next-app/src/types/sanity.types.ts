@@ -13,39 +13,6 @@
  */
 
 // Source: schema.json
-export type SanityImagePaletteSwatch = {
-  _type: "sanity.imagePaletteSwatch";
-  background?: string;
-  foreground?: string;
-  population?: number;
-  title?: string;
-};
-
-export type SanityImagePalette = {
-  _type: "sanity.imagePalette";
-  darkMuted?: SanityImagePaletteSwatch;
-  lightVibrant?: SanityImagePaletteSwatch;
-  darkVibrant?: SanityImagePaletteSwatch;
-  vibrant?: SanityImagePaletteSwatch;
-  dominant?: SanityImagePaletteSwatch;
-  lightMuted?: SanityImagePaletteSwatch;
-  muted?: SanityImagePaletteSwatch;
-};
-
-export type SanityImageDimensions = {
-  _type: "sanity.imageDimensions";
-  height?: number;
-  width?: number;
-  aspectRatio?: number;
-};
-
-export type Geopoint = {
-  _type: "geopoint";
-  lat?: number;
-  lng?: number;
-  alt?: number;
-};
-
 export type Home = {
   _id: string;
   _type: "home";
@@ -62,6 +29,7 @@ export type Home = {
         _weak?: boolean;
         [internalGroqTypeReferenceTo]?: "sanity.imageAsset";
       };
+      media?: unknown;
       hotspot?: SanityImageHotspot;
       crop?: SanityImageCrop;
       _type: "image";
@@ -221,6 +189,7 @@ export type Settings = {
       _weak?: boolean;
       [internalGroqTypeReferenceTo]?: "sanity.imageAsset";
     };
+    media?: unknown;
     hotspot?: SanityImageHotspot;
     crop?: SanityImageCrop;
     alt?: string;
@@ -257,6 +226,7 @@ export type Book = {
       _weak?: boolean;
       [internalGroqTypeReferenceTo]?: "sanity.imageAsset";
     };
+    media?: unknown;
     hotspot?: SanityImageHotspot;
     crop?: SanityImageCrop;
     _type: "image";
@@ -296,6 +266,7 @@ export type InternationalConference = {
       _weak?: boolean;
       [internalGroqTypeReferenceTo]?: "sanity.imageAsset";
     };
+    media?: unknown;
     hotspot?: SanityImageHotspot;
     crop?: SanityImageCrop;
     _type: "image";
@@ -321,6 +292,7 @@ export type InternationalJournal = {
       _weak?: boolean;
       [internalGroqTypeReferenceTo]?: "sanity.imageAsset";
     };
+    media?: unknown;
     hotspot?: SanityImageHotspot;
     crop?: SanityImageCrop;
     _type: "image";
@@ -340,6 +312,7 @@ export type Researcher = {
   batch?: number;
   division?: "Imaging" | "Signal" | "Tabular";
   thesisTitle?: string;
+  title?: string;
   image?: {
     asset?: {
       _ref: string;
@@ -347,6 +320,7 @@ export type Researcher = {
       _weak?: boolean;
       [internalGroqTypeReferenceTo]?: "sanity.imageAsset";
     };
+    media?: unknown;
     hotspot?: SanityImageHotspot;
     crop?: SanityImageCrop;
     _type: "image";
@@ -369,6 +343,7 @@ export type Research = {
       _weak?: boolean;
       [internalGroqTypeReferenceTo]?: "sanity.imageAsset";
     };
+    media?: unknown;
     hotspot?: SanityImageHotspot;
     crop?: SanityImageCrop;
     _type: "image";
@@ -392,6 +367,7 @@ export type Product = {
       _weak?: boolean;
       [internalGroqTypeReferenceTo]?: "sanity.imageAsset";
     };
+    media?: unknown;
     hotspot?: SanityImageHotspot;
     crop?: SanityImageCrop;
     _type: "image";
@@ -425,6 +401,7 @@ export type Product = {
       _weak?: boolean;
       [internalGroqTypeReferenceTo]?: "sanity.imageAsset";
     };
+    media?: unknown;
     hotspot?: SanityImageHotspot;
     crop?: SanityImageCrop;
     _type: "image";
@@ -436,6 +413,7 @@ export type Product = {
       _weak?: boolean;
       [internalGroqTypeReferenceTo]?: "sanity.fileAsset";
     };
+    media?: unknown;
     _type: "video";
     _key: string;
   } | {
@@ -445,6 +423,7 @@ export type Product = {
       _weak?: boolean;
       [internalGroqTypeReferenceTo]?: "sanity.fileAsset";
     };
+    media?: unknown;
     name?: string;
     _type: "file";
     _key: string;
@@ -469,6 +448,7 @@ export type Partner = {
       _weak?: boolean;
       [internalGroqTypeReferenceTo]?: "sanity.imageAsset";
     };
+    media?: unknown;
     hotspot?: SanityImageHotspot;
     crop?: SanityImageCrop;
     _type: "image";
@@ -513,6 +493,7 @@ export type Infrastructure = {
       _weak?: boolean;
       [internalGroqTypeReferenceTo]?: "sanity.imageAsset";
     };
+    media?: unknown;
     hotspot?: SanityImageHotspot;
     crop?: SanityImageCrop;
     _type: "image";
@@ -534,6 +515,7 @@ export type Dataset = {
       _weak?: boolean;
       [internalGroqTypeReferenceTo]?: "sanity.imageAsset";
     };
+    media?: unknown;
     hotspot?: SanityImageHotspot;
     crop?: SanityImageCrop;
     _type: "image";
@@ -565,6 +547,7 @@ export type Activity = {
       _weak?: boolean;
       [internalGroqTypeReferenceTo]?: "sanity.imageAsset";
     };
+    media?: unknown;
     hotspot?: SanityImageHotspot;
     crop?: SanityImageCrop;
     _type: "image";
@@ -593,6 +576,7 @@ export type Activity = {
       _weak?: boolean;
       [internalGroqTypeReferenceTo]?: "sanity.imageAsset";
     };
+    media?: unknown;
     hotspot?: SanityImageHotspot;
     crop?: SanityImageCrop;
     _type: "image";
@@ -604,6 +588,7 @@ export type Activity = {
       _weak?: boolean;
       [internalGroqTypeReferenceTo]?: "sanity.fileAsset";
     };
+    media?: unknown;
     _type: "video";
     _key: string;
   } | {
@@ -613,6 +598,7 @@ export type Activity = {
       _weak?: boolean;
       [internalGroqTypeReferenceTo]?: "sanity.fileAsset";
     };
+    media?: unknown;
     name?: string;
     _type: "file";
     _key: string;
@@ -621,6 +607,48 @@ export type Activity = {
     _type: "youtube";
     _key: string;
   }>;
+};
+
+export type SanityImagePaletteSwatch = {
+  _type: "sanity.imagePaletteSwatch";
+  background?: string;
+  foreground?: string;
+  population?: number;
+  title?: string;
+};
+
+export type SanityImagePalette = {
+  _type: "sanity.imagePalette";
+  darkMuted?: SanityImagePaletteSwatch;
+  lightVibrant?: SanityImagePaletteSwatch;
+  darkVibrant?: SanityImagePaletteSwatch;
+  vibrant?: SanityImagePaletteSwatch;
+  dominant?: SanityImagePaletteSwatch;
+  lightMuted?: SanityImagePaletteSwatch;
+  muted?: SanityImagePaletteSwatch;
+};
+
+export type SanityImageDimensions = {
+  _type: "sanity.imageDimensions";
+  height?: number;
+  width?: number;
+  aspectRatio?: number;
+};
+
+export type SanityImageHotspot = {
+  _type: "sanity.imageHotspot";
+  x?: number;
+  y?: number;
+  height?: number;
+  width?: number;
+};
+
+export type SanityImageCrop = {
+  _type: "sanity.imageCrop";
+  top?: number;
+  bottom?: number;
+  left?: number;
+  right?: number;
 };
 
 export type SanityFileAsset = {
@@ -643,22 +671,6 @@ export type SanityFileAsset = {
   path?: string;
   url?: string;
   source?: SanityAssetSourceData;
-};
-
-export type SanityImageCrop = {
-  _type: "sanity.imageCrop";
-  top?: number;
-  bottom?: number;
-  left?: number;
-  right?: number;
-};
-
-export type SanityImageHotspot = {
-  _type: "sanity.imageHotspot";
-  x?: number;
-  y?: number;
-  height?: number;
-  width?: number;
 };
 
 export type SanityImageAsset = {
@@ -684,13 +696,6 @@ export type SanityImageAsset = {
   source?: SanityAssetSourceData;
 };
 
-export type SanityAssetSourceData = {
-  _type: "sanity.assetSourceData";
-  name?: string;
-  id?: string;
-  url?: string;
-};
-
 export type SanityImageMetadata = {
   _type: "sanity.imageMetadata";
   location?: Geopoint;
@@ -702,13 +707,27 @@ export type SanityImageMetadata = {
   isOpaque?: boolean;
 };
 
+export type Geopoint = {
+  _type: "geopoint";
+  lat?: number;
+  lng?: number;
+  alt?: number;
+};
+
 export type Slug = {
   _type: "slug";
   current?: string;
   source?: string;
 };
 
-export type AllSanitySchemaTypes = SanityImagePaletteSwatch | SanityImagePalette | SanityImageDimensions | Geopoint | Home | Settings | Book | IntellectualPropertyRights | InternationalConference | InternationalJournal | Researcher | Research | Product | Partner | Infrastructure | Dataset | Activity | SanityFileAsset | SanityImageCrop | SanityImageHotspot | SanityImageAsset | SanityAssetSourceData | SanityImageMetadata | Slug;
+export type SanityAssetSourceData = {
+  _type: "sanity.assetSourceData";
+  name?: string;
+  id?: string;
+  url?: string;
+};
+
+export type AllSanitySchemaTypes = Home | Settings | Book | IntellectualPropertyRights | InternationalConference | InternationalJournal | Researcher | Research | Product | Partner | Infrastructure | Dataset | Activity | SanityImagePaletteSwatch | SanityImagePalette | SanityImageDimensions | SanityImageHotspot | SanityImageCrop | SanityFileAsset | SanityImageAsset | SanityImageMetadata | Geopoint | Slug | SanityAssetSourceData;
 export declare const internalGroqTypeReferenceTo: unique symbol;
 // Source: ../next-app/src/sanity/queries.ts
 // Variable: aboutSectionQuery
@@ -724,6 +743,7 @@ export type AboutSectionQueryResult = {
         _weak?: boolean;
         [internalGroqTypeReferenceTo]?: "sanity.imageAsset";
       };
+      media?: unknown;
       hotspot?: SanityImageHotspot;
       crop?: SanityImageCrop;
       _type: "image";
@@ -813,6 +833,7 @@ export type DatasetsSectionQueryResult = {
           _weak?: boolean;
           [internalGroqTypeReferenceTo]?: "sanity.imageAsset";
         };
+        media?: unknown;
         hotspot?: SanityImageHotspot;
         crop?: SanityImageCrop;
         _type: "image";
@@ -869,6 +890,7 @@ export type ProductsSectionQueryResult = {
           _weak?: boolean;
           [internalGroqTypeReferenceTo]?: "sanity.imageAsset";
         };
+        media?: unknown;
         hotspot?: SanityImageHotspot;
         crop?: SanityImageCrop;
         _type: "image";
@@ -902,6 +924,7 @@ export type ProductsSectionQueryResult = {
           _weak?: boolean;
           [internalGroqTypeReferenceTo]?: "sanity.fileAsset";
         };
+        media?: unknown;
         name?: string;
         _type: "file";
         _key: string;
@@ -912,6 +935,7 @@ export type ProductsSectionQueryResult = {
           _weak?: boolean;
           [internalGroqTypeReferenceTo]?: "sanity.imageAsset";
         };
+        media?: unknown;
         hotspot?: SanityImageHotspot;
         crop?: SanityImageCrop;
         _type: "image";
@@ -923,6 +947,7 @@ export type ProductsSectionQueryResult = {
           _weak?: boolean;
           [internalGroqTypeReferenceTo]?: "sanity.fileAsset";
         };
+        media?: unknown;
         _type: "video";
         _key: string;
       } | {
@@ -973,6 +998,7 @@ export type FeaturedDatasetsQueryResult = {
           _weak?: boolean;
           [internalGroqTypeReferenceTo]?: "sanity.imageAsset";
         };
+        media?: unknown;
         hotspot?: SanityImageHotspot;
         crop?: SanityImageCrop;
         _type: "image";
@@ -997,6 +1023,7 @@ export type FeaturedProductsQueryResult = {
           _weak?: boolean;
           [internalGroqTypeReferenceTo]?: "sanity.imageAsset";
         };
+        media?: unknown;
         hotspot?: SanityImageHotspot;
         crop?: SanityImageCrop;
         _type: "image";
@@ -1041,6 +1068,7 @@ export type SettingsQueryResult = {
       _weak?: boolean;
       [internalGroqTypeReferenceTo]?: "sanity.imageAsset";
     };
+    media?: unknown;
     hotspot?: SanityImageHotspot;
     crop?: SanityImageCrop;
     alt?: string;
@@ -1071,6 +1099,7 @@ export type AllProductsQueryResult = Array<{
       _weak?: boolean;
       [internalGroqTypeReferenceTo]?: "sanity.imageAsset";
     };
+    media?: unknown;
     hotspot?: SanityImageHotspot;
     crop?: SanityImageCrop;
     _type: "image";
@@ -1098,6 +1127,7 @@ export type ProductQueryResult = {
       _weak?: boolean;
       [internalGroqTypeReferenceTo]?: "sanity.imageAsset";
     };
+    media?: unknown;
     hotspot?: SanityImageHotspot;
     crop?: SanityImageCrop;
     _type: "image";
@@ -1132,6 +1162,7 @@ export type ProductQueryResult = {
       _weak?: boolean;
       [internalGroqTypeReferenceTo]?: "sanity.fileAsset";
     };
+    media?: unknown;
     name?: string;
     _type: "file";
     _key: string;
@@ -1143,6 +1174,7 @@ export type ProductQueryResult = {
       _weak?: boolean;
       [internalGroqTypeReferenceTo]?: "sanity.imageAsset";
     };
+    media?: unknown;
     hotspot?: SanityImageHotspot;
     crop?: SanityImageCrop;
     _type: "image";
@@ -1155,6 +1187,7 @@ export type ProductQueryResult = {
       _weak?: boolean;
       [internalGroqTypeReferenceTo]?: "sanity.fileAsset";
     };
+    media?: unknown;
     _type: "video";
     _key: string;
     url: string | null;
@@ -1182,6 +1215,7 @@ export type AllDatasetsQueryResult = Array<{
       _weak?: boolean;
       [internalGroqTypeReferenceTo]?: "sanity.imageAsset";
     };
+    media?: unknown;
     hotspot?: SanityImageHotspot;
     crop?: SanityImageCrop;
     _type: "image";
@@ -1212,6 +1246,7 @@ export type DatasetQueryResult = {
       _weak?: boolean;
       [internalGroqTypeReferenceTo]?: "sanity.imageAsset";
     };
+    media?: unknown;
     hotspot?: SanityImageHotspot;
     crop?: SanityImageCrop;
     _type: "image";
@@ -1244,6 +1279,7 @@ export type AllActivitiesQueryResult = Array<{
       _weak?: boolean;
       [internalGroqTypeReferenceTo]?: "sanity.imageAsset";
     };
+    media?: unknown;
     hotspot?: SanityImageHotspot;
     crop?: SanityImageCrop;
     _type: "image";
@@ -1272,6 +1308,7 @@ export type AllActivitiesQueryResult = Array<{
       _weak?: boolean;
       [internalGroqTypeReferenceTo]?: "sanity.fileAsset";
     };
+    media?: unknown;
     name?: string;
     _type: "file";
     _key: string;
@@ -1282,6 +1319,7 @@ export type AllActivitiesQueryResult = Array<{
       _weak?: boolean;
       [internalGroqTypeReferenceTo]?: "sanity.imageAsset";
     };
+    media?: unknown;
     hotspot?: SanityImageHotspot;
     crop?: SanityImageCrop;
     _type: "image";
@@ -1293,6 +1331,7 @@ export type AllActivitiesQueryResult = Array<{
       _weak?: boolean;
       [internalGroqTypeReferenceTo]?: "sanity.fileAsset";
     };
+    media?: unknown;
     _type: "video";
     _key: string;
   } | {
@@ -1320,6 +1359,7 @@ export type ActivityQueryResult = {
       _weak?: boolean;
       [internalGroqTypeReferenceTo]?: "sanity.imageAsset";
     };
+    media?: unknown;
     hotspot?: SanityImageHotspot;
     crop?: SanityImageCrop;
     _type: "image";
@@ -1349,6 +1389,7 @@ export type ActivityQueryResult = {
       _weak?: boolean;
       [internalGroqTypeReferenceTo]?: "sanity.fileAsset";
     };
+    media?: unknown;
     name?: string;
     _type: "file";
     _key: string;
@@ -1360,6 +1401,7 @@ export type ActivityQueryResult = {
       _weak?: boolean;
       [internalGroqTypeReferenceTo]?: "sanity.imageAsset";
     };
+    media?: unknown;
     hotspot?: SanityImageHotspot;
     crop?: SanityImageCrop;
     _type: "image";
@@ -1372,6 +1414,7 @@ export type ActivityQueryResult = {
       _weak?: boolean;
       [internalGroqTypeReferenceTo]?: "sanity.fileAsset";
     };
+    media?: unknown;
     _type: "video";
     _key: string;
     url: string | null;
@@ -1396,6 +1439,7 @@ export type LatestActivitiesQueryResult = Array<{
       _weak?: boolean;
       [internalGroqTypeReferenceTo]?: "sanity.imageAsset";
     };
+    media?: unknown;
     hotspot?: SanityImageHotspot;
     crop?: SanityImageCrop;
     _type: "image";
@@ -1429,6 +1473,7 @@ export type AllInternationalJournalsQueryResult = Array<{
       _weak?: boolean;
       [internalGroqTypeReferenceTo]?: "sanity.imageAsset";
     };
+    media?: unknown;
     hotspot?: SanityImageHotspot;
     crop?: SanityImageCrop;
     _type: "image";
@@ -1455,6 +1500,7 @@ export type AllInternationalConferencesQueryResult = Array<{
       _weak?: boolean;
       [internalGroqTypeReferenceTo]?: "sanity.imageAsset";
     };
+    media?: unknown;
     hotspot?: SanityImageHotspot;
     crop?: SanityImageCrop;
     _type: "image";
@@ -1497,6 +1543,7 @@ export type AllBooksQueryResult = Array<{
       _weak?: boolean;
       [internalGroqTypeReferenceTo]?: "sanity.imageAsset";
     };
+    media?: unknown;
     hotspot?: SanityImageHotspot;
     crop?: SanityImageCrop;
     _type: "image";
@@ -1524,6 +1571,7 @@ export type AllResearchersQueryResult = Array<{
   batch?: number;
   division?: "Imaging" | "Signal" | "Tabular";
   thesisTitle?: string;
+  title?: string;
   image?: {
     asset?: {
       _ref: string;
@@ -1531,6 +1579,7 @@ export type AllResearchersQueryResult = Array<{
       _weak?: boolean;
       [internalGroqTypeReferenceTo]?: "sanity.imageAsset";
     };
+    media?: unknown;
     hotspot?: SanityImageHotspot;
     crop?: SanityImageCrop;
     _type: "image";
@@ -1576,6 +1625,7 @@ export type AllInfrastructureQueryResult = Array<{
       _weak?: boolean;
       [internalGroqTypeReferenceTo]?: "sanity.imageAsset";
     };
+    media?: unknown;
     hotspot?: SanityImageHotspot;
     crop?: SanityImageCrop;
     _type: "image";
@@ -1613,6 +1663,7 @@ export type AllPartnerQueryResult = Array<{
       _weak?: boolean;
       [internalGroqTypeReferenceTo]?: "sanity.imageAsset";
     };
+    media?: unknown;
     hotspot?: SanityImageHotspot;
     crop?: SanityImageCrop;
     _type: "image";

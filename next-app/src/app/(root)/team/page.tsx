@@ -8,6 +8,7 @@ import { researcherRoles } from "@/lib/constants"
 import BaseSection from "@/components/base-section"
 import LecturerResearcherFigure from "@/components/lecturer-researcher-figure"
 
+import ExternalCollaboratorsSection from "./components/external-collaborator-section"
 import LecturerSection from "./components/lecturer-section"
 import StudentsSection from "./components/students-section"
 
@@ -136,9 +137,9 @@ export default async function Page() {
             </div>
           </div> */}
           <LecturerSection title="Members" students={members} />
-          <LecturerSection
+          <ExternalCollaboratorsSection
             title="External Collaborators"
-            students={externalCollaborators}
+            externalCollaborators={externalCollaborators}
           />
           <LecturerSection
             title="Research Assistants"
