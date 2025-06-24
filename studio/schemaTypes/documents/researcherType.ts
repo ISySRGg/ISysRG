@@ -94,6 +94,11 @@ export const researcherType = defineType({
       hidden: ({document}) => document?.role != 'Student',
     }),
     defineField({
+      name: 'title',
+      type: 'string',
+      hidden: ({document}) => document?.role != 'External Collaborator',
+    }),
+    defineField({
       name: 'image',
       type: 'image',
     }),
