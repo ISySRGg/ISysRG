@@ -75,7 +75,7 @@ export default function MobileNavigation({ navigation }: Props) {
             </div>
           </header> */}
 
-          <div className="container flex flex-col gap-y-8 overflow-y-scroll pt-6 pb-10 text-xl text-white">
+          <div className="no-scrollbar container flex flex-col gap-y-8 overflow-y-auto pt-6 pb-10 text-xl text-white">
             {navigation.map((navigationItem) => (
               <div key={navigationItem.label} className="w-full">
                 {"children" in navigationItem ? (

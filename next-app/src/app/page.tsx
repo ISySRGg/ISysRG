@@ -37,7 +37,7 @@ export default async function Page() {
           className="absolute inset-0 h-full w-full object-cover opacity-10"
         />
 
-        <div className="text-background flex flex-col bg-linear-to-br from-orange-950/80 via-neutral-800/90 via-40% to-cyan-950/80 to-95% pb-14 lg:py-10 2xl:py-20">
+        <div className="text-background flex h-full flex-col bg-linear-to-br from-orange-950/80 via-neutral-800/90 via-40% to-cyan-950/80 to-95% pb-14 lg:py-10 2xl:py-20">
           <Header navigationData={navigationData} />
           <HomeHeader navigationData={navigationData} />
 
