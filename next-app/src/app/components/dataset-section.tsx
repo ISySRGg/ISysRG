@@ -3,7 +3,7 @@ import Link from "next/link"
 import { client } from "@/sanity/client"
 import { datasetsSectionQuery } from "@/sanity/queries"
 import { urlForImage } from "@/sanity/utils"
-import { Database } from "lucide-react"
+import { ArrowRight, Database } from "lucide-react"
 import { PortableText } from "next-sanity"
 
 import { DatasetsSectionQueryResult } from "@/types/sanity.types"
@@ -45,18 +45,18 @@ export default async function DatasetSection() {
                       alt={dataset.name || ""}
                       height={80}
                       width={80}
-                      className="size-[68px] rounded object-cover lg:size-[80px]"
+                      className="size-[68px] flex-none rounded object-cover lg:size-[80px]"
                     />
                   ) : (
-                    <div className="flex size-[68px] flex-none items-center justify-center rounded bg-primary/10 text-primary lg:size-[80px]">
+                    <div className="bg-primary/10 text-primary flex size-[68px] flex-none items-center justify-center rounded lg:size-[80px]">
                       <Database className="size-[50%]" />
                     </div>
                   )}
                   <div>
-                    <h3 className="font-bold transition-colors group-hover:text-primary sm:text-xl">
+                    <h3 className="group-hover:text-primary font-bold transition-colors sm:text-xl">
                       {dataset.name}
                     </h3>
-                    <p className="text-sm text-muted-foreground sm:text-base">
+                    <p className="text-muted-foreground text-sm sm:text-base">
                       {dataset.shortDescription}
                     </p>
                   </div>
@@ -67,8 +67,14 @@ export default async function DatasetSection() {
       </ul>
 
       <div className="flex justify-end pt-4 lg:pt-8">
-        <Button variant="outline" size="xl" asChild className="w-full sm:w-fit">
+        {/* <Button variant="outline" size="xl" asChild className="w-full sm:w-fit">
           <Link href="/datasets">Explore more</Link>
+        </Button> */}
+
+        <Button variant="link" size="xl" className="p-0" asChild>
+          <Link href="/datasets">
+            Explore more datasets <ArrowRight />
+          </Link>
         </Button>
       </div>
     </BaseSection>

@@ -30,7 +30,7 @@ export default function PartnersCarousel({ partners }: Props) {
                 height={300}
                 className="mx-auto h-10 w-auto md:h-20"
               />
-              <p className="mt-2 text-center text-xs text-muted-foreground md:text-sm">
+              <p className="text-muted-foreground mt-2 text-center text-xs md:text-sm">
                 {partner.name}
               </p>
             </HoverableCard>

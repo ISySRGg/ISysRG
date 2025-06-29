@@ -4,7 +4,6 @@ import { client } from "@/sanity/client"
 import { aboutSectionQuery } from "@/sanity/queries"
 import { urlForImage } from "@/sanity/utils"
 import { ArrowRight } from "lucide-react"
-import { PortableText } from "next-sanity"
 
 import { AboutSectionQueryResult } from "@/types/sanity.types"
 import { Button } from "@/components/ui/button"
@@ -28,7 +27,7 @@ export default async function AboutSection() {
       subtitle={aboutSection?.subtitle}
       headerAlign="center"
     >
-      <div className="mt-10 flex flex-col items-center justify-center gap-4 lg:flex-row lg:gap-20">
+      <article className="mt-10 flex flex-col items-center justify-center gap-4 lg:flex-row lg:gap-20">
         <Image
           src={
             urlForImage(aboutSection?.image)
@@ -39,15 +38,22 @@ export default async function AboutSection() {
           alt="About us"
           width={800}
           height={800}
-          className="size-[200px] rounded-lg sm:size-[300px]"
+          className="aspect-video h-[200px] rounded-lg object-cover sm:size-[320px]"
         />
         <div className="flex flex-col gap-4">
-          <article className="prose md:prose-xl">
-            <h3 hidden>About</h3>
-            {aboutSection?.content && (
-              <PortableText value={aboutSection?.content} />
-            )}
-          </article>
+          <div className="prose md:prose-xl font-medium">
+            <p>
+              The research primarily involves developing software, applications,
+              and systems to support medical interpretation, with a focus on
+              medical signal and image processing, medical pattern recognition,
+              and medical record data mining techniques.
+            </p>
+          </div>
+          <div className="prose prose-sm">
+            The goal of ISysRG is to create intelligent systems across various
+            fields, including computer systems, biomedicine, natural language
+            processing, and others.
+          </div>
           <ul className="flex gap-8">
             <li>
               <Button variant="link" size="xl" className="p-0" asChild>
@@ -65,6 +71,41 @@ export default async function AboutSection() {
               </Button>
             </li>
           </ul>
+        </div>
+      </article>
+
+      <div className="mt-20 flex flex-col-reverse gap-4 md:items-center lg:flex-row lg:gap-20">
+        <div>
+          <div className="prose md:prose-xl font-medium">
+            <p>
+              The Intelligent System Research Group supports SDG 3 (Good Health
+              and Well-being) by developing AI-driven solutions for better
+              disease detection and healthcare delivery.
+            </p>
+          </div>
+          <article className="prose prose-sm text-muted-foreground">
+            <p>
+              It also advances SDG 17 (Partnerships for the Goals) through
+              active collaboration with universities, healthcare providers, and
+              industry to promote innovation and shared progress.
+            </p>
+          </article>
+        </div>
+        <div className="flex max-w-dvw flex-none gap-2 md:gap-4">
+          <Image
+            src="/assets/images/E_WEB_03.png"
+            alt=""
+            width={200}
+            height={200}
+            className="size-24 rounded-lg md:size-auto"
+          />
+          <Image
+            src="/assets/images/E_WEB_17.png"
+            alt=""
+            width={200}
+            height={200}
+            className="size-24 rounded-lg md:size-auto"
+          />
         </div>
       </div>
     </BaseSection>

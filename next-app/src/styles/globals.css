@@ -42,9 +42,11 @@
   --radius-lg: var(--radius);
   --radius-md: calc(var(--radius) - 2px);
   --radius-sm: calc(var(--radius) - 4px);
+}
 
+@theme inline {
   --font-heading: var(--font-poppins);
-  --font-text: var(--font-inter);
+  --font-text: var(--font-open-sans);
 }
 
 @utility container {

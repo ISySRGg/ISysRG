@@ -1,6 +1,8 @@
+import Image from "next/image"
 import Link from "next/link"
 
 import { organizationJsonLd, webSiteJsonLd } from "@/lib/json-ld"
+import { getNavigationData } from "@/lib/utils"
 import { Button } from "@/components/ui/button"
 import Header from "@/components/layout/header"
 import Slogan from "@/components/slogan"
@@ -8,11 +10,14 @@ import Slogan from "@/components/slogan"
 import AboutSection from "./components/about-section"
 import ActivitySection from "./components/activity-section"
 import DatasetSection from "./components/dataset-section"
+import HomeHeader from "./components/header"
 import PartnersSection from "./components/partners-section"
 import ProductsSection from "./components/products-section"
 import PublicationsSection from "./components/publications-section"
 
-export default function Page() {
+export default async function Page() {
+  const navigationData = await getNavigationData()
+
   return (
     <main>
       <script
@@ -23,16 +28,26 @@ export default function Page() {
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(organizationJsonLd) }}
       />
-      <header className="h-dvh bg-black bg-[url('/assets/images/code.jpg')] bg-cover sm:h-fit">
-        <div className="flex h-full flex-col bg-linear-to-br from-neutral-950/95 via-neutral-800/90 via-50% to-orange-950/60 to-95% pb-14 text-background lg:py-10 2xl:py-20">
-          <Header />
+      <header className="relative h-dvh bg-black sm:h-fit">
+        <Image
+          src="/assets/images/code8.jpeg"
+          width={500}
+          height={500}
+          alt=""
+          className="absolute inset-0 h-full w-full object-cover opacity-10"
+        />
 
-          <hgroup className="container flex h-full flex-col justify-center sm:py-28">
+        <div className="text-background flex flex-col bg-linear-to-br from-orange-950/80 via-neutral-800/90 via-40% to-cyan-950/80 to-95% pb-14 lg:py-10 2xl:py-20">
+          <Header navigationData={navigationData} />
+          <HomeHeader navigationData={navigationData} />
+
+          <hgroup className="z-10 container flex h-full flex-col justify-center sm:py-28">
             <h1 hidden>ISys Research Group</h1>
-            <p className="h-[1lh] font-heading text-4xl font-medium sm:text-7xl lg:text-8xl">
+
+            <p className="font-heading h-[1lh] text-4xl font-medium sm:text-7xl lg:text-8xl">
               <Slogan />
             </p>
-            <p className="mt-6 max-w-2xl font-light md:text-xl">
+            <p className="mt-6 max-w-2xl md:text-xl">
               <span className="text-primary">
                 The Intelligent Systems Research Group (ISysRG)
               </span>{" "}

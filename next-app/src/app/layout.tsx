@@ -10,7 +10,7 @@ import { GoogleAnalytics } from "@next/third-parties/google"
 import { Analytics } from "@vercel/analytics/react"
 
 import { Settings } from "@/types/sanity.types"
-import { inter, poppins } from "@/lib/fonts"
+import { openSans, poppins } from "@/lib/fonts"
 import { cn } from "@/lib/utils"
 import { Toaster } from "@/components/ui/sonner"
 import Footer from "@/components/layout/footer"
@@ -61,8 +61,8 @@ export default async function RootLayout({
       <body
         className={cn(
           poppins.variable,
-          inter.variable,
-          "flex min-h-dvh flex-col font-text antialiased"
+          openSans.variable,
+          "font-text flex min-h-dvh flex-col antialiased"
         )}
       >
         <Providers>

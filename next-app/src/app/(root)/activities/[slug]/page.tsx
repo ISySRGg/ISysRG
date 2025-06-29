@@ -5,6 +5,7 @@ import { notFound } from "next/navigation"
 import { client } from "@/sanity/client"
 import { activityQuery, moreActivitiesQuery } from "@/sanity/queries"
 import { resolveOpenGraphImage, urlForImage } from "@/sanity/utils"
+import { CalendarIcon } from "lucide-react"
 import { toPlainText } from "next-sanity"
 
 import { Activity, MoreActivitiesQueryResult } from "@/types/sanity.types"
@@ -77,18 +78,18 @@ export default async function Page(props: Props) {
           />
         </div>
         <div className="container flex flex-col border-b pb-4">
-          <h1 className="mt-6 font-heading text-xl font-semibold md:mt-10 md:text-2xl lg:text-3xl xl:text-4xl">
+          <h1 className="font-heading mt-6 text-xl font-semibold md:mt-10 md:text-2xl lg:text-3xl xl:text-4xl">
             {activity.title}
           </h1>
           <div className="flex items-center gap-2 pt-2 md:pt-4">
             <div className="flex grow flex-col justify-between md:flex-row md:items-center">
-              <time
-                dateTime={activity.date || ""}
-                className="text-sm font-medium text-primary md:text-lg"
-              >
-                {formatDate(new Date(activity.date || 0))}
-              </time>
-              <p className="text-xs italic text-muted-foreground md:text-sm">
+              <div className="text-primary flex items-center gap-1 text-sm md:text-lg">
+                <CalendarIcon className="size-[1.2em]" />
+                <time dateTime={activity.date || ""} className="">
+                  {formatDate(new Date(activity.date || 0))}
+                </time>
+              </div>
+              <p className="text-muted-foreground text-xs italic md:text-sm">
                 Posted {formatDate(new Date(activity._createdAt || 0))}
               </p>
             </div>
@@ -105,7 +106,7 @@ export default async function Page(props: Props) {
           )}
         </div>
         <aside>
-          <p className="pt-8 font-heading text-xl font-medium text-primary md:text-2xl lg:pt-0">
+          <p className="font-heading text-primary pt-8 text-xl font-medium md:text-2xl lg:pt-0">
             More Activities
           </p>
 
@@ -113,16 +114,16 @@ export default async function Page(props: Props) {
             {moreActivities.map((activity) => (
               <li key={activity._id} className="py-3 md:py-4">
                 <Link href={`/activities/${activity.slug?.current}`}>
-                  <p className="font-medium hover:underline md:text-lg">
+                  <p className="font-medium hover:underline">
                     {truncateString(activity.title || "", 120)}
                   </p>
                 </Link>
-                <time
-                  dateTime={activity.date || ""}
-                  className="text-sm text-primary"
-                >
-                  {formatDate(new Date(activity.date || 0))}
-                </time>
+                <div className="text-primary flex items-center gap-1 pt-1 text-sm">
+                  <CalendarIcon className="size-[1.2em]" />
+                  <time dateTime={activity.date || ""} className="">
+                    {formatDate(new Date(activity.date || 0))}
+                  </time>
+                </div>
               </li>
             ))}
           </ul>

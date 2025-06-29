@@ -55,7 +55,7 @@ export default function DesktopNavigation({ navigation }: Props) {
                       className="group flex items-center gap-1 text-sm font-medium tracking-wide text-neutral-200"
                     >
                       {navigationItem.footer.label}
-                      <ArrowRight className="size-[1em] text-primary transition-transform group-hover:translate-x-1" />
+                      <ArrowRight className="text-primary size-[1em] transition-transform group-hover:translate-x-1" />
                     </Link>
                   </div>
                 )}
@@ -90,7 +90,7 @@ function ListItem({
       <NavigationMenuLink asChild>
         <Link
           className={cn(
-            "group block select-none rounded px-4 py-6 leading-none tracking-wide no-underline outline-hidden transition-colors hover:bg-white/5 hover:text-white focus:bg-accent focus:text-accent-foreground"
+            "group focus:bg-accent focus:text-accent-foreground block rounded px-4 py-6 leading-none tracking-wide no-underline outline-hidden transition-colors select-none hover:bg-white/5 hover:text-white"
           )}
           href={href}
         >
@@ -98,13 +98,13 @@ function ListItem({
             <div>
               <p>{title}</p>
               {description && (
-                <p className="mt-1 text-sm text-muted-foreground">
+                <p className="text-muted-foreground mt-1 text-sm">
                   {description}
                 </p>
               )}
             </div>
             <div>
-              <ChevronRight className="size-[0.8em] text-primary group-hover:text-white" />
+              <ChevronRight className="text-primary size-[0.8em] group-hover:text-white" />
             </div>
           </div>
         </Link>

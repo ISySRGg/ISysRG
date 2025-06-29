@@ -15,7 +15,7 @@ const HoverableCard = React.forwardRef<HTMLDivElement, Props>(
     return (
       <Comp
         className={cn(
-          "group overflow-hidden rounded border-2 border-neutral-400/20 p-4 transition-all hover:border-primary/40 hover:bg-primary/10",
+          "group hover:border-primary/40 overflow-hidden rounded-lg border-2 border-neutral-400/20 p-4 transition-all hover:bg-neutral-400/10",
           className
         )}
         ref={ref}

@@ -32,7 +32,7 @@ export default function BaseSection({
           className={cn("font-heading", headerAlignClassNames[headerAlign])}
         >
           {title && (
-            <h2 className="text-lg font-extrabold text-primary sm:text-2xl lg:text-3xl">
+            <h2 className="text-primary text-lg font-extrabold sm:text-2xl lg:text-3xl">
               {title}
             </h2>
           )}

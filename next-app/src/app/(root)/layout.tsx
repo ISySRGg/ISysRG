@@ -1,19 +1,22 @@
+import { getNavigationData } from "@/lib/utils"
 import Header from "@/components/layout/header"
 
 import "@/styles/globals.css"
 
-export default function RootLayout({
+export default async function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode
 }>) {
+  const navigationData = await getNavigationData()
+
   return (
     <>
-      <div className="bg-neutral-900 text-white">
-        <Header />
+      <div className="fixed top-0 z-40 w-full bg-neutral-900/90 text-white backdrop-blur-2xl">
+        <Header navigationData={navigationData} />
       </div>
 
-      {children}
+      <div className="pt-[76px]">{children}</div>
     </>
   )
 }

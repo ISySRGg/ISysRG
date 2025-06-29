@@ -1,4 +1,4 @@
-import { Inter, Poppins } from "next/font/google"
+import { Open_Sans, Poppins } from "next/font/google"
 
 export const poppins = Poppins({
   subsets: ["latin"],
@@ -7,8 +7,9 @@ export const poppins = Poppins({
   variable: "--font-poppins",
 })
 
-export const inter = Inter({
+export const openSans = Open_Sans({
   subsets: ["latin"],
   display: "swap",
-  variable: "--font-inter",
+  weight: ["300", "400", "500", "600", "700"],
+  variable: "--font-open-sans",
 })

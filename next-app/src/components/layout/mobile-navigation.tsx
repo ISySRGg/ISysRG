@@ -8,7 +8,6 @@ import { ArrowRight, ChevronDown } from "lucide-react"
 
 import { cn } from "@/lib/utils"
 
-import ISysLogo from "../isys-logo"
 import MenuButton from "../menu-button"
 import {
   Collapsible,
@@ -59,10 +58,10 @@ export default function MobileNavigation({ navigation }: Props) {
       {mobileNavigation.opened && (
         <div
           className={cn(
-            "no-doc-scroll fixed inset-x-0 top-0 z-50 flex h-dvh w-full flex-col bg-neutral-950/95 backdrop-blur-lg lg:hidden"
+            "no-doc-scroll fixed inset-x-0 top-[58px] z-50 flex h-[calc(100dvh-58px)] w-full flex-col bg-neutral-900/95 backdrop-blur-2xl lg:hidden"
           )}
         >
-          <header className="border-y-2 border-white/10">
+          {/* <header className="border-y-2 border-white/10">
             <div className="container flex h-14 items-center justify-between sm:h-fit">
               <div className="flex items-center gap-6">
                 <ISysLogo />
@@ -74,9 +73,9 @@ export default function MobileNavigation({ navigation }: Props) {
                 className="lg:hidden"
               />
             </div>
-          </header>
+          </header> */}
 
-          <div className="container flex flex-col gap-y-8 pt-6 text-xl text-white">
+          <div className="container flex flex-col gap-y-8 overflow-y-scroll pt-6 pb-10 text-xl text-white">
             {navigation.map((navigationItem) => (
               <div key={navigationItem.label} className="w-full">
                 {"children" in navigationItem ? (
@@ -91,7 +90,7 @@ export default function MobileNavigation({ navigation }: Props) {
                       </button>
                     </CollapsibleTrigger>
                     <CollapsibleContent>
-                      <div className="ml-1 mt-6 flex flex-col gap-y-6 border-l-2 border-primary/40 pl-4">
+                      <div className="border-primary/40 mt-6 ml-1 flex flex-col gap-y-6 border-l-2 pl-4">
                         {navigationItem.children.map(
                           (navigationChild) =>
                             "href" in navigationChild && (
@@ -102,7 +101,7 @@ export default function MobileNavigation({ navigation }: Props) {
                                   className="block focus:underline"
                                 >
                                   <p>{navigationChild.label}</p>
-                                  <p className="text-xs text-muted-foreground">
+                                  <p className="text-muted-foreground text-xs">
                                     {navigationChild.description}
                                   </p>
                                 </Link>
@@ -117,7 +116,7 @@ export default function MobileNavigation({ navigation }: Props) {
                               className="group flex items-center gap-1 text-neutral-200"
                             >
                               {navigationItem.footer.label}
-                              <ArrowRight className="size-[1em] text-primary transition-transform group-hover:translate-x-1" />
+                              <ArrowRight className="text-primary size-[1em] transition-transform group-hover:translate-x-1" />
                             </Link>
                           </div>
                         )}

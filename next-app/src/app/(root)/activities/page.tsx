@@ -4,9 +4,10 @@ import Link from "next/link"
 import { client } from "@/sanity/client"
 import { allActivitiesQuery } from "@/sanity/queries"
 import { urlForImage } from "@/sanity/utils"
+import { CalendarIcon } from "lucide-react"
 
 import { Activity } from "@/types/sanity.types"
-import { formatDate, truncateString } from "@/lib/utils"
+import { formatDate } from "@/lib/utils"
 import BasePage from "@/components/base-page"
 import BaseSection from "@/components/base-section"
 import HoverableCard from "@/components/hoverable-card"
@@ -29,7 +30,7 @@ export default async function Page() {
   return (
     <BasePage title="Activities">
       <BaseSection>
-        <div className="grid grid-cols-1 gap-8 md:grid-cols-2">
+        <div className="grid grid-cols-1 gap-4 md:grid-cols-2">
           {activities.map((activity) => (
             <Link
               key={activity._id}
@@ -46,15 +47,15 @@ export default async function Page() {
                       className="aspect-video w-full rounded bg-neutral-200 object-cover transition-all group-hover:scale-105"
                     />
                   </div>
-                  <figcaption className="mt-2">
-                    <time
-                      dateTime={activity.date || ""}
-                      className="text-sm text-primary"
-                    >
-                      {formatDate(new Date(activity.date || 0))}
-                    </time>
-                    <h3 className="text-lg font-medium">
-                      {truncateString(activity.title || "", 140)}
+                  <figcaption className="flex flex-col gap-2 pt-3">
+                    <div className="text-primary flex items-center gap-1 text-sm">
+                      <CalendarIcon className="size-[1.2em]" />
+                      <time dateTime={activity.date || ""} className="">
+                        {formatDate(new Date(activity.date || 0))}
+                      </time>
+                    </div>
+                    <h3 className="text-base/relaxed font-medium">
+                      {activity.title || ""}
                     </h3>
                   </figcaption>
                 </figure>
