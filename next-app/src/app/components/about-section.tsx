@@ -85,7 +85,7 @@ export default async function AboutSection() {
           </div>
           <article className="prose prose-sm text-muted-foreground">
             <p>
-              It also advances SDG 17 (Partnerships for the Goals) through
+              It also advances SDG 9 (Partnerships for the Goals) through
               active collaboration with universities, healthcare providers, and
               industry to promote innovation and shared progress.
             </p>
