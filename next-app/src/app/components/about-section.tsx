@@ -85,9 +85,9 @@ export default async function AboutSection() {
           </div>
           <article className="prose prose-sm text-muted-foreground">
             <p>
-              It also advances SDG 9 (Partnerships for the Goals) through
-              active collaboration with universities, healthcare providers, and
-              industry to promote innovation and shared progress.
+              It also contributes to SDG 9 (Industry, Innovation and Infrastructure) by fostering 
+              technological innovation through research in intelligent systems, promoting sustainable healthcare infrastructure, 
+              and collaborating with industry to accelerate the adoption of cutting-edge technologies.
             </p>
           </article>
         </div>
@@ -100,7 +100,7 @@ export default async function AboutSection() {
             className="size-24 rounded-lg md:size-auto"
           />
           <Image
-            src="/assets/images/E_WEB_17.png"
+            src="/assets/images/E_WEB_09.png"
             alt=""
             width={200}
             height={200}
