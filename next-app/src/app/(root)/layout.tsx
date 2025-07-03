@@ -3,6 +3,8 @@ import Header from "@/components/layout/header"
 
 import "@/styles/globals.css"
 
+import HomeHeader from "./header"
+
 export default async function RootLayout({
   children,
 }: Readonly<{
@@ -12,8 +14,9 @@ export default async function RootLayout({
 
   return (
     <>
-      <div className="fixed top-0 z-40 w-full bg-neutral-900/90 text-white backdrop-blur-2xl">
+      <div className="bg-neutral-900/90 text-white">
         <Header navigationData={navigationData} />
+        <HomeHeader navigationData={navigationData} />
       </div>
 
       <div className="pt-[76px]">{children}</div>

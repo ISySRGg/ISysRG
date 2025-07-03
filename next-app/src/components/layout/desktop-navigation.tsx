@@ -17,16 +17,22 @@ import {
 
 interface Props {
   navigation: NavigationItem[]
+  compact?: boolean
 }
 
-export default function DesktopNavigation({ navigation }: Props) {
+export default function DesktopNavigation({
+  navigation,
+  compact = false,
+}: Props) {
   return (
     <NavigationMenu className="hidden lg:block">
       <NavigationMenuList className="divide-x-2 divide-white/10 border-x-2 border-white/10">
         {navigation.map((navigationItem) =>
           "children" in navigationItem ? (
             <NavigationMenuItem key={navigationItem.label}>
-              <NavigationMenuTrigger>
+              <NavigationMenuTrigger
+                className={cn(compact ? "py-4 text-sm [&_svg]:size-4" : "")}
+              >
                 {navigationItem.label}
               </NavigationMenuTrigger>
               <NavigationMenuContent
@@ -64,7 +70,12 @@ export default function DesktopNavigation({ navigation }: Props) {
           ) : (
             <NavigationMenuItem key={navigationItem.label}>
               <Link href={navigationItem.href} legacyBehavior passHref>
-                <NavigationMenuLink className={navigationMenuTriggerStyle()}>
+                <NavigationMenuLink
+                  className={cn(
+                    navigationMenuTriggerStyle(),
+                    compact ? "py-4 text-sm" : ""
+                  )}
+                >
                   {navigationItem.label}
                 </NavigationMenuLink>
               </Link>
@@ -90,7 +101,7 @@ function ListItem({
       <NavigationMenuLink asChild>
         <Link
           className={cn(
-            "group focus:bg-accent focus:text-accent-foreground block rounded px-4 py-6 leading-none tracking-wide no-underline outline-hidden transition-colors select-none hover:bg-white/5 hover:text-white"
+            "group focus:bg-accent focus:text-accent-foreground block rounded px-4 py-5 leading-none tracking-wide no-underline outline-hidden transition-colors select-none hover:bg-white/5 hover:text-white"
           )}
           href={href}
         >
@@ -98,9 +109,7 @@ function ListItem({
             <div>
               <p>{title}</p>
               {description && (
-                <p className="text-muted-foreground mt-1 text-sm">
-                  {description}
-                </p>
+                <p className="mt-1 text-sm text-neutral-400">{description}</p>
               )}
             </div>
             <div>

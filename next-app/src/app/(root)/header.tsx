@@ -12,7 +12,7 @@ export default function HomeHeader({
   navigationData: NavigationItem[]
 }) {
   const [showHeader, setShowHeader] = useState(false)
-  const scrollThreshold = 800 // Adjust this value as needed (in pixels)
+  const scrollThreshold = 100 // Adjust this value as needed (in pixels)
 
   useEffect(() => {
     const handleScroll = () => {
