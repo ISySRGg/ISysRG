@@ -30,7 +30,7 @@ export default function Header({
               </Link>
 
               <Image
-                src="/assets/images/aimed.png"
+                src="/assets/images/aimed-white.png"
                 alt="AIMED"
                 width={400}
                 height={400}

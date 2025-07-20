@@ -58,16 +58,14 @@ export default async function Footer() {
       <div className="border-primary/30 to-primary/20 border-t-2 bg-linear-to-br from-neutral-50 from-40% pb-10">
         <div className="container grid gap-6 py-10 sm:grid-cols-2 sm:gap-10 lg:grid-cols-3">
           <div className="sm:col-span-2 lg:col-span-1">
-            <div className="flex items-center gap-2">
-              <div className="rounded bg-neutral-900 px-1.5 py-1">
-                <Image
-                  src="/assets/images/aimed.png"
-                  alt="AIMED"
-                  width={400}
-                  height={400}
-                  className="h-8 w-auto sm:h-9"
-                />
-              </div>
+            <div className="flex items-center gap-3">
+              <Image
+                src="/assets/images/aimed-black.png"
+                alt="AIMED"
+                width={400}
+                height={400}
+                className="h-8 w-auto sm:h-10"
+              />
               <ISysLogo />
             </div>
             <p className="text-muted-foreground mt-1 max-w-prose text-xs">
