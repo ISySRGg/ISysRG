@@ -18,7 +18,7 @@ export default function Header({
       <div className="container flex h-14 items-center justify-between lg:h-fit">
         <div className="flex items-center">
           {!compact && (
-            <>
+            <div className="flex items-center gap-0.5">
               <Link href="https://unsri.ac.id">
                 <Image
                   src="/unsri.svg"
@@ -29,8 +29,16 @@ export default function Header({
                 />
               </Link>
 
+              <Image
+                src="/assets/images/aimed-white.png"
+                alt="AIMED"
+                width={400}
+                height={400}
+                className="h-8 w-auto sm:h-10"
+              />
+
               <div className="mx-3 h-14 w-[2.5px] flex-none bg-neutral-500/30 sm:mx-4"></div>
-            </>
+            </div>
           )}
           <ISysLogo compact={compact} />
         </div>

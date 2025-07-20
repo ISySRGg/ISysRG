@@ -48,13 +48,18 @@ export default async function Page() {
               <Slogan />
             </p>
             <p className="mt-6 max-w-2xl md:text-xl">
-              <span className="text-primary">
+              {/* <span className="text-primary">
                 The Intelligent Systems Research Group (ISysRG)
               </span>{" "}
               is based at the Faculty of Computer Science, Universitas
               Sriwijaya. This research group specializes in the theory and
               application of systems that understand, reason, learn, and act
-              intelligently.
+              intelligently. */}
+              The AIMed Center of Excellence aims to develop AI-based
+              technological solutions for the early screening (detection) of
+              non-communicable diseases that are accurate, efficient, ethical,
+              and usable by non-specialist healthcare workers in primary care
+              settings, through a mobile platform integrated with telemedicine.
             </p>
 
             <div className="mt-10 flex flex-col gap-4 sm:flex-row">
