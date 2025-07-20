@@ -23,7 +23,7 @@ export const organizationJsonLd: WithContext<Organization> = {
   logo: `${BASE_URL}/isysrg.png`,
   name: "Intelligent Systems Research Group",
   description:
-    "The AIMed Center of Excellence aims to develop AI-based technological solutions for the early screening (detection) of non-communicable diseases that are accurate, efficient, ethical, and usable by non-specialist healthcare workers in primary care settings, through a mobile platform integrated with telemedicine.",
+    "The Intelligent Systems Research Group (ISysRG) is based at the Faculty of Computer Science, Universitas Sriwijaya. This research group specializes in the theory and application of systems that understand, reason, learn, and act intelligently.",
   email: "isysrg@unsri.ac.id",
   telephone: "(+62) 81224147003",
   address: {
