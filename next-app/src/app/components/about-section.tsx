@@ -78,7 +78,7 @@ export default async function AboutSection() {
         <div>
           <div className="prose md:prose-xl font-medium">
             <p>
-              The Intelligent System Research Group supports SDG 3 (Good Health
+              The AIMed Center of Excellence supports SDG 3 (Good Health
               and Well-being) by developing AI-driven solutions for better
               disease detection and healthcare delivery.
             </p>

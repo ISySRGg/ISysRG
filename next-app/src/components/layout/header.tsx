@@ -38,6 +38,29 @@ export default function Header({
         <DesktopNavigation navigation={navigationData} compact={compact} />
         <MobileNavigation navigation={navigationData} />
       </div>
+      <div className="container flex h-14 items-center justify-between lg:h-fit">
+        <div className="flex items-center">
+          {!compact && (
+            <>
+              <Link href="">
+                <Image
+                  src="/unsri.svg"
+                  alt="Unsri"
+                  width={44}
+                  height={44}
+                  className="size-9 object-contain sm:size-12"
+                />
+              </Link>
+
+              <div className="mx-3 h-14 w-[2.5px] flex-none bg-neutral-500/30 sm:mx-4"></div>
+            </>
+          )}
+          <ISysLogo compact={compact} />
+        </div>
+
+        <DesktopNavigation navigation={navigationData} compact={compact} />
+        <MobileNavigation navigation={navigationData} />
+      </div>
     </header>
   )
 }
