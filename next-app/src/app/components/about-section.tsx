@@ -43,16 +43,14 @@ export default async function AboutSection() {
         <div className="flex flex-col gap-4">
           <div className="prose md:prose-xl font-medium">
             <p>
-              The research primarily involves developing software, applications,
-              and systems to support medical interpretation, with a focus on
-              medical signal and image processing, medical pattern recognition,
-              and medical record data mining techniques.
+              The AIMed Center of Excellence primarily involves developing software, applications, and systems 
+              to support medical interpretation, with a focus on medical signal and image processing, medical 
+              pattern recognition, and medical record data mining techniques.
             </p>
           </div>
           <div className="prose prose-sm">
-            The goal of ISysRG is to create intelligent systems across various
-            fields, including computer systems, biomedicine, natural language
-            processing, and others.
+            The AIMed Center of Excellence creates intelligent systems across various fields, 
+            including computer systems, biomedicine, natural language processing, and others.
           </div>
           <ul className="flex gap-8">
             <li>
