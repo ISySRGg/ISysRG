@@ -2,11 +2,11 @@ import { Metadata } from "next"
 import Image from "next/image"
 import Link from "next/link"
 import { client } from "@/sanity/client"
-import { allActivitiesQuery } from "@/sanity/queries"
+import { allActivitiesQuery, allSosmedQuery } from "@/sanity/queries"
 import { urlForImage } from "@/sanity/utils"
 import { CalendarIcon } from "lucide-react"
 
-import { Activity } from "@/types/sanity.types"
+import { Activity, Sosmed } from "@/types/sanity.types"
 import { formatDate } from "@/lib/utils"
 import BasePage from "@/components/base-page"
 import BaseSection from "@/components/base-section"
@@ -15,26 +15,26 @@ import HoverableCard from "@/components/hoverable-card"
 const options = { next: { revalidate: 30 } }
 
 export const metadata: Metadata = {
-  title: "Activities",
+  title: "Social Media",
   description:
     "Stay updated with our latest events, workshops, and collaborations. Discover how we engage with the academic and professional community to advance research and applications in intelligent systems.",
 }
 
 export default async function Page() {
-  const activities = await client.fetch<Activity[]>(
-    allActivitiesQuery,
+  const sosmed = await client.fetch<Sosmed[]>(
+    allSosmedQuery,
     {},
     options
   )
 
   return (
-    <BasePage title="Activities" subtitle="Communication">
+    <BasePage title="Social Media" subtitle="Communication">
       <BaseSection>
         <div className="grid grid-cols-1 gap-4 md:grid-cols-2">
-          {activities.map((activity) => (
+          {sosmed.map((activity) => (
             <Link
               key={activity._id}
-              href={`/activities/${activity.slug?.current}`}
+              href={activity.link || ""}
             >
               <HoverableCard className="h-full">
                 <figure key={activity._id} className="flex flex-col">

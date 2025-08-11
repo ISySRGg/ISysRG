@@ -152,3 +152,12 @@ export const allDocumentSlugs = defineQuery(`
 export const allPartnerQuery = defineQuery(`
   *[_type == "partner"]
 `)
+
+
+
+export const allMassMediaQuery = defineQuery(`
+  *[_type == "massMedia"] | order(publicationDate desc, _updatedAt desc)
+`)
+export const allSosmedQuery = defineQuery(`
+  *[_type == "sosmed"] | order(publicationDate desc, _updatedAt desc)
+`)

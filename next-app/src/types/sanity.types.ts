@@ -208,6 +208,43 @@ export type Settings = {
   };
 };
 
+export type Sosmed = {
+  _id: string;
+  _type: "sosmed";
+  _createdAt: string;
+  _updatedAt: string;
+  _rev: string;
+  title?: string;
+  isIncludedInTeleotiva?: boolean;
+  date?: string;
+  image?: {
+    asset?: {
+      _ref: string;
+      _type: "reference";
+      _weak?: boolean;
+      [internalGroqTypeReferenceTo]?: "sanity.imageAsset";
+    };
+    media?: unknown;
+    hotspot?: SanityImageHotspot;
+    crop?: SanityImageCrop;
+    _type: "image";
+  };
+  link?: string;
+};
+
+export type MassMedia = {
+  _id: string;
+  _type: "massMedia";
+  _createdAt: string;
+  _updatedAt: string;
+  _rev: string;
+  title?: string;
+  date?: string;
+  isIncludedInTeleotiva?: boolean;
+  mediaName?: string;
+  link?: string;
+};
+
 export type Book = {
   _id: string;
   _type: "book";
@@ -728,7 +765,7 @@ export type SanityAssetSourceData = {
   url?: string;
 };
 
-export type AllSanitySchemaTypes = Home | Settings | Book | IntellectualPropertyRights | InternationalConference | InternationalJournal | Researcher | Research | Product | Partner | Infrastructure | Dataset | Activity | SanityImagePaletteSwatch | SanityImagePalette | SanityImageDimensions | SanityImageHotspot | SanityImageCrop | SanityFileAsset | SanityImageAsset | SanityImageMetadata | Geopoint | Slug | SanityAssetSourceData;
+export type AllSanitySchemaTypes = Home | Settings | Sosmed | MassMedia | Book | IntellectualPropertyRights | InternationalConference | InternationalJournal | Researcher | Research | Product | Partner | Infrastructure | Dataset | Activity | SanityImagePaletteSwatch | SanityImagePalette | SanityImageDimensions | SanityImageHotspot | SanityImageCrop | SanityFileAsset | SanityImageAsset | SanityImageMetadata | Geopoint | Slug | SanityAssetSourceData;
 export declare const internalGroqTypeReferenceTo: unique symbol;
 // Source: ../next-app/src/sanity/queries.ts
 // Variable: aboutSectionQuery

@@ -123,7 +123,25 @@ export async function getNavigationData(): Promise<NavigationItem[]> {
       ],
       className: tw`lg:w-[600px]`,
     },
-    { label: "Activities", href: "/activities" },
+    {
+      label: "Communication",
+      href: "communication",
+      children: [
+        {
+          label: "Social Media",
+          href: "/social-media",
+        },
+        {
+          label: "Mass Media",
+          href: "/mass-media",
+        },
+        {
+          label: "Activities",
+          href: "/activities",
+        },
+      ],
+      className: tw`lg:w-[600px]`,
+    },
   ]
 
   return navigation
