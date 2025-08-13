@@ -17,25 +17,18 @@ const options = { next: { revalidate: 30 } }
 export const metadata: Metadata = {
   title: "Social Media",
   description:
-    "Stay updated with our latest events, workshops, and collaborations. Discover how we engage with the academic and professional community to advance research and applications in intelligent systems.",
+    "Explore our social media highlights featuring events, workshops, and collaborations. Follow our journey in advancing intelligent systems through active engagement with academic and professional communities.",
 }
 
 export default async function Page() {
-  const sosmed = await client.fetch<Sosmed[]>(
-    allSosmedQuery,
-    {},
-    options
-  )
+  const sosmed = await client.fetch<Sosmed[]>(allSosmedQuery, {}, options)
 
   return (
     <BasePage title="Social Media" subtitle="Communication">
       <BaseSection>
         <div className="grid grid-cols-1 gap-4 md:grid-cols-2">
           {sosmed.map((activity) => (
-            <Link
-              key={activity._id}
-              href={activity.link || ""}
-            >
+            <Link key={activity._id} href={activity.link || ""}>
               <HoverableCard className="h-full">
                 <figure key={activity._id} className="flex flex-col">
                   <div className="overflow-hidden rounded">

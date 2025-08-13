@@ -17,7 +17,7 @@ const options = { next: { revalidate: 30 } }
 export const metadata: Metadata = {
   title: "Mass Media",
   description:
-    "Explore our contributions to reputable international journals, showcasing groundbreaking research in intelligent systems, medical image processing, pattern recognition, and computational techniques.",
+    "Discover our presence in various mass media channels, highlighting research achievements, public engagements, and contributions to the field of intelligent systems, medical image processing, and pattern recognition.",
 }
 
 export default async function Page() {
