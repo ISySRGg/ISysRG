@@ -1,11 +1,8 @@
 import { Metadata } from "next"
 import { client } from "@/sanity/client"
-import {
-  allInternationalJournalsQuery,
-  allMassMediaQuery,
-} from "@/sanity/queries"
+import { allMassMediaQuery } from "@/sanity/queries"
 
-import { InternationalJournal, MassMedia } from "@/types/sanity.types"
+import { MassMedia } from "@/types/sanity.types"
 import { formatDate } from "@/lib/utils"
 import BasePage from "@/components/base-page"
 import BaseSection from "@/components/base-section"
