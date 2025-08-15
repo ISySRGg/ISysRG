@@ -47,14 +47,7 @@ export default async function Page() {
             <p className="font-heading h-[1lh] text-4xl font-medium sm:text-7xl lg:text-8xl">
               <Slogan />
             </p>
-            <p className="mt-6 max-w-2xl md:text-xl">
-              {/* <span className="text-primary">
-                The Intelligent Systems Research Group (ISysRG)
-              </span>{" "}
-              is based at the Faculty of Computer Science, Universitas
-              Sriwijaya. This research group specializes in the theory and
-              application of systems that understand, reason, learn, and act
-              intelligently. */}
+            <p className="mt-6 max-w-5xl md:text-xl">
               The Artificial Intelligence-Medical Center of Excellence (AIMed CoE) 
               is a leading center of excellence initiated by Universitas Sriwijaya, 
               Indonesia. It houses Intelligent System research group (ISysRG), which 
@@ -63,7 +56,7 @@ export default async function Page() {
               AIMed CoE aims to develop AI-based technological solutions for the 
               arly screening (detection) of non-communicable diseases that are accurate, 
               efficient, ethical, and usable by non-specialist healthcare workers in 
-              primary care settings, through a mobile platform integrated with telemedicine.
+              primary care settings, through a mobile platform integrated with telemedicine.
             </p>
 
             <div className="mt-10 flex flex-col gap-4 sm:flex-row">
