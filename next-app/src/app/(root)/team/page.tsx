@@ -65,8 +65,8 @@ export default async function Page() {
     <main>
       <header className="container flex flex-col items-center pt-16 text-center md:pt-32">
         <div className="font-heading">
-          <p className="text-sm text-neutral-600 uppercase md:text-base">
-            ISys Research Group
+          <p className="text-sm text-neutral-600 normalcase md:text-base">
+            AIMed CoE
           </p>
           <h1 className="text-5xl font-medium md:text-7xl">Research Team</h1>
         </div>

@@ -55,11 +55,15 @@ export default async function Page() {
               Sriwijaya. This research group specializes in the theory and
               application of systems that understand, reason, learn, and act
               intelligently. */}
-              The AIMed Center of Excellence aims to develop AI-based
-              technological solutions for the early screening (detection) of
-              non-communicable diseases that are accurate, efficient, ethical,
-              and usable by non-specialist healthcare workers in primary care
-              settings, through a mobile platform integrated with telemedicine.
+              The Artificial Intelligence-Medical Center of Excellence (AIMed CoE) 
+              is a leading center of excellence initiated by Universitas Sriwijaya, 
+              Indonesia. It houses Intelligent System research group (ISysRG), which 
+              is dedicated to advancing the field of artificial intelligence in 
+              medicine through interdisciplinary collaboration and innovation. 
+              AIMed CoE aims to develop AI-based technological solutions for the 
+              arly screening (detection) of non-communicable diseases that are accurate, 
+              efficient, ethical, and usable by non-specialist healthcare workers in 
+              primary care settings, through a mobile platform integrated with telemedicine.
             </p>
 
             <div className="mt-10 flex flex-col gap-4 sm:flex-row">
