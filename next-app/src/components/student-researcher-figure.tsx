@@ -1,10 +1,11 @@
 import Image from "next/image"
-import { User } from "lucide-react"
+import {  User } from "lucide-react"
 
 interface Props {
   name: string
   division: string
   thesisTitle: string
+  batch?: number
   image: {
     src: string
     alt: string
@@ -16,7 +17,9 @@ export default function StudentResearcherFigure({
   division,
   thesisTitle,
   image,
+  batch
 }: Props) {
+
   return (
     <figure className="flex h-full grow items-center gap-3 overflow-hidden rounded border bg-neutral-50 px-4 py-2 md:gap-6">
       {image ? (
@@ -38,6 +41,13 @@ export default function StudentResearcherFigure({
         <p className="-mt-1 text-xs font-medium text-neutral-700 md:text-sm">
           {division}
         </p>
+        {batch && (
+          <div className="mt-2">
+            <span className="inline-flex items-center rounded-md  px-2 py-1 text-xs font-medium text-primary ring-1 ring-inset">
+              Batch {batch}
+            </span>
+          </div>
+        )}
         <p className="mt-1 text-xs italic text-muted-foreground md:text-sm">
           {thesisTitle}
         </p>

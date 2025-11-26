@@ -35,6 +35,7 @@ export default function StudentsSection({ title, students }: Props) {
                   name={student.name || ""}
                   division={student.division || ""}
                   thesisTitle={student.thesisTitle || ""}
+                  batch={student.batch}
                   image={{
                     src: urlForImage(student.image)?.url() as string,
                     alt: "",
