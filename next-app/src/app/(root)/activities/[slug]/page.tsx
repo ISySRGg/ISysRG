@@ -89,9 +89,9 @@ export default async function Page(props: Props) {
                   {formatDate(new Date(activity.date || 0))}
                 </time>
               </div>
-              <p className="text-muted-foreground text-xs italic md:text-sm">
+              {/* <p className="text-muted-foreground text-xs italic md:text-sm">
                 Posted {formatDate(new Date(activity._createdAt || 0))}
-              </p>
+              </p> */}
             </div>
             <Menu />
           </div>
