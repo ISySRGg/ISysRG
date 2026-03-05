@@ -43,14 +43,17 @@ export default async function AboutSection() {
         <div className="flex flex-col gap-4">
           <div className="prose md:prose-xl font-medium">
             <p>
-              The AIMed Center of Excellence primarily involves developing software, applications, and systems 
-              to support medical interpretation, with a focus on medical signal and image processing, medical 
-              pattern recognition, and medical record data mining techniques.
+              The AIMed Center of Excellence primarily involves developing
+              software, applications, and systems to support medical
+              interpretation, with a focus on medical signal and image
+              processing, medical pattern recognition, and medical record data
+              mining techniques.
             </p>
           </div>
           <div className="prose prose-sm">
-            The AIMed Center of Excellence creates intelligent systems across various fields, 
-            including computer systems, biomedicine, natural language processing, and others.
+            The AIMed Center of Excellence creates intelligent systems across
+            various fields, including computer systems, biomedicine, natural
+            language processing, and others.
           </div>
           <ul className="flex gap-8">
             <li>
@@ -76,16 +79,18 @@ export default async function AboutSection() {
         <div>
           <div className="prose md:prose-xl font-medium">
             <p>
-              The AIMed Center of Excellence supports SDG 3 (Good Health
-              and Well-being) by developing AI-driven solutions for better
-              disease detection and healthcare delivery.
+              The AIMed Center of Excellence supports SDG 3 (Good Health and
+              Well-being) by developing AI-driven solutions for better disease
+              detection and healthcare delivery.
             </p>
           </div>
           <article className="prose prose-sm text-muted-foreground">
             <p>
-              It also contributes to SDG 9 (Industry, Innovation and Infrastructure) by fostering 
-              technological innovation through research in intelligent systems, promoting sustainable healthcare infrastructure, 
-              and collaborating with industry to accelerate the adoption of cutting-edge technologies.
+              It also contributes to SDG 9 (Industry, Innovation and
+              Infrastructure) by fostering technological innovation through
+              research in intelligent systems, promoting sustainable healthcare
+              infrastructure, and collaborating with industry to accelerate the
+              adoption of cutting-edge technologies.
             </p>
           </article>
         </div>
@@ -104,6 +109,36 @@ export default async function AboutSection() {
             height={200}
             className="size-24 rounded-lg md:size-auto"
           />
+        </div>
+      </div>
+      {/* ICAITech Conference Section */}
+      <div className="bg-muted/40 mt-20 flex flex-col gap-6 rounded-2xl p-8 md:p-12">
+        <div className="max-w-3xl">
+          <h3 className="text-2xl font-semibold md:text-3xl">
+            ICAITech – International Conference
+          </h3>
+          <p className="text-muted-foreground mt-4">
+            In addition to research and innovation, our research group also
+            manages the International Conference on Artificial Intelligence and
+            Technology (ICAITech). This annual conference serves as a platform
+            for researchers, academics, and industry professionals to share
+            their latest findings and technological advancements.
+          </p>
+
+          <p className="text-muted-foreground mt-4">
+            Through ICAITech, we facilitate paper submission, peer-review
+            processes, scientific presentations, and conference proceedings
+            publication, ensuring high academic standards and global
+            collaboration.
+          </p>
+
+          <div className="mt-6">
+            <Button asChild>
+              <Link href="/icaitech">
+                Learn More <ArrowRight className="ml-2 h-4 w-4" />
+              </Link>
+            </Button>
+          </div>
         </div>
       </div>
     </BaseSection>
