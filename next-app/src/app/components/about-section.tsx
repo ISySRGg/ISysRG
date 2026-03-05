@@ -111,36 +111,6 @@ export default async function AboutSection() {
           />
         </div>
       </div>
-      {/* ICAITech Conference Section */}
-      <div className="bg-muted/40 mt-20 flex flex-col gap-6 rounded-2xl p-8 md:p-12">
-        <div className="max-w-3xl">
-          <h3 className="text-2xl font-semibold md:text-3xl">
-            ICAITech – International Conference
-          </h3>
-          <p className="text-muted-foreground mt-4">
-            In addition to research and innovation, our research group also
-            manages the International Conference on Artificial Intelligence and
-            Technology (ICAITech). This annual conference serves as a platform
-            for researchers, academics, and industry professionals to share
-            their latest findings and technological advancements.
-          </p>
-
-          <p className="text-muted-foreground mt-4">
-            Through ICAITech, we facilitate paper submission, peer-review
-            processes, scientific presentations, and conference proceedings
-            publication, ensuring high academic standards and global
-            collaboration.
-          </p>
-
-          <div className="mt-6">
-            <Button asChild>
-              <Link href="/icaitech">
-                Learn More <ArrowRight className="ml-2 h-4 w-4" />
-              </Link>
-            </Button>
-          </div>
-        </div>
-      </div>
     </BaseSection>
   )
 }
