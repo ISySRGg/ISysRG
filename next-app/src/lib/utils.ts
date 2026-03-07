@@ -101,24 +101,38 @@ export async function getNavigationData(): Promise<NavigationItem[]> {
       className: tw`lg:[&>ul]:grid-cols-2`,
     },
     {
-      label: "Publication",
-      href: "publication",
+      label: "Performance",
+      href: "",
       children: [
         {
-          label: "International Journals",
-          href: "/journals",
+          label: "Publications",
+          href: "",
+          children: [
+            {
+              label: "International Journals",
+              href: "/journals",
+            },
+            {
+              label: "International Conference (Proceedings)",
+              href: "/proceedings",
+            },
+            {
+              label: "Intelectual Property Rights (IPR)",
+              href: "/ipr",
+            },
+            {
+              label: "Books",
+              href: "/books",
+            },
+          ],
         },
         {
-          label: "International Conference (Proceedings)",
-          href: "/proceedings",
+          label: "Conference Organizer",
+          href: "/conference-organizer",
         },
         {
-          label: "Intelectual Property Rights (IPR)",
-          href: "/ipr",
-        },
-        {
-          label: "Books",
-          href: "/books",
+          label: "Promotion",
+          href: "/promotion",
         },
       ],
       className: tw`lg:w-[600px]`,
