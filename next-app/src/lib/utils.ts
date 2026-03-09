@@ -123,6 +123,7 @@ export async function getNavigationData(): Promise<NavigationItem[]> {
       ],
       className: tw`lg:w-[600px]`,
     },
+   
     {
       label: "Communication",
       href: "communication",
