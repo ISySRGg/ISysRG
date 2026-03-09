@@ -91,9 +91,10 @@ export default function MobileNavigation({ navigation }: Props) {
                     </CollapsibleTrigger>
                     <CollapsibleContent>
                       <div className="border-primary/40 mt-6 ml-1 flex flex-col gap-y-6 border-l-2 pl-4">
-                        {navigationItem.children.map(
-                          (navigationChild) =>
-                            "href" in navigationChild && (
+                        {navigationItem.children.map((navigationChild) => {
+                          // Handle items with direct href
+                          if ("href" in navigationChild) {
+                            return (
                               <div key={navigationChild.label}>
                                 <Link
                                   onClick={handleCloseMobileNavigation}
@@ -107,7 +108,37 @@ export default function MobileNavigation({ navigation }: Props) {
                                 </Link>
                               </div>
                             )
-                        )}
+                          }
+                          // Handle nested children
+                          if ("children" in navigationChild) {
+                            return (
+                              <div
+                                key={navigationChild.label}
+                                className="space-y-3"
+                              >
+                                <div className="text-xs font-semibold tracking-wider text-neutral-400 uppercase">
+                                  {navigationChild.label}
+                                </div>
+                                <div className="flex flex-col gap-y-2">
+                                  {navigationChild.children.map(
+                                    (nestedChild) =>
+                                      "href" in nestedChild ? (
+                                        <Link
+                                          key={nestedChild.label}
+                                          onClick={handleCloseMobileNavigation}
+                                          href={nestedChild.href}
+                                          className="block text-sm focus:underline"
+                                        >
+                                          {nestedChild.label}
+                                        </Link>
+                                      ) : null
+                                  )}
+                                </div>
+                              </div>
+                            )
+                          }
+                          return null
+                        })}
 
                         {navigationItem.footer && (
                           <div className="flex justify-start">

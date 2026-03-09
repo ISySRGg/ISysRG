@@ -42,9 +42,34 @@ export default function DesktopNavigation({
                 )}
               >
                 <ul className="grid">
-                  {navigationItem.children.map(
-                    (navigationChild) =>
-                      "href" in navigationChild && (
+                  {navigationItem.children.map((navigationChild) => {
+                    if ("children" in navigationChild) {
+                      return (
+                        <li
+                          key={navigationChild.label}
+                          className="col-span-full space-y-1"
+                        >
+                          <div className="px-4 py-5 text-lg leading-none tracking-wide">
+                            {navigationChild.label}
+                          </div>
+                          {navigationChild.children.map((nestedChild) =>
+                            "href" in nestedChild ? (
+                              <Link
+                                key={nestedChild.label}
+                                href={nestedChild.href}
+                                className="block rounded-md px-4 py-1.5 text-sm hover:bg-neutral-800 hover:text-white"
+                              >
+                                {nestedChild.label}
+                              </Link>
+                            ) : null
+                          )}
+                        </li>
+                      )
+                    }
+
+                    // Handle items with direct href
+                    if ("href" in navigationChild) {
+                      return (
                         <ListItem
                           key={navigationChild.label}
                           title={navigationChild.label}
@@ -52,7 +77,11 @@ export default function DesktopNavigation({
                           href={navigationChild.href}
                         />
                       )
-                  )}
+                    }
+                    // Handle nested children
+
+                    return null
+                  })}
                 </ul>
                 {navigationItem.footer && (
                   <div className="flex justify-start px-4 py-2">
