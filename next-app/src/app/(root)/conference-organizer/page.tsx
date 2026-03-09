@@ -11,8 +11,8 @@ export default function ICAITechSection() {
           Conference Management
         </span>
 
-        <h3 className="mt-4 text-3xl font-bold md:text-3xl">
-          International Conference on AI & Technology - ICAITech
+        <h3 className="mt-4 text-3xl font-bold md:text-2xl">
+          International Conference on Artificial Intelligence & Technology - ICAITech
         </h3>
 
         <p className="mt-6 max-w-4xl text-lg leading-relaxed text-gray-300">
