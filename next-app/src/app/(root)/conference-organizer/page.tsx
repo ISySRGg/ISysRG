@@ -4,7 +4,7 @@ import { Button } from "@/components/ui/button"
 
 export default function ICAITechSection() {
   return (
-    <div className="mt-28 w-full bg-gradient-to-b from-black via-neutral-900 to-black py-20 text-white">
+    <div className="w-full bg-gradient-to-b from-black via-neutral-900 to-black py-16 text-white">
       <div className="mx-auto max-w-6xl px-6">
 
         <span className="text-sm font-semibold uppercase tracking-wider text-orange-500">
