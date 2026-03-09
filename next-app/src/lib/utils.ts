@@ -131,6 +131,10 @@ export async function getNavigationData(): Promise<NavigationItem[]> {
           href: "/conference-organizer",
         },
         {
+          label: "Journal Organizer",
+          href: "/journal-organizer",
+        },
+        {
           label: "Promotion",
           href: "/promotion",
         },
