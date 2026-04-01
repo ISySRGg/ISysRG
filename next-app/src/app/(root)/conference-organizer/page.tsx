@@ -20,17 +20,6 @@ export default function ICAITechSection() {
           </h2>
 
           <p className="mt-8 text-justify text-lg leading-relaxed text-gray-300">
-            The Computer Engineering and Applications Journal (ComEngApp)
-            (E-ISSN: 2252-5459; P-ISSN: 2252-4274) publishes original papers in
-            computer engineering with a strong emphasis on AI-driven engineering
-            and applications. The journal focuses on the development and
-            implementation of Artificial Intelligence (AI), machine learning,
-            deep learning, intelligent systems, computer vision, natural
-            language processing, robotics, embedded systems, and the Internet of
-            Things (IoT) to solve complex engineering and real-world problems.
-          </p>
-
-          <p className="mt-6 text-justify text-lg leading-relaxed text-gray-400">
             In addition to research and innovation, our research group also
             manages the International Conference on Artificial Intelligence and
             Technology (ICAITech). This annual conference serves as a global
