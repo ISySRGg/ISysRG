@@ -33,7 +33,7 @@ export default function ICAITechSection() {
             including call for papers, peer-review coordination, scientific
             sessions, keynote talks, and proceedings publication — ensuring
             academic excellence, international collaboration, and impactful
-            contributions to the global research community.
+            contributions to the global research community-la.
           </p>
 
           <div className="mt-10">
