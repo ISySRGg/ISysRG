@@ -25,7 +25,7 @@ export default function ICAITechSection() {
             Technology (ICAITech). This annual conference serves as a global
             platform for researchers, academics, and industry professionals to
             present their latest findings, exchange ideas, and explore emerging
-            technological advancements.
+            technological advancementss.
           </p>
 
           <p className="mt-6 text-justify text-lg leading-relaxed text-gray-400">
