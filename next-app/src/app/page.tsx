@@ -14,7 +14,7 @@ import HomeHeader from "./components/header"
 import PartnersSection from "./components/partners-section"
 import ProductsSection from "./components/products-section"
 import PublicationsSection from "./components/publications-section"
-import ICAITechSection from "./components/icaitech"
+// import ICAITechSection from "./components/icaitech"
 
 export default async function Page() {
   const navigationData = await getNavigationData()
@@ -73,7 +73,7 @@ export default async function Page() {
         </div>
       </header>
       <AboutSection />
-      <ICAITechSection />
+      {/* <ICAITechSection /> */}
       <ProductsSection />
       <ActivitySection />
       <PublicationsSection />

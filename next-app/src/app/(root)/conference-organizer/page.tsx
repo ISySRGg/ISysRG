@@ -11,7 +11,7 @@ export default function ICAITechSection() {
         {/* text container */}
         <div className="max-w-6xl">
           <span className="text-sm font-semibold tracking-widest text-orange-500 uppercase">
-            Conference Managementts
+            Conference Management
           </span>
 
           <h2 className="mt-4 text-4xl leading-tight font-bold md:text-4xl">
